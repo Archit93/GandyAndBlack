@@ -58,3 +58,10 @@
 // </div></>)
 // }
 // export default AboutUs
+
+import * as React from 'react';
+
+const AboutUs = (props) => {
+    return(<> About Us Page</>)
+}
+export default AboutUs;

@@ -151,7 +151,9 @@ const SignUp = () => {
 							<input  id="signup-password" type="password" required />
 						</div>
 						<div className="form">
-							<button className="btn-link" type="submit">Already have an account? Login</button>
+							<button className="btn-link" type="submit" onClick={() => {
+									history.push('/')
+								}}>Already have an account? Login</button>
 						</div>
 						<div className="form">
 							<button className="btn btn-lg btn-main" type="submit">Signup</button>

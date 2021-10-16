@@ -129,46 +129,50 @@ import { useHistory } from "react-router-dom";
 
 const SignIn = (props) => {
 	const history = useHistory();
-    return(
-        <div className="row">
-		<div className="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-			<div id="world-map-wrapper">
-				<img src="./GB-COLLECTIONS-DERMAL-FILLERS.jpg" alt="login background image" />
+	return (
+		<div className="row">
+			<div className="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+				<div id="world-map-wrapper">
+					<img src="./GB-COLLECTIONS-DERMAL-FILLERS.jpg" alt="login background image" />
+				</div>
+			</div>
+			<div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+				<header id="header"><img src="./newlogo.png" alt="" /></header>
+				<div id="login">
+					<div role="main">
+						<form method="post">
+							<div className="form">
+								<label for="login-email" className="label">Email</label>
+								<input id="login-email" type="email" required />
+							</div>
+							<div className="form">
+								<label for="login-password" className="label">Password</label>
+								<input id="login-password" type="password" required />
+							</div>
+							<div className="form">
+								<button className="btn-link" type="submit"
+									onClick={() => {
+										history.push('/forgot_password')
+									}}>Forgot password ?</button>
+							</div>
+							<div className="form">
+								<button className="btn btn-lg btn-main" type="submit" onClick={() => {
+									history.push('/aboutus')
+								}}>Login</button>
+							</div>
+							<div className="form">
+								<button className="btn-link" type="submit" onClick={() => {
+									history.push('/signup')
+								}}>Not a member? Register</button>
+							</div>
+						</form>
+					</div>
+					<footer>
+						<p><small>&copy;  2021 Copyright. GANDY & BLACK AESTHETICS</small></p>
+					</footer>
+				</div>
 			</div>
 		</div>
-		<div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
-			<header id="header"><img src="./newlogo.png" alt="" /></header>
-			<div id="login">
-				<div role="main">
-					 <form method="post">
-						<div className="form">
-							<label for="login-email" className="label">Email</label>
-							<input  id="login-email" type="email" required />
-						</div>
-						<div className="form">
-							<label for="login-password" className="label">Password</label>
-							<input  id="login-password" type="password" required />
-						</div>
-						<div className="form">
-							<button className="btn-link" type="submit" 
-							onClick={() => {
-                                        history.push('/signup')
-                                    }}>Forgot password ?</button>
-						</div>
-						<div className="form">
-							<button className="btn btn-lg btn-main" type="submit">Login</button>
-						</div>
-						<div className="form">
-							<button className="btn-link" type="submit">Not a member? Register</button>
-						</div>
-					</form>
-				</div>
-				<footer>
-					<p><small>&copy;  2021 Copyright. GANDY & BLACK AESTHETICS</small></p>
-				</footer>
-			</div>			
-		</div>
-	</div>
-    )
+	)
 }
 export default SignIn;

@@ -79,8 +79,9 @@ import React from 'react';
 // import Header from '../components/common/Header';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
+import ForgotPassword from '../components/ForgotPassword';
+import AboutUs from '../components/AboutUs';
 // import ProductList from '../components/ProductList';
-// import AboutUs from '../components/AboutUs';
 
 export const AppRouter = ({ applicationState, dispatch }) => {
   return (
@@ -88,6 +89,8 @@ export const AppRouter = ({ applicationState, dispatch }) => {
         <Switch>
           <Route exact={true} path="/" component={SignIn} applicationState={applicationState} dispatch={dispatch} />
           <Route path="/signup" component={SignUp} applicationState={applicationState} dispatch={dispatch} />
+          <Route path="/forgot_password" component={ForgotPassword} applicationState={applicationState} dispatch={dispatch} />
+          <Route path="/aboutus" component={AboutUs} applicationState={applicationState} dispatch={dispatch} />
           {/*<Route path="/signup" component={ProductList} applicationState={applicationState} dispatch={dispatch} />
           <Route path="/aboutus" component={AboutUs} applicationState={applicationState} dispatch={dispatch} /> */}
         </Switch>
