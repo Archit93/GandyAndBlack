@@ -1,0 +1,2 @@
+export const SET_MOBILE_VIEW = 'SET_MOBILE_VIEW';
+export const SET_DRAWER_OPEN = 'SET_DRAWER_OPEN';
