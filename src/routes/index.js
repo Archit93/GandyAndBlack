@@ -78,7 +78,7 @@ import {
 import React from 'react';
 // import Header from '../components/common/Header';
 import SignIn from '../components/SignIn';
-// import SignUp from '../components/SignUp';
+import SignUp from '../components/SignUp';
 // import ProductList from '../components/ProductList';
 // import AboutUs from '../components/AboutUs';
 
@@ -87,8 +87,8 @@ export const AppRouter = ({ applicationState, dispatch }) => {
     <Router>
         <Switch>
           <Route exact={true} path="/" component={SignIn} applicationState={applicationState} dispatch={dispatch} />
-          {/* <Route path="/signup" component={SignUp} applicationState={applicationState} dispatch={dispatch} />
-          <Route path="/signup" component={ProductList} applicationState={applicationState} dispatch={dispatch} />
+          <Route path="/signup" component={SignUp} applicationState={applicationState} dispatch={dispatch} />
+          {/*<Route path="/signup" component={ProductList} applicationState={applicationState} dispatch={dispatch} />
           <Route path="/aboutus" component={AboutUs} applicationState={applicationState} dispatch={dispatch} /> */}
         </Switch>
     </Router>

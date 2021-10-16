@@ -557,6 +557,13 @@ textarea {
     box-shadow: none;
 }
 
+.btn-link{
+	border: 0;
+	background-color: transparent;
+	color: #f9938e;
+	font-size: 14px;
+}
+
 /*  tab contents  */
 
 .tabs {
