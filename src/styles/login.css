@@ -2,14 +2,15 @@
 
     Title :  Gandy And Black
     Usage :  login
-    Edited:  20121-10-16
+    Edited:  2021-10-16
 
 -------------------------------------------------------
 
     1. container
     2. login
-    3. word map
+    3. model image
     4. responsive (1023px)
+    5. signup
 
 -------------------------------------------------------*/
 
@@ -24,8 +25,10 @@ html {
 
 body {
 	min-height: 100%;
-	overflow: hidden;
+	overflow-x: hidden;
 	background: #fff;
+	font-size: 14px;
+    line-height: 1.5em;
 }
 
 
@@ -33,15 +36,14 @@ body {
 /*  2. login
 -------------------------------------------------------*/
 
-#login {
+#login, #signup, #forgot-password {
 	position: relative;
 	z-index: 1;
-	padding: 5.18vh 40px 54px;
-	width: 460px;
+	padding: 5.18vh 40px 0;
+	/* width: 460px; */
 	background-color: #fff;
 	margin: 0 auto;
 	max-width: 455px;
-	height: 100vh;
 }
 
 #login [role="main"] {
@@ -49,7 +51,7 @@ body {
 	max-width: 364px;
 }
 
-#login h1 {
+.form h1 {
 	margin-top: 7.13vh;
 	color: #212529;
 	font-size: 22px;
@@ -57,7 +59,7 @@ body {
 	letter-spacing: 0.023em;
 }
 
-#login [role="main"] > p{
+.form [role="main"] > p{
 	margin-top: 5px;
 	font-weight: 700;
 	color: #212529;
@@ -66,20 +68,20 @@ body {
 	letter-spacing: 0.03125em;
 }
 
-#login [role="main"] > p + p {
+.form [role="main"] > p + p {
 	margin-top: 19px;
 }
 
-#login form {
+/*#login form {
 	margin-top: 8.82vh;
-}
+}*/
 
 #login-remember {
 	position: absolute;
 	left: -5000px;
 }
 
-#login form .form:nth-child(3) {
+.form form .form:nth-child(3) {
 	display: flex;
 	justify-content: space-between;
 	padding-top: 5px;
@@ -88,27 +90,27 @@ body {
 	letter-spacing: 0.036em;
 }
 
-#login form .form:nth-child(3) label {
+.form form .form:nth-child(3) label {
 	display: flex;
 	align-items: center;
 	cursor: pointer;
 }
 
-#login form .form:nth-child(3) label .checkbox {
-	margin-right: 9px;
-}
-
-#login form .form:nth-child(3) a:hover {
+.form form .form:nth-child(3) a:hover {
 	text-decoration: underline;
 }
 
-#login button {
-	margin-top: 24px;
+.form button {
+	margin-top: 5px;
 }
 
-#login footer {
-	position: absolute;
-	bottom: 20px;
+.form a, .form p {
+    font-size: 14px;
+}
+
+footer {
+	position: fixed;
+	bottom: 0px;
 	left: 0;
 	padding: 0 15px;
 	width: 100%;
@@ -119,12 +121,12 @@ body {
 	letter-spacing: 0.042em;
 }
 
-#login footer strong {
+footer strong {
 	font-weight: 400;
 	text-transform: uppercase;
 }
 
-#login footer span {
+footer span {
 	position: relative;
 	top: 1px;
 	display: inline-block;
@@ -135,7 +137,7 @@ body {
 
 #header {
 	margin: 0 auto;
-	width: 370px;
+	/* width: 370px; */
 	text-align: center;
 	padding-top: 30px;
 }
@@ -145,15 +147,15 @@ body {
 }
 
 
-@-moz-document url-prefix() {
+/*@-moz-document url-prefix() {
 #login footer span {
 	top: 2px;
 	}
 }
+*/
 
 
-
-/*  3. world map
+/*  3. model image
 -------------------------------------------------------*/
 
 #world-map-wrapper {
@@ -203,4 +205,33 @@ body {
 	display: none;
 	}
 
+}
+
+
+@media (min-width: 1023px) {
+
+	footer {
+		position: fixed;
+		bottom: -10px;
+		left: 0;
+		padding: 0 15px;
+		width: 142%;
+		color: #6b7a86;
+		font-size: 12px;
+		line-height: 1.5;
+		text-align: center;
+		letter-spacing: 0.042em;
+	}
+}
+
+
+/*  5. signup
+-------------------------------------------------------*/
+
+.form form .form:nth-child(4) {
+	display: flex;
+	padding-top: 5px;
+	color: #212529;
+	font-size: 14px;
+	letter-spacing: 0.036em;
 }

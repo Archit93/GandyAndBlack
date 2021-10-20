@@ -39,15 +39,15 @@ body {
 	line-height: 1.2;
 	}
 
-main {
+/* main {
 	display: block;
-	}
+	} */
 
-h1, h2, h3, h4, h5, h6,
+/* h1, h2, h3, h4, h5, h6,
 input, select, button, textarea,
 small {
 	font-size: 100%;
-	}
+	} */
 
 li {
 	list-style: none;
@@ -557,6 +557,13 @@ textarea {
     box-shadow: none;
 }
 
+.btn-link{
+	border: 0;
+	background-color: transparent;
+	color: #f9938e;
+	font-size: 14px;
+}
+
 /*  tab contents  */
 
 .tabs {
@@ -907,7 +914,7 @@ textarea {
 -------------------------------------------------------*/
 
 body {
-	overflow: hidden;
+	overflow-x: hidden;
 	background-color: #fff;
 	}
 
@@ -2340,3 +2347,99 @@ div + .header-config {
 	font-weight: 300;
 	font-size: 12px;
 	}
+
+
+/* About Us */
+	
+.title{
+	font-size: 25px;
+	line-height: 1.45;
+	letter-spacing: 0.023em;
+	padding-bottom: 20px;
+}
+
+#about h1{
+	color: #21252b;
+	font-size: 25px;
+	line-height: 1.45;
+	letter-spacing: 0.023em;
+	padding-bottom: 20px;
+    margin-bottom: 30px;
+	position: relative;
+}
+
+#about h1::after{
+	background: #21252b;
+	left: 50%;
+    margin: 0 0 0 -25px;
+	width: 50px;
+	height: 2px;
+	content: "";
+    display: block;
+	position: absolute;
+    bottom: 0;
+}
+
+#about h2{
+	margin-top: 7.13vh;
+	color: #7984a3;
+	font-size: 22px;
+	line-height: 1.45;
+	letter-spacing: 0.023em;
+}
+
+/* p{
+	margin-top: 5px;
+	font-weight: 700;
+	color: #212529;
+	font-size: 16px;
+	line-height: 1.5;
+	letter-spacing: 0.03125em;
+} */
+
+
+#about .blue-bg p{
+	color: #fff;
+	font-weight: 500;
+	font-size: 16px;
+}
+
+#about .blue-bg h1{
+	color: #fff;
+	font-weight: 500;
+	font-size: 24px;
+}
+
+.bg-grey{
+	background-color: #dedede;
+}
+
+.bg-dark-grey{
+	background-color: #252525;
+}
+
+
+.bg-blue{
+	background-color: #7984a3;
+	padding: 50px 0;
+}
+
+#contact h1, #contact h2, #contact p{
+	color: #fff;
+}
+
+.container-fluid{
+	padding: 60px 40px 40px;
+}
+
+#contact h1::after, #values h1::after{
+	background: #fff;
+	left: 50%;
+    margin: 0 0 0 -25px;
+	width: 50px;
+	height: 2px;
+	content: "";
+    display: block;
+	position: absolute;
+    bottom: 0;
+}
