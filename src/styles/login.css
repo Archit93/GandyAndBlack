@@ -25,8 +25,10 @@ html {
 
 body {
 	min-height: 100%;
-	overflow: hidden;
+	overflow-x: hidden;
 	background: #fff;
+	font-size: 14px;
+    line-height: 1.5em;
 }
 
 
@@ -37,12 +39,11 @@ body {
 #login, #signup, #forgot-password {
 	position: relative;
 	z-index: 1;
-	padding: 5.18vh 40px 54px;
-	width: 460px;
+	padding: 5.18vh 40px 0;
+	/* width: 460px; */
 	background-color: #fff;
 	margin: 0 auto;
 	max-width: 455px;
-	height: 100vh;
 }
 
 #login [role="main"] {
@@ -100,7 +101,7 @@ body {
 }
 
 .form button {
-	margin-top: 24px;
+	margin-top: 5px;
 }
 
 .form a, .form p {
@@ -136,7 +137,7 @@ footer span {
 
 #header {
 	margin: 0 auto;
-	width: 370px;
+	/* width: 370px; */
 	text-align: center;
 	padding-top: 30px;
 }
@@ -211,7 +212,7 @@ footer span {
 
 	footer {
 		position: fixed;
-		bottom: 0px;
+		bottom: -10px;
 		left: 0;
 		padding: 0 15px;
 		width: 142%;
