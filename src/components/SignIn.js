@@ -161,7 +161,7 @@ const SignIn = (props) => {
 							</div>
 							<div className="form">
 								<button className="btn btn-lg btn-main" type="submit" onClick={() => {
-									history.push('/aboutus')
+									history.push('/productlist')
 								}}>Login</button>
 							</div>
 							<div className="form">
