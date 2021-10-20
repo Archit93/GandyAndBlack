@@ -156,7 +156,9 @@ const SignUp = () => {
 								}}>Already have an account? Login</button>
 						</div>
 						<div className="form">
-							<button className="btn btn-lg btn-main" type="submit">Signup</button>
+							<button className="btn btn-lg btn-main" type="submit" onClick={() => {
+									history.push('/checkout')
+								}}>Signup</button>
 						</div>
 					</form>
 				</div>

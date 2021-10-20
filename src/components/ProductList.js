@@ -179,7 +179,7 @@ const MyRenderer = (params) => {
             {params.value != null &&
                 <>
                     <button onClick={(event) => onIncrement(event)}>+</button>
-                    <input id="demoInput" type="number" onChange={() =>  context.frameWorkComponentChange({ api, buttonName: "INPUT" })} />
+                    <input id="demoInput" type="number" onChange={(event) =>  onIncrement(event)} />
 
                     <button >-</button>
 
@@ -230,7 +230,7 @@ const ProductList = () => {
     }), []);
 
     return (
-        <div className="ag-theme-alpine" style={{ height: 400, width: 1000 }}>
+        <div className="ag-theme-alpine" style={{ height: 400, width: 1000, textAlign:"center" }}>
             <AgGridReact
                 rowData={rowData}
                 columnDefs={columnDefs({frameWorkComponentChange: frameWorkComponentChange})}
