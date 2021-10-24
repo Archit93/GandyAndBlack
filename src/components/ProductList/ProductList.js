@@ -182,7 +182,7 @@ const ProductList = (props) => {
         setGridColumnApi(params.columnApi)
     }
 
-    const frameWorkComponentChange = ({ api, buttonName }) => {
+    const frameWorkComponentChange = ({ api }) => {
         const productlistArray = [];
         api.forEachNode((node)=> {
             productlistArray.push(node.data);
@@ -194,7 +194,6 @@ const ProductList = (props) => {
     }
     const rowData = () => {
         const productlistArray = [];
-        console.log(applicationState.productList);
         applicationState.productList.map((rowdetail)=>{
             const productListObject = Object.assign({});
             productListObject.brand = rowdetail.brand;
@@ -221,7 +220,7 @@ const ProductList = (props) => {
         { field: 'quantity', headerName: "Quantity", 
         editable: true,
         cellRendererFramework: ColumnQuantity, 
-        onCellValueChanged: ({ api }) => frameWorkComponentChange({ api, buttonName: null }) },
+        },
         { field: 'salesPerUnit', headerName: "Sales Per Unit" }
     ];
 
