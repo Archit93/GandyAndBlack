@@ -51,6 +51,8 @@ import { AppRouter } from './routes/index';
 import {useStateManager} from './reducer/useStateManager';
 import './styles/common.css';
 import './styles/login.css';
+import './styles/checkout.css';
+
 
 const App = () => {
   const[reducer, dispatch] = React.useReducer(useStateManager, null);

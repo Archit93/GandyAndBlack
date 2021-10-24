@@ -1,43 +1,15 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import {
-  isValidName,
-  isValidEmail,
-  isValidPassword,
-} from "../utils/regexUtils";
+import { isValidEmail, isValidPassword } from "../utils/regexUtils";
 
-const SignUp = () => {
+const SignIn = (props) => {
   const history = useHistory();
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
   const [email, setEmailAddress] = React.useState("");
-  const [emailError, setEmailError] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [firstNameError, setFirstNameError] = React.useState("");
-  const [lastNameError, setLastNameError] = React.useState("");
-  const [passwordError, setPasswordError] = React.useState("");
   const [passwordShown, setPasswordShown] = React.useState(false);
+  const [emailError, setEmailError] = React.useState("");
+  const [passwordError, setPasswordError] = React.useState("");
   const [emptyCredentialsError, setEmptyCredentialsError] = React.useState("");
-
-  const onNameChange = (e) => {
-    if (e.target.id === "signup-firstname") {
-      setFirstName(e.target.value);
-      setFirstNameError("");
-    } else {
-      setLastName(e.target.value);
-      setLastNameError("");
-    }
-    setEmptyCredentialsError("");
-  };
-
-  const validateName = (e) => {
-    const { id, value } = e?.target;
-    if (id === "signup-firstname") {
-      setFirstNameError(isValidName(value));
-    } else {
-      setLastNameError(isValidName(value));
-    }
-  };
 
   const validateEmail = (e) => {
     const { value } = e?.target;
@@ -57,17 +29,16 @@ const SignUp = () => {
   const onPasswordChange = (e) => {
     setPassword(e.target.value);
     setPasswordError("");
-    setEmptyCredentialsError("");
   };
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  const validateSignup = (e) => {
-    if (firstNameError || lastNameError || passwordError) {
+  const validateLogin = (e) => {
+    if (emailError || passwordError) {
       e.preventDefault();
-    } else if (firstName === "" || lastName === "" || password === "") {
+    } else if (email === "" || password === "") {
       e.preventDefault();
       setEmptyCredentialsError(
         "Looks like you're missing something! Do you want to give it another try?"
@@ -91,73 +62,35 @@ const SignUp = () => {
         <header id="header">
           <img src="./newlogo.png" alt="" />
         </header>
-        <div id="signup">
+        <div id="login">
           <div role="main">
             <form method="post">
-              <div className="form">
-                <label for="signup-firstname" className="label">
-                  Firstname
-                </label>
+              <div className="form-floating mb-3">
                 <input
-                  id="signup-firstname"
-                  onChange={(e) => onNameChange(e)}
-                  onBlur={(e) => validateName(e)}
-                  value={firstName}
-                  required
-                />
-              </div>
-              {firstNameError ? (
-                <span>{firstNameError}</span>
-              ) : (
-                <React.Fragment />
-              )}
-              <div className="form">
-                <label for="signup-lastname" className="label">
-                  Lastname
-                </label>
-                <input
-                  id="signup-lastname"
-                  onChange={(e) => onNameChange(e)}
-                  onBlur={(e) => validateName(e)}
-                  value={lastName}
-                  required
-                />
-              </div>
-              {lastNameError ? (
-                <span>{lastNameError}</span>
-              ) : (
-                <React.Fragment />
-              )}
-              <div className="form">
-                <label for="signup-email" className="label">
-                  Email
-                </label>
-                <input
-                  id="signup-email"
                   type="email"
+                  className="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
                   onChange={(e) => onEmailChange(e)}
                   onBlur={(e) => validateEmail(e)}
                   value={email}
-                  required
                 />
+                <label for="floatingInput">Email address</label>
               </div>
               {emailError ? <span>{emailError}</span> : <React.Fragment />}
-              <div className="form pass-wrapper">
-                <label for="signup-password" className="label">
-                  Create your password
-                </label>
+              <div className="form-floating pass-wrapper">
                 <input
-                  id="signup-password"
                   type={passwordShown ? "text" : "password"}
+                  className="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
                   onChange={(e) => onPasswordChange(e)}
                   onBlur={(e) => validatePassword(e)}
                   value={password}
-                  required
                 />
+                <label for="floatingPassword">Password</label>
                 <i
-                  className={`fa ${
-                    passwordShown ? `fa-eye-slash` : `fa-eye`
-                  } sign-up-icon`}
+                  className={`fa ${passwordShown ? `fa-eye-slash` : `fa-eye`}`}
                   onClick={togglePasswordVisiblity}
                 ></i>
               </div>
@@ -171,10 +104,10 @@ const SignUp = () => {
                   className="btn-link"
                   type="submit"
                   onClick={() => {
-                    history.push("/");
+                    history.push("/forgot_password");
                   }}
                 >
-                  Already have an account? Login
+                  Forgot password ?
                 </button>
               </div>
               {emptyCredentialsError ? (
@@ -187,10 +120,21 @@ const SignUp = () => {
                   className="btn btn-lg btn-main"
                   type="submit"
                   onClick={(e) => {
-                    validateSignup(e);
+                    validateLogin(e);
                   }}
                 >
-                  Signup
+                  Login
+                </button>
+              </div>
+              <div className="form">
+                <button
+                  className="btn-link"
+                  type="submit"
+                  onClick={() => {
+                    history.push("/signup");
+                  }}
+                >
+                  Not a member? Register
                 </button>
               </div>
             </form>
@@ -205,5 +149,4 @@ const SignUp = () => {
     </div>
   );
 };
-
-export default SignUp;
+export default SignIn;

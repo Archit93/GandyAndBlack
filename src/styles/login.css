@@ -2,205 +2,250 @@
 
     Title :  Gandy And Black
     Usage :  login
-    Edited:  20121-10-16
+    Edited:  2021-10-16
 
 -------------------------------------------------------
 
     1. container
     2. login
-    3. word map
+    3. model image
     4. responsive (1023px)
+    5. signup
 
 -------------------------------------------------------*/
-
-
 
 /*  1. container
 -------------------------------------------------------*/
 
 html {
-	height: 100vh;
+  height: 100vh;
 }
 
 body {
-	min-height: 100%;
-	overflow: hidden;
-	background: #fff;
+  min-height: 100%;
+  overflow-x: hidden;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1.5em;
 }
-
-
 
 /*  2. login
 -------------------------------------------------------*/
 
-#login {
-	position: relative;
-	z-index: 1;
-	padding: 5.18vh 40px 54px;
-	width: 460px;
-	background-color: #fff;
-	margin: 0 auto;
-	max-width: 455px;
-	height: 100vh;
+#login,
+#signup,
+#forgot-password {
+  position: relative;
+  z-index: 1;
+  padding: 5.18vh 40px 0;
+  /* width: 460px; */
+  background-color: #fff;
+  margin: 0 auto;
+  max-width: 455px;
 }
 
 #login [role="main"] {
-	margin: 0 auto;
-	max-width: 364px;
+  margin: 0 auto;
+  max-width: 364px;
 }
 
-#login h1 {
-	margin-top: 7.13vh;
-	color: #212529;
-	font-size: 22px;
-	line-height: 1.45;
-	letter-spacing: 0.023em;
+.form h1 {
+  margin-top: 7.13vh;
+  color: #212529;
+  font-size: 22px;
+  line-height: 1.45;
+  letter-spacing: 0.023em;
 }
 
-#login [role="main"] > p{
-	margin-top: 5px;
-	font-weight: 700;
-	color: #212529;
-	font-size: 16px;
-	line-height: 1.5;
-	letter-spacing: 0.03125em;
+.form [role="main"] > p {
+  margin-top: 5px;
+  font-weight: 700;
+  color: #212529;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.03125em;
 }
 
-#login [role="main"] > p + p {
-	margin-top: 19px;
+.form [role="main"] > p + p {
+  margin-top: 19px;
 }
 
-#login form {
+/*#login form {
 	margin-top: 8.82vh;
-}
+}*/
 
 #login-remember {
-	position: absolute;
-	left: -5000px;
+  position: absolute;
+  left: -5000px;
 }
 
-#login form .form:nth-child(3) {
-	display: flex;
-	justify-content: space-between;
-	padding-top: 5px;
-	color: #212529;
-	font-size: 14px;
-	letter-spacing: 0.036em;
+.form form .form:nth-child(3) {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+  color: #212529;
+  font-size: 14px;
+  letter-spacing: 0.036em;
 }
 
-#login form .form:nth-child(3) label {
-	display: flex;
-	align-items: center;
-	cursor: pointer;
+.form form .form:nth-child(3) label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-#login form .form:nth-child(3) label .checkbox {
-	margin-right: 9px;
+.form form .form:nth-child(3) a:hover {
+  text-decoration: underline;
 }
 
-#login form .form:nth-child(3) a:hover {
-	text-decoration: underline;
+.form button {
+  margin-top: 5px;
 }
 
-#login button {
-	margin-top: 24px;
+.form a,
+.form p {
+  font-size: 14px;
 }
 
-#login footer {
-	position: absolute;
-	bottom: 20px;
-	left: 0;
-	padding: 0 15px;
-	width: 100%;
-	color: #6b7a86;
-	font-size: 12px;
-	line-height: 1.5;
-	text-align: center;
-	letter-spacing: 0.042em;
+footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  padding: 0 15px;
+  width: 100%;
+  color: #6b7a86;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.042em;
 }
 
-#login footer strong {
-	font-weight: 400;
-	text-transform: uppercase;
+footer strong {
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
-#login footer span {
-	position: relative;
-	top: 1px;
-	display: inline-block;
-	transform: scale(1.1);
-	transform-origin: bottom left;
+footer span {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  transform: scale(1.1);
+  transform-origin: bottom left;
 }
-
 
 #header {
-	margin: 0 auto;
-	width: 370px;
-	text-align: center;
-	padding-top: 30px;
+  margin: 0 auto;
+  /* width: 370px; */
+  text-align: center;
+  padding-top: 30px;
 }
 
-#header img{
-	height: 130px;
+#header img {
+  height: 130px;
 }
 
-
-@-moz-document url-prefix() {
+/*@-moz-document url-prefix() {
 #login footer span {
 	top: 2px;
 	}
 }
+*/
 
-
-
-/*  3. world map
+/*  3. model image
 -------------------------------------------------------*/
 
 #world-map-wrapper {
-	position: relative;
-	flex-grow: 1;
-	height: 100vh;
+  position: relative;
+  flex-grow: 1;
+  height: 100vh;
 }
 
 #world-map-wrapper img {
-	height: 100vh;
-    object-fit: cover;
+  height: 100vh;
+  object-fit: cover;
 }
 
 #world-map-wrapper h1 {
-	margin-top: 7.13vh;
-	color: #212529;
-	font-size: 22px;
-	line-height: 1.45;
-	font-weight: 600;
+  margin-top: 7.13vh;
+  color: #212529;
+  font-size: 22px;
+  line-height: 1.45;
+  font-weight: 600;
 }
 
-#world-map-wrapper p{
-	margin-top: 5px;
-    color: #212529;
-    font-size: 15px;
-    letter-spacing: 0.03125em;
-    line-height: 1.3;
-    text-align: justify;
+#world-map-wrapper p {
+  margin-top: 5px;
+  color: #212529;
+  font-size: 15px;
+  letter-spacing: 0.03125em;
+  line-height: 1.3;
+  text-align: justify;
 }
-
 
 /*  4. responsive (1023px)
 -------------------------------------------------------*/
 
 @media (max-width: 1023px) {
+  /*  1. container  */
 
-/*  1. container  */
+  #login {
+    width: auto;
+  }
 
-#login {
-	width: auto;
-	}
+  /*  3. world map  */
 
+  #world-map-wrapper {
+    display: none;
+  }
+}
 
-/*  3. world map  */
+@media (min-width: 1023px) {
+  footer {
+    position: fixed;
+    bottom: -10px;
+    left: 0;
+    padding: 0 15px;
+    width: 142%;
+    color: #6b7a86;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+    letter-spacing: 0.042em;
+  }
+}
 
-#world-map-wrapper {
-	display: none;
-	}
+/*  5. signup
+-------------------------------------------------------*/
 
+.form form .form:nth-child(4) {
+  display: flex;
+  padding-top: 5px;
+  color: #212529;
+  font-size: 14px;
+  letter-spacing: 0.036em;
+}
+
+.pass-wrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+i {
+  position: absolute;
+  top: 40%;
+  right: 5%;
+  color: #f9938e;
+}
+
+i:hover {
+  color: #807d7d;
+  cursor: pointer;
+}
+
+.sign-up-icon {
+  position: absolute;
+  top: 60%;
+  right: 5%;
+  color: #f9938e;
 }
