@@ -1,18 +1,18 @@
 // import React, { Suspense } from 'react';
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import { createBrowserHistory } from 'history';
-// import Header from '../components/common/Header';
+// //import Header from '../components/common/Header';
 // import SignIn from '../components/SignIn';
 // import SignUp from '../components/SignUp';
 // export const history = createBrowserHistory();
 
-// const SignIn = React.lazy(() =>
-//   import('../components/SignIn')
-// );
+// // const SignIn = React.lazy(() =>
+// //   import('../components/SignIn')
+// // );
 
-// const SignUp = React.lazy(() =>
-// import('../components/SignUp')
-// );
+// // const SignUp = React.lazy(() =>
+// // import('../components/SignUp')
+// // );
 
 
 // const routes = [
@@ -21,7 +21,7 @@
 //     exact: true,
 //     path: '/',
 //     title: 'Gandy & Black Aesthetics',
-//     nextPath: '/',
+//     nextPath: '/signin',
 //     failurePath: null,
 //     backBehaviour: {
 //       isInternal: true,
@@ -30,7 +30,7 @@
 //   },
 //   {
 //     component: SignIn,
-//     path: '/signIn',
+//     path: '/signin',
 //     title: 'Gandy & Black Aesthetics',
 //     nextPath: '/',
 //     failurePath: null,
@@ -44,7 +44,7 @@
 
 
 // export const AppRouter = ({applicationState, dispatch}) => {
-//   const {mobileView, drawerOpen} = applicationState;
+//   //const {mobileView, drawerOpen} = applicationState;
 //   return (
 //     <Router history={history}>
 //       <Suspense fallback={<div />}>
@@ -52,7 +52,7 @@
 //           {routes.map(route => {
 //             console.log(route)
 //             return (<>
-//               <div><Header mobileView={mobileView} drawerOpen={drawerOpen} dispatch={dispatch}/></div>
+//               {/* <div><Header mobileView={mobileView} drawerOpen={drawerOpen} dispatch={dispatch}/></div> */}
 //               <div><Route
 //                 key={route.path}
 //                 path={route.path}
@@ -80,20 +80,27 @@ import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import ForgotPassword from '../components/ForgotPassword';
 import AboutUs from '../components/AboutUs';
-import ProductList from '../components/ProductList';
-import CustomerCheckout from '../components/CustomerCheckout';
+import ProductList from '../components/ProductList/ProductList';
+import CustomerCart from '../components/CustomerCheckout/CustomerCart';
+import CustomerShippingInformation from '../components/CustomerCheckout/CustomerShippingInformation';
+import CustomerPayment from '../components/CustomerCheckout/CustomerPayment';
+import CustomerPaymentSuccess from '../components/CustomerCheckout/CustomerPaymentSuccess';
 
-export const AppRouter = ({ applicationState, dispatch }) => {
+export const AppRouter = (props) => {
   return (
     <Router>
         <Switch>
-          <Route exact={true} path="/" component={SignIn} applicationState={applicationState} dispatch={dispatch} />
-          <Route path="/signup" component={SignUp} applicationState={applicationState} dispatch={dispatch} />
-          <Route path="/forgot_password" component={ForgotPassword} applicationState={applicationState} dispatch={dispatch} />
-          <Route path="/aboutus" component={AboutUs} applicationState={applicationState} dispatch={dispatch} />
-          <Route path="/productlist" component={ProductList} applicationState={applicationState} dispatch={dispatch} />
-          <Route path="/checkout" component={CustomerCheckout} applicationState={applicationState} dispatch={dispatch} />
-          {/*<Route path="/aboutus" component={AboutUs} applicationState={applicationState} dispatch={dispatch} /> */}
+          <Route exact={true} path="/"> <SignIn {...props}/> </Route>
+          <Route path="/signup" component={SignUp} applicationState={props.applicationState} dispatch={props.dispatch} />
+          <Route path="/forgot_password" component={ForgotPassword} applicationState={props.applicationState} dispatch={props.dispatch} />
+          <Route path="/aboutus" component={AboutUs} applicationState={props.applicationState} dispatch={props.dispatch} />
+          <Route exact={true} path="/productlist"> <ProductList {...props}/> </Route>
+          <Route exact={true} path="/customercart_details"> <CustomerCart {...props}/> </Route>
+          <Route exact={true} path="/customershipping_info"> <CustomerShippingInformation {...props}/> </Route>
+          <Route exact={true} path="/customerpayment_info"> <CustomerPayment {...props}/> </Route>
+          <Route exact={true} path="/customerpayment_success"> <CustomerPaymentSuccess {...props}/> </Route>
+          {/* <Route path="/productlist" component={ProductList} applicationState={props.applicationState} dispatch={props.dispatch} props={props} {...props}/> */}
+          {/* <Route exact={true} path="/checkout" component={CustomerCheckout} applicationState={props.applicationState} dispatch={props.dispatch} /> */}
         </Switch>
     </Router>
   )

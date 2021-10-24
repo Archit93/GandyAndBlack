@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { useHistory } from "react-router-dom";
+import CheckoutProgressBar from './CheckoutProgressBar';
 
 const CustomerCheckout = (props) => {
+	
     const history = useHistory();
     return (
         <div id="checkout">
@@ -13,12 +15,7 @@ const CustomerCheckout = (props) => {
 		                <div className="row">
 		                    <div className="col-md-12 mx-0">
 		                        <form id="msform">
-		                            {/* <!-- progressbar --> */}
-		                            <ul id="progressbar">
-		                                <li className="active" id="account"><strong>My Cart</strong></li>
-		                                <li id="personal"><strong>Billing Address</strong></li>
-		                                <li id="payment"><strong>Payment</strong></li>
-		                            </ul> 
+		                             <CheckoutProgressBar progressItem = "Cart"/>
 		                            {/* <!-- fieldsets --> */}
 		                            <div className="row">
 			                            <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
@@ -39,7 +36,7 @@ const CustomerCheckout = (props) => {
 				                                    <div className="h6">QTY : <span>45</span></div>
 				                                </div> 
 				                                <input type="button" name="next" className="next action-button" value="Next" />
-				                            </fieldset> */}
+				                            </fieldset> 
 				                            <fieldset>
 				                            	<h2 className="fs-title">Billing Address</h2> 
 				                                <div className="form-card">
@@ -58,24 +55,7 @@ const CustomerCheckout = (props) => {
 				                                <input type="button" name="previous" className="previous action-button-previous" value="Back" /> 
 				                                <input type="button" name="next" className="next action-button" value="Proceed to Pay" />
 				                            </fieldset>
-				                            <fieldset>
-				                            	<h2 className="fs-title">Payment Information</h2>
-				                                <div className="form-card">
-				                                    <div className="radio-group">
-				                                        <div className="h5">
-				                                        	<div className='radio' data-value="credit"></div>Credit Card
-				                                        </div>
-				                                        <div className="h5">
-				                                        	<div className='radio' data-value="paypal"></div>Paypal
-				                                    	</div>
-				                                        <div className="h5">
-				                                        	<div className='radio' data-value="paypal"></div>Pay on Delivery
-				                                        </div>
-				                                    </div>
-				                                </div> 
-				                                <input type="button" name="previous" className="previous action-button-previous" value="Back" /> 
-				                                <input type="button" name="make_payment" className="next action-button" value="Confirm Order" />
-				                            </fieldset>
+				                            
 				                            <fieldset>
 				                                <div className="form-card">
 				                                    <div><h2 className="fs-title text-center">Success!</h2></div>
