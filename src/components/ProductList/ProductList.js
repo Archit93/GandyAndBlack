@@ -159,67 +159,68 @@
 // export default ProductList;
 
 import React from 'react';
-import { render } from 'react-dom';
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-const MyRenderer = (params) => {
-    console.log(params);
-    const { api, data, column, node, context } = params;
 
-    const onIncrement = (event) => {
-        console.log(event);
-        node.setDataValue(column.colId, event.target.value);
-        context.frameWorkComponentChange({ api, buttonName: "INCREMENT" })
-    }
-    return (
-        <span className="my-renderer">
-            {params.value != null &&
-                <>
-                    <button onClick={(event) => onIncrement(event)}>+</button>
-                    <input id="demoInput" type="number" onChange={(event) =>  onIncrement(event)} />
+import {EDIT_PRODUCT_QUANTITY} from '../../constants/actionTypes';
 
-                    <button >-</button>
+import {MobileViewColumnProductType} from './MobileViewColumnProductType';
+import {MobileViewColumnBrand} from './MobileViewColumnBrand';
+import {ColumnQuantity} from './ColumnQuantity';
 
-                </>
-            }
-        </span>
-    );
-}
-
-const ProductList = () => {
+const ProductList = (props) => {
+    
+    const {applicationState, dispatch} = props;
     const [gridApi, setGridApi] = React.useState(null);
     const [gridColumnApi, setGridColumnApi] = React.useState(null);
 
     const onGridReady = params => {
-        console.log(params);
         setGridApi(params.api);
         setGridColumnApi(params.columnApi)
     }
 
     const frameWorkComponentChange = ({ api, buttonName }) => {
-        console.log(api);
-        console.log(buttonName);
+        const productlistArray = [];
         api.forEachNode((node)=> {
-            console.log(node.data);
+            productlistArray.push(node.data);
         })
-
+        dispatch({
+            type: EDIT_PRODUCT_QUANTITY,
+            payload: productlistArray
+        })
     }
-    const rowData = [
-        { brand: "Toyota", productType: "Celica", description: "agfjhagj", quantity: 1, salesPerUnit: "agfjhagj" },
-        { brand: "Ford", productType: "Mondeo", description: "yafscfhasch", quantity: 2, salesPerUnit: "agfjhagj" },
-        { brand: "Porsche", productType: "Boxter", description: "afchacgahc", quantity: 3, salesPerUnit: "agfjhagj" }
-    ];
+    const rowData = () => {
+        const productlistArray = [];
+        console.log(applicationState.productList);
+        applicationState.productList.map((rowdetail)=>{
+            const productListObject = Object.assign({});
+            productListObject.brand = rowdetail.brand;
+            productListObject.productType = rowdetail.productType;
+            productListObject.description = rowdetail.description;
+            productListObject.quantity = Number(rowdetail.quantity);
+            productListObject.salesPerUnit = rowdetail.salesPerUnit;
+            productlistArray.push(productListObject);
+        });
+        return productlistArray
+    };
 
-    const columnDefs = ({ frameWorkComponentChange }) => [
+    
+
+    const columnDefs = ({ frameWorkComponentChange }) => applicationState.mobileView ? [
+        { field: 'brand', headerName: "Brand", cellRendererFramework: MobileViewColumnBrand },
+        { field: 'productType', headerName: "Product Type", cellRendererFramework: MobileViewColumnProductType },
+        { field: 'description', headerName: "Description" },
+        
+    ] : [
         { field: 'brand', headerName: "Brand" },
         { field: 'productType', headerName: "Product Type" },
         { field: 'description', headerName: "Description" },
         { field: 'quantity', headerName: "Quantity", 
         editable: true,
-        cellRendererFramework: MyRenderer, 
+        cellRendererFramework: ColumnQuantity, 
         onCellValueChanged: ({ api }) => frameWorkComponentChange({ api, buttonName: null }) },
         { field: 'salesPerUnit', headerName: "Sales Per Unit" }
     ];
@@ -229,16 +230,25 @@ const ProductList = () => {
         sortable: true
     }), []);
 
-    return (
+    const onFilterTextBoxChanged = (event) => {
+        gridApi.setQuickFilter(event.target.value);
+    }
+
+    const getRowHeight = () => applicationState.mobileView ? '50px' : '25px';
+
+    return (<div>
+        <input type="text" id="filter-text-box" placeholder="Filter..." onChange={(event)=> onFilterTextBoxChanged(event)}/>
         <div className="ag-theme-alpine" style={{ height: 400, width: 1000, textAlign:"center" }}>
             <AgGridReact
-                rowData={rowData}
+                getRowHeight={getRowHeight()}
+                rowData={rowData()}
                 columnDefs={columnDefs({frameWorkComponentChange: frameWorkComponentChange})}
                 defaultColDef={defaultColDef}
                 onGridReady={onGridReady}
                 context={{ frameWorkComponentChange: frameWorkComponentChange }}
             >
             </AgGridReact>
+        </div>
         </div>
     );
 };

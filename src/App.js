@@ -52,10 +52,27 @@ import {useStateManager} from './reducer/useStateManager';
 import './styles/common.css';
 import './styles/login.css';
 import './styles/checkout.css';
+import {SET_MOBILE_VIEW} from './constants/actionTypes';
 
 
 const App = () => {
   const[reducer, dispatch] = React.useReducer(useStateManager, null);
+    React.useEffect(() => {
+    const setResponsiveness = () => {
+      return dispatch({
+          type : SET_MOBILE_VIEW,
+          payload: window.innerWidth < 900
+      })
+    };
+
+    setResponsiveness();
+    window.addEventListener("resize", () => setResponsiveness());
+
+    return () => {
+      window.removeEventListener("resize", () => setResponsiveness());
+    }
+  }, []);
+
   return (
     <div><AppRouter applicationState={reducer} dispatch={dispatch} /></div>
   )

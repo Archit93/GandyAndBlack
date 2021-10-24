@@ -126,6 +126,7 @@
 
 import * as React from 'react';
 import { useHistory } from "react-router-dom";
+import { SET_INITIAL_RESPONSE } from '../constants/actionTypes';
 
 const SignIn = (props) => {
 	const history = useHistory();
@@ -161,6 +162,7 @@ const SignIn = (props) => {
 							</div>
 							<div className="form">
 								<button className="btn btn-lg btn-main" type="submit" onClick={() => {
+									props.dispatch({ type: SET_INITIAL_RESPONSE })
 									history.push('/productlist')
 								}}>Login</button>
 							</div>
