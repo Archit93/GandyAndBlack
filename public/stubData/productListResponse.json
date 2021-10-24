@@ -1,0 +1,36 @@
+{
+   "totalNumberOfProducts" : 100,
+    "productList": [
+       {
+        "productId": 1,
+        "brand" : "JBP",
+        "productType" : "Body Filler",
+        "description" : "22g x 70 mm",
+        "quantity" : 0,
+        "availabilty" : true, // true if in stock  , false if out of stock
+        "salesPerUnit": "8.00"
+        
+       },
+       {
+        "productId": 2,
+        "brand" : "JBP",
+        "productType" : "Body Filler",
+        "description" : "22g x 70 mm",
+        "quantity" : 0,
+        "availabilty" : false, // true if in stock  , false if out of stock
+        "salesPerUnit": "8.00"
+        
+       },
+       {
+        "productId": 3,
+        "brand" : "JBP",
+        "productType" : "Body Filler",
+        "description" : "22g x 70 mm",
+        "quantity" : 0,
+        "availabilty" : true, // true if in stock  , false if out of stock
+        "salesPerUnit": "8.00"
+        
+       }
+
+   ]
+}

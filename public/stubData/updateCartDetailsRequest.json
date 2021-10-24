@@ -1,0 +1,22 @@
+{
+    "cartDetails": [ 
+        {
+            "productId": 35,
+            "brand" : "JBP",
+            "productType" : "Body Filler",
+            "description" : "22g x 70 mm",
+            "quantity" : 4,
+            "availabilty" : true, 
+            "salesPerUnit": "8.00"
+        },
+        {
+            "productId": 37,
+            "brand" : "JBP",
+            "productType" : "Body Filler",
+            "description" : "22g x 70 mm",
+            "quantity" : 4,
+            "availabilty" : true,
+            "salesPerUnit": "8.00"
+        }
+    ]
+}

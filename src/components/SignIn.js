@@ -127,6 +127,7 @@
 import * as React from 'react';
 import { useHistory } from "react-router-dom";
 import { SET_INITIAL_RESPONSE } from '../constants/actionTypes';
+import {signInApiCall} from '../serviceCalls/signInApiCall';
 
 const SignIn = (props) => {
 	const history = useHistory();
@@ -163,6 +164,7 @@ const SignIn = (props) => {
 							<div className="form">
 								<button className="btn btn-lg btn-main" type="submit" onClick={() => {
 									props.dispatch({ type: SET_INITIAL_RESPONSE })
+									signInApiCall({dispatch : props.dispatch});
 									history.push('/productlist')
 								}}>Login</button>
 							</div>

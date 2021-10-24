@@ -1,0 +1,29 @@
+{
+    "firstName": "archit",
+    "lastName": "mehta",
+    "email": "architmehta007@gmail.com",
+    "instagramId": "ab@1344",
+    "address": "22 Riverview Gardens",
+    "postcode": "G1 5AE",
+    "tradeOfBusiness": "Medical Practicioner",
+    "cartDetails": [ // Scenario : User logs out by adding  items in cart , then once he logs back in he should be shown his items , else cartDetails will be an empty array
+        {
+            "productId": 35,
+            "brand" : "JBP",
+            "productType" : "Body Filler",
+            "description" : "22g x 70 mm",
+            "quantity" : 4,
+            "availabilty" : true, // true if in stock  , false if out of stock
+            "salesPerUnit": "8.00"
+        },
+        {
+            "productId": 37,
+            "brand" : "JBP",
+            "productType" : "Body Filler",
+            "description" : "22g x 70 mm",
+            "quantity" : 4,
+            "availabilty" : true, // true if in stock  , false if out of stock
+            "salesPerUnit": "8.00"
+        }
+    ]
+}
