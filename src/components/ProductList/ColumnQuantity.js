@@ -29,12 +29,12 @@ export const ColumnQuantity = (params) => {
         <span className="my-renderer">
             {params.value != null &&
                 <>
-                    <button onClick={(event) => onIncrement(event)}>+</button>
-                    <input id="demoInput" type="number" value={quantityValue} 
+                    <button className="btn-quantity" onClick={(event) => onIncrement(event)}>+</button>
+                    <input className="quantity-inputbtn" id="demoInput" type="number" value={quantityValue} 
                         onChange={(event) =>  onInputChange(event)} 
                         onBlur ={() =>  onInputBlur()} />
 
-                    <button onClick={(event) => onDecrement(event)}>-</button>
+                    <button className="btn-quantity" onClick={(event) => onDecrement(event)}>-</button>
 
                 </>
             }
