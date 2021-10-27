@@ -235,20 +235,21 @@ const ProductList = (props) => {
 
     const getRowHeight = () => applicationState.mobileView ? '50px' : '25px';
 
-    return (<div>
-        <input type="text" id="filter-text-box" placeholder="Filter..." onChange={(event)=> onFilterTextBoxChanged(event)}/>
-        <div className="ag-theme-alpine" style={{ height: 400, width: 1000, textAlign:"center" }}>
+    return (
+    <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
+        <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event)=> onFilterTextBoxChanged(event)}/>
+        <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%'}}>
             <AgGridReact
                 getRowHeight={getRowHeight()}
                 rowData={rowData()}
                 columnDefs={columnDefs({frameWorkComponentChange: frameWorkComponentChange})}
-                defaultColDef={defaultColDef}
+                defaultColDef={{minWidth: 256}}
                 onGridReady={onGridReady}
                 context={{ frameWorkComponentChange: frameWorkComponentChange }}
             >
             </AgGridReact>
         </div>
-        </div>
+    </div>
     );
 };
 export default ProductList;

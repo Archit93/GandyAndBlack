@@ -327,7 +327,7 @@ input {
 	height: 40px;
 	font-size: 14px;
 	letter-spacing: 0.036em;
-	background-color: #f7fafc;
+	background-color: #fff;
 	border: 1px solid var(--border-color);
 	border-radius: 3px;
 	transition: background-color var(--trans-dur), border-color var(--trans-dur);
@@ -562,7 +562,7 @@ textarea {
 	background-color: transparent;
 	color: #f9938e;
 	font-size: 14px;
-}
+}	
 
 /*  tab contents  */
 
@@ -2442,4 +2442,36 @@ div + .header-config {
     display: block;
 	position: absolute;
     bottom: 0;
+}
+
+/************* Product List ************/
+
+/* Product list table increment / decrement */
+.btn-quantity{
+	border: 0;
+    background: #f9938e;
+    width: 40px;
+    font-size: inherit;
+}
+/* table input field width, center */
+.quantity-inputbtn{
+	width: 50%;
+    text-align: center;
+}
+/* onhover padding removed */
+.quantity-inputbtn:hover {
+    padding: 0;
+}
+/* form control input field focus border */
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #cacaca;
+    outline: 0;
+    box-shadow: none;
+}
+/* search bottom margin */
+.search-bottom-margin{
+	margin-bottom: 20px;
+	border: 1px solid #cacaca;
 }
