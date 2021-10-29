@@ -49,6 +49,7 @@
 import * as React from 'react';
 import { AppRouter } from './routes/index';
 import {useStateManager} from './reducer/useStateManager';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/common.css';
 import './styles/login.css';
 import './styles/checkout.css';
