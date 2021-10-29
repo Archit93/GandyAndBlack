@@ -1,10 +1,11 @@
 import * as actionTypes from '../constants/actionTypes';
-import {tempData} from '../constants/temporaryData';
+import {tempData, customerList} from '../constants/temporaryData';
 
 export const useStateManager = (state = {
     mobileView: false,
     drawerOpen: false,
     productList: [],
+    customerList: [],
     config: {}
 }, action)=> {
     switch(action.type) {
@@ -25,7 +26,8 @@ export const useStateManager = (state = {
         case actionTypes.SET_INITIAL_RESPONSE:
         return {
             ...state,
-            productList: tempData
+            productList: tempData,
+            customerList: customerList
         }
         case actionTypes.EDIT_PRODUCT_QUANTITY:
         return {

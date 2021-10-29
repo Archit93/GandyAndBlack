@@ -180,6 +180,7 @@ const ProductList = (props) => {
     const onGridReady = params => {
         setGridApi(params.api);
         setGridColumnApi(params.columnApi)
+        params.api.sizeColumnsToFit()
     }
 
     const frameWorkComponentChange = ({ api }) => {
@@ -226,7 +227,8 @@ const ProductList = (props) => {
 
     const defaultColDef = React.useMemo(() => ({
         resizable: true,
-        sortable: true
+        sortable: true,
+        minWidth: 256,
     }), []);
 
     const onFilterTextBoxChanged = (event) => {
@@ -243,7 +245,7 @@ const ProductList = (props) => {
                 getRowHeight={getRowHeight()}
                 rowData={rowData()}
                 columnDefs={columnDefs({frameWorkComponentChange: frameWorkComponentChange})}
-                defaultColDef={{minWidth: 256}}
+                defaultColDef={defaultColDef}
                 onGridReady={onGridReady}
                 context={{ frameWorkComponentChange: frameWorkComponentChange }}
             >
