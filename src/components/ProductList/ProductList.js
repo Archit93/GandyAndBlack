@@ -159,21 +159,22 @@
 // export default ProductList;
 
 import React from 'react';
+import { useHistory } from "react-router-dom";
+import Header from '../common/Header.js';
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
+import { EDIT_PRODUCT_QUANTITY } from '../../constants/actionTypes';
 
-import {EDIT_PRODUCT_QUANTITY} from '../../constants/actionTypes';
-
-import {MobileViewColumnProductType} from './MobileViewColumnProductType';
-import {MobileViewColumnBrand} from './MobileViewColumnBrand';
-import {ColumnQuantity} from './ColumnQuantity';
+import { MobileViewColumnProductType } from './MobileViewColumnProductType';
+import { MobileViewColumnBrand } from './MobileViewColumnBrand';
+import { ColumnQuantity } from './ColumnQuantity';
 
 const ProductList = (props) => {
-    
-    const {applicationState, dispatch} = props;
+    const history = useHistory();
+    const { applicationState, dispatch } = props;
     const [gridApi, setGridApi] = React.useState(null);
     const [gridColumnApi, setGridColumnApi] = React.useState(null);
 
@@ -185,7 +186,7 @@ const ProductList = (props) => {
 
     const frameWorkComponentChange = ({ api }) => {
         const productlistArray = [];
-        api.forEachNode((node)=> {
+        api.forEachNode((node) => {
             productlistArray.push(node.data);
         })
         dispatch({
@@ -195,7 +196,7 @@ const ProductList = (props) => {
     }
     const rowData = () => {
         const productlistArray = [];
-        applicationState.productList.map((rowdetail)=>{
+        applicationState.productList.map((rowdetail) => {
             const productListObject = Object.assign({});
             productListObject.brand = rowdetail.brand;
             productListObject.productType = rowdetail.productType;
@@ -207,23 +208,24 @@ const ProductList = (props) => {
         return productlistArray
     };
 
-    
+
 
     const columnDefs = ({ frameWorkComponentChange }) => applicationState.mobileView ? [
         { field: 'brand', headerName: "Brand", cellRendererFramework: MobileViewColumnBrand },
         { field: 'productType', headerName: "Product Type", cellRendererFramework: MobileViewColumnProductType },
         { field: 'description', headerName: "Description" },
-        
+
     ] : [
-        { field: 'brand', headerName: "Brand" },
-        { field: 'productType', headerName: "Product Type" },
-        { field: 'description', headerName: "Description" },
-        { field: 'quantity', headerName: "Quantity", 
-        editable: true,
-        cellRendererFramework: ColumnQuantity, 
-        },
-        { field: 'salesPerUnit', headerName: "Sales Per Unit" }
-    ];
+            { field: 'brand', headerName: "Brand" },
+            { field: 'productType', headerName: "Product Type" },
+            { field: 'description', headerName: "Description" },
+            {
+                field: 'quantity', headerName: "Quantity",
+                editable: true,
+                cellRendererFramework: ColumnQuantity,
+            },
+            { field: 'salesPerUnit', headerName: "Sales Per Unit" }
+        ];
 
     const defaultColDef = React.useMemo(() => ({
         resizable: true,
@@ -236,22 +238,33 @@ const ProductList = (props) => {
     }
 
     const getRowHeight = () => applicationState.mobileView ? '50px' : '25px';
+    const rowHeight = applicationState.mobileView ? 200 : 50;
 
     return (
-    <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
-        <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event)=> onFilterTextBoxChanged(event)}/>
-        <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%'}}>
-            <AgGridReact
-                getRowHeight={getRowHeight()}
-                rowData={rowData()}
-                columnDefs={columnDefs({frameWorkComponentChange: frameWorkComponentChange})}
-                defaultColDef={defaultColDef}
-                onGridReady={onGridReady}
-                context={{ frameWorkComponentChange: frameWorkComponentChange }}
-            >
-            </AgGridReact>
+        <div id="productlist">
+            <div>
+                <Header />
+            </div>
+            <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
+                <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
+                <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 250px)', width: '100%' }}>
+                    <AgGridReact
+                        rowHeight={rowHeight}
+                        rowData={rowData()}
+                        columnDefs={columnDefs({ frameWorkComponentChange: frameWorkComponentChange })}
+                        defaultColDef={defaultColDef}
+                        onGridReady={onGridReady}
+                        context={{ frameWorkComponentChange: frameWorkComponentChange }}
+                    >
+                    </AgGridReact>
+                </div>
+                <div className="text-center mrt-20">
+                    <button className="btn btn-main" type="submit" onClick={() => {
+                        history.push("/customercart_details");
+                    }}>Proceed to Checkout</button>
+                </div>
+            </div>
         </div>
-    </div>
     );
 };
 export default ProductList;

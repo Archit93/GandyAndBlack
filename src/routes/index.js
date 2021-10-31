@@ -75,7 +75,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import React from 'react';
-// import Header from '../components/common/Header';
+import Header from '../components/common/Header';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import ForgotPassword from '../components/ForgotPassword';
