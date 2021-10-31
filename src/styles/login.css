@@ -2,7 +2,6 @@
 
     Title :  Gandy And Black
     Usage :  login
-    Edited:  2021-10-16
 
 -------------------------------------------------------
 
@@ -25,7 +24,7 @@ body {
   min-height: 100%;
   overflow-x: hidden;
   background: #fff;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 1.5em;
 }
 
@@ -231,15 +230,15 @@ footer span {
   margin-bottom: 14px;
 }
 
-i {
+#login i {
   position: absolute;
   top: 40%;
   right: 5%;
-  color: #f9938e;
+  color: #e3adab;
 }
 
-i:hover {
-  color: #807d7d;
+#login i:hover {
+  color: #7984a3;
   cursor: pointer;
 }
 

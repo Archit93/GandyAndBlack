@@ -62,7 +62,7 @@ const SignIn = (props) => {
       </div>
       <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
         <header id="header">
-          <img src="./newlogo.png" alt="" />
+          <img src="./GD LOGOS-01.jpeg" alt="" />
         </header>
         <div id="login">
           <div role="main">

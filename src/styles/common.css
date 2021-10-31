@@ -1,8 +1,7 @@
 ﻿/*-----------------------------------------------------
 
-    Title :  Pricentric Tender
+    Title :  Global CSS
     Usage :  common styles
-    Edited:  2019-10-04
 
 -------------------------------------------------------
 
@@ -35,8 +34,11 @@
 	}
 
 body {
-	font-size: 62.5%;
+	font-size: 1rem;
 	line-height: 1.2;
+	color: #435b6f;
+	font-family: Lato, sans-serif;
+	/* overflow: hidden; */
 	}
 
 /* main {
@@ -138,11 +140,6 @@ button:not(:disabled) {
 /*  3. typography
 -------------------------------------------------------*/
 
-body {
-	color: #435b6f;
-	font-family: Lato, sans-serif;
-	}
-
 a {
 	color: inherit;
 	text-decoration: none;
@@ -178,10 +175,10 @@ a:hover {
 
 :root {
 	--heading-color: #253747;
-	--active-color: #f9938e;
+	--active-color: #e3adab;
 	--error-color: #fc726d;
 	--ico-static-color: #cad4dd;
-	--ico-hover-color: #f9938e;
+	--ico-hover-color: #e3adab;
 	--border-color: #e6ebf2;
 	--trans-dur: 200ms;
 	}
@@ -541,8 +538,8 @@ textarea {
 	}
 
 .btn:hover {
-	background-color: #f9938e;
-	border-color: #f9938e;
+	background-color: #e3adab;
+	border-color: #e3adab;
 	color: #fff;
 	}
 
@@ -560,7 +557,7 @@ textarea {
 .btn-link{
 	border: 0;
 	background-color: transparent;
-	color: #f9938e;
+	color: #e3adab;
 	font-size: 14px;
 }	
 
@@ -614,7 +611,13 @@ textarea {
 
 /*  icon  */
 
-.ico {
+i {
+	color: #e3adab;
+	margin: 0 15px;
+    font-size: 1.4rem;
+  }
+
+/* .ico {
 	color: var(--ico-static-color);
 	fill: var(--ico-static-color);
 	stroke: var(--ico-static-color);
@@ -839,7 +842,7 @@ textarea {
 	width: 19px;
 	height: 20px;
 	stroke: #025daf;
-	}
+	} */
 
 
 /*  switchables  */
@@ -907,17 +910,6 @@ textarea {
 .switchable-active {
 	display: block;
 	}
-
-
-
-/*  5. container
--------------------------------------------------------*/
-
-body {
-	overflow-x: hidden;
-	background-color: #fff;
-	}
-
 
 
 /*  6. banner
@@ -2352,28 +2344,31 @@ div + .header-config {
 /* About Us */
 	
 .title{
-	font-size: 25px;
-	line-height: 1.45;
-	letter-spacing: 0.023em;
-	padding-bottom: 20px;
+	font-size: 2rem;
+    line-height: 1.45;
+    letter-spacing: 0.023em;
+    padding-bottom: 20px;
+    color: #7984a3;
+    font-weight: 600;
 }
 
 #about h1{
-	color: #21252b;
-	font-size: 25px;
-	line-height: 1.45;
-	letter-spacing: 0.023em;
-	padding-bottom: 20px;
-    margin-bottom: 30px;
-	position: relative;
+	color: #7984a3;
+    font-size: 25px;
+    line-height: 1.45;
+    letter-spacing: 0.023em;
+    padding-bottom: 20px;
+	margin-bottom: 30px;
+    position: relative;
+    font-weight: 600;
 }
 
-#about h1::after{
-	background: #21252b;
+#about h1::after, #values h1::after{
+	background: #e3adab;
 	left: 50%;
     margin: 0 0 0 -25px;
 	width: 50px;
-	height: 2px;
+	height: 3px;
 	content: "";
     display: block;
 	position: absolute;
@@ -2381,7 +2376,7 @@ div + .header-config {
 }
 
 #about h2{
-	margin-top: 7.13vh;
+	margin-top: 3.13vh;
 	color: #7984a3;
 	font-size: 22px;
 	line-height: 1.45;
@@ -2410,6 +2405,37 @@ div + .header-config {
 	font-size: 24px;
 }
 
+.service-icon{
+	border: 1px solid #e3adab;
+	padding: 30px;
+    border-radius: 50%;
+    background: #e3adab;
+    color: #fff;
+}
+
+/* overlap image */
+.image-overlap-container {
+	position: relative;
+    max-width: 100%;
+    overflow: hidden;
+}
+  
+.image-container img {
+	object-fit: cover;
+	position: absolute;
+	opacity: .1;
+	height: 100%;
+    width: 100%;
+}
+
+img {
+	position: relative;
+}
+
+.footer-padding{
+	padding: 10px 0px 1px;
+}
+
 .bg-grey{
 	background-color: #dedede;
 }
@@ -2424,6 +2450,11 @@ div + .header-config {
 	padding: 50px 0;
 }
 
+/* contact us */
+.title-padding{
+	padding: 60px 40px 40px;
+}
+
 #contact h1, #contact h2, #contact p{
 	color: #fff;
 }
@@ -2432,16 +2463,24 @@ div + .header-config {
 	padding: 60px 40px 40px;
 }
 
-#contact h1::after, #values h1::after{
+#contact h1::after{
 	background: #fff;
 	left: 50%;
     margin: 0 0 0 -25px;
 	width: 50px;
-	height: 2px;
+	height: 3px;
 	content: "";
     display: block;
 	position: absolute;
     bottom: 0;
+}
+
+#contact i{
+	color: #fff;
+}
+
+.contact-bottom-pd{
+	padding-bottom: 60px;
 }
 
 /************* Product List ************/
@@ -2449,7 +2488,7 @@ div + .header-config {
 /* Product list table increment / decrement */
 .btn-quantity{
 	border: 0;
-    background: #f9938e;
+    background: #e3adab;
     width: 40px;
     font-size: inherit;
 }
@@ -2474,4 +2513,106 @@ div + .header-config {
 .search-bottom-margin{
 	margin-bottom: 20px;
 	border: 1px solid #cacaca;
+}
+
+/* Header */
+
+/* ============ desktop view ============ */
+.logo{
+	width: 180px;;
+}
+
+.header-shadow{
+	box-shadow: 0 0 8px 4px #ebebeb;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #e3adab;
+	font-weight: 600;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #7984a3;
+	font-weight: 600;
+}
+
+.navbar-light .navbar-toggler {
+    color: transparent;
+    border-color: transparent;
+}
+
+.navbar .container-fluid {
+    padding: 0 60px;
+}
+
+.navbar-fixed{
+	position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 9;
+}
+
+.dropdown-menu{
+	font-size: .9rem;
+}
+
+.dropdown-item {
+    color: #7984a3;
+    font-weight: 600;
+	font-size: 1rem;
+}
+
+.dropdown-item:hover {
+    color: #e3adab;
+    font-weight: 600;
+	background-color: #f5f5f5;
+	font-size: 1rem;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--active-color);
+}
+
+@media all and (min-width: 992px) {
+	.dropdown-menu li{ position: relative; 	}
+	.nav-item .submenu{ 
+		display: none;
+		position: absolute;
+		left:100%; top:-7px;
+	}
+	.nav-item .submenu-left{ 
+		right:100%; left:auto;
+	}
+	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+	.dropdown-menu > li:hover > .submenu{ display: block; }
+	.navbar-collapse {
+		flex-basis: 100%;
+		flex-grow: 0;
+		align-items: center;
+	}
+}	
+
+/* ============ small devices ============ */
+@media (max-width: 991px) {
+  .dropdown-menu .dropdown-menu{
+      margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
+  }
+}	
+
+
+/* 31-10 */
+#checkout, #aboutus, #productlist{
+    margin-top: 100px;
+}
+
+/* Margin */
+
+.mrt-10{
+	margin-top: 10px;
+}
+
+.mrt-20{
+	margin-top: 20px;
 }

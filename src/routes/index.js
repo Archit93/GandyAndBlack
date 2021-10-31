@@ -75,7 +75,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import React from 'react';
-// import Header from '../components/common/Header';
+import Header from '../components/common/Header';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import ForgotPassword from '../components/ForgotPassword';
@@ -99,6 +99,7 @@ export const AppRouter = (props) => {
           <Route exact={true} path="/customershipping_info"> <CustomerShippingInformation {...props}/> </Route>
           <Route exact={true} path="/customerpayment_info"> <CustomerPayment {...props}/> </Route>
           <Route exact={true} path="/customerpayment_success"> <CustomerPaymentSuccess {...props}/> </Route>
+          <Route exact={true} path="/header"> <Header {...props}/> </Route>
           {/* <Route path="/productlist" component={ProductList} applicationState={props.applicationState} dispatch={props.dispatch} props={props} {...props}/> */}
           {/* <Route exact={true} path="/checkout" component={CustomerCheckout} applicationState={props.applicationState} dispatch={props.dispatch} /> */}
         </Switch>

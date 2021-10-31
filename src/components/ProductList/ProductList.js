@@ -159,11 +159,11 @@
 // export default ProductList;
 
 import React from 'react';
+import Header from '../common/Header.js';
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-
 
 import {EDIT_PRODUCT_QUANTITY} from '../../constants/actionTypes';
 
@@ -236,18 +236,26 @@ const ProductList = (props) => {
     const getRowHeight = () => applicationState.mobileView ? '50px' : '25px';
 
     return (
-    <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
-        <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event)=> onFilterTextBoxChanged(event)}/>
-        <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%'}}>
-            <AgGridReact
-                getRowHeight={getRowHeight()}
-                rowData={rowData()}
-                columnDefs={columnDefs({frameWorkComponentChange: frameWorkComponentChange})}
-                defaultColDef={{minWidth: 256}}
-                onGridReady={onGridReady}
-                context={{ frameWorkComponentChange: frameWorkComponentChange }}
-            >
-            </AgGridReact>
+    <div id="productlist">
+        <div>
+            <Header />
+        </div>
+        <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
+            <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event)=> onFilterTextBoxChanged(event)}/>
+            <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 250px)', width: '100%'}}>
+                <AgGridReact
+                    getRowHeight={getRowHeight()}
+                    rowData={rowData()}
+                    columnDefs={columnDefs({frameWorkComponentChange: frameWorkComponentChange})}
+                    defaultColDef={{}}
+                    onGridReady={onGridReady}
+                    context={{ frameWorkComponentChange: frameWorkComponentChange }}
+                >
+                </AgGridReact>
+            </div>
+            <div className="text-center mrt-20">
+                <button className="btn btn-main" type="submit">Proceed to Checkout</button>
+            </div>
         </div>
     </div>
     );
