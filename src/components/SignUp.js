@@ -73,7 +73,7 @@ const SignUp = () => {
         "Looks like you're missing something! Do you want to give it another try?"
       );
     } else {
-      history.push("/productlist");
+      history.push("/customercart_details");
     }
   };
 
