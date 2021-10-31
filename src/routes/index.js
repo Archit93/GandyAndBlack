@@ -75,7 +75,6 @@ import {
   Switch,
 } from 'react-router-dom';
 import React from 'react';
-import Header from '../components/common/Header';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import ForgotPassword from '../components/ForgotPassword';
@@ -85,6 +84,8 @@ import CustomerCart from '../components/CustomerCheckout/CustomerCart';
 import CustomerShippingInformation from '../components/CustomerCheckout/CustomerShippingInformation';
 import CustomerPayment from '../components/CustomerCheckout/CustomerPayment';
 import CustomerPaymentSuccess from '../components/CustomerCheckout/CustomerPaymentSuccess';
+import MyProfile from '../components/MyProfile';
+
 import AdminCustomersList from '../components/Admin/AdminCustomerTab/AdminCustomersList';
 
 export const AppRouter = (props) => {
@@ -101,6 +102,7 @@ export const AppRouter = (props) => {
           <Route exact={true} path="/customerpayment_info"> <CustomerPayment {...props}/> </Route>
           <Route exact={true} path="/customerpayment_success"> <CustomerPaymentSuccess {...props}/> </Route>
           <Route exact={true} path="/customer_list"><AdminCustomersList {...props}/> </Route>
+          <Route exact={true} path="/my_profile"> <MyProfile {...props}/> </Route>
           {/* <Route path="/productlist" component={ProductList} applicationState={props.applicationState} dispatch={props.dispatch} props={props} {...props}/> */}
           {/* <Route exact={true} path="/checkout" component={CustomerCheckout} applicationState={props.applicationState} dispatch={props.dispatch} /> */}
         </Switch>

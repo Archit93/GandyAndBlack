@@ -2566,7 +2566,7 @@ img {
 
 
 /* 31-10 */
-#checkout, #aboutus, #productlist{
+#checkout, #aboutus, #productlist, #myprofile{
     margin-top: 100px;
 }
 
@@ -2579,3 +2579,6 @@ img {
 .mrt-20{
 	margin-top: 20px;
 }
+
+/*Profile*/
+.bg-secondary{background-color: #7984a3;color: #fff;padding: 10px}

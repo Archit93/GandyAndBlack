@@ -247,7 +247,7 @@ const ProductList = (props) => {
             </div>
             <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
                 <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
-                <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 250px)', width: '100%' }}>
+                <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 315px)', width: '100%' }}>
                     <AgGridReact
                         rowHeight={rowHeight}
                         rowData={rowData()}
