@@ -1,4 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
+import Header from '../common/Header.js';
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
@@ -56,7 +57,7 @@ const CustomerShippingInformation = (props) => {
   };
 
   const validateName = (e) => {
-    const { id, value } = e?.target;
+    const { id, value } = e ?.target;
     if (id === "fname") {
       setFirstNameError(isValidName(value));
     } else {
@@ -65,7 +66,7 @@ const CustomerShippingInformation = (props) => {
   };
 
   const validateEmail = (e) => {
-    const { value } = e?.target;
+    const { value } = e ?.target;
     setEmailError(isValidEmail(value));
   };
 
@@ -75,7 +76,7 @@ const CustomerShippingInformation = (props) => {
   };
 
   const validateAddress = (e) => {
-    const { value } = e?.target;
+    const { value } = e ?.target;
     setAddressError(isValidAddress(value));
   };
 
@@ -85,7 +86,7 @@ const CustomerShippingInformation = (props) => {
   };
 
   const validatePostcode = (e) => {
-    const { value } = e?.target;
+    const { value } = e ?.target;
     setPostcodeError(isValidPostcode(value));
   };
 
@@ -112,7 +113,10 @@ const CustomerShippingInformation = (props) => {
     }
   };
 
-  return (
+  return (<div>
+    <div>
+      <Header />
+    </div>
     <div id="checkout">
       <div className="container">
         <div className="card px-0 pt-4 pb-0 mt-3 mb-3">
@@ -137,8 +141,8 @@ const CustomerShippingInformation = (props) => {
                         {firstNameError ? (
                           <span>{firstNameError}</span>
                         ) : (
-                          <React.Fragment />
-                        )}
+                            <React.Fragment />
+                          )}
                         <input
                           type="text"
                           name="lname"
@@ -151,8 +155,8 @@ const CustomerShippingInformation = (props) => {
                         {lastNameError ? (
                           <span>{lastNameError}</span>
                         ) : (
-                          <React.Fragment />
-                        )}
+                            <React.Fragment />
+                          )}
                         <input
                           type="text"
                           name="email"
@@ -164,8 +168,8 @@ const CustomerShippingInformation = (props) => {
                         {emailError ? (
                           <span>{emailError}</span>
                         ) : (
-                          <React.Fragment />
-                        )}
+                            <React.Fragment />
+                          )}
                         <input
                           type="text"
                           name="phno"
@@ -187,8 +191,8 @@ const CustomerShippingInformation = (props) => {
                         {addressError ? (
                           <span>{addressError}</span>
                         ) : (
-                          <React.Fragment />
-                        )}
+                            <React.Fragment />
+                          )}
                         <input
                           type="text"
                           name="postcode"
@@ -200,8 +204,8 @@ const CustomerShippingInformation = (props) => {
                         {postcodeError ? (
                           <span>{postcodeError}</span>
                         ) : (
-                          <React.Fragment />
-                        )}
+                            <React.Fragment />
+                          )}
                         <label className="h5">Trade of business</label>
                         <select
                           className="select"
@@ -221,8 +225,8 @@ const CustomerShippingInformation = (props) => {
                       {emptyCredentialsError ? (
                         <div>{emptyCredentialsError}</div>
                       ) : (
-                        <React.Fragment />
-                      )}
+                          <React.Fragment />
+                        )}
                       <button
                         className="previous action-button-previous"
                         type="submit"
@@ -253,6 +257,7 @@ const CustomerShippingInformation = (props) => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
