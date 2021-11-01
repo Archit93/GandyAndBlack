@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { isValidEmail, isValidPassword } from "../utils/regexUtils";
-import {SET_INITIAL_RESPONSE} from "../constants/actionTypes";
+import { SET_INITIAL_RESPONSE } from "../constants/actionTypes";
 
 const SignIn = (props) => {
   const history = useHistory();
@@ -45,9 +45,9 @@ const SignIn = (props) => {
         "Looks like you're missing something! Do you want to give it another try?"
       );
     } else {
-      props.dispatch({ type: SET_INITIAL_RESPONSE })
+      props.dispatch({ type: SET_INITIAL_RESPONSE });
       history.push("/productlist");
-      // history.push("/customer_list");
+      //history.push("/customer_list");
     }
   };
 
