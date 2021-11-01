@@ -1,31 +1,14 @@
-import * as React from 'react';
-import Header from '../common/Header.js';
+import * as React from "react";
+import Header from "../common/Header.js";
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 
 const CustomerCart = (props) => {
   const history = useHistory();
-  const selectedProducts = [
-    {
-      productId: 35,
-      brand: "JBP",
-      productType: "Body Filler",
-      description: "22g x 70 mm",
-      quantity: 4,
-      availabilty: true,
-      salesPerUnit: "8.00",
-    },
-    {
-      productId: 37,
-      brand: "Lidocaine",
-      productType: "Classic-S Body Filler",
-      description: "1 x 10ml",
-      quantity: 2,
-      availabilty: true,
-      salesPerUnit: "24.00",
-    },
-  ];
+  const { applicationState } = props;
+  const { cartDetails } = applicationState;
+
   return (
     <div>
       <div>
@@ -42,7 +25,7 @@ const CustomerCart = (props) => {
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
                       <fieldset>
                         <h2 className="fs-title">My Cart</h2>
-                        {selectedProducts.map((product) => (
+                        {cartDetails.map((product) => (
                           <div className="form-card">
                             <div className="h5">
                               <span>
@@ -68,13 +51,11 @@ const CustomerCart = (props) => {
                           }}
                         >
                           Next
-                      </button>
+                        </button>
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails
-                        selectedProducts={selectedProducts}
-                      />
+                      <CustomerAmountDetails selectedProducts={cartDetails} />
                     </div>
                   </div>
                 </form>

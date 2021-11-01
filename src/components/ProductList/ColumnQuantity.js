@@ -1,43 +1,58 @@
-import React from 'react';
+import React from "react";
 
 export const ColumnQuantity = (params) => {
-    const { api, data, column, node, context } = params;
-    let quantityValue = Number(data.quantity);
+  const { api, data, column, node, context } = params;
+  let quantityValue = Number(data.quantity);
 
-    const onIncrement = () => {
-        const incrementQuantity = Number(quantityValue) + 1;
-        node.setDataValue(column.colId, incrementQuantity);
-        context.frameWorkComponentChange({ api })
-    }
+  const onIncrement = () => {
+    const incrementQuantity = Number(quantityValue) + 1;
+    node.setDataValue(column.colId, incrementQuantity);
+    context.frameWorkComponentChange({ api });
+  };
 
-    const onDecrement = () => {
-        const decrementQuantity = Number(quantityValue) <= 0 ? 0 : Number(quantityValue) - 1;
-        node.setDataValue(column.colId, decrementQuantity);
-        context.frameWorkComponentChange({ api })
-    }
+  const onDecrement = () => {
+    const decrementQuantity =
+      Number(quantityValue) <= 0 ? 0 : Number(quantityValue) - 1;
+    node.setDataValue(column.colId, decrementQuantity);
+    context.frameWorkComponentChange({ api });
+  };
 
-    const onInputChange = (event) => {
-        quantityValue = event.target.value;
-        node.setDataValue(column.colId, quantityValue);
-    }
-    const onInputBlur = () => {
-        node.setDataValue(column.colId, quantityValue);
-        context.frameWorkComponentChange({ api })
-    }
-    
-    return (
-        <span className="my-renderer">
-            {params.value != null &&
-                <>
-                    <button className="btn-quantity" onClick={(event) => onIncrement(event)}>+</button>
-                    <input className="quantity-inputbtn" id="demoInput" type="number" value={quantityValue} 
-                        onChange={(event) =>  onInputChange(event)} 
-                        onBlur ={() =>  onInputBlur()} />
+  const onInputChange = (event) => {
+    quantityValue = event.target.value;
+    node.setDataValue(column.colId, Number(quantityValue));
+  };
+  const onInputBlur = () => {
+    node.setDataValue(column.colId, quantityValue);
+    context.frameWorkComponentChange({ api });
+  };
 
-                    <button className="btn-quantity" onClick={(event) => onDecrement(event)}>-</button>
+  return (
+    <span className="my-renderer">
+      {params.value != null && (
+        <>
+          <button
+            className="btn-quantity"
+            onClick={(event) => onIncrement(event)}
+          >
+            +
+          </button>
+          <input
+            className="quantity-inputbtn"
+            id="demoInput"
+            type="number"
+            value={quantityValue}
+            onChange={(event) => onInputChange(event)}
+            onBlur={() => onInputBlur()}
+          />
 
-                </>
-            }
-        </span>
-    );
-}
+          <button
+            className="btn-quantity"
+            onClick={(event) => onDecrement(event)}
+          >
+            -
+          </button>
+        </>
+      )}
+    </span>
+  );
+};

@@ -1,11 +1,68 @@
 export const tempData = [
-    { brand: "Toyota", productType: "Celica", description: "agfjhagj", quantity: 1, salesPerUnit: "agfjhagj" },
-        { brand: "Ford", productType: "Mondeo", description: "yafscfhasch", quantity: 2, salesPerUnit: "agfjhagj" },
-        { brand: "Porsche", productType: "Boxter", description: "afchacgahc", quantity: 3, salesPerUnit: "agfjhagj" }
-]
+  {
+    productId: 35,
+    brand: "JBP",
+    productType: "Body Filler",
+    description: "22g x 70 mm",
+    quantity: 0,
+    availabilty: true,
+    salesPerUnit: "8.00",
+  },
+  {
+    productId: 37,
+    brand: "Lidocaine",
+    productType: "Classic-S Body Filler",
+    description: "1 x 10ml",
+    quantity: 0,
+    availabilty: true,
+    salesPerUnit: "120.00",
+  },
+  {
+    productId: 38,
+    brand: "Dixone",
+    productType: "Hydra gel",
+    description: "120g x 70 mm",
+    quantity: 0,
+    availabilty: true,
+    salesPerUnit: "78.00",
+  },
+  {
+    productId: 39,
+    brand: "Pseudothermaine",
+    productType: "Buttox",
+    description: "1 x 10ml",
+    quantity: 0,
+    availabilty: true,
+    salesPerUnit: "24.00",
+  },
+];
 
 export const customerList = [
-    { username: "Abcd", email: "a@g.com", instagramId: "archit", mobileNumber: "07778014122", userType: "ahfsghc",postCode: "G1 5AE", promoCode: "12345" },
-    { username: "DEFGS", email: "b@g.com", instagramId: "sagar", mobileNumber: "07778014132", userType: "ahsssshagj",postCode: "G1 5AB", promoCode: "2345" },
-    { username: "AEDCFC", email: "c@g.com", instagramId: "abhishek", mobileNumber: "07778714122", userType: "iiiiiii",postCode: "G1 6CE", promoCode: "909090" }
-]
+  {
+    username: "Abcd",
+    email: "a@g.com",
+    instagramId: "archit",
+    mobileNumber: "07778014122",
+    userType: "ahfsghc",
+    postCode: "G1 5AE",
+    promoCode: "12345",
+  },
+  {
+    username: "DEFGS",
+    email: "b@g.com",
+    instagramId: "sagar",
+    mobileNumber: "07778014132",
+    userType: "ahsssshagj",
+    postCode: "G1 5AB",
+    promoCode: "2345",
+  },
+  {
+    username: "AEDCFC",
+    email: "c@g.com",
+    instagramId: "abhishek",
+    mobileNumber: "07778714122",
+    userType: "iiiiiii",
+    postCode: "G1 6CE",
+    promoCode: "909090",
+  },
+];
