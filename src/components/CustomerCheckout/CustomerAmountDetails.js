@@ -44,11 +44,10 @@ const CustomerAmountDetails = (props) => {
                 id="shipping"
                 name="shipping"
                 onChange={onShippingCostChange}
+                value={shippingCost}
               >
                 <option value="0">Click and collect 0 GBP</option>
-                <option value="9.98" selected>
-                  Next day delivery 9.98GBP
-                </option>
+                <option value="9.98">Next day delivery 9.98GBP</option>
                 <option value="15.95">Next day by 12pm 15.95 GBP</option>
                 <option value="19.95">Next day by 10.30am 19.95 GBP</option>
               </select>
