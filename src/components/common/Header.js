@@ -20,21 +20,18 @@ const HeaderMenu = (props) => {
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              {" "}
-              <a className="nav-link" href="#">
-                Products{" "}
-              </a>{" "}
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                {" "}
-                About Us{" "}
+              <a className="nav-link">
+                Products
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                {" "}
-                Contact Us{" "}
+                About Us
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Contact Us
               </a>
             </li>
             <li className="nav-item dropdown" id="myDropdown">
@@ -43,22 +40,21 @@ const HeaderMenu = (props) => {
                 href="#"
                 data-bs-toggle="dropdown"
               >
-                {" "}
-                My Profile{" "}
+                My Profile
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  {" "}
+                  
                   <a className="dropdown-item" href="#">
-                    {" "}
-                    My Orders{" "}
+                    
+                    My Orders
                   </a>
                 </li>
                 <li>
-                  {" "}
+                  
                   <a className="dropdown-item" href="#">
-                    {" "}
-                    Update Profile{" "}
+                    
+                    Update Profile
                   </a>
                 </li>
               </ul>
@@ -73,8 +69,8 @@ const HeaderMenu = (props) => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                {" "}
-                <i className="fa fa-sign-out"></i>{" "}
+                
+                <i className="fa fa-sign-out"></i>
               </a>
             </li>
           </ul>

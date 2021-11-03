@@ -506,7 +506,7 @@ textarea {
 /*  button  */
 
 .btn {
-  width: 100%;
+  /* width: 100%; */
   color: #fff;
   font-weight: 700;
   border: 1px solid transparent;
@@ -2390,22 +2390,22 @@ div + .header-config {
 
 /* overlap image */
 .image-overlap-container {
-  position: relative;
+	position: relative;
   max-width: 100%;
   overflow: hidden;
 }
 
 .image-container img {
-  object-fit: cover;
-  position: absolute;
-  opacity: 0.1;
-  height: 100%;
+	object-fit: cover;
+	position: absolute;
+	opacity: .1;
+	height: 100%;
   width: 100%;
 }
 
-img {
-  position: relative;
-}
+/* img {
+	position: relative;
+} */
 
 .footer-padding {
   padding: 10px 0px 1px;
@@ -2590,18 +2590,72 @@ img {
 }
 
 /* 31-10 */
-#checkout,
-#aboutus,
-#productlist {
-  margin-top: 100px;
+#checkout, #aboutus, #productlist, #myprofile{
+    margin-top: 100px;
 }
 
 /* Margin */
-
-.mrt-10 {
-  margin-top: 10px;
+.mrt-10{
+	margin-top: 10px;
 }
 
 .mrt-20 {
   margin-top: 20px;
 }
+
+.mrlr-40{
+  margin: 0 40px;
+}
+
+/* Padding */
+.pdlr-40{
+  padding: 0 40px;
+}
+
+/* row added because of login screen x scroll issue*/
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0; /*-15px*/
+  margin-left: 0; /*-15px*/
+}
+
+
+/*Profile*/
+.my-profile-banner{
+  background-color: #252525;
+}
+
+.my-profile-banner img{
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  opacity: .4;
+}
+
+.bg-primary{
+  background-color: #e3adab !important;
+  color: #fff;
+  padding: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.profile-content {
+  position: relative;
+  margin-top: -60px;
+}
+
+.avatar-xxl {
+  height: 9.5rem;
+  width: 10.5rem;
+}
+
+.avatar-xxl img{
+  object-fit: cover;
+  height: 10.5rem;
+}
+
+
+
+

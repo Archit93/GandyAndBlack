@@ -167,6 +167,7 @@ import {
   IS_CART_EMPTY,
 } from "../../constants/actionTypes";
 import { updateCartDetails } from "../../serviceCalls/updateCartDetails";
+import HeaderMenu from "../common/Header";
 
 const ProductList = (props) => {
   const { applicationState, dispatch } = props;
@@ -219,30 +220,30 @@ const ProductList = (props) => {
   const columnDefs = ({ frameWorkComponentChange }) =>
     applicationState.mobileView
       ? [
-          {
-            field: "brand",
-            headerName: "Brand",
-            cellRendererFramework: MobileViewColumnBrand,
-          },
-          {
-            field: "productType",
-            headerName: "Product Type",
-            cellRendererFramework: MobileViewColumnProductType,
-          },
-          { field: "description", headerName: "Description" },
-        ]
+        {
+          field: "brand",
+          headerName: "Brand",
+          cellRendererFramework: MobileViewColumnBrand,
+        },
+        {
+          field: "productType",
+          headerName: "Product Type",
+          cellRendererFramework: MobileViewColumnProductType,
+        },
+        { field: "description", headerName: "Description" },
+      ]
       : [
-          { field: "brand", headerName: "Brand" },
-          { field: "productType", headerName: "Product Type" },
-          { field: "description", headerName: "Description" },
-          {
-            field: "quantity",
-            headerName: "Quantity",
-            editable: true,
-            cellRendererFramework: ColumnQuantity,
-          },
-          { field: "salesPerUnit", headerName: "Sales Per Unit" },
-        ];
+        { field: "brand", headerName: "Brand" },
+        { field: "productType", headerName: "Product Type" },
+        { field: "description", headerName: "Description" },
+        {
+          field: "quantity",
+          headerName: "Quantity",
+          editable: true,
+          cellRendererFramework: ColumnQuantity,
+        },
+        { field: "salesPerUnit", headerName: "Sales Per Unit" },
+      ];
 
   const defaultColDef = React.useMemo(
     () => ({
@@ -287,40 +288,45 @@ const ProductList = (props) => {
   };
 
   return (
-    <div className="container-fluid" style={{ width: "100%", height: "100%" }}>
-      <input
-        className="search-bottom-margin"
-        type="text"
-        id="filter-text-box"
-        placeholder="Filter..."
-        onChange={(event) => onFilterTextBoxChanged(event)}
-      />
-      <div
-        className="ag-theme-alpine"
-        style={{ height: "calc(100vh - 160px)", width: "100%" }}
-      >
-        <AgGridReact
-          getRowHeight={getRowHeight()}
-          rowData={rowData()}
-          columnDefs={columnDefs({
-            frameWorkComponentChange: frameWorkComponentChange,
-          })}
-          defaultColDef={defaultColDef}
-          onGridReady={onGridReady}
-          context={{ frameWorkComponentChange: frameWorkComponentChange }}
-        ></AgGridReact>
-      </div>
-      <div className="form">
-        <button
-          className="next action-button"
-          type="submit"
-          name="btn-checkout"
-          id="btn-checkout"
-          onClick={(e) => onProceed(e)}
-          disabled={isLocalCartEmpty}
+    <div>
+      <div>
+				<HeaderMenu />
+			</div>
+      <div className="container-fluid" style={{ width: "100%", height: "100%" }}>
+        <input
+          className="search-bottom-margin"
+          type="text"
+          id="filter-text-box"
+          placeholder="Filter..."
+          onChange={(event) => onFilterTextBoxChanged(event)}
+        />
+        <div
+          className="ag-theme-alpine"
+          style={{ height: "calc(100vh - 315px)", width: "100%" }}
         >
-          Proceed to checkout
+          <AgGridReact
+            getRowHeight={getRowHeight()}
+            rowData={rowData()}
+            columnDefs={columnDefs({
+              frameWorkComponentChange: frameWorkComponentChange,
+            })}
+            defaultColDef={defaultColDef}
+            onGridReady={onGridReady}
+            context={{ frameWorkComponentChange: frameWorkComponentChange }}
+          ></AgGridReact>
+        </div>
+        <div className="text-center mrt-20">
+          <button
+            className="btn btn-main"
+            type="submit"
+            name="btn-checkout"
+            id="btn-checkout"
+            onClick={(e) => onProceed(e)}
+            disabled={isLocalCartEmpty}
+          >
+            Proceed to checkout
         </button>
+        </div>
       </div>
     </div>
   );
