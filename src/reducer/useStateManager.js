@@ -8,6 +8,7 @@ export const useStateManager = (
     productList: [],
     customerList: [],
     cartDetails: [],
+    customerDetails: {},
     config: {},
     isCartEmpty: true,
   },
@@ -48,6 +49,11 @@ export const useStateManager = (
       return {
         ...state,
         isCartEmpty: action.payload,
+      };
+    case actionTypes.SET_CUSTOMER_BILLING_DETAILS:
+      return {
+        ...state,
+        customerDetails: action.payload,
       };
     case actionTypes.SET_ERROR:
     default:

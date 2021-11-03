@@ -4,18 +4,18 @@ import { SET_ERROR } from "../constants/actionTypes";
 
 const baseUrl = "http://localhost:3000/stubData";
 
-export const updateCartDetails = async ({
+export const updateCustomerDetails = async ({
   dispatch,
-  customerCartArray,
+  customerDetails,
   history,
 }) => {
   const apiRequestHeader = makeApiRequestHeader("POST", null, null);
   const apiUrl = `${baseUrl}/signIn.json`;
   await axios
-    .post(apiUrl, customerCartArray, apiRequestHeader)
+    .post(apiUrl, customerDetails, apiRequestHeader)
     .then((apiResponse) => {
       console.log(apiResponse.data);
-      history.push("/customercart_details");
+      history.push("/customerpayment_info");
     })
     .catch(() => {
       dispatch({

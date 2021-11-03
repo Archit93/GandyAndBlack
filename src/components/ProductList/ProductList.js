@@ -170,10 +170,11 @@ import { updateCartDetails } from "../../serviceCalls/updateCartDetails";
 
 const ProductList = (props) => {
   const { applicationState, dispatch } = props;
+  console.log(applicationState);
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
   const [isLocalCartEmpty, setIsLocalCartEmpty] = React.useState(
-    applicationState.isCartEmpty ? false : true
+    applicationState.isCartEmpty ?? true
   );
   const history = useHistory();
 
