@@ -2635,3 +2635,14 @@ div + .header-config {
 
 
 
+
+
+/* admin kanban */
+.react-trello-board {
+  border: 0;
+  background-color: #fff;
+}
+
+.react-trello-lane{
+  background-color: #e3adab;
+}
