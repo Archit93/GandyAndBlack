@@ -2588,6 +2588,15 @@ div + .header-config {
   padding: 0 40px;
 }
 
+/* row added because of login screen x scroll issue*/
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0; /*-15px*/
+  margin-left: 0; /*-15px*/
+}
+
+
 /*Profile*/
 .my-profile-banner{
   background-color: #252525;
@@ -2622,4 +2631,7 @@ div + .header-config {
   object-fit: cover;
   height: 10.5rem;
 }
+
+
+
 
