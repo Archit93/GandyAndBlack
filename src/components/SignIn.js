@@ -46,7 +46,7 @@ const SignIn = (props) => {
       );
     } else {
       props.dispatch({ type: SET_INITIAL_RESPONSE })
-      history.push("/productlist");
+      history.push("/customer_list");
       // history.push("/customer_list");
     }
   };

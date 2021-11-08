@@ -58,17 +58,48 @@ const AdminCustomersList = (props) => {
     }
 
     return (
-        <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
-            <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event)=> onFilterTextBoxChanged(event)}/>
-            <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%'}}>
-                <AgGridReact
-                    rowData={rowData()}
-                    columnDefs={columnDefs}
-                    defaultColDef={defaultColDef}
-                    onGridReady={onGridReady}
-                    context={{ frameWorkComponentChange: frameWorkComponentChange }}
-                >
-                </AgGridReact>
+        <div>
+            <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
+                <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event)=> onFilterTextBoxChanged(event)}/>
+                <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%'}}>
+                    <AgGridReact
+                        rowData={rowData()}
+                        columnDefs={columnDefs}
+                        defaultColDef={defaultColDef}
+                        onGridReady={onGridReady}
+                        context={{ frameWorkComponentChange: frameWorkComponentChange }}
+                    >
+                    </AgGridReact>
+                </div>
+                {/* <!-- Modal --> */}
+                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Add Promocode</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="form-floating mb-3 mt-4">
+                                    <strong>Please enter promotional code to be applied:</strong>
+                                    {/* <input type="text" name="fname" placeholder="Enter code" /> */}
+                                    {/* <Button variant="secondary" > */}
+                                    <input
+                                    type="text"
+                                    name="fname"
+                                    className="mrt-20"
+                                    placeholder="Enter code"
+                                    />
+                                    {/* <label for="floatingInput">Password</label> */}
+                                </div>
+                            </div>
+                            <div className="modal-footer text-align-center">
+                                <button type="button" className="btn btn-main">Save</button>
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

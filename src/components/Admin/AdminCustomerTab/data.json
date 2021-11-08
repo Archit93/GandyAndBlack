@@ -15,19 +15,19 @@
             "description": "Payment Method"
           },          
           {
-            "id": "Order_id",
+            "id": "Order_id1",
             "title": "Order ID",
             "label": "Order Date",
             "description": "Payment Method"
           },
           {
-            "id": "Order_id",
+            "id": "Order_id2",
             "title": "Order ID",
             "label": "Order Date",
             "description": "Payment Method"
           },
           {
-            "id": "Order_id",
+            "id": "Order_id3",
             "title": "Order ID",
             "label": "Order Date",
             "description": "Payment Method"
@@ -84,7 +84,7 @@
             "description": "Payment Method"
           },
           {
-            "id": "Parcel_id",
+            "id": "Parcel_id1",
             "title": "Order ID",
             "label": "Order Date",
             "description": "Payment Method"

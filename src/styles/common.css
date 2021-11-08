@@ -522,8 +522,8 @@ textarea {
 }
 
 .btn:hover {
-	background-color: #e3adab;
-	border-color: #e3adab;
+	/* background-color: #e3adab; */
+	/* border-color: #e3adab; */
 	color: #fff;
 	}
 
@@ -2588,6 +2588,14 @@ div + .header-config {
   padding: 0 40px;
 }
 
+
+/* Global */
+.text-align-center{
+  text-align: center;
+  justify-content: center;
+}
+
+
 /* row added because of login screen x scroll issue*/
 .row {
   display: flex;
@@ -2633,11 +2641,7 @@ div + .header-config {
 }
 
 
-
-
-
-
-/* admin kanban */
+/* admin kanban 
 .react-trello-board {
   border: 0;
   background-color: #fff;
@@ -2645,4 +2649,15 @@ div + .header-config {
 
 .react-trello-lane{
   background-color: #e3adab;
+}*/
+
+.react-trello-board {
+  background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/77/44/4557c00a384dbe0.jpg");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
+}
+
+.react-trello-lane {
+  background-color: rgba(51, 170, 51, 0.9);
 }
