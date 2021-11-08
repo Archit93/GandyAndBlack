@@ -171,7 +171,6 @@ import HeaderMenu from "../common/Header";
 
 const ProductList = (props) => {
   const { applicationState, dispatch } = props;
-  console.log(applicationState);
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
   const [isLocalCartEmpty, setIsLocalCartEmpty] = React.useState(

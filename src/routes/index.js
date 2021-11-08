@@ -85,7 +85,7 @@ import CustomerShippingInformation from '../components/CustomerCheckout/Customer
 import CustomerPayment from '../components/CustomerCheckout/CustomerPayment';
 import CustomerPaymentSuccess from '../components/CustomerCheckout/CustomerPaymentSuccess';
 import MyProfile from '../components/MyProfile';
-
+import AdminProductList from '../components/Admin/AdminProductListTab/AdminProductList';
 import AdminCustomersList from '../components/Admin/AdminCustomerTab/AdminCustomersList';
 
 export const AppRouter = (props) => {
@@ -103,6 +103,7 @@ export const AppRouter = (props) => {
           <Route exact={true} path="/customerpayment_success"> <CustomerPaymentSuccess {...props}/> </Route>
           <Route exact={true} path="/customer_list"><AdminCustomersList {...props}/> </Route>
           <Route exact={true} path="/my_profile"> <MyProfile {...props}/> </Route>
+          <Route exact={true} path="/admin_productlist"><AdminProductList {...props}/> </Route>
           {/* <Route path="/productlist" component={ProductList} applicationState={props.applicationState} dispatch={props.dispatch} props={props} {...props}/> */}
           {/* <Route exact={true} path="/checkout" component={CustomerCheckout} applicationState={props.applicationState} dispatch={props.dispatch} /> */}
         </Switch>
