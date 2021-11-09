@@ -1,31 +1,27 @@
-import * as React from 'react';
-import Header from '../common/Header.js';
+import * as React from "react";
+import Header from "../common/Header.js";
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
+import PayPal from "./PayPal.js";
 
 const CustomerPayment = (props) => {
   const history = useHistory();
-  const selectedProducts = [
-    {
-      productId: 35,
-      brand: "JBP",
-      productType: "Body Filler",
-      description: "22g x 70 mm",
-      quantity: 4,
-      availabilty: true,
-      salesPerUnit: "8.00",
-    },
-    {
-      productId: 37,
-      brand: "Lidocaine",
-      productType: "Classic-S Body Filler",
-      description: "1 x 10ml",
-      quantity: 2,
-      availabilty: true,
-      salesPerUnit: "24.00",
-    },
-  ];
+  const { applicationState } = props;
+  const { cartDetails } = applicationState;
+  const [paymentMethod, setPaymentMethod] = React.useState("");
+  const purchase_units = [];
+  cartDetails.map((item) => {
+    const purchaseUnitObject = Object.assign({});
+    purchaseUnitObject.description =
+      item.brand + " " + item.description + " " + item.productType;
+    purchaseUnitObject.amount = {
+      currency_code: "GBP",
+      value: Number(item.quantity * item.salesPerUnit),
+    };
+    purchase_units.push(purchaseUnitObject);
+  });
+
   return (
     <div>
       <div>
@@ -39,49 +35,61 @@ const CustomerPayment = (props) => {
                 <form id="msform">
                   <CheckoutProgressBar progressItem="Payment" />
                   <div className="row">
-                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
-                      <fieldset>
-                        <h2 className="fs-title">Payment Information</h2>
-                        <div className="form-card">
-                          <div className="radio-group">
-                            <div className="h5">
-                              <div className="radio" data-value="credit"></div>
+                    {paymentMethod === "paypal" ? (
+                      <PayPal {...props} />
+                    ) : (
+                      <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
+                        <fieldset>
+                          <h2 className="fs-title">Payment Information</h2>
+                          <div className="form-card">
+                            <div
+                              className="radio-group"
+                              onChange={(e) => setPaymentMethod(e.target.value)}
+                            >
+                              <input
+                                type="radio"
+                                className="radio"
+                                value="card"
+                              />
                               Credit Card
-                          </div>
-                            <div className="h5">
-                              <div className="radio" data-value="paypal"></div>
+                              <input
+                                type="radio"
+                                className="radio"
+                                value="paypal"
+                              />
                               Paypal
+                              <input
+                                type="radio"
+                                className="radio"
+                                value="cod"
+                              />
+                              Pay on delivery
+                            </div>
                           </div>
-                            <div className="h5">
-                              <div className="radio" data-value="paypal"></div>Pay
-                              on Delivery
-                          </div>
-                          </div>
-                        </div>
-                        <button
-                          className="previous action-button-previous"
-                          type="submit"
-                          onClick={() => {
-                            history.push("/customershipping_info");
-                          }}
-                        >
-                          Back
-                      </button>
-                        <button
-                          className="next action-button"
-                          type="submit"
-                          onClick={() => {
-                            history.push("/customerpayment_success");
-                          }}
-                        >
-                          Confirm Order
-                      </button>
-                      </fieldset>
-                    </div>
+                          <button
+                            className="previous action-button-previous"
+                            type="submit"
+                            onClick={() => {
+                              history.push("/customershipping_info");
+                            }}
+                          >
+                            Back
+                          </button>
+                          <button
+                            className="next action-button"
+                            type="submit"
+                            onClick={() => {
+                              history.push("/customerpayment_success");
+                            }}
+                          >
+                            Confirm Order
+                          </button>
+                        </fieldset>
+                      </div>
+                    )}
+
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails
-                        selectedProducts={selectedProducts}
-                      />
+                      <CustomerAmountDetails {...props} />
                     </div>
                   </div>
                 </form>

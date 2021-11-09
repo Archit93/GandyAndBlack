@@ -55,7 +55,7 @@ const CustomerCart = (props) => {
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails selectedProducts={cartDetails} />
+                      <CustomerAmountDetails {...props} />
                     </div>
                   </div>
                 </form>

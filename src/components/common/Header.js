@@ -20,9 +20,7 @@ const HeaderMenu = (props) => {
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link">
-                Products
-              </a>
+              <a className="nav-link">Products</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
@@ -44,16 +42,12 @@ const HeaderMenu = (props) => {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  
                   <a className="dropdown-item" href="#">
-                    
                     My Orders
                   </a>
                 </li>
                 <li>
-                  
                   <a className="dropdown-item" href="#">
-                    
                     Update Profile
                   </a>
                 </li>
@@ -69,7 +63,6 @@ const HeaderMenu = (props) => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                
                 <i className="fa fa-sign-out"></i>
               </a>
             </li>

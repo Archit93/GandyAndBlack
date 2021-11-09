@@ -16,7 +16,6 @@ import { updateCustomerDetails } from "../../serviceCalls/updateCustomerDetails"
 const CustomerShippingInformation = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails } = applicationState;
 
   const [firstName, setFirstName] = React.useState(
     applicationState?.customerDetails?.firstName ?? ""
@@ -140,7 +139,6 @@ const CustomerShippingInformation = (props) => {
         postcode,
         tradeOfBusiness,
       };
-      console.log(customerDetails);
       dispatch({
         type: SET_CUSTOMER_BILLING_DETAILS,
         payload: customerDetails,
@@ -296,7 +294,7 @@ const CustomerShippingInformation = (props) => {
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails selectedProducts={cartDetails} />
+                      <CustomerAmountDetails {...props} />
                     </div>
                   </div>
                 </form>
