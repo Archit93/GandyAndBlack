@@ -4,13 +4,15 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-import {PromoCodeColumn} from './PromoCodeColumn';
+import { PromoCodeColumn } from './PromoCodeColumn';
+import PromoCodeModal from './PromoCodeModal';
 
 const AdminCustomersList = (props) => {
 
     const { applicationState, dispatch } = props;
     const [gridApi, setGridApi] = React.useState(null);
     const [gridColumnApi, setGridColumnApi] = React.useState(null);
+    const [showModal, setShowModal] = React.useState(false);
 
     const onGridReady = params => {
         setGridApi(params.api);
@@ -56,23 +58,30 @@ const AdminCustomersList = (props) => {
     const onFilterTextBoxChanged = (event) => {
         gridApi.setQuickFilter(event.target.value);
     }
+    const showPromocodeModal = (showModalValue) => {
+        console.log(showModalValue);
+        setShowModal(showModalValue);
+    }
 
     return (
         <div>
             <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
-                <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event)=> onFilterTextBoxChanged(event)}/>
-                <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%'}}>
+                <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
+                <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%' }}>
                     <AgGridReact
                         rowData={rowData()}
                         columnDefs={columnDefs}
                         defaultColDef={defaultColDef}
                         onGridReady={onGridReady}
-                        context={{ frameWorkComponentChange: frameWorkComponentChange }}
+                        context={{
+                            frameWorkComponentChange: frameWorkComponentChange,
+                            showPromocodeModal: showPromocodeModal
+                        }}
                     >
                     </AgGridReact>
                 </div>
                 {/* <!-- Modal --> */}
-                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                {/* <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -82,15 +91,12 @@ const AdminCustomersList = (props) => {
                             <div className="modal-body">
                                 <div className="form-floating mb-3 mt-4">
                                     <strong>Please enter promotional code to be applied:</strong>
-                                    {/* <input type="text" name="fname" placeholder="Enter code" /> */}
-                                    {/* <Button variant="secondary" > */}
                                     <input
                                     type="text"
                                     name="fname"
                                     className="mrt-20"
                                     placeholder="Enter code"
                                     />
-                                    {/* <label for="floatingInput">Password</label> */}
                                 </div>
                             </div>
                             <div className="modal-footer text-align-center">
@@ -99,7 +105,11 @@ const AdminCustomersList = (props) => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
+                <PromoCodeModal title="My Modal" onClose={() =>  showPromocodeModal(false)} show={showModal}>
+        <p>This is modal body</p>
+      </PromoCodeModal>
+
             </div>
         </div>
     )

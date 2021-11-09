@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { isValidEmail, isValidPassword } from "../utils/regexUtils";
-import {SET_INITIAL_RESPONSE} from "../constants/actionTypes";
+import { SET_INITIAL_RESPONSE } from "../constants/actionTypes";
 
 const SignIn = (props) => {
   const history = useHistory();

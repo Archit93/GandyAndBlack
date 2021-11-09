@@ -54,7 +54,6 @@
 
 // export default ProductList
 
-
 // import React from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
 // import Table from '@material-ui/core/Table';
@@ -93,22 +92,19 @@
 // const ProductList = (props) => {
 //   const classes = useStyles();
 
-
 //   const [calories, setCalories] = React.useState(rows);// set initial state is used only once
 
 //   console.log(calories);
 
-
-//   const onDecrement = key => () => {     
-//         setCalories( calories.map( (item, index) => item.name === key ? 
-//           {...item, calories: item.calories -1} : item));          
+//   const onDecrement = key => () => {
+//         setCalories( calories.map( (item, index) => item.name === key ?
+//           {...item, calories: item.calories -1} : item));
 //   };
 
-//   const onIncrement = key => () => {     
-//         setCalories( calories.map( (item, index) => item.name === key ? 
-//           {...item, calories: item.calories +1} : item));          
+//   const onIncrement = key => () => {
+//         setCalories( calories.map( (item, index) => item.name === key ?
+//           {...item, calories: item.calories +1} : item));
 //   };
-
 
 //   return (
 //     <TableContainer component={Paper}>
@@ -129,19 +125,15 @@
 //                 {row.name}
 //               </TableCell>
 
-
-
 //               <TableCell align="right">
 //               <IconButton onClick={ onDecrement(row.name) }>
 //               <RemoveCircleOutlineRoundedIcon />
-//               </IconButton> 
-//               {row.calories} 
+//               </IconButton>
+//               {row.calories}
 //               <IconButton onClick={ onIncrement(row.name)  }>
 //               <AddCircleOutlineRoundedIcon />
 //               </IconButton>
 //               </TableCell>
-
-
 
 //               <TableCell align="right">{row.fat}</TableCell>
 
@@ -158,113 +150,185 @@
 // }
 // export default ProductList;
 
-import React from 'react';
+import React from "react";
+import { AgGridReact } from "ag-grid-react";
 import { useHistory } from "react-router-dom";
-import Header from '../common/Header.js';
-import { AgGridReact } from 'ag-grid-react';
 
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
-import { EDIT_PRODUCT_QUANTITY } from '../../constants/actionTypes';
+import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
 
-import { MobileViewColumnProductType } from './MobileViewColumnProductType';
-import { MobileViewColumnBrand } from './MobileViewColumnBrand';
-import { ColumnQuantity } from './ColumnQuantity';
+import { MobileViewColumnProductType } from "./MobileViewColumnProductType";
+import { MobileViewColumnBrand } from "./MobileViewColumnBrand";
+import { ColumnQuantity } from "./ColumnQuantity";
+import {
+  SET_CUSTOMER_CART_DETAILS,
+  IS_CART_EMPTY,
+} from "../../constants/actionTypes";
+import { updateCartDetails } from "../../serviceCalls/updateCartDetails";
+import HeaderMenu from "../common/Header";
 
 const ProductList = (props) => {
-    const history = useHistory();
-    const { applicationState, dispatch } = props;
-    const [gridApi, setGridApi] = React.useState(null);
-    const [gridColumnApi, setGridColumnApi] = React.useState(null);
+  const { applicationState, dispatch } = props;
+  console.log(applicationState);
+  const [gridApi, setGridApi] = React.useState(null);
+  const [gridColumnApi, setGridColumnApi] = React.useState(null);
+  const [isLocalCartEmpty, setIsLocalCartEmpty] = React.useState(
+    applicationState.isCartEmpty ?? true
+  );
+  const history = useHistory();
 
-    const onGridReady = params => {
-        setGridApi(params.api);
-        setGridColumnApi(params.columnApi)
-        params.api.sizeColumnsToFit()
-    }
+  const onGridReady = (params) => {
+    setGridApi(params.api);
+    setGridColumnApi(params.columnApi);
+    params.api.sizeColumnsToFit();
+  };
 
-    const frameWorkComponentChange = ({ api }) => {
-        const productlistArray = [];
-        api.forEachNode((node) => {
-            productlistArray.push(node.data);
-        })
-        dispatch({
-            type: EDIT_PRODUCT_QUANTITY,
-            payload: productlistArray
-        })
-    }
-    const rowData = () => {
-        const productlistArray = [];
-        applicationState.productList.map((rowdetail) => {
-            const productListObject = Object.assign({});
-            productListObject.brand = rowdetail.brand;
-            productListObject.productType = rowdetail.productType;
-            productListObject.description = rowdetail.description;
-            productListObject.quantity = Number(rowdetail.quantity);
-            productListObject.salesPerUnit = rowdetail.salesPerUnit;
-            productlistArray.push(productListObject);
+  const frameWorkComponentChange = ({ api }) => {
+    const productlistArray = [];
+    const tempArray = [];
+    api.forEachNode((node) => {
+      productlistArray.push(node.data);
+      if (node.data.quantity !== 0) {
+        tempArray.push(node.data);
+      }
+    });
+    tempArray.length === 0
+      ? setIsLocalCartEmpty(true)
+      : setIsLocalCartEmpty(false);
+    dispatch({
+      type: EDIT_PRODUCT_QUANTITY,
+      payload: productlistArray,
+    });
+  };
+  const rowData = () => {
+    const productlistArray = [];
+    applicationState.productList.map((rowdetail) => {
+      const productListObject = Object.assign({});
+      productListObject.productId = rowdetail.productId;
+      productListObject.brand = rowdetail.brand;
+      productListObject.productType = rowdetail.productType;
+      productListObject.description = rowdetail.description;
+      productListObject.quantity = Number(rowdetail.quantity);
+      productListObject.salesPerUnit = rowdetail.salesPerUnit;
+      productlistArray.push(productListObject);
+    });
+    return productlistArray;
+  };
+
+  const columnDefs = ({ frameWorkComponentChange }) =>
+    applicationState.mobileView
+      ? [
+        {
+          field: "brand",
+          headerName: "Brand",
+          cellRendererFramework: MobileViewColumnBrand,
+        },
+        {
+          field: "productType",
+          headerName: "Product Type",
+          cellRendererFramework: MobileViewColumnProductType,
+        },
+        { field: "description", headerName: "Description" },
+      ]
+      : [
+        { field: "brand", headerName: "Brand" },
+        { field: "productType", headerName: "Product Type" },
+        { field: "description", headerName: "Description" },
+        {
+          field: "quantity",
+          headerName: "Quantity",
+          editable: true,
+          cellRendererFramework: ColumnQuantity,
+        },
+        { field: "salesPerUnit", headerName: "Sales Per Unit" },
+      ];
+
+  const defaultColDef = React.useMemo(
+    () => ({
+      resizable: true,
+      sortable: true,
+      minWidth: 256,
+    }),
+    []
+  );
+
+  const onFilterTextBoxChanged = (event) => {
+    gridApi.setQuickFilter(event.target.value);
+  };
+
+  const getRowHeight = () => (applicationState.mobileView ? "50px" : "25px");
+
+  const onProceed = (e) => {
+    let customerCartArray = [];
+    gridApi.forEachNode((node) => {
+      if (node.data.quantity !== 0) {
+        customerCartArray.push({
+          productId: node.data.productId,
+          brand: node.data.brand,
+          productType: node.data.productType,
+          description: node.data.description,
+          quantity: node.data.quantity,
+          availabilty: true,
+          salesPerUnit: node.data.salesPerUnit,
         });
-        return productlistArray
-    };
+      }
+    });
+    dispatch({
+      type: SET_CUSTOMER_CART_DETAILS,
+      payload: customerCartArray,
+    });
+    dispatch({
+      type: IS_CART_EMPTY,
+      payload: isLocalCartEmpty,
+    });
+    // updateCartDetails(dispatch, customerCartArray, history);
+    history.push("/customercart_details");
+  };
 
-
-
-    const columnDefs = ({ frameWorkComponentChange }) => applicationState.mobileView ? [
-        { field: 'brand', headerName: "Brand", cellRendererFramework: MobileViewColumnBrand },
-        { field: 'productType', headerName: "Product Type", cellRendererFramework: MobileViewColumnProductType },
-        { field: 'description', headerName: "Description" },
-
-    ] : [
-            { field: 'brand', headerName: "Brand" },
-            { field: 'productType', headerName: "Product Type" },
-            { field: 'description', headerName: "Description" },
-            {
-                field: 'quantity', headerName: "Quantity",
-                editable: true,
-                cellRendererFramework: ColumnQuantity,
-            },
-            { field: 'salesPerUnit', headerName: "Sales Per Unit" }
-        ];
-
-    const defaultColDef = React.useMemo(() => ({
-        resizable: true,
-        sortable: true,
-        minWidth: 256,
-    }), []);
-
-    const onFilterTextBoxChanged = (event) => {
-        gridApi.setQuickFilter(event.target.value);
-    }
-
-    const getRowHeight = () => applicationState.mobileView ? '50px' : '25px';
-    const rowHeight = applicationState.mobileView ? 200 : 50;
-
-    return (
-        <div id="productlist">
-            <div>
-                <Header />
-            </div>
-            <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
-                <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
-                <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 315px)', width: '100%' }}>
-                    <AgGridReact
-                        rowHeight={rowHeight}
-                        rowData={rowData()}
-                        columnDefs={columnDefs({ frameWorkComponentChange: frameWorkComponentChange })}
-                        defaultColDef={defaultColDef}
-                        onGridReady={onGridReady}
-                        context={{ frameWorkComponentChange: frameWorkComponentChange }}
-                    >
-                    </AgGridReact>
-                </div>
-                <div className="text-center mrt-20">
-                    <button className="btn btn-main" type="submit" onClick={() => {
-                        history.push("/customercart_details");
-                    }}>Proceed to Checkout</button>
-                </div>
-            </div>
+  return (
+    <div>
+      <div>
+				<HeaderMenu />
+			</div>
+      <div className="container-fluid" style={{ width: "100%", height: "100%" }}>
+        <input
+          className="search-bottom-margin"
+          type="text"
+          id="filter-text-box"
+          placeholder="Filter..."
+          onChange={(event) => onFilterTextBoxChanged(event)}
+        />
+        <div
+          className="ag-theme-alpine"
+          style={{ height: "calc(100vh - 315px)", width: "100%" }}
+        >
+          <AgGridReact
+            getRowHeight={getRowHeight()}
+            rowData={rowData()}
+            columnDefs={columnDefs({
+              frameWorkComponentChange: frameWorkComponentChange,
+            })}
+            defaultColDef={defaultColDef}
+            onGridReady={onGridReady}
+            context={{ frameWorkComponentChange: frameWorkComponentChange }}
+          ></AgGridReact>
         </div>
-    );
+        <div className="text-center mrt-20">
+          <button
+            className="btn btn-main"
+            type="submit"
+            name="btn-checkout"
+            id="btn-checkout"
+            onClick={(e) => onProceed(e)}
+            disabled={isLocalCartEmpty}
+          >
+            Proceed to checkout
+        </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default ProductList;
