@@ -14,10 +14,13 @@ const PromoCodeModal = (props) => {
             <h4 className="modal-title">{props.title}</h4>
           </div>
           <div className="modal-body">{props.children}</div>
-          <div className="modal-footer">
-            <button onClick={props.onClose} className="button">
-              Close
+          <div className="modal-footer text-align-center">
+            <button className="btn btn-main">
+              Save
             </button>
+            <button onClick={props.onClose} className="btn floating-modal-btn btn-secondary">
+              Close
+            </button>         
           </div>
         </div>
       </div>

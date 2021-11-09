@@ -53,7 +53,7 @@ const SignIn = (props) => {
 
   return (
     <div className="row">
-      <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+      <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12 p-0">
         <div id="world-map-wrapper">
           <img
             src="./GB-COLLECTIONS-DERMAL-FILLERS.jpg"

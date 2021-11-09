@@ -37,21 +37,23 @@ const ForgotPassword = (props) => {
       </div>
       <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
         <header id="header">
-          <img src="./newlogo.png" alt="" />
+          <img src="./GD LOGOS-01.jpeg" alt="" />
         </header>
         <div id="forgot-password">
           <div role="main">
             <form method="post">
-              <div className="form">
-                <label for="signup-firstname" className="label">
+              <div className="form-floating mb-2">
+                <label for="floatingFirstName" className="label">
                   Enter your email
                 </label>
                 <input
-                  id="signup-firstname"
+                  id="floatingEmail"
                   type="email"
+                  className="form-control"
                   onChange={(e) => onEmailChange(e)}
                   onBlur={(e) => validateEmail(e)}
                   value={email}
+                  placeholder="email"
                   required
                 />
               </div>

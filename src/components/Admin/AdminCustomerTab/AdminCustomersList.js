@@ -106,9 +106,15 @@ const AdminCustomersList = (props) => {
                         </div>
                     </div>
                 </div> */}
-                <PromoCodeModal title="My Modal" onClose={() =>  showPromocodeModal(false)} show={showModal}>
-        <p>This is modal body</p>
-      </PromoCodeModal>
+                <PromoCodeModal title="Add Promocode" onClose={() =>  showPromocodeModal(false)} show={showModal}>
+                    <p><strong>Please enter promotional code to be applied:</strong></p>
+                    <input
+                    type="text"
+                    name="fname"
+                    className=""
+                    placeholder="Enter code"
+                    />
+                </PromoCodeModal>
 
             </div>
         </div>

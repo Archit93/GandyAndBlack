@@ -20,7 +20,7 @@ const SignUp = () => {
   const [emptyCredentialsError, setEmptyCredentialsError] = React.useState("");
 
   const onNameChange = (e) => {
-    if (e.target.id === "signup-firstname") {
+    if (e.target.id === "floatingFirstName") {
       setFirstName(e.target.value);
       setFirstNameError("");
     } else {
@@ -32,7 +32,7 @@ const SignUp = () => {
 
   const validateName = (e) => {
     const { id, value } = e?.target;
-    if (id === "signup-firstname") {
+    if (id === "floatingFirstName") {
       setFirstNameError(isValidName(value));
     } else {
       setLastNameError(isValidName(value));
@@ -79,7 +79,7 @@ const SignUp = () => {
 
   return (
     <div className="row">
-      <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+      <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12 p-0">
         <div id="world-map-wrapper">
           <img
             src="./GB-COLLECTIONS-DERMAL-FILLERS.jpg"
@@ -89,71 +89,70 @@ const SignUp = () => {
       </div>
       <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
         <header id="header">
-          <img src="./newlogo.png" alt="" />
+          <img src="./GD LOGOS-01.jpeg" alt="" />
         </header>
         <div id="signup">
           <div role="main">
             <form method="post">
-              <div className="form">
-                <label for="signup-firstname" className="label">
-                  Firstname
-                </label>
-                <input
-                  id="signup-firstname"
+              <div className="form-floating mb-2">
+                  <input
+                  className="form-control"
+                  id="floatingFirstName"
                   onChange={(e) => onNameChange(e)}
                   onBlur={(e) => validateName(e)}
                   value={firstName}
+                  placeholder="firstname"
                   required
                 />
+                <label for="floatingFirstName">Firstname</label>
               </div>
               {firstNameError ? (
                 <span>{firstNameError}</span>
               ) : (
                 <React.Fragment />
               )}
-              <div className="form">
-                <label for="signup-lastname" className="label">
-                  Lastname
-                </label>
+              <div className="form-floating mb-2">
                 <input
-                  id="signup-lastname"
+                  id="floatingLastName"
+                  className="form-control"
                   onChange={(e) => onNameChange(e)}
                   onBlur={(e) => validateName(e)}
                   value={lastName}
+                  placeholder="lastname"
                   required
                 />
+                <label for="floatingLastName">Lastname</label>
               </div>
               {lastNameError ? (
                 <span>{lastNameError}</span>
               ) : (
                 <React.Fragment />
               )}
-              <div className="form">
-                <label for="signup-email" className="label">
-                  Email
-                </label>
+              <div className="form-floating mb-2">
                 <input
-                  id="signup-email"
-                  type="email"
+                  id="floatingEmail"
+                  className="form-control"
                   onChange={(e) => onEmailChange(e)}
                   onBlur={(e) => validateEmail(e)}
                   value={email}
+                  placeholder="email"
                   required
                 />
+                <label for="floatingEmail">Email</label>
               </div>
               {emailError ? <span>{emailError}</span> : <React.Fragment />}
-              <div className="form pass-wrapper">
-                <label for="signup-password" className="label">
-                  Create your password
-                </label>
+              <div className="form-floating mb-3">
                 <input
-                  id="signup-password"
+                  id="floatingPassword"
+                  className="form-control"
                   type={passwordShown ? "text" : "password"}
                   onChange={(e) => onPasswordChange(e)}
                   onBlur={(e) => validatePassword(e)}
                   value={password}
+                  placeholder="password"
                   required
                 />
+                <label for="floatingPassword" className="label">Create your password</label>
                 <i
                   className={`fa ${
                     passwordShown ? `fa-eye-slash` : `fa-eye`
