@@ -9,18 +9,20 @@ const CustomerAmountDetails = (props) => {
   const [totalAmount, setTotalAmount] = React.useState("");
 
   React.useEffect(() => {
-    const totalArray = cartDetails.map(
-      (prod) => prod.salesPerUnit * prod.quantity
-    );
-    const reducer = (previousValue, currentValue) =>
-      previousValue + currentValue;
-    const subTotalValue = totalArray.reduce(reducer);
-    setSubTotalAmount(subTotalValue);
-    setTotalAmount(subTotalValue + Number(shippingCost));
-    dispatch({
-      type: SET_TOTAL_AMOUNT,
-      payload: subTotalValue + Number(shippingCost),
-    });
+    if (cartDetails) {
+      const totalArray = cartDetails?.map(
+        (prod) => prod.salesPerUnit * prod.quantity
+      );
+      const reducer = (previousValue, currentValue) =>
+        previousValue + currentValue;
+      const subTotalValue = totalArray.reduce(reducer);
+      setSubTotalAmount(subTotalValue);
+      setTotalAmount(subTotalValue + Number(shippingCost));
+      dispatch({
+        type: SET_TOTAL_AMOUNT,
+        payload: subTotalValue + Number(shippingCost),
+      });
+    }
   }, [cartDetails, shippingCost]);
 
   const onShippingCostChange = (e) => {

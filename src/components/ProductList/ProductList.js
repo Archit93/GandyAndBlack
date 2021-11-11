@@ -25,6 +25,7 @@ const ProductList = (props) => {
   const [isLocalCartEmpty, setIsLocalCartEmpty] = React.useState(
     applicationState?.isCartEmpty ?? true
   );
+  const [cartCount, setCartCount] = React.useState(0);
   const history = useHistory();
 
   // React.useEffect(() => {
@@ -43,12 +44,26 @@ const ProductList = (props) => {
     api.forEachNode((node) => {
       productlistArray.push(node.data);
       if (node.data.quantity !== 0) {
-        tempArray.push(node.data);
+        tempArray.push({
+          productId: node.data.productId,
+          brand: node.data.brand,
+          productType: node.data.productType,
+          description: node.data.description,
+          quantity: node.data.quantity,
+          availabilty: true,
+          salesPerUnit: node.data.salesPerUnit,
+        });
       }
     });
     tempArray.length === 0
       ? setIsLocalCartEmpty(true)
       : setIsLocalCartEmpty(false);
+
+    setCartCount(tempArray.length);
+    dispatch({
+      type: SET_CUSTOMER_CART_DETAILS,
+      payload: tempArray,
+    });
     dispatch({
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
@@ -139,11 +154,12 @@ const ProductList = (props) => {
     // updateCartDetails(dispatch, customerCartArray, history);
     history.push("/customercart_details");
   };
+  console.log(applicationState);
 
   return (
     <div>
       <div>
-        <HeaderMenu />
+        <HeaderMenu cartCount={cartCount} />
       </div>
       <div
         className="container-fluid"

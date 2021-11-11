@@ -1,5 +1,5 @@
 import * as React from "react";
-import Header from "../common/Header.js";
+import HeaderMenu from "../common/Header.js";
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
@@ -16,6 +16,7 @@ import { updateCustomerDetails } from "../../serviceCalls/updateCustomerDetails"
 const CustomerShippingInformation = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
+  const { cartDetails } = applicationState;
 
   const [firstName, setFirstName] = React.useState(
     applicationState?.customerDetails?.firstName ?? ""
@@ -151,7 +152,7 @@ const CustomerShippingInformation = (props) => {
   return (
     <div>
       <div>
-        <Header />
+        <HeaderMenu cartCount={cartDetails.length} />
       </div>
       <div id="checkout">
         <div className="container">

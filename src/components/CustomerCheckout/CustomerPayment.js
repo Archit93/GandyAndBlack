@@ -1,5 +1,5 @@
 import * as React from "react";
-import Header from "../common/Header.js";
+import HeaderMenu from "../common/Header.js";
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
@@ -9,7 +9,7 @@ const CustomerPayment = (props) => {
   const history = useHistory();
   const { applicationState } = props;
   const { cartDetails } = applicationState;
-  const [paymentMethod, setPaymentMethod] = React.useState("");
+  // const [paymentMethod, setPaymentMethod] = React.useState("");
   const purchase_units = [];
   cartDetails.map((item) => {
     const purchaseUnitObject = Object.assign({});
@@ -25,7 +25,7 @@ const CustomerPayment = (props) => {
   return (
     <div>
       <div>
-        <Header />
+        <HeaderMenu cartCount={cartDetails.length} />
       </div>
       <div id="checkout">
         <div className="container">
@@ -35,7 +35,8 @@ const CustomerPayment = (props) => {
                 <form id="msform">
                   <CheckoutProgressBar progressItem="Payment" />
                   <div className="row">
-                    {paymentMethod === "paypal" ? (
+                    <PayPal {...props} />
+                    {/* {paymentMethod === "paypal" ? (
                       <PayPal {...props} />
                     ) : (
                       <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
@@ -86,7 +87,7 @@ const CustomerPayment = (props) => {
                           </button>
                         </fieldset>
                       </div>
-                    )}
+                    )} */}
 
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                       <CustomerAmountDetails {...props} />

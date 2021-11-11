@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 
-const HeaderMenu = (props) => {
+const HeaderMenu = ({ cartCount }) => {
+  const history = useHistory();
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white header-shadow navbar-fixed">
       <div className="container-fluid">
@@ -53,11 +55,17 @@ const HeaderMenu = (props) => {
                 </li>
               </ul>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
+            <li
+              className="nav-item"
+              style={!cartCount ? { pointerEvents: "none" } : null}
+            >
+              <a
+                className="nav-link"
+                // onClick={history.push("/customercart_details")}
+              >
                 <i className="fa fa-shopping-cart"></i>
                 <span className="position-absolute translate-middle badge rounded-pill bg-secondary">
-                  0
+                  {cartCount}
                 </span>
               </a>
             </li>
