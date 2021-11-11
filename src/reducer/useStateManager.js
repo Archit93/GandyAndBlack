@@ -11,6 +11,7 @@ export const useStateManager = (
     customerDetails: {},
     config: {},
     isCartEmpty: true,
+    totalAmount: 0,
   },
   action
 ) => {
@@ -54,6 +55,11 @@ export const useStateManager = (
       return {
         ...state,
         customerDetails: action.payload,
+      };
+    case actionTypes.SET_TOTAL_AMOUNT:
+      return {
+        ...state,
+        totalAmount: action.payload,
       };
     case actionTypes.SET_ERROR:
     default:

@@ -1,21 +1,29 @@
 import * as React from "react";
+import { SET_TOTAL_AMOUNT } from "../../constants/actionTypes";
 
 const CustomerAmountDetails = (props) => {
-  const { selectedProducts } = props;
+  const { applicationState, dispatch } = props;
+  const { cartDetails } = applicationState;
   const [shippingCost, setShippingCost] = React.useState("9.98");
   const [subTotalAmount, setSubTotalAmount] = React.useState("");
   const [totalAmount, setTotalAmount] = React.useState("");
 
   React.useEffect(() => {
-    const totalArray = selectedProducts.map(
-      (prod) => prod.salesPerUnit * prod.quantity
-    );
-    const reducer = (previousValue, currentValue) =>
-      previousValue + currentValue;
-    const subTotalValue = totalArray.reduce(reducer);
-    setSubTotalAmount(subTotalValue);
-    setTotalAmount(subTotalValue + Number(shippingCost));
-  }, [selectedProducts, shippingCost]);
+    if (cartDetails) {
+      const totalArray = cartDetails?.map(
+        (prod) => prod.salesPerUnit * prod.quantity
+      );
+      const reducer = (previousValue, currentValue) =>
+        previousValue + currentValue;
+      const subTotalValue = totalArray.reduce(reducer);
+      setSubTotalAmount(subTotalValue);
+      setTotalAmount(subTotalValue + Number(shippingCost));
+      dispatch({
+        type: SET_TOTAL_AMOUNT,
+        payload: subTotalValue + Number(shippingCost),
+      });
+    }
+  }, [cartDetails, shippingCost]);
 
   const onShippingCostChange = (e) => {
     setShippingCost(e.target.value);

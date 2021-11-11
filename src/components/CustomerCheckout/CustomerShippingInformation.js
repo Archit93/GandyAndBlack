@@ -1,5 +1,5 @@
 import * as React from "react";
-import Header from "../common/Header.js";
+import HeaderMenu from "../common/Header.js";
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
@@ -140,7 +140,6 @@ const CustomerShippingInformation = (props) => {
         postcode,
         tradeOfBusiness,
       };
-      console.log(customerDetails);
       dispatch({
         type: SET_CUSTOMER_BILLING_DETAILS,
         payload: customerDetails,
@@ -153,7 +152,7 @@ const CustomerShippingInformation = (props) => {
   return (
     <div>
       <div>
-        <Header />
+        <HeaderMenu cartCount={cartDetails.length} />
       </div>
       <div id="checkout">
         <div className="container">
@@ -296,7 +295,7 @@ const CustomerShippingInformation = (props) => {
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails selectedProducts={cartDetails} />
+                      <CustomerAmountDetails {...props} />
                     </div>
                   </div>
                 </form>
