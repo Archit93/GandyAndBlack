@@ -12,25 +12,25 @@
             "id": "Order_id",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           },          
           {
             "id": "Order_id1",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           },
           {
             "id": "Order_id2",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           },
           {
             "id": "Order_id3",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           }
         ]
       },
@@ -47,7 +47,7 @@
             "id": "Pick_id",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           }
         ]
       },
@@ -64,7 +64,7 @@
             "id": "Delivery_id",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           }
         ]
       },
@@ -81,13 +81,13 @@
             "id": "Parcel_id",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           },
           {
             "id": "Parcel_id1",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           }
         ]
       },
@@ -104,7 +104,7 @@
             "id": "PaymentReceived_id",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           }
         ]
       },
@@ -121,7 +121,7 @@
             "id": "OrderCompleted_id",
             "title": "Order ID",
             "label": "Order Date",
-            "description": "Payment Method"
+            "description": "Customer Name"
           }
         ]
       }

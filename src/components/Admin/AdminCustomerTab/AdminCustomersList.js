@@ -7,6 +7,8 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { PromoCodeColumn } from './PromoCodeColumn';
 import PromoCodeModal from './PromoCodeModal';
 
+import Sidebar from './Sidebar';
+
 const AdminCustomersList = (props) => {
 
     const { applicationState, dispatch } = props;
@@ -64,58 +66,40 @@ const AdminCustomersList = (props) => {
     }
 
     return (
-        <div>
-            <div className="container-fluid" style={{ width: '100%', height: '100%' }}>
-                <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
-                <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%' }}>
-                    <AgGridReact
-                        rowData={rowData()}
-                        columnDefs={columnDefs}
-                        defaultColDef={defaultColDef}
-                        onGridReady={onGridReady}
-                        context={{
-                            frameWorkComponentChange: frameWorkComponentChange,
-                            showPromocodeModal: showPromocodeModal
-                        }}
-                    >
-                    </AgGridReact>
-                </div>
-                {/* <!-- Modal --> */}
-                {/* <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Add Promocode</h5>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="form-floating mb-3 mt-4">
-                                    <strong>Please enter promotional code to be applied:</strong>
-                                    <input
-                                    type="text"
-                                    name="fname"
-                                    className="mrt-20"
-                                    placeholder="Enter code"
-                                    />
-                                </div>
-                            </div>
-                            <div className="modal-footer text-align-center">
-                                <button type="button" className="btn btn-main">Save</button>
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
+        <div className="row" style={{height:'100vh'}}>
+            {/* <div className="col-lg-1 p-0">
+                <Sidebar />
+            </div> */}
+           
+            <div className="col-lg-12 p-0" style={{ width: '100%', height: '100%' }}>
+                {/* <div className="" style={{height: '50px', backgroundColor: '#dedede'}}>
+                    <button>Toggle</button>
                 </div> */}
-                <PromoCodeModal title="Add Promocode" onClose={() =>  showPromocodeModal(false)} show={showModal}>
-                    <p><strong>Please enter promotional code to be applied:</strong></p>
-                    <input
-                    type="text"
-                    name="fname"
-                    className=""
-                    placeholder="Enter code"
-                    />
-                </PromoCodeModal>
-
+                <div className="p-3">
+                    <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
+                    <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%' }}>
+                        <AgGridReact
+                            rowData={rowData()}
+                            columnDefs={columnDefs}
+                            defaultColDef={defaultColDef}
+                            onGridReady={onGridReady}
+                            context={{
+                                frameWorkComponentChange: frameWorkComponentChange,
+                                showPromocodeModal: showPromocodeModal
+                            }}
+                        >
+                        </AgGridReact>
+                    </div>
+                    <PromoCodeModal title="Add Promocode" onClose={() =>  showPromocodeModal(false)} show={showModal}>
+                        <p><strong>Please enter promotional code to be applied:</strong></p>
+                        <input
+                        type="text"
+                        name="fname"
+                        className=""
+                        placeholder="Enter code"
+                        />
+                    </PromoCodeModal>
+                </div>
             </div>
         </div>
     )

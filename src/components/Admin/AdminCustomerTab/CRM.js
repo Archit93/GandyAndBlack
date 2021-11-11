@@ -1,14 +1,14 @@
-import React from "react";
+import * as React from "react";
 import ReactDOM from "react-dom";
 
 import data from "./data.json";
 import Board from "react-trello";
-import Sidebar from './Sidebar.js';
 
 import PromoCodeModal from './PromoCodeModal';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+
 
 const CRM = (props) => {
 
@@ -23,11 +23,12 @@ const CRM = (props) => {
   }
 
     return (
-      <div className="row crm">
-          {/* <div className="col-lg-1 col-md-1 col-sm-1 col-xs-2 p-0">
-            <Sidebar />
-          </div> */}
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0">
+      <div className="row crm" style={{height:'100vh'}}>
+            {/* <div className="col-lg-1 p-0">
+                <Header />
+            </div> */}
+           
+            <div className="col-lg-12 p-0" style={{ width: '100%', height: '100%' }}>
             <h1>Kanban</h1>
             <div class="">
               <Board 
@@ -47,7 +48,60 @@ const CRM = (props) => {
                     <Tab>Customer Details</Tab>
                     <Tab>Products Ordered</Tab>
                   </TabList>
-
+                  {/* Order Details */}
+                  <TabPanel>
+                    <div className="row form-card mt-5">
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Order Id -</strong></label> SDE4242
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Order Date -</strong></label> Thu Nov 11 11:34:42 GMT 2021
+                      </div>
+                    </div>
+                    <div className="row form-card mt-3">
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Order No -</strong></label> 4242
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Order Amount -</strong></label> 284.95
+                      </div>
+                    </div>
+                    <div className="row form-card mt-3">
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Order Payment Method -</strong></label> POD
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Order Shipping cost  -</strong></label> Next day delivery 9.95 GBP(Pound Sterling)
+                      </div>
+                    </div>
+                    <div className="row form-card mt-3">
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Products Warehouse -</strong></label> Liverpool
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Promocode Discount -</strong></label> false
+                      </div>
+                    </div>
+                  </TabPanel>
+                  {/* Customer Details */}
+                  <TabPanel>
+                  <div className="row form-card mt-5">
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Customer Name -</strong></label> Daisy-May Jones
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Customer Mobile -</strong></label> 07534445525
+                      </div>
+                    </div>
+                    <div className="row form-card mt-3">
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Customer Email -</strong></label> daisy-mayjones@hotmail.co.uk
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label><strong>Delivery Address -</strong></label> 4 Bridgeways, Conduit lane east, Hoddesdon, Hertfordshire, EN11 8DZ, Postal Code - EN118DZ
+                      </div>
+                    </div>
+                  </TabPanel>
                   <TabPanel>
                     <div className="row form-card mt-5">
                       <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -89,89 +143,8 @@ const CRM = (props) => {
                         <label><strong>Order Id -</strong></label> SDE4242
                       </div>
                     </div>
-                  </TabPanel>
-                  <TabPanel>
-                  <div className="row form-card mt-5">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                    </div>
-                    <div className="row form-card mt-3">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                    </div>
-                    <div className="row form-card mt-3">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                    </div>
-                    <div className="row form-card mt-3">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                    </div>
-                    <div className="row form-card mt-3">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                    </div>
-                  </TabPanel>
-                  <TabPanel>
-                  <div className="row form-card mt-5">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                    </div>
-                    <div className="row form-card mt-3">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                    </div>
-                    <div className="row form-card mt-3">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                    </div>
-                    <div className="row form-card mt-3">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                    </div>
-                    <div className="row form-card mt-3">
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label><strong>Order Id -</strong></label> SDE4242
-                      </div>
+                    <div className="text-align-center mrt-20">
+                      <button className="btn btn-primary">Save</button>
                     </div>
                   </TabPanel>
                 </Tabs>
