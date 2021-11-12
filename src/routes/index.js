@@ -94,8 +94,8 @@ export const AppRouter = (props) => {
     <Router>
         <Switch>
           <Route exact={true} path="/"> <SignIn {...props}/> </Route>
+          <Route exact={true} path="/forgot_password"> <ForgotPassword {...props}/> </Route>
           <Route path="/signup" component={SignUp} applicationState={props.applicationState} dispatch={props.dispatch} />
-          <Route path="/forgot_password" component={ForgotPassword} applicationState={props.applicationState} dispatch={props.dispatch} />
           <Route path="/aboutus" component={AboutUs} applicationState={props.applicationState} dispatch={props.dispatch} />
           <Route exact={true} path="/productlist"> <ProductList {...props}/> </Route>
           <Route exact={true} path="/customercart_details"> <CustomerCart {...props}/> </Route>

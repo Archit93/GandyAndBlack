@@ -1,11 +1,18 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { isValidEmail } from "../utils/regexUtils";
+import {forgotPasswordApiCall} from "../serviceCalls/forgotPasswordApiCall";
 
 const ForgotPassword = (props) => {
   const history = useHistory();
+  const {
+    applicationState: {
+      forgotPasswordError
+    }
+  } = props;
   const [email, setEmailAddress] = React.useState("");
   const [emailError, setEmailError] = React.useState("");
+
 
   const validateEmail = (e) => {
     const { value } = e?.target;
@@ -21,7 +28,7 @@ const ForgotPassword = (props) => {
     if (emailError || email === "") {
       e.preventDefault();
     } else {
-      history.push("/productlist");
+      forgotPasswordApiCall({ dispatch: props.dispatch, history: history, email: email })
     }
   };
 
@@ -41,7 +48,7 @@ const ForgotPassword = (props) => {
         </header>
         <div id="forgot-password">
           <div role="main">
-            <form method="post">
+            {/* <form method="post"> */}
               <div className="form-floating mb-2">
                 <label for="floatingFirstName" className="label">
                   Enter your email
@@ -91,7 +98,7 @@ const ForgotPassword = (props) => {
                   Already have an account? Login
                 </button>
               </div>
-            </form>
+            {/* </form> */}
           </div>
           <footer>
             <p>

@@ -1,18 +1,15 @@
 import axios from 'axios';
 import { makeApiRequestHeader } from '../utils/makeApiRequestHeader';
-import { SET_SIGN_IN_DATA, SET_ERROR, SET_INITIAL_RESPONSE } from '../constants/actionTypes';
+import { SET_SIGN_IN_DATA, SET_ERROR, SET_INITIAL_RESPONSE, SET_FORGOT_PASSWORD_ERROR } from '../constants/actionTypes';
 
 const baseUrl = 'http://13.235.247.221:55586';
 
-export const signInApiCall = async ({ dispatch, history }) => {
-    const requestBody = {
-        email: 'pareshg4@gmail.com',
-        password: 's3>HL)y{$M'
-    }
-    const apiRequestHeader = makeApiRequestHeader('POST', null, requestBody, null);
-    const apiUrl = `${baseUrl}/user/login`;
-    await axios.post(apiUrl, requestBody, apiRequestHeader)
+export const forgotPasswordApiCall = async ({ dispatch, history, email }) => {
+    const apiRequestHeader = makeApiRequestHeader('GET', null, null, null);
+    const apiUrl = `${baseUrl}/user/reset/password/${email}`;
+    await axios.get(apiUrl, null, apiRequestHeader)
         .then((apiResponse) => {
+            console.log(apiResponse);
             dispatch({
                 type: SET_SIGN_IN_DATA,
                 payload: apiResponse.data.body
@@ -32,10 +29,17 @@ export const signInApiCall = async ({ dispatch, history }) => {
 
             }
         })
-        .catch(() => {
-            dispatch({
-                type: SET_ERROR
-            })
+        .catch((error) => {
+            console.log(error.response.data);
+            console.log(error.response.status === 500);
+            if(error.response.status === 500) {
+                dispatch({
+                    type: SET_FORGOT_PASSWORD_ERROR,
+                    payload: error.response.data
+                })
+            }
+            
+           history.push('/forgot_password');
         })
 
 }
