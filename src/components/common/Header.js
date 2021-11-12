@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 
-const HeaderMenu = (props) => {
+const HeaderMenu = ({ cartCount }) => {
+  const history = useHistory();
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white header-shadow navbar-fixed">
       <div className="container-fluid">
@@ -20,9 +22,7 @@ const HeaderMenu = (props) => {
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link">
-                Products
-              </a>
+              <a className="nav-link">Products</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
@@ -44,32 +44,33 @@ const HeaderMenu = (props) => {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  
                   <a className="dropdown-item" href="#">
-                    
                     My Orders
                   </a>
                 </li>
                 <li>
-                  
                   <a className="dropdown-item" href="#">
-                    
                     Update Profile
                   </a>
                 </li>
               </ul>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
+            <li
+              className="nav-item"
+              style={!cartCount ? { pointerEvents: "none" } : null}
+            >
+              <a
+                className="nav-link"
+                // onClick={history.push("/customercart_details")}
+              >
                 <i className="fa fa-shopping-cart"></i>
                 <span className="position-absolute translate-middle badge rounded-pill bg-secondary">
-                  0
+                  {cartCount}
                 </span>
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                
                 <i className="fa fa-sign-out"></i>
               </a>
             </li>

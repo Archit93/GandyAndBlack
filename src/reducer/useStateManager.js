@@ -12,7 +12,8 @@ export const useStateManager = (
     config: {},
     isCartEmpty: true,
     isLoading: false,
-    forgotPasswordError: ""
+    forgotPasswordError: "",
+    totalAmount: 0
   },
   action
 ) => {
@@ -65,10 +66,17 @@ export const useStateManager = (
         ...state,
         customerDetails: action.payload,
       };
+<<<<<<< HEAD
     case actionTypes.SET_IS_LOADING:
       return {
         ...state,
         isLoading: action.payload,
+=======
+    case actionTypes.SET_TOTAL_AMOUNT:
+      return {
+        ...state,
+        totalAmount: action.payload,
+>>>>>>> origin/develop
       };
     case actionTypes.SET_ERROR:
     default:

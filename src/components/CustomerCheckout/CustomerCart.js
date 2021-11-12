@@ -1,5 +1,5 @@
 import * as React from "react";
-import Header from "../common/Header.js";
+import HeaderMenu from "../common/Header.js";
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
@@ -12,7 +12,7 @@ const CustomerCart = (props) => {
   return (
     <div>
       <div>
-        <Header />
+        <HeaderMenu cartCount={cartDetails.length} />
       </div>
       <div id="checkout">
         <div className="container">
@@ -25,22 +25,23 @@ const CustomerCart = (props) => {
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
                       <fieldset>
                         <h2 className="fs-title">My Cart</h2>
-                        {cartDetails.map((product) => (
-                          <div className="form-card">
-                            <div className="h5">
-                              <span>
-                                {product.brand} {product.productType}{" "}
-                                {product.description}
-                              </span>
-                              <span style={{ float: "right" }}>
-                                £{product.salesPerUnit}
-                              </span>
+                        {cartDetails &&
+                          cartDetails?.map((product) => (
+                            <div className="form-card">
+                              <div className="h5">
+                                <span>
+                                  {product.brand} {product.productType}{" "}
+                                  {product.description}
+                                </span>
+                                <span style={{ float: "right" }}>
+                                  £{product.salesPerUnit}
+                                </span>
+                              </div>
+                              <div className="h6">
+                                QTY : <span>{product.quantity}</span>
+                              </div>
                             </div>
-                            <div className="h6">
-                              QTY : <span>{product.quantity}</span>
-                            </div>
-                          </div>
-                        ))}
+                          ))}
                         <button
                           className="next action-button"
                           type="submit"
@@ -55,7 +56,7 @@ const CustomerCart = (props) => {
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails selectedProducts={cartDetails} />
+                      <CustomerAmountDetails {...props} />
                     </div>
                   </div>
                 </form>
