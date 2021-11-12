@@ -33,12 +33,12 @@ export const useStateManager = (
         },
       };
     case actionTypes.SET_FORGOT_PASSWORD_ERROR:
-    console.log(action);
-    return {
-      ...state,
-      forgotPasswordError : action.payload,
-      isLoading: false
-    }
+      console.log(action);
+      return {
+        ...state,
+        forgotPasswordError: action.payload,
+        isLoading: false
+      }
     case actionTypes.SET_INITIAL_RESPONSE:
       return {
         ...state,
@@ -66,17 +66,15 @@ export const useStateManager = (
         ...state,
         customerDetails: action.payload,
       };
-<<<<<<< HEAD
     case actionTypes.SET_IS_LOADING:
       return {
         ...state,
         isLoading: action.payload,
-=======
+      }
     case actionTypes.SET_TOTAL_AMOUNT:
       return {
         ...state,
         totalAmount: action.payload,
->>>>>>> origin/develop
       };
     case actionTypes.SET_ERROR:
     default:

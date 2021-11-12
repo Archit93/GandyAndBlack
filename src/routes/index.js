@@ -1,15 +1,15 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import React from "react";
-import SignIn from "../components/SignIn";
-import SignUp from "../components/SignUp";
-import ForgotPassword from "../components/ForgotPassword";
-import AboutUs from "../components/AboutUs";
-import ProductList from "../components/ProductList/ProductList";
-import CustomerCart from "../components/CustomerCheckout/CustomerCart";
-import CustomerShippingInformation from "../components/CustomerCheckout/CustomerShippingInformation";
-import CustomerPayment from "../components/CustomerCheckout/CustomerPayment";
-import CustomerPaymentSuccess from "../components/CustomerCheckout/CustomerPaymentSuccess";
-import MyProfile from "../components/MyProfile";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import React from "react";
+// import SignIn from "../components/SignIn";
+// import SignUp from "../components/SignUp";
+// import ForgotPassword from "../components/ForgotPassword";
+// import AboutUs from "../components/AboutUs";
+// import ProductList from "../components/ProductList/ProductList";
+// import CustomerCart from "../components/CustomerCheckout/CustomerCart";
+// import CustomerShippingInformation from "../components/CustomerCheckout/CustomerShippingInformation";
+// import CustomerPayment from "../components/CustomerCheckout/CustomerPayment";
+// import CustomerPaymentSuccess from "../components/CustomerCheckout/CustomerPaymentSuccess";
+// import MyProfile from "../components/MyProfile";
 
 // // const SignIn = React.lazy(() =>
 // //   import('../components/SignIn')

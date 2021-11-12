@@ -152,7 +152,7 @@ const ProductList = (props) => {
       payload: isLocalCartEmpty,
     });
     // updateCartDetails(dispatch, customerCartArray, history);
-    history.push("/customercart_details");
+    history.push("/productlist");
   };
   console.log(applicationState);
 

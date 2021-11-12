@@ -23,12 +23,12 @@ export const signInApiCall = async ({ dispatch, history }) => {
                 //     type: SET_SIGN_IN_DATA,
                 //     payload: apiResponse.data.body
                 // }) 
-                history.push('/customer_list');
+                history.push('/productlist');
 
             } else {
                 // TODO : Navigation and API Calls based on roles
                 dispatch({ type: SET_INITIAL_RESPONSE })
-                history.push('/customer_list');
+                history.push('/productlist');
 
             }
         })

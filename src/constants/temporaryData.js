@@ -35,6 +35,33 @@ export const tempData = [
     availabilty: true,
     salesPerUnit: "24.00",
   },
+  {
+    productId: 233,
+    brand: "Lidocaine",
+    productType: "Classic-S Body Filler",
+    description: "1 x 10ml",
+    quantity: 0,
+    availabilty: true,
+    salesPerUnit: "120.00",
+  },
+  {
+    productId: 3222,
+    brand: "Lidocaine",
+    productType: "Classic-S Body Filler",
+    description: "1 x 10ml",
+    quantity: 0,
+    availabilty: true,
+    salesPerUnit: "120.00",
+  },
+  {
+    productId: 4000,
+    brand: "Lidocaine",
+    productType: "Classic-S Body Filler",
+    description: "1 x 10ml",
+    quantity: 0,
+    availabilty: true,
+    salesPerUnit: "120.00",
+  },
 ];
 
 export const customerList = [
