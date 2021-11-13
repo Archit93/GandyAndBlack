@@ -1,5 +1,7 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
 import { isValidEmail, isValidPassword } from "../utils/regexUtils";
 import { SET_INITIAL_RESPONSE, SET_IS_LOADING } from "../constants/actionTypes";
 import { signInApiCall } from "../serviceCalls/signInApiCall";
