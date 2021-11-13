@@ -152,12 +152,12 @@ const ProductList = (props) => {
       payload: isLocalCartEmpty,
     });
     // updateCartDetails(dispatch, customerCartArray, history);
-    history.push("/productlist");
+    history.push("/customercart_details");
   };
   console.log(applicationState);
 
   return (
-    <div>
+    <div id="productlist">
       <div>
         <HeaderMenu cartCount={cartCount} />
       </div>

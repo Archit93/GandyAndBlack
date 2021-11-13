@@ -54,7 +54,8 @@ const SignIn = (props) => {
       );
     } else {
       props.dispatch({ type: SET_IS_LOADING, payload: true });
-      signInApiCall({ dispatch: props.dispatch, history: history })
+      // signInApiCall({ dispatch: props.dispatch, history: history })
+      history.push('/productlist');
     }
   };
 

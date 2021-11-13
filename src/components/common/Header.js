@@ -6,9 +6,9 @@ const HeaderMenu = ({ cartCount }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white header-shadow navbar-fixed">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <button className="navbar-brand" href="#">
           <img src="./GD LOGOS-01.jpeg" alt="logo" className="logo" />
-        </a>
+        </button>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,36 +22,36 @@ const HeaderMenu = ({ cartCount }) => {
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link">Products</a>
+              <button className="nav-link">Products</button>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <button className="nav-link" href="#">
                 About Us
-              </a>
+              </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <button className="nav-link" href="#">
                 Contact Us
-              </a>
+              </button>
             </li>
             <li className="nav-item dropdown" id="myDropdown">
-              <a
+              <button
                 className="nav-link dropdown-toggle"
                 href="#"
                 data-bs-toggle="dropdown"
               >
                 My Profile
-              </a>
+              </button>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <button className="dropdown-item" href="#">
                     My Orders
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <button className="dropdown-item" href="#">
                     Update Profile
-                  </a>
+                  </button>
                 </li>
               </ul>
             </li>
@@ -59,7 +59,7 @@ const HeaderMenu = ({ cartCount }) => {
               className="nav-item"
               style={!cartCount ? { pointerEvents: "none" } : null}
             >
-              <a
+              <button
                 className="nav-link"
                 // onClick={history.push("/customercart_details")}
               >
@@ -67,12 +67,12 @@ const HeaderMenu = ({ cartCount }) => {
                 <span className="position-absolute translate-middle badge rounded-pill bg-secondary">
                   {cartCount}
                 </span>
-              </a>
+              </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <button className="nav-link" href="#">
                 <i className="fa fa-sign-out"></i>
-              </a>
+              </button>
             </li>
           </ul>
         </div>
