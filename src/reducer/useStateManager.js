@@ -11,7 +11,9 @@ export const useStateManager = (
     customerDetails: {},
     config: {},
     isCartEmpty: true,
-    totalAmount: 0,
+    isLoading: false,
+    forgotPasswordError: "",
+    totalAmount: 0
   },
   action
 ) => {
@@ -26,15 +28,23 @@ export const useStateManager = (
         ...state,
         config: {
           ...state.config,
-          access_token: action.payload.access_token,
-          role: action.payload.role,
+          access_token: action.payload.authToken,
+          role: action.payload.role
         },
       };
+    case actionTypes.SET_FORGOT_PASSWORD_ERROR:
+      console.log(action);
+      return {
+        ...state,
+        forgotPasswordError: action.payload,
+        isLoading: false
+      }
     case actionTypes.SET_INITIAL_RESPONSE:
       return {
         ...state,
         productList: tempData,
         customerList: customerList,
+        isLoading: false
       };
     case actionTypes.EDIT_PRODUCT_QUANTITY:
       return {
@@ -56,6 +66,11 @@ export const useStateManager = (
         ...state,
         customerDetails: action.payload,
       };
+    case actionTypes.SET_IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
+      }
     case actionTypes.SET_TOTAL_AMOUNT:
       return {
         ...state,

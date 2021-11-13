@@ -67,17 +67,17 @@ fieldset,
 iframe {
   border: none;
 }
-
+/*
 abbr {
   text-decoration: none;
 }
-
+*/
 img,
 video {
   max-width: 100%;
   height: auto;
 }
-
+/*
 iframe {
   max-width: 100%;
 }
@@ -85,7 +85,7 @@ iframe {
 object {
   outline: none;
 }
-
+*/
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -187,7 +187,7 @@ a:hover {
   --trans-dur: 200ms;
 }
 
-/*  dropdown menu  */
+/*  dropdown menu  
 
 .dm {
   position: absolute;
@@ -213,9 +213,9 @@ a:hover {
 
 .dm li.active {
   font-weight: 700;
-}
+}*/
 
-/*  tag  */
+/*  tag  
 
 .tag {
   display: inline-block;
@@ -271,7 +271,7 @@ a:hover {
   color: #fff;
   background-color: #e93240;
 }
-
+*/
 /*  form elements */
 
 .form {
@@ -280,11 +280,11 @@ a:hover {
   flex-wrap: wrap;
   margin-top: 16px;
 }
-
+/*
 .noti-set .form {
   margin-top: 11px;
 }
-
+*/
 .form .label {
   display: block;
   margin-bottom: 8px;
@@ -293,7 +293,7 @@ a:hover {
   font-size: 12px;
   letter-spacing: 0.042em;
 }
-
+/*
 .form .ico-search {
   position: absolute;
   bottom: 11px;
@@ -305,7 +305,7 @@ a:hover {
 
 .form .ico-search + input {
   padding-right: 43px;
-}
+}*/
 
 .form .error,
 .select .error {
@@ -378,7 +378,7 @@ textarea {
   background-color: #fff6f6;
   border-color: #ffc3b4;
 }
-
+/*
 .select .ico-arrow-down {
   position: absolute;
   top: 50%;
@@ -410,7 +410,7 @@ textarea {
   top: auto;
   bottom: 50px;
 }
-
+*/
 .select ul {
   display: block;
   margin-bottom: 0;
@@ -452,7 +452,7 @@ textarea {
   border-radius: 3px;
   transition: background-color var(--trans-dur), border-color var(--trans-dur);
 }
-
+/*
 .active > .checkbox {
   background-color: #0e68b0;
   border-color: #0e68b0;
@@ -466,7 +466,7 @@ textarea {
   height: 7px;
   stroke: #fff;
 }
-
+*/
 /*  radio  */
 
 .radio {
@@ -534,10 +534,10 @@ textarea {
 }
 
 .btn:hover {
-  background-color: #e3adab;
-  border-color: #e3adab;
-  color: #fff;
-}
+	/* background-color: #e3adab; */
+	/* border-color: #e3adab; */
+	color: #fff;
+	}
 
 .btn-disabled {
   color: #fff;
@@ -558,7 +558,7 @@ textarea {
   font-size: 14px;
 }
 
-/*  tab contents  */
+/*  tab contents  
 
 .tabs {
   position: relative;
@@ -604,7 +604,7 @@ textarea {
 .tabcont-active {
   position: static;
 }
-
+*/
 /*  icon  */
 
 i {
@@ -840,7 +840,7 @@ i {
 	stroke: #025daf;
 	} */
 
-/*  switchables  */
+/*  switchables  
 
 .switcher {
   display: flex;
@@ -905,9 +905,9 @@ i {
 .switchable-active {
   display: block;
 }
-
+*/
 /*  6. banner
--------------------------------------------------------*/
+-------------------------------------------------------
 
 #banner {
   position: relative;
@@ -1072,12 +1072,12 @@ i {
   width: 8px;
   height: 4px;
   stroke: #687f90;
-}
+}*/
 /*
 #banner .user > .dm .setting .triggered .ico-arrow-down {
 	transform: rotate(180deg);
 	}
-*/
+*//*
 #banner .user > .dm .setting .dm {
   position: absolute;
   top: 25px;
@@ -1097,9 +1097,9 @@ i {
 #banner .user > .dm .setting .dm li {
   padding: 8px 10px;
 }
-
+*/
 /*  7. app navigation
--------------------------------------------------------*/
+-------------------------------------------------------
 
 #appnav {
   position: relative;
@@ -1170,7 +1170,7 @@ i {
   margin-right: 8px;
   stroke: #fff;
 }
-
+*/
 /*  8. content
 -------------------------------------------------------*/
 
@@ -1906,7 +1906,7 @@ div + .header-config {
 }
 
 /*  9. country data
--------------------------------------------------------*/
+-------------------------------------------------------*
 
 .slideout {
   position: absolute;
@@ -2149,7 +2149,7 @@ div + .header-config {
   height: auto;
   border-bottom: 0;
 }
-
+*/
 #my header h2 {
   font-size: 18px;
   letter-spacing: 0.028em;
@@ -2478,12 +2478,36 @@ div + .header-config {
   padding: 0;
 }
 /* form control input field focus border */
+.form-control {
+  border: 0;
+  border-bottom: 1px solid #dedede;
+  border-radius: 0;
+}
+
 .form-control:focus {
   color: #212529;
   background-color: #fff;
   border-color: #cacaca;
   outline: 0;
   box-shadow: none;
+}
+
+.form-floating>label {
+  padding: 1rem 0rem;
+}
+
+.form-floating>.form-control {
+  padding: 1rem 0rem;
+}
+
+/* autofill background color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-shadow: 0 0 0px 1000px #f3f3f3 inset;
 }
 /* search bottom margin */
 .search-bottom-margin {
@@ -2612,6 +2636,14 @@ div + .header-config {
   padding: 0 40px;
 }
 
+
+/* Global */
+.text-align-center{
+  text-align: center;
+  justify-content: center;
+}
+
+
 /* row added because of login screen x scroll issue*/
 .row {
   display: flex;
@@ -2657,5 +2689,141 @@ div + .header-config {
 }
 
 
+/* admin kanban 
+.react-trello-board {
+  border: 0;
+  background-color: #fff;
+}
 
+.react-trello-lane{
+  background-color: #e3adab;
+}*/
 
+.react-trello-board {
+  background: url("dark-wall-empty-room-with-plants-floor-3d-rendering.jpg") no-repeat 0 50%;
+  background-position: bottom;
+  background-size: cover;
+}
+
+.react-trello-lane {
+  background-color: #212a39;
+  color: #fff;
+}
+
+/* kanban modal */
+.crm .modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+  padding: 0;
+}
+
+.crm .modal-content {
+  width: 80%;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-200px);
+  height: 100%;
+  border-radius: 0;
+  border: 0;
+}
+
+.crm .modal-footer button:first-child{display: none;}
+
+.crm .floating-modal-btn{
+  position: absolute;
+  left: -70px;
+  top: 0;
+  background-color: #cbe712;
+  color: #fff;
+  border-radius: 20px 0 0 20px;
+  margin: 20px 6px;
+  border: 0;
+}
+
+.react-tabs__tab--selected {
+  background: #0e0864;
+  border-color: #0e0864;
+  color: #fff;
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 0;
+}
+
+/* general modal */
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.modal.enter-done {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.modal.exit {
+  opacity: 0;
+}
+
+.modal-content {
+  width: 500px;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-200px);
+}
+
+.modal.enter-done .modal-content {
+  transform: translateY(0);
+}
+
+.modal.exit .modal-content {
+  transform: translateY(-200px);
+}
+
+.modal-header,
+.modal-footer {
+  padding: 20px;
+  border: 0;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+
+/* Sidebar */
+.pro-sidebar {
+  width: auto;
+  min-width: auto;
+}
+
+.sidebar-logo{
+  margin: 0 auto;
+  padding: 5px;
+}

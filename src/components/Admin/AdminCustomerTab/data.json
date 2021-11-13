@@ -1,0 +1,130 @@
+{
+    "lanes": [
+      {
+        "id": "ORDER_PLACED",
+        "title": "Order Placed",
+        "label": "10/20",
+        "style": {
+          "width": "16%"
+        },
+        "cards": [
+          {
+            "id": "Order_id",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          },          
+          {
+            "id": "Order_id1",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          },
+          {
+            "id": "Order_id2",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          },
+          {
+            "id": "Order_id3",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          }
+        ]
+      },
+
+      {
+        "id": "PICK_PACK",
+        "title": "Pick And Pack",
+        "label": "10/20",
+        "style": {
+          "width": "16%"
+        },
+        "cards": [
+          {
+            "id": "Pick_id",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          }
+        ]
+      },
+
+      {
+        "id": "OUTFOR_DELIVERY",
+        "title": "Out For Delivery",
+        "label": "0/0",
+        "style": {
+          "width": "16%"
+        },
+        "cards": [
+          {
+            "id": "Delivery_id",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          }
+        ]
+      },
+
+      {
+        "id": "PARCEL_RECEIVED",
+        "title": "Parcel Received",
+        "style": {
+          "width": "16%"
+        },
+        "label": "2/5",
+        "cards": [
+          {
+            "id": "Parcel_id",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          },
+          {
+            "id": "Parcel_id1",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          }
+        ]
+      },
+
+      {
+        "id": "PAYMENT_RECEIVED",
+        "title": "Payment Received",
+        "style": {
+          "width": "16%"
+        },
+        "label": "1/1",
+        "cards": [
+          {
+            "id": "PaymentReceived_id",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          }
+        ]
+      },
+
+      {
+        "id": "ORDER_COMPLETED",
+        "title": "Order Completed",
+        "style": {
+          "width": "16%"
+        },
+        "label": "1/1",
+        "cards": [
+          {
+            "id": "OrderCompleted_id",
+            "title": "Order ID",
+            "label": "Order Date",
+            "description": "Customer Name"
+          }
+        ]
+      }
+    ]
+  }
+  

@@ -250,7 +250,8 @@ footer span {
 
 .sign-up-icon {
   position: absolute;
-  top: 60%;
-  right: 5%;
+  top: 45%;
+  right: 0;
   color: #f9938e;
+  margin-right: 0;
 }

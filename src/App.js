@@ -26,7 +26,7 @@
 //       window.removeEventListener("resize", () => setResponsiveness());
 //     }
 //   }, []);
-  
+
 // if(reducer) {
 //   return (
 //    <ThemeProvider theme={theme}>
@@ -42,27 +42,38 @@
 //   );
 // }
 
-  
+
 // }
 // export default App;
 
 import * as React from 'react';
 import { AppRouter } from './routes/index';
-import {useStateManager} from './reducer/useStateManager';
+import { useStateManager } from './reducer/useStateManager';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/common.css';
 import './styles/login.css';
 import './styles/checkout.css';
-import {SET_MOBILE_VIEW} from './constants/actionTypes';
+import { SET_MOBILE_VIEW } from './constants/actionTypes';
 
 
 const App = () => {
-  const[reducer, dispatch] = React.useReducer(useStateManager, null);
-    React.useEffect(() => {
+  const [reducer, dispatch] = React.useReducer(useStateManager, {
+    mobileView: false,
+    drawerOpen: false,
+    productList: [],
+    customerList: [],
+    cartDetails: [],
+    customerDetails: {},
+    config: {},
+    isCartEmpty: true,
+    isLoading: false,
+    forgotPasswordError: ""
+  });
+  React.useEffect(() => {
     const setResponsiveness = () => {
       return dispatch({
-          type : SET_MOBILE_VIEW,
-          payload: window.innerWidth < 900
+        type: SET_MOBILE_VIEW,
+        payload: window.innerWidth < 900
       })
     };
 
