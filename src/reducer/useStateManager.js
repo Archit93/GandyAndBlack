@@ -33,7 +33,6 @@ export const useStateManager = (
         },
       };
     case actionTypes.SET_FORGOT_PASSWORD_ERROR:
-      console.log(action);
       return {
         ...state,
         forgotPasswordError: action.payload,
