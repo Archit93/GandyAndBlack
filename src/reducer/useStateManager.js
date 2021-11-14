@@ -28,10 +28,16 @@ export const useStateManager = (
         ...state,
         config: {
           ...state.config,
-          access_token: action.payload.authToken,
+          authToken: action.payload.authToken,
           role: action.payload.role
         },
       };
+    case actionTypes.SET_PRODUCT_LIST:
+      return {
+        ...state,
+        productList: action.payload,
+        isLoading: false
+      }
     case actionTypes.SET_FORGOT_PASSWORD_ERROR:
       return {
         ...state,

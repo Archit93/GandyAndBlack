@@ -5,6 +5,7 @@ import {
   isValidEmail,
   isValidPassword,
 } from "../utils/regexUtils";
+import Footer from "./common/Footer";
 
 const SignUp = () => {
   const history = useHistory();
@@ -194,11 +195,7 @@ const SignUp = () => {
               </div>
             </form>
           </div>
-          <footer>
-            <p>
-              <small>&copy; 2021 Copyright. GANDY & BLACK AESTHETICS</small>
-            </p>
-          </footer>
+          <Footer/>
         </div>
       </div>
     </div>
