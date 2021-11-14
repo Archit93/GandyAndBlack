@@ -1,79 +1,3 @@
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import React from "react";
-// import SignIn from "../components/SignIn";
-// import SignUp from "../components/SignUp";
-// import ForgotPassword from "../components/ForgotPassword";
-// import AboutUs from "../components/AboutUs";
-// import ProductList from "../components/ProductList/ProductList";
-// import CustomerCart from "../components/CustomerCheckout/CustomerCart";
-// import CustomerShippingInformation from "../components/CustomerCheckout/CustomerShippingInformation";
-// import CustomerPayment from "../components/CustomerCheckout/CustomerPayment";
-// import CustomerPaymentSuccess from "../components/CustomerCheckout/CustomerPaymentSuccess";
-// import MyProfile from "../components/MyProfile";
-
-// // const SignIn = React.lazy(() =>
-// //   import('../components/SignIn')
-// // );
-
-// // const SignUp = React.lazy(() =>
-// // import('../components/SignUp')
-// // );
-
-
-// const routes = [
-//   {
-//     component: SignUp,
-//     exact: true,
-//     path: '/',
-//     title: 'Gandy & Black Aesthetics',
-//     nextPath: '/signin',
-//     failurePath: null,
-//     backBehaviour: {
-//       isInternal: true,
-//       path: '/'
-//     }
-//   },
-//   {
-//     component: SignIn,
-//     path: '/signin',
-//     title: 'Gandy & Black Aesthetics',
-//     nextPath: '/',
-//     failurePath: null,
-//     backBehaviour: {
-//       isInternal: true,
-//       path: '/'
-//     }
-//   }
-
-// ];
-
-
-// export const AppRouter = ({applicationState, dispatch}) => {
-//   //const {mobileView, drawerOpen} = applicationState;
-//   return (
-//     <Router history={history}>
-//       <Suspense fallback={<div />}>
-//         <Switch>
-//           {routes.map(route => {
-//             console.log(route)
-//             return (<>
-//               {/* <div><Header mobileView={mobileView} drawerOpen={drawerOpen} dispatch={dispatch}/></div> */}
-//               <div><Route
-//                 key={route.path}
-//                 path={route.path}
-//                 exact={route.exact}
-//                 render={props => (
-//                   <route.component {...props} {...route.props} routes={route.routes} applicationState={applicationState} dispatch={dispatch}/>
-//                 )}
-//               /></div>
-//             </>);
-//           })}
-//         </Switch>
-//       </Suspense>
-//     </Router>
-//   );
-// };
-
 import {
   BrowserRouter as Router,
   Route,
@@ -89,7 +13,7 @@ import CustomerCart from '../components/CustomerCheckout/CustomerCart';
 import CustomerShippingInformation from '../components/CustomerCheckout/CustomerShippingInformation';
 import CustomerPayment from '../components/CustomerCheckout/CustomerPayment';
 import CustomerPaymentSuccess from '../components/CustomerCheckout/CustomerPaymentSuccess';
-import MyProfile from '../components/MyProfile';
+import MyProfile from '../components/Customer/UserProfile/MyProfile';
 
 import AdminCustomersList from '../components/Admin/AdminCustomerTab/AdminCustomersList';
 import CRM from '../components/Admin/AdminCustomerTab/CRM';
