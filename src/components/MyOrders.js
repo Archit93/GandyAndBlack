@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Header from './common/Header.js';
+import Header from './common/HeaderMenu';
 import Table from 'react-bootstrap/Table'
 
 const MyOrders = (props) => {
