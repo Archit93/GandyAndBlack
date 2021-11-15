@@ -89,16 +89,16 @@ const ProductList = (props) => {
     applicationState?.mobileView
       ? [
           {
-            field: "brand",
-            headerName: "Brand",
+            field: "quantity",
+            headerName: "Product List",
             cellRendererFramework: MobileViewColumnBrand,
           },
-          {
-            field: "productType",
-            headerName: "Product Type",
-            cellRendererFramework: MobileViewColumnProductType,
-          },
-          { field: "description", headerName: "Description" },
+          // {
+          //   field: "productType",
+          //   headerName: "Product Type",
+          //   cellRendererFramework: MobileViewColumnProductType,
+          // },
+          // { field: "description", headerName: "Description" },
         ]
       : [
           { field: "brand", headerName: "Brand" },
@@ -126,7 +126,7 @@ const ProductList = (props) => {
     gridApi.setQuickFilter(event.target.value);
   };
 
-  const getRowHeight = () => (applicationState?.mobileView ? "50px" : "25px");
+  const getRowHeight = () => (applicationState.mobileView ? 250 : 25);
 
   const onProceed = (e) => {
     let customerCartArray = [];
@@ -154,7 +154,6 @@ const ProductList = (props) => {
     // updateCartDetails(dispatch, customerCartArray, history);
     history.push("/customercart_details");
   };
-  console.log(applicationState);
 
   return (
     <div>
@@ -177,7 +176,7 @@ const ProductList = (props) => {
           style={{ height: "calc(100vh - 315px)", width: "100%" }}
         >
           <AgGridReact
-            getRowHeight={getRowHeight()}
+            getRowHeight={getRowHeight}
             rowData={rowData()}
             columnDefs={columnDefs({
               frameWorkComponentChange: frameWorkComponentChange,

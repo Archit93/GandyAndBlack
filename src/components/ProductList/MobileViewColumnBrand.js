@@ -2,7 +2,6 @@ import React from 'react';
 
 export const MobileViewColumnBrand = (params) => {
     const { api, data, column, node, context } = params;
-
     let quantityValue = Number(data.quantity);
 
     const onIncrement = () => {
@@ -28,7 +27,10 @@ export const MobileViewColumnBrand = (params) => {
 
     return (
         <div>
-            <p>{data.brand}</p>
+            <p> Brand : {data.brand}</p>
+            <p> Product Type : {data.productType}</p>
+            <p> Product Description : {data.description} </p>
+            <p> Sales Per Unit : {data.salesPerUnit} </p>
             <div>
             <span className="my-renderer">
             {params.value != null &&
@@ -43,6 +45,8 @@ export const MobileViewColumnBrand = (params) => {
                 </>
             }
         </span>
+            
+
             </div>
         </div>
     );
