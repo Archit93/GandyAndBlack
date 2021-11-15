@@ -96,7 +96,7 @@ const SignUp = () => {
           <div role="main">
             <form method="post">
               <div className="form-floating mb-2">
-                  <input
+                <input
                   className="form-control"
                   id="floatingFirstName"
                   onChange={(e) => onNameChange(e)}
@@ -153,7 +153,9 @@ const SignUp = () => {
                   placeholder="password"
                   required
                 />
-                <label for="floatingPassword" className="label">Create your password</label>
+                <label for="floatingPassword" className="label">
+                  Create your password
+                </label>
                 <i
                   className={`fa ${
                     passwordShown ? `fa-eye-slash` : `fa-eye`
@@ -195,7 +197,7 @@ const SignUp = () => {
               </div>
             </form>
           </div>
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </div>

@@ -45,7 +45,7 @@ body {
 
 #login .btn,
 #signup .btn,
-#forgot-password .btn{
+#forgot-password .btn {
   width: 100%;
 }
 
@@ -254,4 +254,14 @@ footer span {
   right: 0;
   color: #f9938e;
   margin-right: 0;
+}
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  color: #f9938e;
 }
