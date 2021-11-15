@@ -16,7 +16,7 @@ import {
   SET_INITIAL_RESPONSE,
 } from "../../constants/actionTypes";
 import { updateCartDetails } from "../../serviceCalls/updateCartDetails";
-import HeaderMenu from "../common/Header";
+import HeaderMenu from "../common/HeaderMenu";
 
 const ProductList = (props) => {
   const { applicationState, dispatch } = props;
@@ -152,7 +152,7 @@ const ProductList = (props) => {
       payload: isLocalCartEmpty,
     });
     // updateCartDetails(dispatch, customerCartArray, history);
-    history.push("/productlist");
+    history.push("/customercart_details");
   };
   console.log(applicationState);
 

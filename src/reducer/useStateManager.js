@@ -13,7 +13,8 @@ export const useStateManager = (
     isCartEmpty: true,
     isLoading: false,
     forgotPasswordError: "",
-    totalAmount: 0
+    totalAmount: 0,
+    paymentMethod: "",
   },
   action
 ) => {
@@ -29,27 +30,27 @@ export const useStateManager = (
         config: {
           ...state.config,
           authToken: action.payload.authToken,
-          role: action.payload.role
+          role: action.payload.role,
         },
       };
     case actionTypes.SET_PRODUCT_LIST:
       return {
         ...state,
         productList: action.payload,
-        isLoading: false
-      }
+        isLoading: false,
+      };
     case actionTypes.SET_FORGOT_PASSWORD_ERROR:
       return {
         ...state,
         forgotPasswordError: action.payload,
-        isLoading: false
-      }
+        isLoading: false,
+      };
     case actionTypes.SET_INITIAL_RESPONSE:
       return {
         ...state,
         productList: tempData,
         customerList: customerList,
-        isLoading: false
+        isLoading: false,
       };
     case actionTypes.EDIT_PRODUCT_QUANTITY:
       return {
@@ -75,11 +76,21 @@ export const useStateManager = (
       return {
         ...state,
         isLoading: action.payload,
-      }
+      };
     case actionTypes.SET_TOTAL_AMOUNT:
       return {
         ...state,
         totalAmount: action.payload,
+      };
+    case actionTypes.SET_PAYMENT_METHOD:
+      return {
+        ...state,
+        paymentMethod: action.payload,
+      };
+    case actionTypes.UPDATE_CUSTOMER_DETAILS:
+      return {
+        ...state,
+        customerDetails: action.payload,
       };
     case actionTypes.SET_ERROR:
     default:

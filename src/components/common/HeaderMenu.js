@@ -49,7 +49,11 @@ const HeaderMenu = ({ cartCount }) => {
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a
+                    className="dropdown-item"
+                    href="#"
+                    // onClick={history.push("/my_profile")}
+                  >
                     Update Profile
                   </a>
                 </li>

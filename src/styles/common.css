@@ -534,10 +534,10 @@ textarea {
 }
 
 .btn:hover {
-	/* background-color: #e3adab; */
-	/* border-color: #e3adab; */
-	color: #fff;
-	}
+  /* background-color: #e3adab; */
+  /* border-color: #e3adab; */
+  color: #fff;
+}
 
 .btn-disabled {
   color: #fff;
@@ -1077,7 +1077,7 @@ i {
 #banner .user > .dm .setting .triggered .ico-arrow-down {
 	transform: rotate(180deg);
 	}
-*//*
+*/ /*
 #banner .user > .dm .setting .dm {
   position: absolute;
   top: 25px;
@@ -2390,16 +2390,16 @@ div + .header-config {
 
 /* overlap image */
 .image-overlap-container {
-	position: relative;
+  position: relative;
   max-width: 100%;
   overflow: hidden;
 }
 
 .image-container img {
-	object-fit: cover;
-	position: absolute;
-	opacity: .1;
-	height: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0.1;
+  height: 100%;
   width: 100%;
 }
 
@@ -2492,22 +2492,22 @@ div + .header-config {
   box-shadow: none;
 }
 
-.form-floating>label {
+.form-floating > label {
   padding: 1rem 0rem;
 }
 
-.form-floating>.form-control {
+.form-floating > .form-control {
   padding: 1rem 0rem;
 }
 
 /* autofill background color */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    -webkit-box-shadow: 0 0 0px 1000px #f3f3f3 inset;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-shadow: 0 0 0px 1000px #f3f3f3 inset;
 }
 /* search bottom margin */
 .search-bottom-margin {
@@ -2614,35 +2614,40 @@ input:-webkit-autofill:active{
 }
 
 /* 31-10 */
-#checkout, #aboutus, #productlist, #myprofile{
-    margin-top: 100px;
+#checkout,
+#aboutus,
+#productlist,
+#myprofile {
+  margin-top: 100px;
 }
 
 /* Margin */
-.mrt-10{
-	margin-top: 10px;
+.mrt-10 {
+  margin-top: 10px;
 }
 
 .mrt-20 {
   margin-top: 20px;
 }
 
-.mrlr-40{
+.mrlr-40 {
   margin: 0 40px;
 }
 
+.mrb-20 {
+  margin-bottom: 20px;
+}
+
 /* Padding */
-.pdlr-40{
+.pdlr-40 {
   padding: 0 40px;
 }
 
-
 /* Global */
-.text-align-center{
+.text-align-center {
   text-align: center;
   justify-content: center;
 }
-
 
 /* row added because of login screen x scroll issue*/
 .row {
@@ -2652,20 +2657,19 @@ input:-webkit-autofill:active{
   margin-left: 0; /*-15px*/
 }
 
-
 /*Profile*/
-.my-profile-banner{
+.my-profile-banner {
   background-color: #252525;
 }
 
-.my-profile-banner img{
+.my-profile-banner img {
   height: 250px;
   width: 100%;
   object-fit: cover;
-  opacity: .4;
+  opacity: 0.4;
 }
 
-.bg-primary{
+.bg-primary {
   background-color: #e3adab !important;
   color: #fff;
   padding: 10px;
@@ -2683,11 +2687,10 @@ input:-webkit-autofill:active{
   width: 10.5rem;
 }
 
-.avatar-xxl img{
+.avatar-xxl img {
   object-fit: cover;
   height: 10.5rem;
 }
-
 
 /* admin kanban 
 .react-trello-board {
@@ -2700,7 +2703,8 @@ input:-webkit-autofill:active{
 }*/
 
 .react-trello-board {
-  background: url("dark-wall-empty-room-with-plants-floor-3d-rendering.jpg") no-repeat 0 50%;
+  background: url("dark-wall-empty-room-with-plants-floor-3d-rendering.jpg")
+    no-repeat 0 50%;
   background-position: bottom;
   background-size: cover;
 }
@@ -2737,9 +2741,11 @@ input:-webkit-autofill:active{
   border: 0;
 }
 
-.crm .modal-footer button:first-child{display: none;}
+.crm .modal-footer button:first-child {
+  display: none;
+}
 
-.crm .floating-modal-btn{
+.crm .floating-modal-btn {
   position: absolute;
   left: -70px;
   top: 0;
@@ -2823,7 +2829,7 @@ input:-webkit-autofill:active{
   min-width: auto;
 }
 
-.sidebar-logo{
+.sidebar-logo {
   margin: 0 auto;
   padding: 5px;
 }
