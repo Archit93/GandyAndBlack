@@ -1,5 +1,5 @@
 import * as React from "react";
-import HeaderMenu from "../common/Header.js";
+import HeaderMenu from "../common/HeaderMenu.js";
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";

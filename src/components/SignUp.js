@@ -5,6 +5,7 @@ import {
   isValidEmail,
   isValidPassword,
 } from "../utils/regexUtils";
+import Footer from "./common/Footer";
 
 const SignUp = () => {
   const history = useHistory();
@@ -95,7 +96,7 @@ const SignUp = () => {
           <div role="main">
             <form method="post">
               <div className="form-floating mb-2">
-                  <input
+                <input
                   className="form-control"
                   id="floatingFirstName"
                   onChange={(e) => onNameChange(e)}
@@ -152,7 +153,9 @@ const SignUp = () => {
                   placeholder="password"
                   required
                 />
-                <label for="floatingPassword" className="label">Create your password</label>
+                <label for="floatingPassword" className="label">
+                  Create your password
+                </label>
                 <i
                   className={`fa ${
                     passwordShown ? `fa-eye-slash` : `fa-eye`
@@ -194,11 +197,7 @@ const SignUp = () => {
               </div>
             </form>
           </div>
-          <footer>
-            <p>
-              <small>&copy; 2021 Copyright. GANDY & BLACK AESTHETICS</small>
-            </p>
-          </footer>
+          <Footer />
         </div>
       </div>
     </div>

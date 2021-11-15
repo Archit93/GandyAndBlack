@@ -1,5 +1,5 @@
 import * as React from "react";
-import HeaderMenu from "../common/Header.js";
+import HeaderMenu from "../common/HeaderMenu.js";
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
@@ -256,8 +256,8 @@ const CustomerShippingInformation = (props) => {
                           <label className="h5">Trade of business</label>
                           <select
                             className="select"
-                            id="trade_business"
-                            name="trade_business"
+                            id="tradeOfBusiness"
+                            name="tradeOfBusiness"
                             onChange={(e) => setTradeOfBusiness(e.target.value)}
                             value={tradeOfBusiness}
                           >

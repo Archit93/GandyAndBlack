@@ -7,14 +7,6 @@ export const PromoCodeColumn = (params) => {
     return (
         <div>
             <>
-                {/* <!-- Button trigger modal --> */}
-                {/* <button 
-                    type="button" 
-                    className="btn btn-main" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#exampleModal">
-                    Add Promocode
-                </button> */}
                 <button 
                     type="button" 
                     className="btn btn-main" 
