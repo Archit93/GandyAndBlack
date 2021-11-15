@@ -50,7 +50,7 @@ const SignIn = (props) => {
     } else if (email === "" || password === "") {
       e.preventDefault();
       setEmptyCredentialsError(
-        "Looks like you're missing something! Do you want to give it another try?"
+        "Please provide valid details"
       );
     } else {
       props.dispatch({ type: SET_IS_LOADING, payload: true });
@@ -128,7 +128,11 @@ const SignIn = (props) => {
                 </button>
                 </div>
                 {emptyCredentialsError ? (
-                  <span>{emptyCredentialsError}</span>
+                  <span>
+                    <div className="error">
+                      {emptyCredentialsError}
+                    </div>
+                  </span>
                 ) : (
                     <React.Fragment />
                   )}

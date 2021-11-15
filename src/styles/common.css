@@ -2436,7 +2436,7 @@ div + .header-config {
 }
 
 .container-fluid {
-  padding: 60px 40px 40px;
+  padding: 40px; /*60px 40px 40px;*/
 }
 
 #contact h1::after {
@@ -2850,4 +2850,12 @@ input:-webkit-autofill:active{
 .table thead th {
   border-bottom: 2px solid #e9adac;
   background-color: #e9adac;
+}
+
+/* error */
+.error{
+  width: 100%;
+  margin-top: 0.25 rem;
+  font-size: .875em;
+  color: #dc3545;
 }

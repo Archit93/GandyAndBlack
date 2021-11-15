@@ -118,7 +118,7 @@ const AboutUs = (props) => {
 				</div>
 
 				{/* Contact Section */}
-				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-dark-grey" id="contact">
+				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-dark-grey p-0" id="contact">
 					<div className="container image-overlap-container">
 						<div class="image-container">
 							<img src="./world-map.png" />

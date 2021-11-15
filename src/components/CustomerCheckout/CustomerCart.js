@@ -15,8 +15,8 @@ const CustomerCart = (props) => {
         <HeaderMenu cartCount={cartDetails.length} />
       </div>
       <div id="checkout">
-        <div className="container">
-          <div className="card px-0 pt-4 pb-0 mt-3 mb-3">
+        <div className="container-fluid">
+          <div className="card px-0 pb-0">
             <div className="row">
               <div className="col-md-12 mx-0">
                 <form id="msform">
@@ -42,17 +42,19 @@ const CustomerCart = (props) => {
                               </div>
                             </div>
                           ))}
-                        <button
-                          className="next action-button"
-                          type="submit"
-                          name="next"
-                          id="next"
-                          onClick={() => {
-                            history.push("/customershipping_info");
-                          }}
-                        >
-                          Next
-                        </button>
+                          <div className="mt-4">
+                            <button
+                              className="next action-button"
+                              type="submit"
+                              name="next"
+                              id="next"
+                              onClick={() => {
+                                history.push("/customershipping_info");
+                              }}
+                            >
+                              Next
+                            </button>
+                          </div>
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
