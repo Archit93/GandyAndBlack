@@ -49,7 +49,7 @@ const SignIn = (props) => {
     } else if (email === "" || password === "") {
       e.preventDefault();
       setEmptyCredentialsError(
-        "Looks like you're missing something! Do you want to give it another try?"
+        "Please provide valid details"
       );
     } else {
       props.dispatch({ type: SET_IS_LOADING, payload: true });
@@ -120,9 +120,24 @@ const SignIn = (props) => {
                   ) : (
                     <React.Fragment />
                   )}
-                  {emptyCredentialsError ? (
-                    <span>{emptyCredentialsError}</span>
-                  ) : (
+                <div className="form">
+                  <button
+                    className="btn-link"
+                    type="submit"
+                    onClick={() => {
+                      history.push("/forgot_password");
+                    }}
+                  >
+                    Forgot password ?
+                </button>
+                </div>
+                {emptyCredentialsError ? (
+                  <span>
+                    <div className="error">
+                      {emptyCredentialsError}
+                    </div>
+                  </span>
+                ) : (
                     <React.Fragment />
                   )}
                   <div className="form">

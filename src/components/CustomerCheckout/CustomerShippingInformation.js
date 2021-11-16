@@ -276,22 +276,24 @@ const CustomerShippingInformation = (props) => {
                         ) : (
                           <React.Fragment />
                         )}
-                        <button
-                          className="previous action-button-previous"
-                          type="submit"
-                          onClick={() => {
-                            history.push("/customercart_details");
-                          }}
-                        >
-                          Back
-                        </button>
-                        <button
-                          className="next action-button"
-                          type="submit"
-                          onClick={validateSubmit}
-                        >
-                          Proceed to Pay
-                        </button>
+                        <div className="mt-4">
+                          <button
+                            className="previous action-button-previous"
+                            type="submit"
+                            onClick={() => {
+                              history.push("/customercart_details");
+                            }}
+                          >
+                            Back
+                          </button>
+                          <button
+                            className="next action-button"
+                            type="submit"
+                            onClick={validateSubmit}
+                          >
+                            Proceed to Pay
+                          </button>
+                        </div>
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">

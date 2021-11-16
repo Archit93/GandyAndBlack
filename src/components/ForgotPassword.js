@@ -13,7 +13,6 @@ const ForgotPassword = (props) => {
   const [email, setEmailAddress] = React.useState("");
   const [emailError, setEmailError] = React.useState("");
 
-
   const validateEmail = (e) => {
     const { value } = e?.target;
     setEmailError(isValidEmail(value));
