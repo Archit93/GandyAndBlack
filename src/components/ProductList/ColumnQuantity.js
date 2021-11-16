@@ -2,7 +2,7 @@ import React from "react";
 
 export const ColumnQuantity = (params) => {
   const { api, data, column, node, context } = params;
-  let quantityValue = Number(data.quantity);
+  let quantityValue = data.quantity ? Number(data.quantity) : 0;
 
   const onIncrement = () => {
     const incrementQuantity = Number(quantityValue) + 1;
@@ -19,16 +19,14 @@ export const ColumnQuantity = (params) => {
 
   const onInputChange = (event) => {
     quantityValue = event.target.value;
-    node.setDataValue(column.colId, Number(quantityValue));
   };
   const onInputBlur = () => {
-    node.setDataValue(column.colId, quantityValue);
+    node.setDataValue(column.colId, Number(quantityValue));
     context.frameWorkComponentChange({ api });
   };
 
   return (
     <span className="my-renderer">
-      {params.value != null && (
         <>
           <button
             className="btn-quantity"
@@ -52,7 +50,7 @@ export const ColumnQuantity = (params) => {
             -
           </button>
         </>
-      )}
+      
     </span>
   );
 };

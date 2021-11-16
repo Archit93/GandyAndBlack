@@ -6,8 +6,8 @@ const ACCESS_CONTROL_ALLOW_ORIGIN = 'Access-Control-Allow-Origin';
 
 export const makeApiRequestHeader = (methodName, requestHeaders, requestBody, config) => {
     let requestHeaderObject = {};
-    requestHeaderObject[ACCEPT_HEADER] = requestHeaders && requestHeaders[ACCEPT_HEADER] ? requestHeaders[ACCEPT_HEADER] : 'text/plain';
-    requestHeaderObject[CONTENT_TYPE] = requestHeaders && requestHeaders[CONTENT_TYPE] ? requestHeaders[CONTENT_TYPE] : 'text/plain';
+    requestHeaderObject[ACCEPT_HEADER] = requestHeaders && requestHeaders[ACCEPT_HEADER] ? requestHeaders[ACCEPT_HEADER] : 'application/json';
+    requestHeaderObject[CONTENT_TYPE] = requestHeaders && requestHeaders[CONTENT_TYPE] ? requestHeaders[CONTENT_TYPE] : 'application/json';
     requestHeaderObject[ACCESS_TOKEN] = requestHeaders && requestHeaders[ACCESS_TOKEN] ?
         requestHeaders[ACCESS_TOKEN] : config && config.authToken ?
             config.authToken : undefined;

@@ -30,7 +30,7 @@ export const useStateManager = (
         config: {
           ...state.config,
           authToken: action.payload.authToken,
-          role: action.payload.role,
+          userType: action.payload.userType,
         },
       };
     case actionTypes.SET_PRODUCT_LIST:

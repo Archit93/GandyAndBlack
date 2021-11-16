@@ -41,8 +41,7 @@ export const AppRouter = (props) => {
           dispatch={props.dispatch}
         />
         <Route exact={true} path="/productlist">
-          {" "}
-          <ProductList {...props} />{" "}
+          <ProductList {...props} />
         </Route>
         <Route exact={true} path="/customercart_details">
           {" "}
