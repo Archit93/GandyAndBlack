@@ -2,14 +2,13 @@ import * as React from "react";
 import { SET_TOTAL_AMOUNT } from "../../constants/actionTypes";
 
 const CustomerAmountDetails = (props) => {
-  const { applicationState, dispatch } = props;
-  const { cartDetails } = applicationState;
+  const { dispatch, cartDetails } = props;
   const [shippingCost, setShippingCost] = React.useState("9.98");
   const [subTotalAmount, setSubTotalAmount] = React.useState("");
   const [totalAmount, setTotalAmount] = React.useState("");
 
   React.useEffect(() => {
-    if (cartDetails) {
+    if (cartDetails && cartDetails.length > 0) {
       const totalArray = cartDetails?.map(
         (prod) => prod.salesPerUnit * prod.quantity
       );

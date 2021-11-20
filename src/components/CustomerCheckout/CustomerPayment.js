@@ -16,8 +16,17 @@ const CustomerPayment = (props) => {
   const [paymentMethod, setPaymentMethod] = React.useState(
     applicationState.paymentMethod
   );
+  const [tempCart, setTempCart] = React.useState(cartDetails);
+
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setTempCart(cartData);
+    }
+  }, []);
+
   const purchase_units = [];
-  cartDetails.map((item) => {
+  tempCart.map((item) => {
     const purchaseUnitObject = Object.assign({});
     purchaseUnitObject.description =
       item.brand + " " + item.description + " " + item.productType;
@@ -66,7 +75,7 @@ const CustomerPayment = (props) => {
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={cartDetails.length} />
+        <HeaderMenu cartCount={tempCart.length} />
       </div>
       <div id="checkout">
         <div className="container">
@@ -146,7 +155,10 @@ const CustomerPayment = (props) => {
                     </fieldset>
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <CustomerAmountDetails {...props} />
+                    <CustomerAmountDetails
+                      cartDetails={tempCart}
+                      dispatch={dispatch}
+                    />
                   </div>
                 </div>
               </div>

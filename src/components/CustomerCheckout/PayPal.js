@@ -7,8 +7,9 @@ import CustomerAmountDetails from "./CustomerAmountDetails";
 export default function PayPal(props) {
   const paypal = useRef();
   const history = useHistory();
-  const { applicationState } = props;
+  const { applicationState, dispatch } = props;
   const { cartDetails } = applicationState;
+  const [tempCart, setTempCart] = React.useState(cartDetails);
 
   useEffect(() => {
     window.paypal
@@ -36,6 +37,10 @@ export default function PayPal(props) {
         },
       })
       .render(paypal.current);
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setTempCart(cartData);
+    }
   }, []);
 
   return (
@@ -54,7 +59,10 @@ export default function PayPal(props) {
                     <div ref={paypal}></div>
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <CustomerAmountDetails {...props} />
+                    <CustomerAmountDetails
+                      cartDetails={tempCart}
+                      dispatch={dispatch}
+                    />
                   </div>
                 </div>
                 <button
