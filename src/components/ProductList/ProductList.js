@@ -49,13 +49,8 @@ const ProductList = (props) => {
       productlistArray.push(node.data);
       if (node.data.quantity !== 0) {
         tempArray.push({
-          productId: node.data.productId,
-          brand: node.data.brand,
-          productType: node.data.productType,
-          description: node.data.description,
-          quantity: node.data.quantity,
-          availabilty: true,
-          salesPerUnit: node.data.salesPerUnit,
+          ...node.data,
+          quantity: node.data.quantity ? Number(node.data.quantity) : 0
         });
       }
     });
@@ -79,13 +74,11 @@ const ProductList = (props) => {
     const productlistArray = [];
     applicationState?.productList &&
       applicationState.productList.map((rowdetail) => {
-        const productListObject = Object.assign({});
-        productListObject.productId = rowdetail.productId;
-        productListObject.brand = rowdetail.brand;
-        productListObject.productType = rowdetail.productType;
-        productListObject.description = rowdetail.description;
-        productListObject.quantity = Number(rowdetail.quantity);
-        productListObject.salesPerUnit = rowdetail.salesPerUnit;
+        let productListObject = Object.assign({});
+       productListObject = {
+         ...rowdetail,
+         quantity : rowdetail.quantity ? Number(rowdetail.quantity) : 0
+       }
         productlistArray.push(productListObject);
       });
     return productlistArray;
@@ -98,25 +91,19 @@ const ProductList = (props) => {
             field: "quantity",
             headerName: "Product List",
             cellRendererFramework: MobileViewColumnBrand,
-          },
-          // {
-          //   field: "productType",
-          //   headerName: "Product Type",
-          //   cellRendererFramework: MobileViewColumnProductType,
-          // },
-          // { field: "description", headerName: "Description" },
+          }
         ]
       : [
           { field: "brand", headerName: "Brand" },
-          { field: "productType", headerName: "Product Type" },
-          { field: "description", headerName: "Description" },
+          { field: "producttype", headerName: "Product Type" },
+          { field: "productdesc", headerName: "Description" },
           {
             field: "quantity",
             headerName: "Quantity",
             editable: true,
             cellRendererFramework: ColumnQuantity,
           },
-          { field: "salesPerUnit", headerName: "Sales Per Unit" },
+          { field: "salepriceperunit", headerName: "Sales Per Unit" },
         ];
 
   const defaultColDef = React.useMemo(

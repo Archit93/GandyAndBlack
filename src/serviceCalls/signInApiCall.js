@@ -28,11 +28,7 @@ export const signInApiCall = async ({ dispatch, history }) => {
         type: SET_SIGN_IN_DATA,
         payload: apiResponse.data.body,
       });
-      //getProductsApiCall({ dispatch, history, authToken : apiResponse.data.body.authToken })
-      dispatch({
-        type: SET_INITIAL_RESPONSE,
-      });
-      history.push("/productlist");
+      getProductsApiCall({ dispatch, history, signInResponse : apiResponse.data.body, email: requestBody.email })
     })
     .catch(() => {
       dispatch({
