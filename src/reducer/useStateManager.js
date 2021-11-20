@@ -37,7 +37,11 @@ export const useStateManager = (
       return {
         ...state,
         productList: action.payload,
-        isLoading: false,
+      };
+    case actionTypes.SET_USER_DETAILS:
+      return {
+        ...state,
+        customerDetails: action.payload
       };
     case actionTypes.SET_FORGOT_PASSWORD_ERROR:
       return {
