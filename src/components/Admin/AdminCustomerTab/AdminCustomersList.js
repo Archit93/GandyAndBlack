@@ -7,7 +7,6 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { PromoCodeColumn } from './PromoCodeColumn';
 import PromoCodeModal from './PromoCodeModal';
 
-import Sidebar from './Sidebar';
 
 const AdminCustomersList = (props) => {
 

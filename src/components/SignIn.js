@@ -96,7 +96,12 @@ const SignIn = (props) => {
                     />
                     <label for="floatingInput">Email address</label>
                   </div>
-                  {emailError ? <span>{emailError}</span> : <React.Fragment />}
+                  {emailError ? 
+                  <span>
+                    <div className="error">
+                      {emailError}
+                    </div>
+                  </span> : <React.Fragment />}
                   <div className="form-floating pass-wrapper">
                     <input
                       type={passwordShown ? "text" : "password"}
@@ -116,11 +121,15 @@ const SignIn = (props) => {
                     ></i>
                   </div>
                   {passwordError ? (
-                    <span>{passwordError}</span>
+                    <span>
+                      <div className="error">
+                        {passwordError}
+                      </div>
+                    </span>
                   ) : (
                     <React.Fragment />
                   )}
-                <div className="form">
+                {/* <div className="form">
                   <button
                     className="btn-link"
                     type="submit"
@@ -130,7 +139,7 @@ const SignIn = (props) => {
                   >
                     Forgot password ?
                 </button>
-                </div>
+                </div> */}
                 {emptyCredentialsError ? (
                   <span>
                     <div className="error">
