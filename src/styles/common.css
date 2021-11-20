@@ -118,15 +118,15 @@ button {
 }
 
 button:disabled {
-  min-width: 100px;
-  width: 150px;
+  /* min-width: 100px;
+  width: 150px; */
   background: #dddddd;
   font-weight: bold;
   color: rgb(138, 125, 125);
   border: 0 none;
   border-radius: 0px;
   cursor: not-allowed;
-  padding: 10px 5px;
+  padding: 10px;
   margin: 10px 5px;
 }
 
@@ -1213,7 +1213,7 @@ main:not(:only-child) {
   border: 1px solid var(--border-color);
   border-radius: 3px 3px 0 0;
 }
-
+/*
 div + .header-config {
   margin-top: 20px;
 }
@@ -1246,8 +1246,8 @@ div + .header-config {
   border-width: 0 1px 1px;
   border-radius: 0 0 3px 3px;
 }
-
-/* Overflow and Win/Loss pages: hybrid view */
+*/
+/* Overflow and Win/Loss pages: hybrid view 
 #overview + div {
   flex-shrink: 0;
   height: calc((100vh - 240px) / 2);
@@ -1257,14 +1257,14 @@ div + .header-config {
   border-radius: 3px;
 }
 
-/* Data page */
+/* Data page 
 #overview:nth-last-child(3),
 #overview + .header-config + div {
   height: calc((100vh - 314px) / 2);
   overflow: hidden;
 }
 
-/* Data page */
+/* Data page 
 #overview + .header-config + div {
   background-color: #fff;
   border: solid var(--border-color);
@@ -1281,7 +1281,7 @@ div + .header-config {
   margin-left: 10px;
 }
 
-/*  dropdown menus  */
+/*  dropdown menus  
 
 .opt-sm {
   position: relative;
@@ -1343,7 +1343,7 @@ div + .header-config {
 }
 
 .opt-sm img {
-  /* flags */
+  /* flags 
   vertical-align: middle;
   margin-right: 14px;
   width: 20px;
@@ -1411,14 +1411,14 @@ div + .header-config {
 }
 
 .opt-sm-country .dm img {
-  /* flags */
+  /* flags 
   position: absolute;
   top: 50%;
   left: 15px;
   margin-top: -7px;
 }
 
-/*  Show  */
+/*  Show  
 
 .header-config .show {
   display: flex;
@@ -1471,7 +1471,7 @@ div + .header-config {
   border-radius: 0 2px 2px 0;
 }
 
-/*  View  */
+/*  View  
 
 .header-config .view {
   display: flex;
@@ -1516,7 +1516,7 @@ div + .header-config {
   stroke: var(--active-color);
 }
 
-/*  slideout togglers  */
+/*  slideout togglers  
 
 .header-config .slideout-toggler[data-target="#filter"] {
   display: flex;
@@ -1609,7 +1609,7 @@ div + .header-config {
 }
 
 /*  8.2.1. Ask the analyst
--------------------------------------------------------*/
+-------------------------------------------------------
 
 #ask {
   opacity: 0;
@@ -1668,7 +1668,7 @@ div + .header-config {
 }
 
 /*  8.2.2. country data
--------------------------------------------------------*/
+-------------------------------------------------------
 
 .country-data {
   position: relative;
@@ -1806,7 +1806,7 @@ div + .header-config {
 }
 
 /*  8.3. Notification Setting
--------------------------------------------------------*/
+-------------------------------------------------------
 
 .noti-set {
   position: absolute;
@@ -2149,7 +2149,7 @@ div + .header-config {
   height: auto;
   border-bottom: 0;
 }
-*/
+
 #my header h2 {
   font-size: 18px;
   letter-spacing: 0.028em;
@@ -2299,7 +2299,7 @@ div + .header-config {
 #my article:last-of-type .menu .dm {
 	top: -32px;
 	}
-*/
+
 #my .menu .dm {
   left: auto;
 }
@@ -2436,7 +2436,7 @@ div + .header-config {
 }
 
 .container-fluid {
-  padding: 60px 40px 40px;
+  padding: 40px; /*60px 40px 40px;*/
 }
 
 #contact h1::after {
@@ -2500,6 +2500,19 @@ div + .header-config {
   padding: 1rem 0rem;
 }
 
+/* select */
+.form-select {
+  border: 0;
+  border-bottom: 1px solid #dedede;
+  border-radius: 0;
+}
+
+.form-select:focus {
+  border-color: #dedede;
+  outline: 0;
+  box-shadow: none;
+}
+
 /* autofill background color */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -2520,6 +2533,11 @@ input:-webkit-autofill:active {
 /* ============ desktop view ============ */
 .logo {
   width: 180px;
+}
+
+.navbar button {
+  border: 0;
+  background-color: transparent;
 }
 
 .header-shadow {
@@ -2614,11 +2632,8 @@ input:-webkit-autofill:active {
 }
 
 /* 31-10 */
-#checkout,
-#aboutus,
-#productlist,
-#myprofile {
-  margin-top: 100px;
+#checkout, #aboutus, #productlist, #myprofile, #myorders{
+    margin-top: 100px;
 }
 
 /* Margin */
@@ -2832,4 +2847,18 @@ input:-webkit-autofill:active {
 .sidebar-logo {
   margin: 0 auto;
   padding: 5px;
+}
+
+/* my order */
+.table thead th {
+  border-bottom: 2px solid #e9adac;
+  background-color: #e9adac;
+}
+
+/* error */
+.error{
+  width: 100%;
+  margin-top: 0.25 rem;
+  font-size: .875em;
+  color: #dc3545;
 }

@@ -17,6 +17,14 @@ const CustomerShippingInformation = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
   const { cartDetails } = applicationState;
+  const [tempCart, setTempCart] = React.useState(cartDetails);
+
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setTempCart(cartData);
+    }
+  }, []);
 
   const [firstName, setFirstName] = React.useState(
     applicationState?.customerDetails?.firstName ?? ""
@@ -152,7 +160,7 @@ const CustomerShippingInformation = (props) => {
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={cartDetails.length} />
+        <HeaderMenu cartCount={tempCart.length} />
       </div>
       <div id="checkout">
         <div className="container">
@@ -276,26 +284,31 @@ const CustomerShippingInformation = (props) => {
                         ) : (
                           <React.Fragment />
                         )}
-                        <button
-                          className="previous action-button-previous"
-                          type="submit"
-                          onClick={() => {
-                            history.push("/customercart_details");
-                          }}
-                        >
-                          Back
-                        </button>
-                        <button
-                          className="next action-button"
-                          type="submit"
-                          onClick={validateSubmit}
-                        >
-                          Proceed to Pay
-                        </button>
+                        <div className="mt-4">
+                          <button
+                            className="previous action-button-previous"
+                            type="submit"
+                            onClick={() => {
+                              history.push("/customercart_details");
+                            }}
+                          >
+                            Back
+                          </button>
+                          <button
+                            className="next action-button"
+                            type="submit"
+                            onClick={validateSubmit}
+                          >
+                            Proceed to Pay
+                          </button>
+                        </div>
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails {...props} />
+                      <CustomerAmountDetails
+                        cartDetails={tempCart}
+                        dispatch={dispatch}
+                      />
                     </div>
                   </div>
                 </form>
