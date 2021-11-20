@@ -10,20 +10,16 @@ import CustomerPaymentSuccess from "./CustomerPaymentSuccess.js";
 
 const PayWithCard = (props) => {
   const history = useHistory();
-  const { applicationState } = props;
+  const { applicationState, dispatch } = props;
   const { cartDetails } = applicationState;
-  const [paymentMethod, setPaymentMethod] = React.useState("");
-  const purchase_units = [];
-  cartDetails.map((item) => {
-    const purchaseUnitObject = Object.assign({});
-    purchaseUnitObject.description =
-      item.brand + " " + item.description + " " + item.productType;
-    purchaseUnitObject.amount = {
-      currency_code: "GBP",
-      value: Number(item.quantity * item.salesPerUnit),
-    };
-    purchase_units.push(purchaseUnitObject);
-  });
+  const [tempCart, setTempCart] = React.useState(cartDetails);
+
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setTempCart(cartData);
+    }
+  }, []);
 
   const handleToken = async (token, addresses) => {
     console.log(token, addresses);
@@ -50,7 +46,7 @@ const PayWithCard = (props) => {
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={cartDetails.length} />
+        <HeaderMenu cartCount={tempCart.length} />
       </div>
       <div id="checkout">
         <div className="container">
@@ -86,7 +82,10 @@ const PayWithCard = (props) => {
                     </StripeCheckout>
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <CustomerAmountDetails {...props} />
+                    <CustomerAmountDetails
+                      cartDetails={tempCart}
+                      dispatch={dispatch}
+                    />
                   </div>
                 </div>
               </div>

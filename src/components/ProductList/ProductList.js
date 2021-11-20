@@ -26,11 +26,15 @@ const ProductList = (props) => {
     applicationState?.isCartEmpty ?? true
   );
   const [cartCount, setCartCount] = React.useState(0);
+  const [tempCart, setTempCart] = React.useState([]);
   const history = useHistory();
 
-  // React.useEffect(() => {
-  //   props.dispatch({ type: SET_INITIAL_RESPONSE });
-  // }, applicationState?.productList);
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setCartCount(cartData.length);
+    }
+  }, []);
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -60,6 +64,7 @@ const ProductList = (props) => {
       : setIsLocalCartEmpty(false);
 
     setCartCount(tempArray.length);
+    setTempCart(tempArray);
     dispatch({
       type: SET_CUSTOMER_CART_DETAILS,
       payload: tempArray,
@@ -68,6 +73,7 @@ const ProductList = (props) => {
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
     });
+    window.sessionStorage.setItem("cart", JSON.stringify(tempArray));
   };
   const rowData = () => {
     const productlistArray = [];

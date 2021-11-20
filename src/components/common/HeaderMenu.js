@@ -61,7 +61,7 @@ const HeaderMenu = ({ cartCount }) => {
             >
               <button
                 className="nav-link"
-                // onClick={history.push("/customercart_details")}
+                onClick={() => history.push("/customercart_details")}
               >
                 <i className="fa fa-shopping-cart"></i>
                 <span className="position-absolute translate-middle badge rounded-pill bg-secondary">

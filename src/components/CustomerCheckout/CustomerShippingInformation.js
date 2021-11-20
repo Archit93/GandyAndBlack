@@ -17,6 +17,14 @@ const CustomerShippingInformation = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
   const { cartDetails } = applicationState;
+  const [tempCart, setTempCart] = React.useState(cartDetails);
+
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setTempCart(cartData);
+    }
+  }, []);
 
   const [firstName, setFirstName] = React.useState(
     applicationState?.customerDetails?.firstName ?? ""
@@ -152,7 +160,7 @@ const CustomerShippingInformation = (props) => {
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={cartDetails.length} />
+        <HeaderMenu cartCount={tempCart.length} />
       </div>
       <div id="checkout">
         <div className="container">
@@ -297,7 +305,10 @@ const CustomerShippingInformation = (props) => {
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails {...props} />
+                      <CustomerAmountDetails
+                        cartDetails={tempCart}
+                        dispatch={dispatch}
+                      />
                     </div>
                   </div>
                 </form>

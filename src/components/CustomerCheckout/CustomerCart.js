@@ -6,13 +6,21 @@ import CustomerAmountDetails from "./CustomerAmountDetails";
 
 const CustomerCart = (props) => {
   const history = useHistory();
-  const { applicationState } = props;
+  const { applicationState, dispatch } = props;
   const { cartDetails } = applicationState;
+  const [tempCart, setTempCart] = React.useState(cartDetails);
+
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setTempCart(cartData);
+    }
+  }, []);
 
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={cartDetails.length} />
+        <HeaderMenu cartCount={tempCart.length} />
       </div>
       <div id="checkout">
         <div className="container-fluid">
@@ -25,8 +33,8 @@ const CustomerCart = (props) => {
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
                       <fieldset>
                         <h2 className="fs-title">My Cart</h2>
-                        {cartDetails &&
-                          cartDetails?.map((product) => (
+                        {tempCart &&
+                          tempCart?.map((product) => (
                             <div className="form-card">
                               <div className="h5">
                                 <span>
@@ -42,23 +50,33 @@ const CustomerCart = (props) => {
                               </div>
                             </div>
                           ))}
-                          <div className="mt-4">
-                            <button
-                              className="next action-button"
-                              type="submit"
-                              name="next"
-                              id="next"
-                              onClick={() => {
-                                history.push("/customershipping_info");
-                              }}
-                            >
-                              Next
-                            </button>
-                          </div>
+                        <button
+                          className="previous action-button-previous"
+                          type="submit"
+                          onClick={() => {
+                            history.push("/productlist");
+                          }}
+                        >
+                          Back
+                        </button>
+                        <button
+                          className="next action-button"
+                          type="submit"
+                          name="next"
+                          id="next"
+                          onClick={() => {
+                            history.push("/customershipping_info");
+                          }}
+                        >
+                          Next
+                        </button>
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails {...props} />
+                      <CustomerAmountDetails
+                        cartDetails={tempCart}
+                        dispatch={dispatch}
+                      />
                     </div>
                   </div>
                 </form>
