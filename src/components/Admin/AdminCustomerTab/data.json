@@ -10,9 +10,11 @@
         "cards": [
           {
             "id": "Order_id",
-            "title": "Order ID",
-            "label": "Order Date",
-            "description": "Customer Name"
+            "title": "Order ID :\t hfaghfhc",
+            "description": "Customer Name \t Sagar bhai",
+            "name": "Sagar",
+            "lastName": "Chandani",
+            "address": "agshj"
           },          
           {
             "id": "Order_id1",

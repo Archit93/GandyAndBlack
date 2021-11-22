@@ -96,6 +96,11 @@ export const useStateManager = (
         ...state,
         customerDetails: action.payload,
       };
+    case actionTypes.SET_KANBAN_DETAILS:
+    return {
+      ...state,
+      crmDetails: action.payload
+    }
     case actionTypes.SET_ERROR:
     default:
       return { state };

@@ -7,12 +7,16 @@ import {
 } from "../constants/actionTypes";
 import { getProductsApiCall } from "./getProductsApiCall";
 
-const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8081";
+const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8080";
 
 export const signInApiCall = async ({ dispatch, history }) => {
+  // const requestBody = {
+  //   email: "pareshg4@gmail.com",
+  //   password: "s3>HL)y{$M",
+  // };
   const requestBody = {
-    email: "pareshg4@gmail.com",
-    password: "s3>HL)y{$M",
+    email: "prateekbdash@gmail.com",
+    password: "12345",
   };
   const apiRequestHeader = makeApiRequestHeader(
     "POST",
