@@ -1,0 +1,207 @@
+/* screen - g-b-insta-landing-page */
+
+.g-b-insta-landing-page {
+  background-color: var(--white);
+  height: 1227px;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 1920px;
+}
+
+.g-b-insta-landing-page .mask-group-1-uEBdwN {
+  background-color: transparent;
+  height: 916px;
+  left: 0px;
+  object-fit: cover;
+  position: absolute;
+  top: 162px;
+  width: 1920px;
+}
+
+.g-b-insta-landing-page .rectangle-201-uEBdwN {
+  background-color: #5d7395;
+  height: 916px;
+  left: 0px;
+  opacity: 0.28;
+  position: absolute;
+  top: 162px;
+  width: 1920px;
+}
+
+.g-b-insta-landing-page .group-1-uEBdwN {
+  background-color: transparent;
+  height: 50px;
+  left: 147px;
+  position: absolute;
+  top: 33px;
+  width: 50px;
+}
+
+.g-b-insta-landing-page .path-1-WeV53s {
+  background-color: transparent;
+  height: 100%;
+  left: 1px;
+  object-fit: cover;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+.g-b-insta-landing-page .group-2-uEBdwN {
+  background-color: transparent;
+  height: 11px;
+  left: 85px;
+  object-fit: cover;
+  position: absolute;
+  top: 118px;
+  width: 164px;
+}
+
+.g-b-insta-landing-page .group-3-uEBdwN {
+  background-color: transparent;
+  height: 21px;
+  left: 47px;
+  object-fit: cover;
+  position: absolute;
+  top: 87px;
+  width: 245px;
+}
+
+.g-b-insta-landing-page .products-custom-profile-logout-uEBdwN {
+  background-color: transparent;
+  color: #677b9b;
+  font-family: var(--font-family-poppins);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+  height: 44px;
+  left: 1340px;
+  letter-spacing: 0px;
+  line-height: 24px;
+  position: absolute;
+  text-align: left;
+  top: 69px;
+  width: 1175px;
+}
+
+.g-b-insta-landing-page .supplier-s-of-p-hetics-products-uEBdwN {
+  background-color: transparent;
+  color: var(--white);
+  font-family: var(--font-family-poppins);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 400;
+  height: 249px;
+  left: 557px;
+  letter-spacing: 0px;
+  line-height: 80px;
+  position: absolute;
+  text-align: center;
+  top: 460px;
+  width: 808px;
+}
+
+.g-b-insta-landing-page .rectangle-202-uEBdwN {
+  background-color: #5d7395;
+  height: 152px;
+  left: 0px;
+  position: absolute;
+  top: 1077px;
+  width: 640px;
+}
+
+.g-b-insta-landing-page .rectangle-202-uEBdwN:hover {
+  background-color: #6d8bb8;
+  cursor: pointer;
+}
+
+.g-b-insta-landing-page .rectangle-205-uEBdwN {
+  background-color: transparent;
+  border: 1px solid var(--white);
+  height: 82px;
+  left: 787px;
+  position: absolute;
+  top: 712px;
+  width: 346px;
+}
+
+.g-b-insta-landing-page .rectangle-203-uEBdwN {
+  background-color: #f19c9c;
+  height: 152px;
+  left: 640px;
+  position: absolute;
+  top: 1077px;
+  width: 640px;
+}
+
+.g-b-insta-landing-page .rectangle-203-uEBdwN:hover {
+  background-color: #ecacac;
+  cursor: pointer;
+}
+
+.g-b-insta-landing-page .rectangle-204-uEBdwN {
+  background-color: #c3bfbf;
+  height: 152px;
+  left: 1280px;
+  position: absolute;
+  top: 1077px;
+  width: 640px;
+}
+
+.g-b-insta-landing-page .rectangle-204-uEBdwN:hover {
+  background-color: #a8a1a1;
+  cursor: pointer;
+}
+
+.g-b-insta-landing-page .view-my-account-uEBdwN {
+  background-color: transparent;
+  height: 65px;
+  left: 108px;
+  letter-spacing: 0px;
+  line-height: 30px;
+  position: absolute;
+  text-align: center;
+  top: 1131px;
+  width: 427px;
+  cursor: pointer;
+}
+
+.g-b-insta-landing-page .view-products-uEBdwN {
+  background-color: transparent;
+  height: 65px;
+  left: 748px;
+  letter-spacing: 0px;
+  line-height: 30px;
+  position: absolute;
+  text-align: center;
+  top: 731px;
+  width: 427px;
+  cursor: pointer;
+}
+
+.g-b-insta-landing-page .create-my-account-uEBdwN {
+  background-color: transparent;
+  height: 65px;
+  left: 748px;
+  letter-spacing: 0px;
+  line-height: 30px;
+  position: absolute;
+  text-align: center;
+  top: 1131px;
+  width: 427px;
+  cursor: pointer;
+}
+
+.g-b-insta-landing-page .about-gandy-black-uEBdwN {
+  background-color: transparent;
+  height: 65px;
+  left: 1388px;
+  letter-spacing: 0px;
+  line-height: 30px;
+  position: absolute;
+  text-align: center;
+  top: 1131px;
+  width: 427px;
+  cursor: pointer;
+}
