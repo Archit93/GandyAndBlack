@@ -9,26 +9,29 @@ import { getProductsApiCall } from "./getProductsApiCall";
 
 const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8081";
 
-export const signInApiCall = async ({ dispatch, history }) => {
-  const requestBody = {
-    email: "pareshg4@gmail.com",
-    password: "s3>HL)y{$M",
-  };
-  const apiRequestHeader = makeApiRequestHeader(
-    "POST",
-    null,
-    requestBody,
-    null
-  );
+export const signInApiCall = async ({ dispatch, history, email, password }) => {
+  const apiRequestHeader = makeApiRequestHeader("POST", null, null);
   const apiUrl = `${baseUrl}/user/login`;
   await axios
-    .post(apiUrl, requestBody, apiRequestHeader)
+    .post(
+      apiUrl,
+      {
+        email,
+        password,
+      },
+      apiRequestHeader
+    )
     .then((apiResponse) => {
       dispatch({
         type: SET_SIGN_IN_DATA,
         payload: apiResponse.data.body,
       });
-      getProductsApiCall({ dispatch, history, signInResponse : apiResponse.data.body, email: requestBody.email })
+      getProductsApiCall({
+        dispatch,
+        history,
+        signInResponse: apiResponse.data.body,
+        email,
+      });
     })
     .catch(() => {
       dispatch({
