@@ -1,0 +1,16 @@
+:root { 
+  --white: #ffffff;
+ 
+  --font-size-l: 30px;
+  --font-size-m: 24px;
+  --font-size-xl: 70px;
+ 
+  --font-family-poppins: "Poppins", Helvetica;
+}
+.poppins-normal-white-30px {
+  color: var(--white);
+  font-family: var(--font-family-poppins);
+  font-size: var(--font-size-l);
+  font-style: normal;
+  font-weight: 400;
+}
