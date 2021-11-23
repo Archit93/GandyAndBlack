@@ -59,7 +59,6 @@ const SignIn = (props) => {
       });
     }
   };
-  console.log(password);
   const componentToDisplay = () => {
     if (isLoading) {
       return (

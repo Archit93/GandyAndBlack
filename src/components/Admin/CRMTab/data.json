@@ -5,14 +5,17 @@
         "title": "Order Placed",
         "label": "10/20",
         "style": {
-          "width": "16%"
+          "width": "16%",
+          "background-color": "#212839"
         },
         "cards": [
           {
             "id": "Order_id",
-            "title": "Order ID",
-            "label": "Order Date",
-            "description": "Customer Name"
+            "title": "Order ID : hfaghfhc",
+            "description": "Customer Name  Sagar bhai",
+            "name": "Sagar",
+            "lastName": "Chandani",
+            "address": "agshj"
           },          
           {
             "id": "Order_id1",

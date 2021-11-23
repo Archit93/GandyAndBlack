@@ -14,7 +14,7 @@ import PayPal from "../components/CustomerCheckout/PayPal";
 import PayWithCard from "../components/CustomerCheckout/PayWithCard";
 import MyOrders from "../components/MyOrders";
 import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustomersList";
-import CRM from "../components/Admin/AdminCustomerTab/CRM";
+import CRM from "../components/Admin/CRMTab/CRM";
 import HomePage from "../components/HomePage";
 
 export const AppRouter = (props) => {
@@ -22,7 +22,7 @@ export const AppRouter = (props) => {
     <Router>
       <Switch>
         <Route exact={true} path="/">
-          <HomePage />
+          <HomePage {...props}/>
         </Route>
         <Route exact={true} path="/sign-in">
           <SignIn {...props} />
