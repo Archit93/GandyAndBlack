@@ -48,15 +48,17 @@ const SignIn = (props) => {
       e.preventDefault();
     } else if (email === "" || password === "") {
       e.preventDefault();
-      setEmptyCredentialsError(
-        "Please provide valid details"
-      );
+      setEmptyCredentialsError("Please provide valid details");
     } else {
       props.dispatch({ type: SET_IS_LOADING, payload: true });
-      signInApiCall({ dispatch: props.dispatch, history: history });
+      signInApiCall({
+        dispatch: props.dispatch,
+        history: history,
+        email,
+        password,
+      });
     }
   };
-
   const componentToDisplay = () => {
     if (isLoading) {
       return (
@@ -120,24 +122,22 @@ const SignIn = (props) => {
                   ) : (
                     <React.Fragment />
                   )}
-                <div className="form">
-                  <button
-                    className="btn-link"
-                    type="submit"
-                    onClick={() => {
-                      history.push("/forgot_password");
-                    }}
-                  >
-                    Forgot password ?
-                </button>
-                </div>
-                {emptyCredentialsError ? (
-                  <span>
-                    <div className="error">
-                      {emptyCredentialsError}
-                    </div>
-                  </span>
-                ) : (
+                  <div className="form">
+                    <button
+                      className="btn-link"
+                      type="submit"
+                      onClick={() => {
+                        history.push("/forgot_password");
+                      }}
+                    >
+                      Forgot password ?
+                    </button>
+                  </div>
+                  {emptyCredentialsError ? (
+                    <span>
+                      <div className="error">{emptyCredentialsError}</div>
+                    </span>
+                  ) : (
                     <React.Fragment />
                   )}
                   <div className="form">

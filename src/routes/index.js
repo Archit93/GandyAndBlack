@@ -14,7 +14,7 @@ import PayPal from "../components/CustomerCheckout/PayPal";
 import PayWithCard from "../components/CustomerCheckout/PayWithCard";
 import MyOrders from "../components/MyOrders";
 import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustomersList";
-import CRM from "../components/Admin/AdminCustomerTab/CRM";
+import CRM from "../components/Admin/CRMTab/CRM";
 import HomePage from "../components/HomePage";
 
 export const AppRouter = (props) => {
