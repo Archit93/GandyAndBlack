@@ -14,7 +14,6 @@ export const updateCartDetails = async ({
   await axios
     .post(apiUrl, customerCartArray, apiRequestHeader)
     .then((apiResponse) => {
-      console.log(apiResponse.data);
       history.push("/customercart_details");
     })
     .catch(() => {

@@ -50,7 +50,7 @@ const ProductList = (props) => {
       if (node.data.quantity !== 0) {
         tempArray.push({
           ...node.data,
-          quantity: node.data.quantity ? Number(node.data.quantity) : 0
+          quantity: node.data.quantity ? Number(node.data.quantity) : 0,
         });
       }
     });
@@ -75,10 +75,10 @@ const ProductList = (props) => {
     applicationState?.productList &&
       applicationState.productList.map((rowdetail) => {
         let productListObject = Object.assign({});
-       productListObject = {
-         ...rowdetail,
-         quantity : rowdetail.quantity ? Number(rowdetail.quantity) : 0
-       }
+        productListObject = {
+          ...rowdetail,
+          quantity: rowdetail.quantity ? Number(rowdetail.quantity) : 0,
+        };
         productlistArray.push(productListObject);
       });
     return productlistArray;
@@ -91,7 +91,7 @@ const ProductList = (props) => {
             field: "quantity",
             headerName: "Product List",
             cellRendererFramework: MobileViewColumnBrand,
-          }
+          },
         ]
       : [
           { field: "brand", headerName: "Brand" },
@@ -119,21 +119,13 @@ const ProductList = (props) => {
     gridApi.setQuickFilter(event.target.value);
   };
 
-  const getRowHeight = () => (applicationState.mobileView ? 250 : 75);
+  const getRowHeight = () => (applicationState.mobileView ? 300 : 65);
 
   const onProceed = (e) => {
     let customerCartArray = [];
     gridApi.forEachNode((node) => {
       if (node.data.quantity !== 0) {
-        customerCartArray.push({
-          productId: node.data.productId,
-          brand: node.data.brand,
-          productType: node.data.productType,
-          description: node.data.description,
-          quantity: node.data.quantity,
-          availabilty: true,
-          salesPerUnit: node.data.salesPerUnit,
-        });
+        customerCartArray.push(node.data);
       }
     });
     dispatch({

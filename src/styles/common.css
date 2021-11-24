@@ -2500,6 +2500,15 @@ div + .header-config {
   padding: 1rem 0rem;
 }
 
+/* product list mobile */
+.my-renderer > .btn.btn-main {
+  margin-bottom: 4px;
+}
+
+.my-renderer{
+  vertical-align: text-top;
+}
+
 /* select */
 .form-select {
   border: 0;
@@ -2561,7 +2570,7 @@ input:-webkit-autofill:active {
 }
 
 .navbar .container-fluid {
-  padding: 0 60px;
+  padding: 0 16px;
 }
 
 .navbar-fixed {

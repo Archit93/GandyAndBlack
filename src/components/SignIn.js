@@ -59,11 +59,10 @@ const SignIn = (props) => {
       });
     }
   };
-  console.log(password);
   const componentToDisplay = () => {
     if (isLoading) {
       return (
-        <div class="d-flex justify-content-center loader">
+        <div className="d-flex justify-content-center loader">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
@@ -97,9 +96,14 @@ const SignIn = (props) => {
                       onBlur={(e) => validateEmail(e)}
                       value={email}
                     />
-                    <label for="floatingInput">Email address</label>
+                    <label htmlFor="floatingInput">Email address</label>
                   </div>
-                  {emailError ? <span>{emailError}</span> : <React.Fragment />}
+                  {emailError ? 
+                  <span>
+                    <div className="error">
+                      {emailError}
+                    </div>
+                  </span> : <React.Fragment />}
                   <div className="form-floating pass-wrapper">
                     <input
                       type={passwordShown ? "text" : "password"}
@@ -110,7 +114,7 @@ const SignIn = (props) => {
                       onBlur={(e) => validatePassword(e)}
                       value={password}
                     />
-                    <label for="floatingPassword">Password</label>
+                    <label htmlFor="floatingPassword">Password</label>
                     <i
                       className={`fa ${
                         passwordShown ? `fa-eye-slash` : `fa-eye`
@@ -119,7 +123,11 @@ const SignIn = (props) => {
                     ></i>
                   </div>
                   {passwordError ? (
-                    <span>{passwordError}</span>
+                    <span>
+                      <div className="error">
+                        {passwordError}
+                      </div>
+                    </span>
                   ) : (
                     <React.Fragment />
                   )}

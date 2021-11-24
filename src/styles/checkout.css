@@ -22,9 +22,9 @@
   position: relative;
 }
 
-#msform fieldset:not(:first-of-type) {
+/* #msform fieldset:not(:first-of-type) {
   display: none;
-}
+} */
 
 #msform fieldset .form-card {
   text-align: left;
@@ -32,7 +32,7 @@
 
 #msform input,
 #msform textarea {
-  padding: 0px 8px 4px 8px;
+  padding: 0px 8px 4px 0px;
   border: none;
   border-bottom: 1px solid #ccc;
   border-radius: 0px;
@@ -96,6 +96,22 @@
 #msform .action-button-previous:focus {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
 } */
+
+#msform .select{
+  padding: 0px 20px 4px 0px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0px;
+  margin-bottom: 25px;
+  margin-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #bac5cf;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+#msform.form-card label{color: #bac5cf;}
 
 select.list-dt {
   border: none;

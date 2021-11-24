@@ -7,7 +7,6 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { PromoCodeColumn } from './PromoCodeColumn';
 import PromoCodeModal from './PromoCodeModal';
 
-import Sidebar from './Sidebar';
 
 const AdminCustomersList = (props) => {
 
@@ -72,9 +71,6 @@ const AdminCustomersList = (props) => {
             </div> */}
            
             <div className="col-lg-12 p-0" style={{ width: '100%', height: '100%' }}>
-                {/* <div className="" style={{height: '50px', backgroundColor: '#dedede'}}>
-                    <button>Toggle</button>
-                </div> */}
                 <div className="p-3">
                     <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
                     <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%' }}>

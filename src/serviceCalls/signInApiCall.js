@@ -7,7 +7,7 @@ import {
 } from "../constants/actionTypes";
 import { getProductsApiCall } from "./getProductsApiCall";
 
-const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8081";
+const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8080";
 
 export const signInApiCall = async ({ dispatch, history, email, password }) => {
   const apiRequestHeader = makeApiRequestHeader("POST", null, null);

@@ -14,7 +14,7 @@ import PayPal from "../components/CustomerCheckout/PayPal";
 import PayWithCard from "../components/CustomerCheckout/PayWithCard";
 import MyOrders from "../components/MyOrders";
 import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustomersList";
-import CRM from "../components/Admin/AdminCustomerTab/CRM";
+import CRM from "../components/Admin/CRMTab/CRM";
 import HomePage from "../components/HomePage";
 
 // temporary modal
@@ -26,26 +26,20 @@ export const AppRouter = (props) => {
     <Router>
       <Switch>
         <Route exact={true} path="/">
-          <HomePage />
+          <HomePage {...props} />
         </Route>
-        <Route exact={true} path="/sign-in">
+        <Route exact={true} path="/signin">
           <SignIn {...props} />
         </Route>
         <Route exact={true} path="/forgot_password">
           <ForgotPassword {...props} />
         </Route>
-        <Route
-          path="/signup"
-          component={SignUp}
-          applicationState={props.applicationState}
-          dispatch={props.dispatch}
-        />
-        <Route
-          path="/aboutus"
-          component={AboutUs}
-          applicationState={props.applicationState}
-          dispatch={props.dispatch}
-        />
+        <Route exact={true} path="/signup">
+          <SignUp {...props} />
+        </Route>
+        <Route exact={true} path="/aboutus">
+          <AboutUs {...props} />
+        </Route>
         <Route exact={true} path="/productlist">
           <ProductList {...props} />
         </Route>

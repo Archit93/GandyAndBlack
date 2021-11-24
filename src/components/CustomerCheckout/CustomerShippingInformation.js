@@ -18,7 +18,6 @@ const CustomerShippingInformation = (props) => {
   const { applicationState, dispatch } = props;
   const { cartDetails } = applicationState;
   const [tempCart, setTempCart] = React.useState(cartDetails);
-
   React.useEffect(() => {
     const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
     if (cartData) {
@@ -27,10 +26,10 @@ const CustomerShippingInformation = (props) => {
   }, []);
 
   const [firstName, setFirstName] = React.useState(
-    applicationState?.customerDetails?.firstName ?? ""
+    applicationState?.customerDetails?.firstname ?? ""
   );
   const [lastName, setLastName] = React.useState(
-    applicationState?.customerDetails?.lastName ?? ""
+    applicationState?.customerDetails?.lastname ?? ""
   );
   const [email, setEmailAddress] = React.useState(
     applicationState?.customerDetails?.email ?? ""
@@ -47,14 +46,14 @@ const CustomerShippingInformation = (props) => {
   const [firstNameError, setFirstNameError] = React.useState("");
   const [lastNameError, setLastNameError] = React.useState("");
   const [phoneNo, setPhoneNo] = React.useState(
-    applicationState?.customerDetails?.phoneNo ?? ""
+    applicationState?.customerDetails?.mobileno ?? ""
   );
   const [phoneNoError, setPhoneNoError] = React.useState("");
   const [instagramId, setInstagramId] = React.useState(
-    applicationState?.customerDetails?.instagramId ?? ""
+    applicationState?.customerDetails?.instaname ?? ""
   );
   const [tradeOfBusiness, setTradeOfBusiness] = React.useState(
-    applicationState?.customerDetails?.tradeOfBusiness ?? "Mobile Practitioners"
+    applicationState?.customerDetails?.tradeofbuisness ?? "Mobile Practitioners"
   );
   const [emptyCredentialsError, setEmptyCredentialsError] = React.useState("");
 
@@ -163,8 +162,8 @@ const CustomerShippingInformation = (props) => {
         <HeaderMenu cartCount={tempCart.length} />
       </div>
       <div id="checkout">
-        <div className="container">
-          <div className="card px-0 pt-4 pb-0 mt-3 mb-3">
+        <div className="container-fluid">
+          <div className="card px-0 pb-0 mb-3">
             <div className="row">
               <div className="col-md-12 mx-0">
                 <form id="msform">
@@ -177,6 +176,7 @@ const CustomerShippingInformation = (props) => {
                           <input
                             type="text"
                             name="fname"
+                            className="form-control"
                             id="fname"
                             placeholder="First Name*"
                             onChange={(e) => onNameChange(e)}
@@ -191,6 +191,7 @@ const CustomerShippingInformation = (props) => {
                           <input
                             type="text"
                             name="lname"
+                            className="form-control"
                             id="lname"
                             placeholder="Last Name*"
                             onChange={(e) => onNameChange(e)}
@@ -205,6 +206,7 @@ const CustomerShippingInformation = (props) => {
                           <input
                             type="text"
                             name="email"
+                            className="form-control"
                             placeholder="Email*"
                             onChange={(e) => onEmailChange(e)}
                             onBlur={(e) => validateEmail(e)}
@@ -218,6 +220,7 @@ const CustomerShippingInformation = (props) => {
                           <input
                             type="text"
                             name="phoneNo"
+                            className="form-control"
                             placeholder="Contact No."
                             onChange={(e) => onPhoneChange(e)}
                             onBlur={(e) => validatePhone(e)}
@@ -231,6 +234,7 @@ const CustomerShippingInformation = (props) => {
                           <input
                             type="text"
                             name="instagramId"
+                            className="form-control"
                             placeholder="Instagram Name"
                             onChange={(e) => setInstagramId(e.target.value)}
                             value={instagramId}
@@ -239,6 +243,7 @@ const CustomerShippingInformation = (props) => {
                             type="text"
                             name="delivery_address"
                             placeholder="Delivery Address*"
+                            className="form-control"
                             onChange={(e) => onAddressChange(e)}
                             onBlur={(e) => validateAddress(e)}
                             value={address}
@@ -251,6 +256,7 @@ const CustomerShippingInformation = (props) => {
                           <input
                             type="text"
                             name="postcode"
+                            className="form-control"
                             placeholder="Post Code"
                             onChange={(e) => onPostcodeChange(e)}
                             onBlur={(e) => validatePostcode(e)}
@@ -261,10 +267,11 @@ const CustomerShippingInformation = (props) => {
                           ) : (
                             <React.Fragment />
                           )}
-                          <label className="h5">Trade of business</label>
+                          <label>Trade of business</label>
                           <select
                             className="select"
                             id="tradeOfBusiness"
+                            className="form-control"
                             name="tradeOfBusiness"
                             onChange={(e) => setTradeOfBusiness(e.target.value)}
                             value={tradeOfBusiness}
