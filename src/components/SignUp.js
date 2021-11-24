@@ -108,7 +108,7 @@ const SignUp = () => {
                 <label htmlFor="floatingFirstName">Firstname</label>
               </div>
               {firstNameError ? (
-                <span>{firstNameError}</span>
+                <span><div className="error">{firstNameError}</div></span>
               ) : (
                 <React.Fragment />
               )}
@@ -125,7 +125,7 @@ const SignUp = () => {
                 <label htmlFor="floatingLastName">Lastname</label>
               </div>
               {lastNameError ? (
-                <span>{lastNameError}</span>
+                <span><div className="error">{lastNameError}</div></span>
               ) : (
                 <React.Fragment />
               )}
@@ -141,7 +141,7 @@ const SignUp = () => {
                 />
                 <label htmlFor="floatingEmail">Email</label>
               </div>
-              {emailError ? <span>{emailError}</span> : <React.Fragment />}
+              {emailError ? <span><div className="error">{emailError}</div></span> : <React.Fragment />}
               <div className="form-floating mb-3">
                 <input
                   id="floatingPassword"
@@ -164,23 +164,12 @@ const SignUp = () => {
                 ></i>
               </div>
               {passwordError ? (
-                <span>{passwordError}</span>
+                <span><div className="error">{passwordError}</div></span>
               ) : (
                 <React.Fragment />
               )}
-              <div className="form">
-                <button
-                  className="btn-link"
-                  type="submit"
-                  onClick={() => {
-                    history.push("/");
-                  }}
-                >
-                  Already have an account? Login
-                </button>
-              </div>
               {emptyCredentialsError ? (
-                <span>{emptyCredentialsError}</span>
+                <span><div className="error">{emptyCredentialsError}</div></span>
               ) : (
                 <React.Fragment />
               )}
@@ -193,6 +182,17 @@ const SignUp = () => {
                   }}
                 >
                   Signup
+                </button>
+              </div>
+              <div className="form">
+                <button
+                  className="btn-link"
+                  type="submit"
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                >
+                  Already have an account? Login
                 </button>
               </div>
             </form>

@@ -51,11 +51,11 @@ const CustomerAmountDetails = (props) => {
           </div>
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-12 col-xs-12 p-0">
-              <label className="h6">Shipping Cost</label>
+              <label className="h6" style={{verticalAlign: "sub"}}>Shipping Cost</label>
             </div>
             <div className="col-lg-8 col-md-6 col-sm-12 col-xs-12 p-0">
               <select
-                className="select"
+                className="form-control"
                 id="shipping"
                 name="shipping"
                 onChange={onShippingCostChange}
