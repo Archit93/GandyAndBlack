@@ -5,21 +5,25 @@ const CustomerAmountDetails = (props) => {
   const { dispatch, cartDetails } = props;
   const [shippingCost, setShippingCost] = React.useState("9.98");
   const [subTotalAmount, setSubTotalAmount] = React.useState("");
+  const [finalVatAmount, setFinalVatAmount] = React.useState("0");
   const [totalAmount, setTotalAmount] = React.useState("");
 
   React.useEffect(() => {
     if (cartDetails && cartDetails.length > 0) {
       const totalArray = cartDetails?.map(
-        (prod) => prod.salesPerUnit * prod.quantity
+        (prod) => prod.salepriceperunit * prod.quantity
       );
+      const vatArray = cartDetails?.map((prod) => prod.vat);
       const reducer = (previousValue, currentValue) =>
         previousValue + currentValue;
       const subTotalValue = totalArray.reduce(reducer);
+      const vatAmount = vatArray.reduce(reducer);
       setSubTotalAmount(subTotalValue);
-      setTotalAmount(subTotalValue + Number(shippingCost));
+      setFinalVatAmount(vatAmount);
+      setTotalAmount(subTotalValue + vatAmount + Number(shippingCost));
       dispatch({
         type: SET_TOTAL_AMOUNT,
-        payload: subTotalValue + Number(shippingCost),
+        payload: subTotalValue + vatAmount + Number(shippingCost),
       });
     }
   }, [cartDetails, shippingCost]);
@@ -40,6 +44,10 @@ const CustomerAmountDetails = (props) => {
           <div className="h5">
             <span>Subtotal</span>
             <span style={{ float: "right" }}>{`£${subTotalAmount}`}</span>
+          </div>
+          <div className="h6">
+            <span>VAT</span>
+            <span style={{ float: "right" }}>{`£${finalVatAmount}`}</span>
           </div>
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-12 col-xs-12 p-0">

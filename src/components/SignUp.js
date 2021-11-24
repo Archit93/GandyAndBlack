@@ -105,7 +105,7 @@ const SignUp = () => {
                   placeholder="firstname"
                   required
                 />
-                <label for="floatingFirstName">Firstname</label>
+                <label htmlFor="floatingFirstName">Firstname</label>
               </div>
               {firstNameError ? (
                 <span>{firstNameError}</span>
@@ -122,7 +122,7 @@ const SignUp = () => {
                   placeholder="lastname"
                   required
                 />
-                <label for="floatingLastName">Lastname</label>
+                <label htmlFor="floatingLastName">Lastname</label>
               </div>
               {lastNameError ? (
                 <span>{lastNameError}</span>
@@ -139,7 +139,7 @@ const SignUp = () => {
                   placeholder="email"
                   required
                 />
-                <label for="floatingEmail">Email</label>
+                <label htmlFor="floatingEmail">Email</label>
               </div>
               {emailError ? <span>{emailError}</span> : <React.Fragment />}
               <div className="form-floating mb-3">
@@ -153,7 +153,7 @@ const SignUp = () => {
                   placeholder="password"
                   required
                 />
-                <label for="floatingPassword" className="label">
+                <label htmlFor="floatingPassword" className="label">
                   Create your password
                 </label>
                 <i

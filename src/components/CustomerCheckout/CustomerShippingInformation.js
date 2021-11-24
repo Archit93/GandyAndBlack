@@ -18,7 +18,6 @@ const CustomerShippingInformation = (props) => {
   const { applicationState, dispatch } = props;
   const { cartDetails } = applicationState;
   const [tempCart, setTempCart] = React.useState(cartDetails);
-
   React.useEffect(() => {
     const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
     if (cartData) {
@@ -27,10 +26,10 @@ const CustomerShippingInformation = (props) => {
   }, []);
 
   const [firstName, setFirstName] = React.useState(
-    applicationState?.customerDetails?.firstName ?? ""
+    applicationState?.customerDetails?.firstname ?? ""
   );
   const [lastName, setLastName] = React.useState(
-    applicationState?.customerDetails?.lastName ?? ""
+    applicationState?.customerDetails?.lastname ?? ""
   );
   const [email, setEmailAddress] = React.useState(
     applicationState?.customerDetails?.email ?? ""
@@ -47,14 +46,14 @@ const CustomerShippingInformation = (props) => {
   const [firstNameError, setFirstNameError] = React.useState("");
   const [lastNameError, setLastNameError] = React.useState("");
   const [phoneNo, setPhoneNo] = React.useState(
-    applicationState?.customerDetails?.phoneNo ?? ""
+    applicationState?.customerDetails?.mobileno ?? ""
   );
   const [phoneNoError, setPhoneNoError] = React.useState("");
   const [instagramId, setInstagramId] = React.useState(
-    applicationState?.customerDetails?.instagramId ?? ""
+    applicationState?.customerDetails?.instaname ?? ""
   );
   const [tradeOfBusiness, setTradeOfBusiness] = React.useState(
-    applicationState?.customerDetails?.tradeOfBusiness ?? "Mobile Practitioners"
+    applicationState?.customerDetails?.tradeofbuisness ?? "Mobile Practitioners"
   );
   const [emptyCredentialsError, setEmptyCredentialsError] = React.useState("");
 

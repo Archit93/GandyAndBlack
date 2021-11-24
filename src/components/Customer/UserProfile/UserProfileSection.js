@@ -7,8 +7,6 @@ const UserProfileSection = (props) => {
     emptyCredentialsError,
     validateName,
     onNameChange,
-    validateEmail,
-    onEmailChange,
     validateAddress,
     onAddressChange,
     validatePostcode,
@@ -33,7 +31,7 @@ const UserProfileSection = (props) => {
               onBlur={(e) => validateName(e)}
               value={profileDetails.firstName}
             />
-            <label for="floatingInput">First Name</label>
+            <label htmlFor="floatingInput">First Name</label>
           </div>
           {profileDetailsError.firstNameError ? (
             <span>{profileDetailsError.firstNameError}</span>
@@ -52,7 +50,7 @@ const UserProfileSection = (props) => {
               onBlur={(e) => validateName(e)}
               value={profileDetails.lastName}
             />
-            <label for="floatingInput">Last Name</label>
+            <label htmlFor="floatingInput">Last Name</label>
           </div>
           {profileDetailsError.lastNameError ? (
             <span>{profileDetailsError.lastNameError}</span>
@@ -69,17 +67,11 @@ const UserProfileSection = (props) => {
               className="form-control"
               id="email"
               placeholder="Email"
-              onChange={(e) => onEmailChange(e)}
-              onBlur={(e) => validateEmail(e)}
               value={profileDetails.email}
+              disabled
             />
-            <label for="floatingInput">Email Id</label>
+            <label htmlFor="floatingInput">Email Id</label>
           </div>
-          {profileDetailsError.emailError ? (
-            <span>{profileDetailsError.emailError}</span>
-          ) : (
-            <React.Fragment />
-          )}
         </div>
         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div className="form-floating mb-3">
@@ -92,7 +84,7 @@ const UserProfileSection = (props) => {
               onBlur={(e) => validatePhone(e)}
               value={profileDetails.phoneNo}
             />
-            <label for="floatingInput">Phone Number</label>
+            <label htmlFor="floatingInput">Phone Number</label>
           </div>
           {profileDetailsError.phoneNoError ? (
             <span>{profileDetailsError.phoneNoError}</span>
@@ -123,7 +115,7 @@ const UserProfileSection = (props) => {
               }
               value={profileDetails.instagramId}
             />
-            <label for="floatingInput">Instagram Id</label>
+            <label htmlFor="floatingInput">Instagram Id</label>
           </div>
         </div>
         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -137,7 +129,7 @@ const UserProfileSection = (props) => {
               onBlur={(e) => validateAddress(e)}
               value={profileDetails.address}
             />
-            <label for="floatingInput">Address</label>
+            <label htmlFor="floatingInput">Address</label>
           </div>
           {profileDetailsError.addressError ? (
             <span>{profileDetailsError.addressError}</span>
@@ -158,7 +150,7 @@ const UserProfileSection = (props) => {
               onBlur={(e) => validatePostcode(e)}
               value={profileDetails.postcode}
             />
-            <label for="floatingInput">Postcode</label>
+            <label htmlFor="floatingInput">Postcode</label>
           </div>
           {profileDetailsError.postcodeError ? (
             <span>{profileDetailsError.postcodeError}</span>
@@ -185,7 +177,7 @@ const UserProfileSection = (props) => {
               <option value="Clinics">Clinics</option>
               <option value="Training Academy">Training Academy</option>
             </select>
-            <label for="trade_business">Trade of business</label>
+            <label htmlFor="trade_business">Trade of business</label>
           </div>
         </div>
       </div>

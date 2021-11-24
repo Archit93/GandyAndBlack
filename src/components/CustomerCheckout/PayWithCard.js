@@ -22,9 +22,8 @@ const PayWithCard = (props) => {
   }, []);
 
   const handleToken = async (token, addresses) => {
-    console.log(token, addresses);
     const response = await axios.post(
-      "https://d7okb.sse.codesandbox.io/checkout",
+      "https://qhc9e.sse.codesandbox.io/checkout",
       {
         token,
         product: {
@@ -35,7 +34,6 @@ const PayWithCard = (props) => {
       }
     );
     const { status } = response.data;
-    console.log("Response:", response.data);
     if (status === "success") {
       console.log("Success! Check email for details");
     } else {
