@@ -6,8 +6,11 @@ import {
   isValidPassword,
 } from "../utils/regexUtils";
 import Footer from "./common/Footer";
+import { signUpApiCall } from "../serviceCalls/signUpApiCall";
+import { SET_IS_LOADING } from "../constants/actionTypes";
+import { signInApiCall } from "../serviceCalls/signInApiCall";
 
-const SignUp = () => {
+const SignUp = (props) => {
   const history = useHistory();
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
@@ -74,7 +77,15 @@ const SignUp = () => {
         "Looks like you're missing something! Do you want to give it another try?"
       );
     } else {
-      history.push("/customercart_details");
+      e.preventDefault();
+      props.dispatch({ type: SET_IS_LOADING, payload: true });
+      signUpApiCall({
+        dispatch: props.dispatch,
+        history: history,
+        firstName,
+        lastName,
+        email,
+      });
     }
   };
 
@@ -108,7 +119,9 @@ const SignUp = () => {
                 <label htmlFor="floatingFirstName">Firstname</label>
               </div>
               {firstNameError ? (
-                <span><div className="error">{firstNameError}</div></span>
+                <span>
+                  <div className="error">{firstNameError}</div>
+                </span>
               ) : (
                 <React.Fragment />
               )}
@@ -125,7 +138,9 @@ const SignUp = () => {
                 <label htmlFor="floatingLastName">Lastname</label>
               </div>
               {lastNameError ? (
-                <span><div className="error">{lastNameError}</div></span>
+                <span>
+                  <div className="error">{lastNameError}</div>
+                </span>
               ) : (
                 <React.Fragment />
               )}
@@ -141,7 +156,13 @@ const SignUp = () => {
                 />
                 <label htmlFor="floatingEmail">Email</label>
               </div>
-              {emailError ? <span><div className="error">{emailError}</div></span> : <React.Fragment />}
+              {emailError ? (
+                <span>
+                  <div className="error">{emailError}</div>
+                </span>
+              ) : (
+                <React.Fragment />
+              )}
               <div className="form-floating mb-3">
                 <input
                   id="floatingPassword"
@@ -160,16 +181,20 @@ const SignUp = () => {
                   className={`fa ${
                     passwordShown ? `fa-eye-slash` : `fa-eye`
                   } sign-up-icon`}
-                  onClick={togglePasswordVisiblity}
+                  onClick={() => togglePasswordVisiblity()}
                 ></i>
               </div>
               {passwordError ? (
-                <span><div className="error">{passwordError}</div></span>
+                <span>
+                  <div className="error">{passwordError}</div>
+                </span>
               ) : (
                 <React.Fragment />
               )}
               {emptyCredentialsError ? (
-                <span><div className="error">{emptyCredentialsError}</div></span>
+                <span>
+                  <div className="error">{emptyCredentialsError}</div>
+                </span>
               ) : (
                 <React.Fragment />
               )}
@@ -189,7 +214,7 @@ const SignUp = () => {
                   className="btn-link"
                   type="submit"
                   onClick={() => {
-                    history.push("/");
+                    history.push("/signin");
                   }}
                 >
                   Already have an account? Login

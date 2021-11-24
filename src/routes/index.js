@@ -24,19 +24,16 @@ export const AppRouter = (props) => {
         <Route exact={true} path="/">
           <HomePage {...props} />
         </Route>
-        <Route exact={true} path="/sign-in">
+        <Route exact={true} path="/signin">
           <SignIn {...props} />
         </Route>
         <Route exact={true} path="/forgot_password">
           <ForgotPassword {...props} />
         </Route>
-        <Route
-          path="/signup"
-          component={SignUp}
-          applicationState={props.applicationState}
-          dispatch={props.dispatch}
-        />
-        <Route path="/aboutus" exact={true}>
+        <Route exact={true} path="/signup">
+          <SignUp {...props} />
+        </Route>
+        <Route exact={true} path="/aboutus">
           <AboutUs {...props} />
         </Route>
         <Route exact={true} path="/productlist">
