@@ -190,6 +190,11 @@ const ProductList = (props) => {
           >
             Proceed to checkout
           </button>
+          <button type="button" className="btn btn-main" 
+          // onClick = {() => props.showUpdatePassowrdModal(true)}
+          >
+            Add Product
+          </button>
         </div>
       </div>
     </div>

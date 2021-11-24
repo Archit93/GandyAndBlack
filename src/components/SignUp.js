@@ -168,17 +168,7 @@ const SignUp = () => {
               ) : (
                 <React.Fragment />
               )}
-              <div className="form">
-                <button
-                  className="btn-link"
-                  type="submit"
-                  onClick={() => {
-                    history.push("/");
-                  }}
-                >
-                  Already have an account? Login
-                </button>
-              </div>
+              
               {emptyCredentialsError ? (
                 <span>{emptyCredentialsError}</span>
               ) : (
@@ -193,6 +183,17 @@ const SignUp = () => {
                   }}
                 >
                   Signup
+                </button>
+              </div>
+              <div className="form">
+                <button
+                  className="btn-link"
+                  type="submit"
+                  onClick={() => {
+                    history.push("/sign-in");
+                  }}
+                >
+                  Already have an account? Login
                 </button>
               </div>
             </form>

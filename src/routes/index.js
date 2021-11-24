@@ -17,6 +17,10 @@ import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustom
 import CRM from "../components/Admin/AdminCustomerTab/CRM";
 import HomePage from "../components/HomePage";
 
+// temporary modal
+import AddProductModal from "../components/AddProductModal";
+import AddItemModalModal from "../components/PlaceOrderAddItemModal";
+
 export const AppRouter = (props) => {
   return (
     <Router>
@@ -74,6 +78,14 @@ export const AppRouter = (props) => {
         </Route>
         <Route exact={true} path="/my_orders">
           <MyOrders {...props} />
+        </Route>
+
+        {/* temporary modal */}
+        <Route exact={true} path="/admin_modal">
+          <AddProductModal {...props} />
+        </Route>
+        <Route exact={true} path="/additem_modal">
+          <AddItemModalModal {...props} />
         </Route>
       </Switch>
     </Router>

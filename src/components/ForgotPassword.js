@@ -91,7 +91,7 @@ const ForgotPassword = (props) => {
                   className="btn-link"
                   type="submit"
                   onClick={() => {
-                    history.push("/");
+                    history.push("/sign-in");
                   }}
                 >
                   Already have an account? Login

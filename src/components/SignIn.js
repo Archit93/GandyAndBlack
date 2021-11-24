@@ -123,17 +123,6 @@ const SignIn = (props) => {
                   ) : (
                     <React.Fragment />
                   )}
-                  <div className="form">
-                    <button
-                      className="btn-link"
-                      type="submit"
-                      onClick={() => {
-                        history.push("/forgot_password");
-                      }}
-                    >
-                      Forgot password ?
-                    </button>
-                  </div>
                   {emptyCredentialsError ? (
                     <span>
                       <div className="error">{emptyCredentialsError}</div>
