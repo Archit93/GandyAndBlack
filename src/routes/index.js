@@ -22,7 +22,7 @@ export const AppRouter = (props) => {
     <Router>
       <Switch>
         <Route exact={true} path="/">
-          <HomePage {...props}/>
+          <HomePage {...props} />
         </Route>
         <Route exact={true} path="/sign-in">
           <SignIn {...props} />
@@ -36,12 +36,9 @@ export const AppRouter = (props) => {
           applicationState={props.applicationState}
           dispatch={props.dispatch}
         />
-        <Route
-          path="/aboutus"
-          component={AboutUs}
-          applicationState={props.applicationState}
-          dispatch={props.dispatch}
-        />
+        <Route path="/aboutus" exact={true}>
+          <AboutUs {...props} />
+        </Route>
         <Route exact={true} path="/productlist">
           <ProductList {...props} />
         </Route>

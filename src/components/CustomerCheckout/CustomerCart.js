@@ -35,15 +35,20 @@ const CustomerCart = (props) => {
                         <h2 className="fs-title">My Cart</h2>
                         {tempCart &&
                           tempCart?.map((product) => (
-                            <div className="form-card">
+                            <div className="form-card" key={product.productid}>
+                              <div className="h5">
+                                <span>{product.brand}</span>
+                                <span style={{ float: "right" }}>
+                                  £{product.salepriceperunit}
+                                </span>
+                              </div>
                               <div className="h5">
                                 <span>
-                                  {product.brand} {product.productType}{" "}
-                                  {product.description}
+                                  {product.producttype} {product.productdesc}
                                 </span>
-                                <span style={{ float: "right" }}>
-                                  £{product.salesPerUnit}
-                                </span>
+                              </div>
+                              <div className="h6">
+                                VAT : <span>£{product.vat}</span>
                               </div>
                               <div className="h6">
                                 QTY : <span>{product.quantity}</span>
