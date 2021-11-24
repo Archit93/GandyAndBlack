@@ -29,7 +29,7 @@ const HomePage = (props) => {
           </h1>
           <div
             className="rectangle-202-uEBdwN"
-            onClick={() => history.push("/sign-in")}
+            onClick={() => history.push("/signin")}
           ></div>
           <div className="rectangle-205-uEBdwN"></div>
           <div
@@ -42,7 +42,7 @@ const HomePage = (props) => {
           ></div>
           <div
             className="view-my-account-uEBdwN poppins-normal-white-30px"
-            onClick={() => history.push("/sign-in")}
+            onClick={() => history.push("/signin")}
           >
             VIEW MY ACCOUNT
           </div>

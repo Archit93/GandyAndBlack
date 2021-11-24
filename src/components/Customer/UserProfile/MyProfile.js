@@ -134,7 +134,6 @@ const MyProfile = (props) => {
       e.preventDefault();
       setPasswordError(isValidPassword(e.target.value));
     } else {
-      console.log("Update successful");
       setShowModal(false);
     }
   };

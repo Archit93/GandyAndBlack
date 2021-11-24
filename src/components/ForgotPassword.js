@@ -50,20 +50,17 @@ const ForgotPassword = (props) => {
         <div id="forgot-password">
           <div role="main">
             {/* <form method="post"> */}
-            <div className="form-floating mb-2">
-              <label htmlFor="floatingFirstName" className="label">
-                Enter your email
-              </label>
+            <div className="form-floating mb-3">
               <input
-                id="floatingEmail"
                 type="email"
                 className="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
                 onChange={(e) => onEmailChange(e)}
                 onBlur={(e) => validateEmail(e)}
                 value={email}
-                placeholder="email"
-                required
               />
+              <label htmlFor="floatingInput">Email address</label>
             </div>
             {emailError ? <span>{emailError}</span> : <React.Fragment />}
             <div className="form">
