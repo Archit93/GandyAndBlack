@@ -14,7 +14,6 @@ export const updateCustomerDetails = async ({
   await axios
     .post(apiUrl, customerDetails, apiRequestHeader)
     .then((apiResponse) => {
-      console.log(apiResponse.data);
       history.push("/customerpayment_info");
     })
     .catch(() => {

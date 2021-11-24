@@ -26,11 +26,15 @@ const ProductList = (props) => {
     applicationState?.isCartEmpty ?? true
   );
   const [cartCount, setCartCount] = React.useState(0);
+  const [tempCart, setTempCart] = React.useState([]);
   const history = useHistory();
 
-  // React.useEffect(() => {
-  //   props.dispatch({ type: SET_INITIAL_RESPONSE });
-  // }, applicationState?.productList);
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setCartCount(cartData.length);
+    }
+  }, []);
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -45,13 +49,8 @@ const ProductList = (props) => {
       productlistArray.push(node.data);
       if (node.data.quantity !== 0) {
         tempArray.push({
-          productId: node.data.productId,
-          brand: node.data.brand,
-          productType: node.data.productType,
-          description: node.data.description,
-          quantity: node.data.quantity,
-          availabilty: true,
-          salesPerUnit: node.data.salesPerUnit,
+          ...node.data,
+          quantity: node.data.quantity ? Number(node.data.quantity) : 0,
         });
       }
     });
@@ -60,6 +59,7 @@ const ProductList = (props) => {
       : setIsLocalCartEmpty(false);
 
     setCartCount(tempArray.length);
+    setTempCart(tempArray);
     dispatch({
       type: SET_CUSTOMER_CART_DETAILS,
       payload: tempArray,
@@ -68,18 +68,17 @@ const ProductList = (props) => {
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
     });
+    window.sessionStorage.setItem("cart", JSON.stringify(tempArray));
   };
   const rowData = () => {
     const productlistArray = [];
     applicationState?.productList &&
       applicationState.productList.map((rowdetail) => {
-        const productListObject = Object.assign({});
-        productListObject.productId = rowdetail.productId;
-        productListObject.brand = rowdetail.brand;
-        productListObject.productType = rowdetail.productType;
-        productListObject.description = rowdetail.description;
-        productListObject.quantity = Number(rowdetail.quantity);
-        productListObject.salesPerUnit = rowdetail.salesPerUnit;
+        let productListObject = Object.assign({});
+        productListObject = {
+          ...rowdetail,
+          quantity: rowdetail.quantity ? Number(rowdetail.quantity) : 0,
+        };
         productlistArray.push(productListObject);
       });
     return productlistArray;
@@ -93,24 +92,18 @@ const ProductList = (props) => {
             headerName: "Product List",
             cellRendererFramework: MobileViewColumnBrand,
           },
-          // {
-          //   field: "productType",
-          //   headerName: "Product Type",
-          //   cellRendererFramework: MobileViewColumnProductType,
-          // },
-          // { field: "description", headerName: "Description" },
         ]
       : [
           { field: "brand", headerName: "Brand" },
-          { field: "productType", headerName: "Product Type" },
-          { field: "description", headerName: "Description" },
+          { field: "producttype", headerName: "Product Type" },
+          { field: "productdesc", headerName: "Description" },
           {
             field: "quantity",
             headerName: "Quantity",
             editable: true,
             cellRendererFramework: ColumnQuantity,
           },
-          { field: "salesPerUnit", headerName: "Sales Per Unit" },
+          { field: "salepriceperunit", headerName: "Sales Per Unit" },
         ];
 
   const defaultColDef = React.useMemo(
@@ -132,15 +125,7 @@ const ProductList = (props) => {
     let customerCartArray = [];
     gridApi.forEachNode((node) => {
       if (node.data.quantity !== 0) {
-        customerCartArray.push({
-          productId: node.data.productId,
-          brand: node.data.brand,
-          productType: node.data.productType,
-          description: node.data.description,
-          quantity: node.data.quantity,
-          availabilty: true,
-          salesPerUnit: node.data.salesPerUnit,
-        });
+        customerCartArray.push(node.data);
       }
     });
     dispatch({

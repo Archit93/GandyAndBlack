@@ -1,14 +1,12 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { isValidEmail } from "../utils/regexUtils";
-import {forgotPasswordApiCall} from "../serviceCalls/forgotPasswordApiCall";
+import { forgotPasswordApiCall } from "../serviceCalls/forgotPasswordApiCall";
 
 const ForgotPassword = (props) => {
   const history = useHistory();
   const {
-    applicationState: {
-      forgotPasswordError
-    }
+    applicationState: { forgotPasswordError },
   } = props;
   const [email, setEmailAddress] = React.useState("");
   const [emailError, setEmailError] = React.useState("");
@@ -27,7 +25,11 @@ const ForgotPassword = (props) => {
     if (emailError || email === "") {
       e.preventDefault();
     } else {
-      forgotPasswordApiCall({ dispatch: props.dispatch, history: history, email: email })
+      forgotPasswordApiCall({
+        dispatch: props.dispatch,
+        history: history,
+        email: email,
+      });
     }
   };
 
@@ -48,55 +50,55 @@ const ForgotPassword = (props) => {
         <div id="forgot-password">
           <div role="main">
             {/* <form method="post"> */}
-              <div className="form-floating mb-2">
-                <label for="floatingFirstName" className="label">
-                  Enter your email
-                </label>
-                <input
-                  id="floatingEmail"
-                  type="email"
-                  className="form-control"
-                  onChange={(e) => onEmailChange(e)}
-                  onBlur={(e) => validateEmail(e)}
-                  value={email}
-                  placeholder="email"
-                  required
-                />
-              </div>
-              {emailError ? <span>{emailError}</span> : <React.Fragment />}
-              <div className="form">
-                <button
-                  className="btn btn-lg btn-main"
-                  onClick={(e) => {
-                    validateSubmit(e);
-                  }}
-                  type="submit"
-                >
-                  Send
-                </button>
-              </div>
-              <div className="form">
-                <button
-                  className="btn-link"
-                  type="submit"
-                  onClick={(e) => {
-                    history.push("/signup");
-                  }}
-                >
-                  Not a member? Register
-                </button>
-              </div>
-              <div className="form">
-                <button
-                  className="btn-link"
-                  type="submit"
-                  onClick={() => {
-                    history.push("/");
-                  }}
-                >
-                  Already have an account? Login
-                </button>
-              </div>
+            <div className="form-floating mb-2">
+              <label htmlFor="floatingFirstName" className="label">
+                Enter your email
+              </label>
+              <input
+                id="floatingEmail"
+                type="email"
+                className="form-control"
+                onChange={(e) => onEmailChange(e)}
+                onBlur={(e) => validateEmail(e)}
+                value={email}
+                placeholder="email"
+                required
+              />
+            </div>
+            {emailError ? <span>{emailError}</span> : <React.Fragment />}
+            <div className="form">
+              <button
+                className="btn btn-lg btn-main"
+                onClick={(e) => {
+                  validateSubmit(e);
+                }}
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+            <div className="form">
+              <button
+                className="btn-link"
+                type="submit"
+                onClick={(e) => {
+                  history.push("/signup");
+                }}
+              >
+                Not a member? Register
+              </button>
+            </div>
+            <div className="form">
+              <button
+                className="btn-link"
+                type="submit"
+                onClick={() => {
+                  history.push("/");
+                }}
+              >
+                Already have an account? Login
+              </button>
+            </div>
             {/* </form> */}
           </div>
           <footer>

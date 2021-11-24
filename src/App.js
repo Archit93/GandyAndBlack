@@ -1,11 +1,9 @@
-
 // import * as React from 'react';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import { AppRouter } from './routes/index';
 
 // import {SET_MOBILE_VIEW} from './constants/actionTypes';
 // import {useStateManager} from './reducer/useStateManager';
-
 
 // const theme = createTheme();
 
@@ -42,19 +40,20 @@
 //   );
 // }
 
-
 // }
 // export default App;
 
-import * as React from 'react';
-import { AppRouter } from './routes/index';
-import { useStateManager } from './reducer/useStateManager';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/common.css';
-import './styles/login.css';
-import './styles/checkout.css';
-import { SET_MOBILE_VIEW } from './constants/actionTypes';
-
+import * as React from "react";
+import { AppRouter } from "./routes/index";
+import { useStateManager } from "./reducer/useStateManager";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/common.css";
+import "./styles/login.css";
+import "./styles/checkout.css";
+// import "./styles/g-b-insta-landing-page.css";
+// import "./styles/globals.css";
+// import "./styles/styleguide.css";
+import { SET_MOBILE_VIEW } from "./constants/actionTypes";
 
 const App = () => {
   const [reducer, dispatch] = React.useReducer(useStateManager, {
@@ -67,14 +66,14 @@ const App = () => {
     config: {},
     isCartEmpty: true,
     isLoading: false,
-    forgotPasswordError: ""
+    forgotPasswordError: "",
   });
   React.useEffect(() => {
     const setResponsiveness = () => {
       return dispatch({
         type: SET_MOBILE_VIEW,
-        payload: window.innerWidth < 900
-      })
+        payload: window.innerWidth < 900,
+      });
     };
 
     setResponsiveness();
@@ -82,12 +81,14 @@ const App = () => {
 
     return () => {
       window.removeEventListener("resize", () => setResponsiveness());
-    }
+    };
   }, []);
 
   return (
-    <div><AppRouter applicationState={reducer} dispatch={dispatch} /></div>
-  )
-}
+    <div>
+      <AppRouter applicationState={reducer} dispatch={dispatch} />
+    </div>
+  );
+};
 
 export default App;

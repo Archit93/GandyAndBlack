@@ -16,8 +16,17 @@ const CustomerPayment = (props) => {
   const [paymentMethod, setPaymentMethod] = React.useState(
     applicationState.paymentMethod
   );
+  const [tempCart, setTempCart] = React.useState(cartDetails);
+
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setTempCart(cartData);
+    }
+  }, []);
+
   const purchase_units = [];
-  cartDetails.map((item) => {
+  tempCart.map((item) => {
     const purchaseUnitObject = Object.assign({});
     purchaseUnitObject.description =
       item.brand + " " + item.description + " " + item.productType;
@@ -29,7 +38,6 @@ const CustomerPayment = (props) => {
   });
 
   const handleToken = async (token, addresses) => {
-    console.log(token, addresses);
     const response = await axios.post(
       "https://d7okb.sse.codesandbox.io/checkout",
       {
@@ -42,7 +50,6 @@ const CustomerPayment = (props) => {
       }
     );
     const { status } = response.data;
-    console.log("Response:", response.data);
     if (status === "success") {
       console.log("Success! Check email for details");
     } else {
@@ -66,7 +73,7 @@ const CustomerPayment = (props) => {
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={cartDetails.length} />
+        <HeaderMenu cartCount={tempCart.length} />
       </div>
       <div id="checkout">
         <div className="container-fluid">
@@ -78,49 +85,55 @@ const CustomerPayment = (props) => {
                   <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
                     <fieldset>
                       <h2 className="fs-title">Payment Information</h2>
-                      <div
-                        class="my-3 form-card"
-                        onChange={(e) => setPaymentMethod(e.target.value)}
-                      >
-                        <div class="custom-control custom-radio">
+                      <div className="my-3 form-card">
+                        <div className="custom-control custom-radio">
                           <input
                             id="paypal"
                             name="paymentMethod"
                             type="radio"
-                            class="custom-control-input"
+                            className="custom-control-input"
                             value="PAYPAL"
                             checked={paymentMethod === "PAYPAL" ? true : false}
+                            onChange={(e) => setPaymentMethod(e.target.value)}
                           />
-                          <label class="custom-control-label" for="paypal">
+                          <label
+                            className="custom-control-label"
+                            htmlFor="paypal"
+                          >
                             Paypal
                           </label>
                         </div>
-                        <div class="custom-control custom-radio">
+                        <div className="custom-control custom-radio">
                           <input
                             id="credit"
                             name="paymentMethod"
                             type="radio"
-                            class="custom-control-input"
+                            className="custom-control-input"
                             value="CARD"
                             checked={paymentMethod === "CARD" ? true : false}
+                            onChange={(e) => setPaymentMethod(e.target.value)}
                           />
-                          <label class="custom-control-label" for="credit">
+                          <label
+                            className="custom-control-label"
+                            htmlFor="credit"
+                          >
                             Credit Card/Debit Card
                           </label>
                         </div>
 
-                        <div class="custom-control custom-radio">
+                        <div className="custom-control custom-radio">
                           <input
                             id="payondelivery"
                             name="paymentMethod"
                             type="radio"
-                            class="custom-control-input"
+                            className="custom-control-input"
                             value="POD"
                             checked={paymentMethod === "POD" ? true : false}
+                            onChange={(e) => setPaymentMethod(e.target.value)}
                           />
                           <label
-                            class="custom-control-label"
-                            for="payondelivery"
+                            className="custom-control-label"
+                            htmlFor="payondelivery"
                           >
                             Pay on Delivery
                           </label>
@@ -146,7 +159,10 @@ const CustomerPayment = (props) => {
                     </fieldset>
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <CustomerAmountDetails {...props} />
+                    <CustomerAmountDetails
+                      cartDetails={tempCart}
+                      dispatch={dispatch}
+                    />
                   </div>
                 </div>
               </div>

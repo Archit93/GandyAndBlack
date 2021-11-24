@@ -18,22 +18,21 @@ const MyProfile = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
   const { cartDetails } = applicationState;
-
   const [profileDetails, setProfileDetails] = React.useState({
-    firstName: applicationState?.customerDetails?.firstName ?? "",
-    lastName: applicationState?.customerDetails?.firstName ?? "",
-    email: applicationState?.customerDetails?.firstName ?? "",
-    address: applicationState?.customerDetails?.firstName ?? "",
-    postcode: applicationState?.customerDetails?.firstName ?? "",
-    phoneNo: applicationState?.customerDetails?.firstName ?? "",
-    instagramId: applicationState?.customerDetails?.firstName ?? "",
+    firstName: applicationState?.customerDetails?.firstname ?? "",
+    lastName: applicationState?.customerDetails?.lastname ?? "",
+    email: applicationState?.customerDetails?.email ?? "",
+    address: applicationState?.customerDetails?.address ?? "",
+    postcode: applicationState?.customerDetails?.postcode ?? "",
+    phoneNo: applicationState?.customerDetails?.mobileno ?? "",
+    instagramId: applicationState?.customerDetails?.instaname ?? "",
     tradeOfBusiness:
-      applicationState?.customerDetails?.firstName ?? "Mobile Practitioners",
+      applicationState?.customerDetails?.tradeofbuisness ??
+      "Mobile Practitioners",
   });
   const [profileDetailsError, setProfileDetailsError] = React.useState({
     firstNameError: "",
     lastNameError: "",
-    emailError: "",
     addressError: "",
     postcodeError: "",
     phoneNoError: "",
@@ -61,7 +60,6 @@ const MyProfile = (props) => {
   };
 
   const onNameChange = (e) => {
-    console.log(e.target);
     if (e.target.id === "fname") {
       setProfileDetails({ ...profileDetails, firstName: e.target.value });
       setProfileDetailsError({ ...profileDetailsError, firstNameError: "" });
@@ -69,20 +67,6 @@ const MyProfile = (props) => {
       setProfileDetails({ ...profileDetails, lastName: e.target.value });
       setProfileDetailsError({ ...profileDetailsError, lastNameError: "" });
     }
-    setEmptyCredentialsError("");
-  };
-
-  const validateEmail = (e) => {
-    const { value } = e?.target;
-    setProfileDetailsError({
-      ...profileDetailsError,
-      emailError: isValidEmail(value),
-    });
-  };
-
-  const onEmailChange = (e) => {
-    setProfileDetails({ ...profileDetails, email: e.target.value });
-    setProfileDetailsError({ ...profileDetailsError, emailError: "" });
     setEmptyCredentialsError("");
   };
 
@@ -156,7 +140,6 @@ const MyProfile = (props) => {
   };
 
   const validateSubmit = (e) => {
-    console.log(profileDetails);
     if (
       profileDetailsError.firstNameError ||
       profileDetailsError.lastNameError ||
@@ -192,7 +175,6 @@ const MyProfile = (props) => {
   const showUpdatePassowrdModal = (showModalValue) => {
     setShowModal(showModalValue);
   };
-  console.log(passwordError);
   return (
     <div id="myprofile">
       <div>
@@ -201,13 +183,12 @@ const MyProfile = (props) => {
       <div id="profile">
         <UserProfileHeaderSection
           showUpdatePassowrdModal={showUpdatePassowrdModal}
+          customerDetails={applicationState.customerDetails}
         />
         <div className="container-fluid">
           <UserProfileSection
             validateName={validateName}
             onNameChange={onNameChange}
-            validateEmail={validateEmail}
-            onEmailChange={onEmailChange}
             validateAddress={validateAddress}
             onAddressChange={onAddressChange}
             validatePostcode={validatePostcode}

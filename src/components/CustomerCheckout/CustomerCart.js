@@ -6,13 +6,21 @@ import CustomerAmountDetails from "./CustomerAmountDetails";
 
 const CustomerCart = (props) => {
   const history = useHistory();
-  const { applicationState } = props;
+  const { applicationState, dispatch } = props;
   const { cartDetails } = applicationState;
+  const [tempCart, setTempCart] = React.useState(cartDetails);
+
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setTempCart(cartData);
+    }
+  }, []);
 
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={cartDetails.length} />
+        <HeaderMenu cartCount={tempCart.length} />
       </div>
       <div id="checkout">
         <div className="container-fluid">
@@ -25,40 +33,55 @@ const CustomerCart = (props) => {
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
                       <fieldset>
                         <h2 className="fs-title">My Cart</h2>
-                        {cartDetails &&
-                          cartDetails?.map((product) => (
-                            <div className="form-card">
+                        {tempCart &&
+                          tempCart?.map((product) => (
+                            <div className="form-card" key={product.productid}>
+                              <div className="h5">
+                                <span>{product.brand}</span>
+                                <span style={{ float: "right" }}>
+                                  £{product.salepriceperunit}
+                                </span>
+                              </div>
                               <div className="h5">
                                 <span>
-                                  {product.brand} {product.productType}{" "}
-                                  {product.description}
+                                  {product.producttype} {product.productdesc}
                                 </span>
-                                <span style={{ float: "right" }}>
-                                  £{product.salesPerUnit}
-                                </span>
+                              </div>
+                              <div className="h6">
+                                VAT : <span>£{product.vat}</span>
                               </div>
                               <div className="h6">
                                 QTY : <span>{product.quantity}</span>
                               </div>
                             </div>
                           ))}
-                          <div className="mt-4">
-                            <button
-                              className="next action-button"
-                              type="submit"
-                              name="next"
-                              id="next"
-                              onClick={() => {
-                                history.push("/customershipping_info");
-                              }}
-                            >
-                              Next
-                            </button>
-                          </div>
+                        <button
+                          className="previous action-button-previous"
+                          type="submit"
+                          onClick={() => {
+                            history.push("/productlist");
+                          }}
+                        >
+                          Back
+                        </button>
+                        <button
+                          className="next action-button"
+                          type="submit"
+                          name="next"
+                          id="next"
+                          onClick={() => {
+                            history.push("/customershipping_info");
+                          }}
+                        >
+                          Next
+                        </button>
                       </fieldset>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <CustomerAmountDetails {...props} />
+                      <CustomerAmountDetails
+                        cartDetails={tempCart}
+                        dispatch={dispatch}
+                      />
                     </div>
                   </div>
                 </form>

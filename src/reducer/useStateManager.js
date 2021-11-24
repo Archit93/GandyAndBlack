@@ -30,14 +30,18 @@ export const useStateManager = (
         config: {
           ...state.config,
           authToken: action.payload.authToken,
-          role: action.payload.role,
+          userType: action.payload.userType,
         },
       };
     case actionTypes.SET_PRODUCT_LIST:
       return {
         ...state,
         productList: action.payload,
-        isLoading: false,
+      };
+    case actionTypes.SET_USER_DETAILS:
+      return {
+        ...state,
+        customerDetails: action.payload
       };
     case actionTypes.SET_FORGOT_PASSWORD_ERROR:
       return {
@@ -92,6 +96,11 @@ export const useStateManager = (
         ...state,
         customerDetails: action.payload,
       };
+    case actionTypes.SET_KANBAN_DETAILS:
+    return {
+      ...state,
+      crmDetails: action.payload
+    }
     case actionTypes.SET_ERROR:
     default:
       return { state };

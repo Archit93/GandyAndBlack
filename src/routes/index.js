@@ -14,19 +14,21 @@ import PayPal from "../components/CustomerCheckout/PayPal";
 import PayWithCard from "../components/CustomerCheckout/PayWithCard";
 import MyOrders from "../components/MyOrders";
 import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustomersList";
-import CRM from "../components/Admin/AdminCustomerTab/CRM";
+import CRM from "../components/Admin/CRMTab/CRM";
+import HomePage from "../components/HomePage";
 
 export const AppRouter = (props) => {
   return (
     <Router>
       <Switch>
         <Route exact={true} path="/">
-          {" "}
-          <SignIn {...props} />{" "}
+          <HomePage {...props} />
+        </Route>
+        <Route exact={true} path="/sign-in">
+          <SignIn {...props} />
         </Route>
         <Route exact={true} path="/forgot_password">
-          {" "}
-          <ForgotPassword {...props} />{" "}
+          <ForgotPassword {...props} />
         </Route>
         <Route
           path="/signup"
@@ -34,50 +36,38 @@ export const AppRouter = (props) => {
           applicationState={props.applicationState}
           dispatch={props.dispatch}
         />
-        <Route
-          path="/aboutus"
-          component={AboutUs}
-          applicationState={props.applicationState}
-          dispatch={props.dispatch}
-        />
+        <Route path="/aboutus" exact={true}>
+          <AboutUs {...props} />
+        </Route>
         <Route exact={true} path="/productlist">
-          {" "}
-          <ProductList {...props} />{" "}
+          <ProductList {...props} />
         </Route>
         <Route exact={true} path="/customercart_details">
-          {" "}
-          <CustomerCart {...props} />{" "}
+          <CustomerCart {...props} />
         </Route>
         <Route exact={true} path="/customershipping_info">
-          {" "}
-          <CustomerShippingInformation {...props} />{" "}
+          <CustomerShippingInformation {...props} />
         </Route>
         <Route exact={true} path="/customerpayment_info">
-          {" "}
-          <CustomerPayment {...props} />{" "}
+          <CustomerPayment {...props} />
         </Route>
         <Route exact={true} path="/customerpayment_success">
-          {" "}
-          <CustomerPaymentSuccess {...props} />{" "}
+          <CustomerPaymentSuccess {...props} />
         </Route>
         <Route exact={true} path="/customer_list">
-          <AdminCustomersList {...props} />{" "}
+          <AdminCustomersList {...props} />
         </Route>
         <Route exact={true} path="/my_profile">
-          {" "}
-          <MyProfile {...props} />{" "}
+          <MyProfile {...props} />
         </Route>
         <Route exact={true} path="/paypal">
-          {" "}
-          <PayPal {...props} />{" "}
+          <PayPal {...props} />
         </Route>
         <Route exact={true} path="/pay-with-card">
-          {" "}
-          <PayWithCard {...props} />{" "}
+          <PayWithCard {...props} />
         </Route>
         <Route exact={true} path="/crm">
-          {" "}
-          <CRM {...props} />{" "}
+          <CRM {...props} />
         </Route>
         <Route exact={true} path="/my_orders">
           <MyOrders {...props} />

@@ -48,19 +48,21 @@ const SignIn = (props) => {
       e.preventDefault();
     } else if (email === "" || password === "") {
       e.preventDefault();
-      setEmptyCredentialsError(
-        "Please provide valid details"
-      );
+      setEmptyCredentialsError("Please provide valid details");
     } else {
       props.dispatch({ type: SET_IS_LOADING, payload: true });
-      signInApiCall({ dispatch: props.dispatch, history: history });
+      signInApiCall({
+        dispatch: props.dispatch,
+        history: history,
+        email,
+        password,
+      });
     }
   };
-
   const componentToDisplay = () => {
     if (isLoading) {
       return (
-        <div class="d-flex justify-content-center loader">
+        <div className="d-flex justify-content-center loader">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
@@ -94,7 +96,7 @@ const SignIn = (props) => {
                       onBlur={(e) => validateEmail(e)}
                       value={email}
                     />
-                    <label for="floatingInput">Email address</label>
+                    <label htmlFor="floatingInput">Email address</label>
                   </div>
                   {emailError ? 
                   <span>
@@ -112,7 +114,7 @@ const SignIn = (props) => {
                       onBlur={(e) => validatePassword(e)}
                       value={password}
                     />
-                    <label for="floatingPassword">Password</label>
+                    <label htmlFor="floatingPassword">Password</label>
                     <i
                       className={`fa ${
                         passwordShown ? `fa-eye-slash` : `fa-eye`
@@ -129,24 +131,11 @@ const SignIn = (props) => {
                   ) : (
                     <React.Fragment />
                   )}
-                {/* <div className="form">
-                  <button
-                    className="btn-link"
-                    type="submit"
-                    onClick={() => {
-                      history.push("/forgot_password");
-                    }}
-                  >
-                    Forgot password ?
-                </button>
-                </div> */}
-                {emptyCredentialsError ? (
-                  <span>
-                    <div className="error">
-                      {emptyCredentialsError}
-                    </div>
-                  </span>
-                ) : (
+                  {emptyCredentialsError ? (
+                    <span>
+                      <div className="error">{emptyCredentialsError}</div>
+                    </span>
+                  ) : (
                     <React.Fragment />
                   )}
                   <div className="form">

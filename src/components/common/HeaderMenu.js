@@ -22,16 +22,19 @@ const HeaderMenu = ({ cartCount }) => {
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <button className="nav-link">Products</button>
-            </li>
-            <li className="nav-item">
-              <button className="nav-link" href="#">
-                About Us
+              <button
+                className="nav-link"
+                onClick={() => history.push("/productlist")}
+              >
+                Products
               </button>
             </li>
             <li className="nav-item">
-              <button className="nav-link" href="#">
-                Contact Us
+              <button
+                className="nav-link"
+                onClick={() => history.push("/aboutus")}
+              >
+                About Us
               </button>
             </li>
             <li className="nav-item dropdown" id="myDropdown">
@@ -44,12 +47,18 @@ const HeaderMenu = ({ cartCount }) => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <button className="dropdown-item" href="#">
+                  <button
+                    className="dropdown-item"
+                    onClick={() => history.push("/my_orders")}
+                  >
                     My Orders
                   </button>
                 </li>
                 <li>
-                  <button className="dropdown-item" href="#">
+                  <button
+                    className="dropdown-item"
+                    onClick={() => history.push("/my_profile")}
+                  >
                     Update Profile
                   </button>
                 </li>
@@ -61,7 +70,7 @@ const HeaderMenu = ({ cartCount }) => {
             >
               <button
                 className="nav-link"
-                // onClick={history.push("/customercart_details")}
+                onClick={() => history.push("/customercart_details")}
               >
                 <i className="fa fa-shopping-cart"></i>
                 <span className="position-absolute translate-middle badge rounded-pill bg-secondary">
