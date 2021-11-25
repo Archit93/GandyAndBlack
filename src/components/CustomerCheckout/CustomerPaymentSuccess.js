@@ -1,12 +1,12 @@
 import * as React from "react";
-import Header from "../common/HeaderMenu.js";
+import HeaderMenu from "../common/HeaderMenu.js";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 
 const CustomerPaymentSuccess = (props) => {
   return (
     <div>
       <div>
-        <Header />
+        <HeaderMenu />
       </div>
       <div id="checkout">
         <div className="container-fluid">

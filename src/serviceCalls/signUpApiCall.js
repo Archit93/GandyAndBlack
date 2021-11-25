@@ -10,6 +10,7 @@ export const signUpApiCall = async ({
   firstName,
   lastName,
   email,
+  password,
 }) => {
   const apiRequestHeader = makeApiRequestHeader("POST", null, null, null);
   const apiUrl = `${baseUrl}/user/signup`;
@@ -28,6 +29,7 @@ export const signUpApiCall = async ({
     isuserloggedin: "assa",
     lastname: lastName,
     mobileno: "07000970009",
+    password,
     profilepic: "na",
     roles: {
       id: "1234",
@@ -38,13 +40,13 @@ export const signUpApiCall = async ({
     usercredebility: "as",
   };
   await axios
-    .post(apiUrl, requestBody, { headers: apiRequestHeader })
+    .post(apiUrl, requestBody, apiRequestHeader)
     .then((apiResponse) => {
       dispatch({
         type: SET_SIGN_UP_DATA,
         payload: apiResponse.data.body,
       });
-      //history.push("/signin");
+      history.push("/signin");
     })
     .catch(() => {
       dispatch({

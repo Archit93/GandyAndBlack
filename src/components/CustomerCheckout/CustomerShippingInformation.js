@@ -159,7 +159,7 @@ const CustomerShippingInformation = (props) => {
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={tempCart.length} />
+        <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
       </div>
       <div id="checkout">
         <div className="container-fluid">

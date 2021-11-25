@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import Header from "../../common/HeaderMenu.js";
+import { Spinner } from "react-bootstrap";
 import UserProfileHeaderSection from "./UserProfileHeaderSection";
 import UserProfileSection from "./UserProfileSection";
 import UpdatePasswordModal from "./UpdatePasswordModal";
@@ -13,17 +13,20 @@ import {
   isValidPassword,
 } from "../../../utils/regexUtils";
 import { UPDATE_CUSTOMER_DETAILS } from "../../../constants/actionTypes";
+import { updateCustomerDetails } from "../../../serviceCalls/updateCustomerDetails";
+import HeaderMenu from "../../common/HeaderMenu.js";
 
 const MyProfile = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails } = applicationState;
+  const { cartDetails, config, isLoading } = applicationState;
+  const [tempCart, setTempCart] = React.useState(cartDetails ?? []);
   const [profileDetails, setProfileDetails] = React.useState({
     firstName: applicationState?.customerDetails?.firstname ?? "",
     lastName: applicationState?.customerDetails?.lastname ?? "",
     email: applicationState?.customerDetails?.email ?? "",
-    address: applicationState?.customerDetails?.address ?? "",
-    postcode: applicationState?.customerDetails?.postcode ?? "",
+    address: applicationState?.customerDetails?.address[0].addressbody ?? "",
+    postcode: applicationState?.customerDetails?.address[0].postcode ?? "",
     phoneNo: applicationState?.customerDetails?.mobileno ?? "",
     instagramId: applicationState?.customerDetails?.instaname ?? "",
     tradeOfBusiness:
@@ -43,6 +46,13 @@ const MyProfile = (props) => {
   const [password, setPassword] = React.useState("");
   const [passwordError, setPasswordError] = React.useState("");
   const [showModal, setShowModal] = React.useState(false);
+
+  React.useEffect(() => {
+    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    if (cartData) {
+      setTempCart(cartData);
+    }
+  }, []);
 
   const validateName = (e) => {
     const { id, value } = e?.target;
@@ -134,6 +144,38 @@ const MyProfile = (props) => {
       e.preventDefault();
       setPasswordError(isValidPassword(e.target.value));
     } else {
+      const customerDetails = {
+        address: [
+          {
+            addressbody: profileDetails.address,
+            addresstype: "",
+            postcode: profileDetails.postcode,
+          },
+        ],
+        email: profileDetails.email,
+        firstname: profileDetails.firstName,
+        id: "",
+        instaname: profileDetails.instagramId,
+        isuserloggedin: "",
+        lastname: profileDetails.lastName,
+        mobileno: profileDetails.phoneNo,
+        password,
+        profilepic: "",
+        roles: {
+          id: "",
+          role: config.userType,
+        },
+        salt: "",
+        tradeofbuisness: profileDetails.tradeOfBusiness,
+        usercredebility: "",
+      };
+      updateCustomerDetails({
+        dispatch,
+        customerDetails,
+        config,
+        history,
+        flag: true,
+      });
       setShowModal(false);
     }
   };
@@ -144,7 +186,8 @@ const MyProfile = (props) => {
       profileDetailsError.lastNameError ||
       profileDetailsError.emailError ||
       profileDetailsError.addressError ||
-      profileDetailsError.phoneNoError
+      profileDetailsError.phoneNoError ||
+      profileDetailsError.postcodeError
     ) {
       setEmptyCredentialsError(
         "Looks like there is something wrong with the details! Do you want to give it another try?"
@@ -155,7 +198,8 @@ const MyProfile = (props) => {
       profileDetails.lastName === "" ||
       profileDetails.email === "" ||
       profileDetails.address === "" ||
-      profileDetails.phoneNo === ""
+      profileDetails.phoneNo === "" ||
+      profileDetails.postcode === ""
     ) {
       setEmptyCredentialsError(
         "Looks like you're missing something! Do you want to give it another try?"
@@ -166,7 +210,38 @@ const MyProfile = (props) => {
         type: UPDATE_CUSTOMER_DETAILS,
         payload: profileDetails,
       });
-      // updateCustomerDetails(dispatch, customerDetails, history);
+      const customerDetails = {
+        address: [
+          {
+            addressbody: profileDetails.address,
+            addresstype: "",
+            postcode: profileDetails.postcode,
+          },
+        ],
+        email: profileDetails.email,
+        firstname: profileDetails.firstName,
+        id: "",
+        instaname: profileDetails.instagramId,
+        isuserloggedin: "",
+        lastname: profileDetails.lastName,
+        mobileno: profileDetails.phoneNo,
+        password: "",
+        profilepic: "",
+        roles: {
+          id: "",
+          role: config.userType,
+        },
+        salt: "",
+        tradeofbuisness: profileDetails.tradeOfBusiness,
+        usercredebility: "",
+      };
+      updateCustomerDetails({
+        dispatch,
+        customerDetails,
+        config,
+        history,
+        flag: false,
+      });
       // history.push("/customerpayment_info");
     }
   };
@@ -176,8 +251,15 @@ const MyProfile = (props) => {
   };
   return (
     <div id="myprofile">
+      {isLoading && (
+        <div className="d-flex justify-content-center loader">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
       <div>
-        <Header />
+        <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
       </div>
       <div id="profile">
         <UserProfileHeaderSection

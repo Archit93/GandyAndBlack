@@ -150,7 +150,7 @@ const getRowStyle = params => {
   return (
     <div id="productlist">
       <div>
-        <HeaderMenu cartCount={cartCount} />
+        <HeaderMenu dispatch={dispatch} cartCount={cartCount} />
       </div>
       <div
         className="container-fluid"

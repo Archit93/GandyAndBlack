@@ -5,6 +5,7 @@ import {
   SET_ERROR,
   SET_KANBAN_DETAILS,
   SET_USER_DETAILS,
+  SET_IS_LOADING,
 } from "../constants/actionTypes";
 
 const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8080";
@@ -18,7 +19,6 @@ export const getProductsApiCall = async ({
   const apiRequestHeader = makeApiRequestHeader(
     "GET",
     { "x-auth-token": signInResponse.authToken },
-    null,
     null
   );
   const apiUrl = `${baseUrl}/product/all`;
@@ -36,6 +36,7 @@ export const getProductsApiCall = async ({
           ])
           .then(
             axios.spread((customerDetails) => {
+              dispatch({ type: SET_IS_LOADING, payload: false });
               dispatch({
                 type: SET_USER_DETAILS,
                 payload: customerDetails.data,
@@ -43,6 +44,7 @@ export const getProductsApiCall = async ({
               history.push("/productlist");
             })
           );
+        // history.push("/productlist");
       }
       if (signInResponse.userType.toUpperCase() === "ADMIN") {
         axios
@@ -62,6 +64,7 @@ export const getProductsApiCall = async ({
       }
     })
     .catch(() => {
+      dispatch({ type: SET_IS_LOADING, payload: false });
       dispatch({
         type: SET_ERROR,
       });
