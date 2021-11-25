@@ -3,7 +3,7 @@ import { makeApiRequestHeader } from "../utils/makeApiRequestHeader";
 import {
   SET_SIGN_IN_DATA,
   SET_ERROR,
-  SET_INITIAL_RESPONSE,
+  SET_IS_LOADING,
 } from "../constants/actionTypes";
 import { getProductsApiCall } from "./getProductsApiCall";
 
@@ -26,6 +26,7 @@ export const signInApiCall = async ({ dispatch, history, email, password }) => {
         type: SET_SIGN_IN_DATA,
         payload: apiResponse.data.body,
       });
+
       getProductsApiCall({
         dispatch,
         history,
@@ -34,6 +35,7 @@ export const signInApiCall = async ({ dispatch, history, email, password }) => {
       });
     })
     .catch(() => {
+      dispatch({ type: SET_IS_LOADING, payload: false });
       dispatch({
         type: SET_ERROR,
       });

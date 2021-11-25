@@ -1,8 +1,23 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
+import { SET_DRAWER_OPEN } from "../../constants/actionTypes";
 
-const HeaderMenu = ({ cartCount }) => {
+const HeaderMenu = (props) => {
+  const { cartCount, dispatch } = props;
   const history = useHistory();
+  const logout = (e) => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      window.sessionStorage.clear("cart");
+      dispatch({
+        type: SET_DRAWER_OPEN,
+      });
+      history.push("/");
+    } else {
+      e.preventDefault();
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white header-shadow navbar-fixed">
       <div className="container-fluid">
@@ -79,7 +94,7 @@ const HeaderMenu = ({ cartCount }) => {
               </button>
             </li>
             <li className="nav-item">
-              <button className="nav-link" href="#">
+              <button className="nav-link" onClick={(e) => logout(e)}>
                 <i className="fa fa-sign-out"></i>
               </button>
             </li>

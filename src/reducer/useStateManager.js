@@ -9,13 +9,15 @@ export const useStateManager = (
     customerList: [],
     cartDetails: [],
     customerDetails: {},
+    orderDetails: [],
     config: {},
     isCartEmpty: true,
     isLoading: false,
     forgotPasswordError: "",
     totalAmount: 0,
     paymentMethod: "",
-    adminPlaceOrder: []
+    adminPlaceOrder: [],
+    signUpStatus: null,
   },
   action
 ) => {
@@ -37,20 +39,41 @@ export const useStateManager = (
     case actionTypes.SET_SIGN_UP_DATA:
       return {
         ...state,
-        config: {
-          ...state.config,
-          signUpStatus: action.payload,
-        },
+        signUpStatus: action.payload,
       };
     case actionTypes.SET_PRODUCT_LIST:
       return {
         ...state,
         productList: action.payload,
+        orderDetails: [
+          {
+            orderId: "12345",
+            paidWith: "Paypal",
+            orderPlacedOn: "23/10/2021",
+            productsPurchased: "Gnb Body Fillers",
+            totalAmount: "123.45",
+          },
+          {
+            orderId: "23456",
+            paidWith: "Card",
+            orderPlacedOn: "24/10/2021",
+            productsPurchased: "A&B Body Fillers",
+            totalAmount: "123.45",
+          },
+          {
+            orderId: "34567",
+            paidWith: "POD",
+            orderPlacedOn: "25/10/2021",
+            productsPurchased: "ZnB Body Fillers",
+            totalAmount: "123.45",
+          },
+        ],
       };
     case actionTypes.SET_USER_DETAILS:
       return {
         ...state,
         customerDetails: action.payload,
+        isLoading: false,
       };
     case actionTypes.SET_FORGOT_PASSWORD_ERROR:
       return {
@@ -104,6 +127,7 @@ export const useStateManager = (
       return {
         ...state,
         customerDetails: action.payload,
+        isLoading: true,
       };
     case actionTypes.SET_KANBAN_DETAILS:
       return {
@@ -111,12 +135,12 @@ export const useStateManager = (
         crmDetails: action.payload,
       };
     case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:
-    console.log(action);
       return {
         ...state,
         adminPlaceOrder: action.payload,
       };
     case actionTypes.SET_ERROR:
+    case actionTypes.RESET_ALL_DATA:
     default:
       return { state };
   }

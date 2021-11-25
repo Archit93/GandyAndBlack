@@ -46,7 +46,7 @@ export default function PayPal(props) {
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={cartDetails.length} />
+        <HeaderMenu dispatch={dispatch} cartCount={cartDetails.length} />
       </div>
       <div id="checkout">
         <div className="container">

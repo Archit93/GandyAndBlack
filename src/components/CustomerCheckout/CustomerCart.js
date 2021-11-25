@@ -3,11 +3,15 @@ import HeaderMenu from "../common/HeaderMenu.js";
 import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
+import {
+  SET_CUSTOMER_CART_DETAILS,
+  EDIT_PRODUCT_QUANTITY,
+} from "../../constants/actionTypes";
 
 const CustomerCart = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails } = applicationState;
+  const { cartDetails, productList } = applicationState;
   const [tempCart, setTempCart] = React.useState(cartDetails);
 
   React.useEffect(() => {
@@ -17,10 +21,38 @@ const CustomerCart = (props) => {
     }
   }, []);
 
+  const removeItemFromCart = (e, productid) => {
+    e.preventDefault();
+    const productlistArray = [];
+    const filtered = tempCart.filter(
+      (cartItem, index, arr) => cartItem.productid !== productid
+    );
+    productList.map((rowdetail) => {
+      let productListObject = Object.assign(rowdetail);
+      if (rowdetail.productid === productid) {
+        productListObject = {
+          ...rowdetail,
+          quantity: 0,
+        };
+      }
+      productlistArray.push(productListObject);
+    });
+    setTempCart(filtered);
+    dispatch({
+      type: SET_CUSTOMER_CART_DETAILS,
+      payload: filtered,
+    });
+    dispatch({
+      type: EDIT_PRODUCT_QUANTITY,
+      payload: productlistArray,
+    });
+    window.sessionStorage.setItem("cart", JSON.stringify(filtered));
+  };
+
   return (
     <div>
       <div>
-        <HeaderMenu cartCount={tempCart.length} />
+        <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
       </div>
       <div id="checkout">
         <div className="container-fluid">
@@ -53,6 +85,13 @@ const CustomerCart = (props) => {
                               <div className="h6">
                                 QTY : <span>{product.quantity}</span>
                               </div>
+                              <button
+                                onClick={(e) =>
+                                  removeItemFromCart(e, product.productid)
+                                }
+                              >
+                                Remove
+                              </button>
                             </div>
                           ))}
                         <button

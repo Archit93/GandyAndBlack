@@ -27,8 +27,7 @@ const UserProfileHeaderSection = ({
                   <div>
                     <h5 className="font-size-16 mb-1">Hello, </h5>
                     <p className="text-muted font-size-13 mb-2 pb-2">
-                      {customerDetails.firstname}
-                      {customerDetails.lastname}
+                      {customerDetails.firstname} {customerDetails.lastname}
                     </p>
                   </div>
                 </div>

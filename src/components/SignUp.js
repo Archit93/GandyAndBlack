@@ -85,6 +85,7 @@ const SignUp = (props) => {
         firstName,
         lastName,
         email,
+        password,
       });
     }
   };
