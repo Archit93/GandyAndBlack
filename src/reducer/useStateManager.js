@@ -15,6 +15,7 @@ export const useStateManager = (
     forgotPasswordError: "",
     totalAmount: 0,
     paymentMethod: "",
+    adminPlaceOrder: []
   },
   action
 ) => {
@@ -108,6 +109,12 @@ export const useStateManager = (
       return {
         ...state,
         crmDetails: action.payload,
+      };
+    case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:
+    console.log(action);
+      return {
+        ...state,
+        adminPlaceOrder: action.payload,
       };
     case actionTypes.SET_ERROR:
     default:

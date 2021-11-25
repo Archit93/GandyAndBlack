@@ -16,7 +16,8 @@ import MyOrders from "../components/MyOrders";
 import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustomersList";
 import CRM from "../components/Admin/CRMTab/CRM";
 import HomePage from "../components/HomePage";
-import AdminProductList from "../components/Admin/AdminProductListTab/AdminProductList"
+import AdminProductList from "../components/Admin/AdminProductListTab/AdminProductList";
+import AdminPlaceOrder from "../components/Admin/AdminPlaceOrderTab/AdminPlaceOrder";
 
 export const AppRouter = (props) => {
   return (
@@ -70,10 +71,11 @@ export const AppRouter = (props) => {
         <Route exact={true} path="/my_orders">
           <MyOrders {...props} />
         </Route>
-
-        {/* temporary modal */}
         <Route exact={true} path="/admin_product_list">
           <AdminProductList {...props} />
+        </Route>
+        <Route exact={true} path="/place_order">
+          <AdminPlaceOrder {...props} />
         </Route>
       </Switch>
     </Router>

@@ -67,6 +67,7 @@ const App = () => {
     isCartEmpty: true,
     isLoading: false,
     forgotPasswordError: "",
+    adminPlaceOrder: []
   });
   React.useEffect(() => {
     const setResponsiveness = () => {
