@@ -12,7 +12,7 @@ const UpdateProductModal = (props) => {
                 <div className="modal enter-done">
                     <div className="modal-content" style={{ overflow: "auto", maxHeight: "600px" }}>
                         <div className="modal-header">
-                            <h4 className="modal-title">Add Product</h4>
+                            <h4 className="modal-title">Edit Product Details</h4>
                         </div>
                         <div className="modal-body">
                             <div className="form-floating mb-3">
@@ -54,28 +54,15 @@ const UpdateProductModal = (props) => {
                                 />
                                 <label for="floatingInput">Product Description</label>
                             </div>
-                            <div className="my-renderer">
-                                <label for="floatingInput">Product Price</label>
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onDecrement(event)}
-                                >
-                                    -
-                    </button>
+                            <div className="form-floating mb-3">
                                 <input
-                                    className="quantity-inputbtn"
+                                    type="text"
+                                    className="form-control"
                                     id="productPrice"
-                                    type="number"
-                                    value="quantity value"
-                                // onChange={(event) => onInputChange(event)}
-                                // onBlur={() => onInputBlur()}
+                                    placeholder="productPrice"
+                                    value="Product Description"
                                 />
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onIncrement(event)}
-                                >
-                                    +
-                    </button>
+                                <label for="floatingInput">Product Price</label>
                             </div>
                             <div className="form-floating">
                                 <select
@@ -89,52 +76,27 @@ const UpdateProductModal = (props) => {
                                 </select>
                                 <label for="productWarehouse">Product Warehouse</label>
                             </div>
-                            <div className="my-renderer">
+                            <div className="form-floating mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="productPrice"
+                                    placeholder="productWareHouseStock"
+                                    value="Product Warehouse Stock"
+                                />
                                 <label for="floatingInput">Product Warehouse Stock</label>
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onDecrement(event)}
-                                >
-                                    -
-                    </button>
-                                <input
-                                    className="quantity-inputbtn"
-                                    id="productPrice"
-                                    type="number"
-                                    value="quantity value"
-                                // onChange={(event) => onInputChange(event)}
-                                // onBlur={() => onInputBlur()}
-                                />
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onIncrement(event)}
-                                >
-                                    +
-                    </button>
                             </div>
-                            <div className="my-renderer">
+                            <div className="form-floating mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="productVat"
+                                    placeholder="productVat"
+                                    value="Product Vat"
+                                />
                                 <label for="floatingInput">Product Vat</label>
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onDecrement(event)}
-                                >
-                                    -
-                    </button>
-                                <input
-                                    className="quantity-inputbtn"
-                                    id="productPrice"
-                                    type="number"
-                                    value="quantity value"
-                                // onChange={(event) => onInputChange(event)}
-                                // onBlur={() => onInputBlur()}
-                                />
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onIncrement(event)}
-                                >
-                                    +
-                    </button>
                             </div>
+                            
                             <div className="form-floating mb-3">
                                 <input
                                     type="text"
@@ -145,64 +107,36 @@ const UpdateProductModal = (props) => {
                                 />
                                 <label for="floatingInput">Product Short Code</label>
                             </div>
-                            <div className="my-renderer">
+
+                            <div className="form-floating mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="productStockYellow"
+                                    placeholder="Product Stock Yellow"
+                                    value="Product Stock Yellow"
+                                />
                                 <label for="floatingInput">Product Stock Yellow</label>
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onDecrement(event)}
-                                >
-                                    -
-                    </button>
-                                <input
-                                    className="quantity-inputbtn"
-                                    id="productPrice"
-                                    type="number"
-                                    value="quantity value"
-                                // onChange={(event) => onInputChange(event)}
-                                // onBlur={() => onInputBlur()}
-                                />
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onIncrement(event)}
-                                >
-                                    +
-                    </button>
                             </div>
-                            <div className="my-renderer">
+
+                             <div className="form-floating mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="productStockYellow"
+                                    placeholder="Product Stock Red"
+                                    value="Product Stock Red"
+                                />
                                 <label for="floatingInput">Product Stock Red</label>
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onDecrement(event)}
-                                >
-                                    -
-                    </button>
-                                <input
-                                    className="quantity-inputbtn"
-                                    id="productPrice"
-                                    type="number"
-                                    value="quantity value"
-                                // onChange={(event) => onInputChange(event)}
-                                // onBlur={() => onInputBlur()}
-                                />
-                                <button
-                                    className="btn-quantity"
-                                // onClick={(event) => onIncrement(event)}
-                                >
-                                    +
-                    </button>
                             </div>
+                            
                         </div>
                         <div className="modal-footer text-align-center">
-                            <button className="btn btn-main">
+                            <button className="btn btn-main" onClick={()=> props.onClose()}>
                                 Save
                 </button>
-                            {/* this button for add product */}
-                            <button onClick={props.onClose} className="btn floating-modal-btn btn-secondary">
-                                Close
-                </button>
-                            {/* this button for update product */}
-                            <button className="btn floating-modal-btn btn-secondary">
-                                Back to Home
+                            <button className="btn floating-modal-btn btn-secondary" onClick={()=> props.onClose()}>
+                                Back
                 </button>
                         </div>
                     </div>

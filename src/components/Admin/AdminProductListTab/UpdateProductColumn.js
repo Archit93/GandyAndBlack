@@ -5,13 +5,15 @@ export const UpdateProductColumn = (params) => {
     return (
         <div>
             <>
-                <button 
-                    type="button" 
-                    className="btn btn-main" 
-                    onClick = {() => context.showUpdateProductModal(true)}>
-                    Edit
+                <button
+                    type="button"
+                    className="btn btn-main"
+                    onClick={() => context.showUpdateProductModal(true)}>
+
+                    <i className="fa fa-edit"></i>
+
                 </button>
-                
+
 
             </>
         </div>

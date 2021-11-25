@@ -5,14 +5,12 @@ export const DeleteProductColumn = (params) => {
     return (
         <div>
             <>
-                <button 
-                    type="button" 
-                    className="btn btn-main" 
-                    onClick = {() => context.showDeleteProductModal(true)}>
-                    Delete
+                <button
+                    type="button"
+                    className="btn btn-main"
+                    onClick={() => context.showDeleteProductModal(true)}>
+                    <i className="fa fa-delete"></i>
                 </button>
-                
-
             </>
         </div>
 
