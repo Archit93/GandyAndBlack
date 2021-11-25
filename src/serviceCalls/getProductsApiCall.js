@@ -58,7 +58,7 @@ export const getProductsApiCall = async ({
               });
             })
           );
-        history.push("/crm");
+        history.push("/admin_product_list");
       }
     })
     .catch(() => {

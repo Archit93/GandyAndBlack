@@ -52,7 +52,7 @@ const HomePage = (props) => {
           {/* col 3 */}
           <div className="row">
             <div className="col-lg-4 rectangle-202-uEBdwN"
-              onClick={() => history.push("/sign-in")}>
+              onClick={() => history.push("/signin")}>
               <div className="poppins-normal-white-24px">
                 VIEW MY ACCOUNT
               </div>
