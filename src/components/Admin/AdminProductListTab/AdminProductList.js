@@ -54,7 +54,7 @@ const AdminProductList = (props) => {
         () => ({
             resizable: true,
             sortable: true,
-            minWidth: 256,
+            // minWidth: 256,
         }),
         []
     );
@@ -73,6 +73,12 @@ const AdminProductList = (props) => {
         setAddProductModal(showModalValue);
     }
 
+// set background colour on even rows again, this looks bad, should be using CSS classes
+const getRowStyle = params => {
+    if (params.node.rowIndex % 2 === 0) {
+        return { background: '#e3adab' };
+    }
+};
     return (
         <div id="productlist">
             <div>
@@ -95,6 +101,7 @@ const AdminProductList = (props) => {
                     style={{ height: "calc(100vh - 315px)", width: "100%" }}
                 >
                     <AgGridReact
+                     getRowStyle={getRowStyle}
                         rowData={rowData()}
                         columnDefs={columnDefs()}
                         defaultColDef={defaultColDef}
@@ -119,7 +126,7 @@ const AdminProductList = (props) => {
                         Add Product
           </button>
                     <button
-                        className="btn btn-main"
+                        className="btn btn-secondary"
                         type="submit"
                         name="btn-checkout"
                         id="btn-checkout"
@@ -128,7 +135,7 @@ const AdminProductList = (props) => {
                         Import Product (.csv, .xls)
           </button>
                     <button
-                        className="btn btn-main"
+                        className="btn btn-secondary"
                         type="submit"
                         name="btn-checkout"
                         id="btn-checkout"
