@@ -21,33 +21,14 @@ const HomePage = (props) => {
           <h1 className="supplier-s-of-p-hetics-products-uEBdwN">
             SUPPLIERS OF PREMIUM AESTHETICS PRODUCTS
           </h1>
-          <div
-            className="rectangle-202-uEBdwN"
-            onClick={() => history.push("/signin")}
-          ></div>
-          <div className="rectangle-205-uEBdwN"></div>
-          <div
-            className="rectangle-203-uEBdwN"
-            onClick={() => history.push("/signup")}
-          ></div>
-          <div
-            className="rectangle-204-uEBdwN"
-            onClick={() => history.push("/aboutus")}
-          ></div>
-          <div
-            className="view-my-account-uEBdwN poppins-normal-white-30px"
-            onClick={() => history.push("/signin")}
-          >
-            VIEW MY ACCOUNT
-          </div>
-          <div className="view-products-uEBdwN poppins-normal-white-30px">
-            VIEW PRODUCTS
-          </div>
-          <div
-            className="create-my-account-uEBdwN poppins-normal-white-30px"
-            onClick={() => history.push("/signup")}
-          >
-            CREATE MY ACCOUNT
+
+          {/* View product button */}
+          <div className="viewproduct-main-container">
+            <div className="rectangle-205-uEBdwN">
+              <div className="poppins-normal-white-24px" onClick={() => history.push("/productlist")}>
+                VIEW PRODUCTS
+              </div>
+            </div>
           </div>
           {/* col 3 */}
           <div className="row">

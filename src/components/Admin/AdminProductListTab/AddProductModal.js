@@ -55,7 +55,7 @@ const AddProductModal = (props) => {
                                 />
                                 <label for="floatingInput">Product Price</label>
                             </div>
-                            <div className="form-floating">
+                            <div className="form-floating mb-3">
                                 <select
                                     className="form-select"
                                     id="productWarehouse"

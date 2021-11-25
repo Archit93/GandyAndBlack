@@ -7,10 +7,10 @@ export const UpdateProductColumn = (params) => {
             <>
                 <button
                     type="button"
-                    className="btn btn-main"
+                    className="btn btn-icon"
                     onClick={() => context.showUpdateProductModal(true)}>
 
-                    <i className="fa fa-edit"></i>
+                    <i className="fa fa-edit icon-blue"></i>
 
                 </button>
 
