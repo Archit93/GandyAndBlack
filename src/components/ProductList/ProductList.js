@@ -140,6 +140,13 @@ const ProductList = (props) => {
     history.push("/customercart_details");
   };
 
+
+// set background colour on even rows again, this looks bad, should be using CSS classes
+const getRowStyle = params => {
+    if (params.node.rowIndex % 2 === 0) {
+        return { background: '#e3adab' };
+    }
+};
   return (
     <div id="productlist">
       <div>
@@ -161,6 +168,7 @@ const ProductList = (props) => {
           style={{ height: "calc(100vh - 315px)", width: "100%" }}
         >
           <AgGridReact
+            getRowStyle={getRowStyle}
             getRowHeight={getRowHeight}
             rowData={rowData()}
             columnDefs={columnDefs({

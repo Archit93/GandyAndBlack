@@ -60,7 +60,6 @@ const AdminCustomersList = (props) => {
         gridApi.setQuickFilter(event.target.value);
     }
     const showPromocodeModal = (showModalValue) => {
-        console.log(showModalValue);
         setShowModal(showModalValue);
     }
 

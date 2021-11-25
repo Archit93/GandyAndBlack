@@ -14,3 +14,11 @@
   font-style: normal;
   font-weight: 400;
 }
+
+.poppins-normal-white-24px {
+  color: var(--white);
+  font-family: var(--font-family-poppins);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}

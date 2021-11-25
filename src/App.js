@@ -50,9 +50,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/common.css";
 import "./styles/login.css";
 import "./styles/checkout.css";
-// import "./styles/g-b-insta-landing-page.css";
-// import "./styles/globals.css";
-// import "./styles/styleguide.css";
+import "./styles/g-b-insta-landing-page.css";
+import "./styles/globals.css";
+import "./styles/styleguide.css";
 import { SET_MOBILE_VIEW } from "./constants/actionTypes";
 
 const App = () => {
@@ -67,6 +67,7 @@ const App = () => {
     isCartEmpty: true,
     isLoading: false,
     forgotPasswordError: "",
+    adminPlaceOrder: []
   });
   React.useEffect(() => {
     const setResponsiveness = () => {
