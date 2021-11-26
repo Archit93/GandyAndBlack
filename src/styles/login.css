@@ -258,10 +258,12 @@ footer span {
 
 .loader {
   position: fixed;
-  left: 0px;
-  top: 50%;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   z-index: 9999;
   color: #f9938e;
+  background: white;
+  opacity: 0.8;
 }
