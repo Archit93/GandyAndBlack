@@ -250,7 +250,7 @@ const MyProfile = (props) => {
     setShowModal(showModalValue);
   };
   return (
-    <div id="myprofile">
+    <>
       {isLoading && (
         <div className="d-flex justify-content-center loader">
           <Spinner animation="border" role="status">
@@ -258,60 +258,66 @@ const MyProfile = (props) => {
           </Spinner>
         </div>
       )}
-      <div>
-        <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
-      </div>
-      <div id="profile">
-        <UserProfileHeaderSection
-          showUpdatePassowrdModal={showUpdatePassowrdModal}
-          customerDetails={applicationState.customerDetails}
-        />
-        <div className="container-fluid">
-          <UserProfileSection
-            validateName={validateName}
-            onNameChange={onNameChange}
-            validateAddress={validateAddress}
-            onAddressChange={onAddressChange}
-            validatePostcode={validatePostcode}
-            onPostcodeChange={onPostcodeChange}
-            validatePhone={validatePhone}
-            onPhoneChange={onPhoneChange}
-            setProfileDetails={setProfileDetails}
-            validateSubmit={validateSubmit}
-            profileDetails={profileDetails}
-            profileDetailsError={profileDetailsError}
-            emptyCredentialsError={emptyCredentialsError}
+      <div id="myprofile">
+        <div>
+          <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
+        </div>
+        <div id="profile">
+          <UserProfileHeaderSection
+            showUpdatePassowrdModal={showUpdatePassowrdModal}
+            customerDetails={applicationState.customerDetails}
           />
-          <UpdatePasswordModal
-            title="Please enter new password:"
-            onClose={() => showUpdatePassowrdModal(false)}
-            show={showModal}
-            passwordError={passwordError}
-            updatePassword={updatePassword}
-          >
-            <div className="form-floating mb-3">
-              <input
-                id="floatingPassword"
-                className="form-control"
-                type={passwordShown ? "text" : "password"}
-                onChange={(e) => onPasswordChange(e)}
-                onBlur={(e) => validatePassword(e)}
-                value={password}
-                placeholder="password"
-                required
-              />
-              <i
-                className={`fa ${
-                  passwordShown ? `fa-eye-slash` : `fa-eye`
-                } sign-up-icon`}
-                onClick={togglePasswordVisiblity}
-              ></i>
-            </div>
-            {passwordError ? <span>{passwordError}</span> : <React.Fragment />}
-          </UpdatePasswordModal>
+          <div className="container-fluid">
+            <UserProfileSection
+              validateName={validateName}
+              onNameChange={onNameChange}
+              validateAddress={validateAddress}
+              onAddressChange={onAddressChange}
+              validatePostcode={validatePostcode}
+              onPostcodeChange={onPostcodeChange}
+              validatePhone={validatePhone}
+              onPhoneChange={onPhoneChange}
+              setProfileDetails={setProfileDetails}
+              validateSubmit={validateSubmit}
+              profileDetails={profileDetails}
+              profileDetailsError={profileDetailsError}
+              emptyCredentialsError={emptyCredentialsError}
+            />
+            <UpdatePasswordModal
+              title="Please enter new password:"
+              onClose={() => showUpdatePassowrdModal(false)}
+              show={showModal}
+              passwordError={passwordError}
+              updatePassword={updatePassword}
+            >
+              <div className="form-floating mb-3">
+                <input
+                  id="floatingPassword"
+                  className="form-control"
+                  type={passwordShown ? "text" : "password"}
+                  onChange={(e) => onPasswordChange(e)}
+                  onBlur={(e) => validatePassword(e)}
+                  value={password}
+                  placeholder="password"
+                  required
+                />
+                <i
+                  className={`fa ${
+                    passwordShown ? `fa-eye-slash` : `fa-eye`
+                  } sign-up-icon`}
+                  onClick={togglePasswordVisiblity}
+                ></i>
+              </div>
+              {passwordError ? (
+                <span>{passwordError}</span>
+              ) : (
+                <React.Fragment />
+              )}
+            </UpdatePasswordModal>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
