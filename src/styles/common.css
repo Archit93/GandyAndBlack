@@ -2897,3 +2897,52 @@ input:-webkit-autofill:active {
 .icon-red{
   color: #dc3545;
 }
+
+	.rectangle-205-uEBdwN {
+	  background-color: #d1d1d1;
+	  top: 32px;
+	  padding: 60px;
+	  text-align: center;
+	}
+
+	.rectangle-201-uEBdwN {
+	  background-color: #6d8bb8;
+	  top: 32px;
+	  padding: 60px;
+	  text-align: center;
+	}
+
+	.rectangle-206-uEBdwN {
+	  background-color: #f7b8b8;
+	  top: 32px;
+	  padding: 60px;
+	  text-align: center;
+	}
+
+	.tile-btn{
+		border: 0;
+		background-color: transparent;
+		padding: 0;
+	}
+  .rectangle-202-uEBdwN {
+    background-color: #5d7395;
+    top: 32px;
+    padding: 60px;
+    text-align: center;
+  }
+  
+  .rectangle-203-uEBdwN {
+    background-color: #f19c9c;
+    top: 32px;
+    padding: 60px;
+    text-align: center;
+  }
+  
+  .rectangle-204-uEBdwN {
+    background-color: #c3bfbf;
+    top: 32px;
+    padding: 60px;
+    text-align: center;
+  }
+  
+  

@@ -18,6 +18,7 @@ import CRM from "../components/Admin/CRMTab/CRM";
 import HomePage from "../components/HomePage";
 import AdminProductList from "../components/Admin/AdminProductListTab/AdminProductList";
 import AdminPlaceOrder from "../components/Admin/AdminPlaceOrderTab/AdminPlaceOrder";
+import ProductListTiles from "../components/ProductList/ProductListTiles";
 
 export const AppRouter = (props) => {
   return (
@@ -76,6 +77,9 @@ export const AppRouter = (props) => {
         </Route>
         <Route exact={true} path="/place_order">
           <AdminPlaceOrder {...props} />
+        </Route>
+        <Route exact={true} path="/producttypes">
+          <ProductListTiles {...props} />
         </Route>
       </Switch>
     </Router>
