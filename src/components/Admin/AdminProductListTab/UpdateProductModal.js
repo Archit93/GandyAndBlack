@@ -2,9 +2,10 @@ import * as React from "react";
 import { CSSTransition } from "react-transition-group";
 
 const UpdateProductModal = (props) => {
+
     return (
         <>
-            <CSSTransition
+           {props.dataForUpdateModal && <CSSTransition
                 in={props.show}
                 unmountOnExit
                 timeout={{ enter: 0, exit: 300 }}
@@ -21,6 +22,7 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productId"
                                     placeholder="productId"
+                                    value={props.dataForUpdateModal.productid}
                                 />
                                 <label for="floatingInput">Product Id</label>
                             </div>
@@ -30,7 +32,7 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productType"
                                     placeholder="productType"
-                                    value="Product Type"
+                                    value={props.dataForUpdateModal.producttype}
                                 />
                                 <label for="floatingInput">Product Type</label>
                             </div>
@@ -40,7 +42,7 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productBrand"
                                     placeholder="productBrand"
-                                    value="Product Brand"
+                                    value={props.dataForUpdateModal.brand}
                                 />
                                 <label for="floatingInput">Product Brand</label>
                             </div>
@@ -50,7 +52,7 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productDescription"
                                     placeholder="productDescription"
-                                    value="Product Description"
+                                    value={props.dataForUpdateModal.productdesc}
                                 />
                                 <label for="floatingInput">Product Description</label>
                             </div>
@@ -60,8 +62,9 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productPrice"
                                     placeholder="productPrice"
-                                    value="Product Description"
+                                    value={props.dataForUpdateModal.salepriceperunit}
                                 />
+                                
                                 <label for="floatingInput">Product Price</label>
                             </div>
                             <div className="form-floating mb-3">
@@ -82,7 +85,7 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productPrice"
                                     placeholder="productWareHouseStock"
-                                    value="Product Warehouse Stock"
+                                    value={props.dataForUpdateModal.numberofstock}
                                 />
                                 <label for="floatingInput">Product Warehouse Stock</label>
                             </div>
@@ -92,7 +95,7 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productVat"
                                     placeholder="productVat"
-                                    value="Product Vat"
+                                    value={props.dataForUpdateModal.vat}
                                 />
                                 <label for="floatingInput">Product Vat</label>
                             </div>
@@ -103,7 +106,7 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productShortCode"
                                     placeholder="Product Short Code"
-                                    value="Product Short Code"
+                                    value={props.dataForUpdateModal.shortcode}
                                 />
                                 <label for="floatingInput">Product Short Code</label>
                             </div>
@@ -114,7 +117,7 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productStockYellow"
                                     placeholder="Product Stock Yellow"
-                                    value="Product Stock Yellow"
+                                    value={props.dataForUpdateModal.breakpoint}
                                 />
                                 <label for="floatingInput">Product Stock Yellow</label>
                             </div>
@@ -125,7 +128,7 @@ const UpdateProductModal = (props) => {
                                     className="form-control"
                                     id="productStockYellow"
                                     placeholder="Product Stock Red"
-                                    value="Product Stock Red"
+                                    value={props.dataForUpdateModal.threshold}
                                 />
                                 <label for="floatingInput">Product Stock Red</label>
                             </div>
@@ -141,7 +144,7 @@ const UpdateProductModal = (props) => {
                         </div>
                     </div>
                 </div>
-            </CSSTransition>
+            </CSSTransition>}
         </>
     );
 };
