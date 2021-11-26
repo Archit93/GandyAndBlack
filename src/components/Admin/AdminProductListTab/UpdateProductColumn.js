@@ -8,7 +8,7 @@ export const UpdateProductColumn = (params) => {
                 <button
                     type="button"
                     className="btn btn-icon"
-                    onClick={() => context.showUpdateProductModal(true)}>
+                    onClick={() => context.frameWorkComponentChange({ api, data, column, node, context })}>
 
                     <i className="fa fa-edit icon-blue"></i>
 
