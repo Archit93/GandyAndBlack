@@ -66,15 +66,15 @@ const AdminCustomersList = (props) => {
     }
 
     return (
-        <div id="productlist" className="row" style={{height:'100vh'}}>
+        <div id="productlist">
            <div>
                 <AdminHeaderMenu />
             </div>
            
-            <div className="col-lg-12 p-0" style={{ width: '100%', height: '100%' }}>
-                <div className="p-3">
+            <div className="" >
+                <div className="container-fluid">
                     <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
-                    <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 160px)', width: '100%' }}>
+                    <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 315px)', width: '100%' }}>
                         <AgGridReact
                             rowData={rowData()}
                             columnDefs={columnDefs}

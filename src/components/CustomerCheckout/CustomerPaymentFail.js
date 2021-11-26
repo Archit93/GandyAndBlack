@@ -2,7 +2,7 @@ import * as React from "react";
 import HeaderMenu from "../common/HeaderMenu.js";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 
-const CustomerPaymentSuccess = (props) => {
+const CustomerPaymentFail = (props) => {
   return (
     <div>
       <div>
@@ -19,27 +19,24 @@ const CustomerPaymentSuccess = (props) => {
                     <div className="col-lg-12 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
                       <fieldset>
                         <div className="form-card">
-                          <div>
-                            <h2 className="fs-title text-center">Success!</h2>
-                          </div>
-                          <div className="row justify-content-center">
-                            <div className="col-3">
-                              <img
-                                src="https://img.icons8.com/color/96/000000/ok--v2.png"
-                                className="fit-image"
-                              />
+                            <div>
+                            <h2 className="fs-title text-center">Order Failed!</h2>
                             </div>
-                          </div>
-                          <div className="row justify-content-center">
+                            <div className="row justify-content-center">
+                            <div className="col-3 cross-icon">
+                            <i class="fa fa-times-circle fa-5x" aria-hidden="true"></i>
+                            </div>
+                            </div>
+                            <div className="row justify-content-center">
                             <div className="col-7 text-center">
-                              <h5>Your Order Placed Sucessfully</h5>
+                                <h5>Please try again</h5>
                             </div>
-                          </div>
-                          <div className="text-center mrt-20">
+                            </div>
+                            <div className="text-center mrt-20">
                                 <button
                                 className="btn btn-secondary"
                                 type="submit">
-                                Continue Shopping
+                                Back to Home
                                 </button>
                             </div>
                         </div>
@@ -56,4 +53,4 @@ const CustomerPaymentSuccess = (props) => {
   );
 };
 
-export default CustomerPaymentSuccess;
+export default CustomerPaymentFail;
