@@ -3,12 +3,12 @@ import HeaderMenu from "../common/HeaderMenu";
 
 const ProductListTiles = (props) => {
     return (
-        <>
+        <div id="producttype">
             <div>
                 <HeaderMenu />
             </div>
             <div
-                className="container-fluid"
+                
                 style={{ width: "100%", height: "100%" }}
             >
                 <div className="row">
@@ -58,7 +58,7 @@ const ProductListTiles = (props) => {
                     </button>
                 </div>
             </div>
-        </>
+        </div>
     )
 };
 export default ProductListTiles;

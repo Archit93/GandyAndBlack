@@ -7,6 +7,8 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { PromoCodeColumn } from './PromoCodeColumn';
 import PromoCodeModal from './PromoCodeModal';
 
+import AdminHeaderMenu from '../../common/AdminHeaderMenu';
+
 
 const AdminCustomersList = (props) => {
 
@@ -64,10 +66,10 @@ const AdminCustomersList = (props) => {
     }
 
     return (
-        <div className="row" style={{height:'100vh'}}>
-            {/* <div className="col-lg-1 p-0">
-                <Sidebar />
-            </div> */}
+        <div id="productlist" className="row" style={{height:'100vh'}}>
+           <div>
+                <AdminHeaderMenu />
+            </div>
            
             <div className="col-lg-12 p-0" style={{ width: '100%', height: '100%' }}>
                 <div className="p-3">
