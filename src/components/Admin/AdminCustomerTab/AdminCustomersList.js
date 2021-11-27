@@ -66,7 +66,7 @@ const AdminCustomersList = (props) => {
     }
 
     return (
-        <div id="productlist">
+        <div id="productlist" className="row" style={{height:'100vh'}}>
            <div>
                 <AdminHeaderMenu />
             </div>

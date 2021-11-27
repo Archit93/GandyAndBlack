@@ -7,7 +7,14 @@ const ProductListTiles = (props) => {
             <div>
                 <HeaderMenu />
             </div>
+<<<<<<< HEAD
             <div style={{ width: "100%", height: "100%" }}>
+=======
+            <div
+                
+                style={{ width: "100%", height: "100%" }}
+            >
+>>>>>>> origin/develop
                 <div className="row">
                     <button className="col-lg-4 tile-btn">
                         <div className="rectangle-202-uEBdwN">
