@@ -11,6 +11,7 @@ const SignIn = (props) => {
   const history = useHistory();
   const {
     applicationState: { isLoading },
+    dispatch,
   } = props;
   const [email, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -52,8 +53,8 @@ const SignIn = (props) => {
     } else {
       props.dispatch({ type: SET_IS_LOADING, payload: true });
       signInApiCall({
-        dispatch: props.dispatch,
-        history: history,
+        dispatch,
+        history,
         email,
         password,
       });
@@ -98,12 +99,13 @@ const SignIn = (props) => {
                     />
                     <label htmlFor="floatingInput">Email address</label>
                   </div>
-                  {emailError ? 
-                  <span>
-                    <div className="error">
-                      {emailError}
-                    </div>
-                  </span> : <React.Fragment />}
+                  {emailError ? (
+                    <span>
+                      <div className="error">{emailError}</div>
+                    </span>
+                  ) : (
+                    <React.Fragment />
+                  )}
                   <div className="form-floating pass-wrapper">
                     <input
                       type={passwordShown ? "text" : "password"}
@@ -124,9 +126,7 @@ const SignIn = (props) => {
                   </div>
                   {passwordError ? (
                     <span>
-                      <div className="error">
-                        {passwordError}
-                      </div>
+                      <div className="error">{passwordError}</div>
                     </span>
                   ) : (
                     <React.Fragment />
