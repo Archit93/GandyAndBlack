@@ -339,7 +339,7 @@ const AddProductModal = (props) => {
                 />
                 <label for="floatingInput">Product Stock Red</label>
               </div>
-              {productStockRed ? (
+              {productStockRedError ? (
                 <span className="error">{productStockRedError}</span>
               ) : (
                 <React.Fragment />
