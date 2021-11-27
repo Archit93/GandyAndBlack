@@ -2465,9 +2465,10 @@ div + .header-config {
 /* Product list table increment / decrement */
 .btn-quantity {
   border: 0;
-  background: #e3adab;
+  background: #7984a3;
   width: 40px;
   font-size: inherit;
+  color: #fff;
 }
 /* table input field width, center */
 .quantity-inputbtn {
@@ -2646,7 +2647,8 @@ input:-webkit-autofill:active {
 #aboutus,
 #productlist,
 #myprofile,
-#myorders {
+#myorders,
+#producttype {
   margin-top: 100px;
 }
 

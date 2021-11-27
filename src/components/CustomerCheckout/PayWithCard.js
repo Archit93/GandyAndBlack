@@ -3,15 +3,18 @@ import HeaderMenu from "../common/HeaderMenu.js";
 import { useHistory } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
+import { Spinner } from "react-bootstrap";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 import PayPal from "./PayPal.js";
 import CustomerPaymentSuccess from "./CustomerPaymentSuccess.js";
+import { stripeCheckoutApi } from "../../serviceCalls/stripeCheckoutApi";
+import { SET_IS_LOADING } from "../../constants/actionTypes";
 
 const PayWithCard = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails } = applicationState;
+  const { cartDetails, isLoading } = applicationState;
   const [tempCart, setTempCart] = React.useState(cartDetails);
 
   React.useEffect(() => {
@@ -22,27 +25,25 @@ const PayWithCard = (props) => {
   }, []);
 
   const handleToken = async (token, addresses) => {
-    const response = await axios.post(
-      "https://qhc9e.sse.codesandbox.io/checkout",
-      {
-        token,
-        product: {
-          name: "Tesla Roadster",
-          price: 10000,
-          description: "Cool car",
-        },
-      }
-    );
-    const { status } = response.data;
-    if (status === "success") {
-      console.log("Success! Check email for details");
-    } else {
-      console.log("Something went wrong");
-    }
+    dispatch({ type: SET_IS_LOADING, payload: true });
+    stripeCheckoutApi({
+      dispatch,
+      history,
+      token,
+      addresses,
+      totalAmount: applicationState.totalAmount,
+    });
   };
 
   return (
     <div>
+      {isLoading && (
+        <div className="d-flex justify-content-center loader">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
       <div>
         <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
       </div>
