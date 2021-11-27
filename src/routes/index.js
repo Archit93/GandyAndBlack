@@ -20,6 +20,8 @@ import AdminProductList from "../components/Admin/AdminProductListTab/AdminProdu
 import AdminPlaceOrder from "../components/Admin/AdminPlaceOrderTab/AdminPlaceOrder";
 import ProductListTiles from "../components/ProductList/ProductListTiles";
 
+import CustomerPaymentFail from "../components/CustomerCheckout/CustomerPaymentFail";
+
 export const AppRouter = (props) => {
   return (
     <Router>
@@ -80,6 +82,10 @@ export const AppRouter = (props) => {
         </Route>
         <Route exact={true} path="/producttypes">
           <ProductListTiles {...props} />
+        </Route>
+
+        <Route exact={true} path="/cutomerfail">
+          <CustomerPaymentFail {...props} />
         </Route>
       </Switch>
     </Router>

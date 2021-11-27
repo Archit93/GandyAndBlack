@@ -2947,4 +2947,6 @@ input:-webkit-autofill:active {
     text-align: center;
   }
   
-  
+  .cross-icon{
+    text-align: center;
+  }

@@ -69,12 +69,19 @@ const CustomerCart = (props) => {
                           tempCart?.map((product) => (
                             <div className="form-card" key={product.productid}>
                               <div className="h5">
-                                <span>{product.brand}</span>
+                                <span style={{ fontWeight: "600" }}>{product.brand}</span>
+                                <span style={{ float: "right", cursor: "pointer" }} 
+                                onClick={(e) =>
+                                  removeItemFromCart(e, product.productid)
+                                }>
+                                  <i class="fa fa-trash icon-red"></i>
+                                </span>
                                 <span style={{ float: "right" }}>
                                   £{product.salepriceperunit}
                                 </span>
+                                
                               </div>
-                              <div className="h5">
+                              <div className="h6">
                                 <span>
                                   {product.producttype} {product.productdesc}
                                 </span>
@@ -85,13 +92,13 @@ const CustomerCart = (props) => {
                               <div className="h6">
                                 QTY : <span>{product.quantity}</span>
                               </div>
-                              <button
+                              {/* <button
                                 onClick={(e) =>
                                   removeItemFromCart(e, product.productid)
                                 }
                               >
                                 Remove
-                              </button>
+                              </button> */}
                             </div>
                           ))}
                         <button
