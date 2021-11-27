@@ -73,6 +73,7 @@ export const useStateManager = (
       return {
         ...state,
         customerDetails: action.payload,
+        orderDetails: action.orderDetails,
         isLoading: false,
       };
     case actionTypes.SET_FORGOT_PASSWORD_ERROR:

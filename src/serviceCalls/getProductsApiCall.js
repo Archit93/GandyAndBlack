@@ -33,13 +33,16 @@ export const getProductsApiCall = async ({
         axios
           .all([
             axios.get(`${baseUrl}/user/account/${email}`, apiRequestHeader),
+            axios.get(`${baseUrl}/order/customers/email?email=${email}`, apiRequestHeader)
           ])
           .then(
-            axios.spread((customerDetails) => {
+            axios.spread((customerDetails, customerOrders) => {
+              console.log(customerOrders);
               dispatch({ type: SET_IS_LOADING, payload: false });
               dispatch({
                 type: SET_USER_DETAILS,
                 payload: customerDetails.data,
+                orderDetails : customerOrders.data
               });
               history.push("/productlist");
             })
