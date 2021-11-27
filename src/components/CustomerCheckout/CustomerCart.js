@@ -90,7 +90,16 @@ const CustomerCart = (props) => {
                                 VAT : <span>£{product.vat}</span>
                               </div>
                               <div className="h6">
-                                QTY : <span>{product.quantity}</span>
+                                <span className="mrr-5">QTY : </span>
+                                <span>
+                                <input
+                                type="number"
+                                className="cart-input"
+                                name="quantity"
+                                id="Quantity"
+                                value={product.quantity}
+                              />
+                              </span>
                               </div>
                               {/* <button
                                 onClick={(e) =>
