@@ -44,30 +44,7 @@ export const useStateManager = (
     case actionTypes.SET_PRODUCT_LIST:
       return {
         ...state,
-        productList: action.payload,
-        orderDetails: [
-          {
-            orderId: "12345",
-            paidWith: "Paypal",
-            orderPlacedOn: "23/10/2021",
-            productsPurchased: "Gnb Body Fillers",
-            totalAmount: "123.45",
-          },
-          {
-            orderId: "23456",
-            paidWith: "Card",
-            orderPlacedOn: "24/10/2021",
-            productsPurchased: "A&B Body Fillers",
-            totalAmount: "123.45",
-          },
-          {
-            orderId: "34567",
-            paidWith: "POD",
-            orderPlacedOn: "25/10/2021",
-            productsPurchased: "ZnB Body Fillers",
-            totalAmount: "123.45",
-          },
-        ],
+        productList: action.payload
       };
     case actionTypes.SET_USER_DETAILS:
       return {
@@ -93,11 +70,12 @@ export const useStateManager = (
       return {
         ...state,
         productList: action.payload,
+        cartDetails: action.cartDetails ? action.cartDetails : []
       };
-    case actionTypes.SET_CUSTOMER_CART_DETAILS:
+    case actionTypes.SET_TILE_CLICKED:
       return {
         ...state,
-        cartDetails: action.payload,
+        tileClicked: action.payload,
       };
     case actionTypes.IS_CART_EMPTY:
       return {

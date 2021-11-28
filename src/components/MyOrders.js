@@ -2,7 +2,6 @@ import * as React from "react";
 import { AgGridReact } from "ag-grid-react";
 import { useHistory } from "react-router-dom";
 import HeaderMenu from "./common/HeaderMenu";
-import Table from "react-bootstrap/Table";
 
 const MyOrders = (props) => {
   const history = useHistory();

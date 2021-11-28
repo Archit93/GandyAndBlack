@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 import {
-  SET_CUSTOMER_CART_DETAILS,
   EDIT_PRODUCT_QUANTITY,
 } from "../../constants/actionTypes";
 
@@ -25,7 +24,7 @@ const CustomerCart = (props) => {
     e.preventDefault();
     const productlistArray = [];
     const filtered = tempCart.filter(
-      (cartItem, index, arr) => cartItem.productid !== productid
+      (cartItem) => cartItem.productid !== productid
     );
     productList.map((rowdetail) => {
       let productListObject = Object.assign(rowdetail);
@@ -39,12 +38,9 @@ const CustomerCart = (props) => {
     });
     setTempCart(filtered);
     dispatch({
-      type: SET_CUSTOMER_CART_DETAILS,
-      payload: filtered,
-    });
-    dispatch({
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
+      cartDetails: filtered
     });
     window.sessionStorage.setItem("cart", JSON.stringify(filtered));
   };
@@ -101,20 +97,13 @@ const CustomerCart = (props) => {
                               />
                               </span>
                               </div>
-                              {/* <button
-                                onClick={(e) =>
-                                  removeItemFromCart(e, product.productid)
-                                }
-                              >
-                                Remove
-                              </button> */}
                             </div>
                           ))}
                         <button
                           className="previous action-button-previous"
                           type="submit"
                           onClick={() => {
-                            history.push("/productlist");
+                            history.push("/producttypes");
                           }}
                         >
                           Back
@@ -127,6 +116,7 @@ const CustomerCart = (props) => {
                           onClick={() => {
                             history.push("/customershipping_info");
                           }}
+                          disabled = {!(cartDetails && cartDetails.length > 0)}
                         >
                           Next
                         </button>
