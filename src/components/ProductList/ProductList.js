@@ -11,7 +11,6 @@ import { MobileViewColumnProductType } from "./MobileViewColumnProductType";
 import { MobileViewColumnBrand } from "./MobileViewColumnBrand";
 import { ColumnQuantity } from "./ColumnQuantity";
 import {
-  SET_CUSTOMER_CART_DETAILS,
   IS_CART_EMPTY,
   SET_TILE_CLICKED,
 } from "../../constants/actionTypes";

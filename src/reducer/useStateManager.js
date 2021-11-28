@@ -72,11 +72,6 @@ export const useStateManager = (
         productList: action.payload,
         cartDetails: action.cartDetails ? action.cartDetails : []
       };
-    case actionTypes.SET_CUSTOMER_CART_DETAILS:
-      return {
-        ...state,
-        cartDetails: action.payload,
-      };
     case actionTypes.SET_TILE_CLICKED:
       return {
         ...state,
