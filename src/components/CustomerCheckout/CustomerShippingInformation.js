@@ -12,6 +12,7 @@ import {
 } from "../../utils/regexUtils";
 import { SET_CUSTOMER_BILLING_DETAILS } from "../../constants/actionTypes";
 import { updateCustomerDetails } from "../../serviceCalls/updateCustomerDetails";
+import ToggleButton from 'react-toggle-button'
 
 const CustomerShippingInformation = (props) => {
   const history = useHistory();
@@ -285,6 +286,22 @@ const CustomerShippingInformation = (props) => {
                               Training Academy
                             </option>
                           </select>
+                          {/* toggle */}
+                          <div className="toggle mrt-20 pdb-30">
+                            <span>
+                              <ToggleButton
+                              // inactiveLabel={<X/>}
+                              // activeLabel={<Check/>}
+                              // value={self.state.value}
+                              // onToggle={(value) => {
+                              //   self.setState({
+                              //     value: !value,
+                              //   })
+                              // }}
+                              />
+                            </span>
+                            <span className="float-left">Is your Shipping address same as Billing address?</span>
+                          </div>
                         </div>
                         {emptyCredentialsError ? (
                           <div>{emptyCredentialsError}</div>

@@ -2669,15 +2669,40 @@ input:-webkit-autofill:active {
   margin-bottom: 20px;
 }
 
+.mrr-5{
+  margin-right: 5px;
+}
+
 /* Padding */
 .pdlr-40 {
   padding: 0 40px;
+}
+
+.pdb-30{
+  padding-bottom: 30px;
 }
 
 /* Global */
 .text-align-center {
   text-align: center;
   justify-content: center;
+}
+
+/* FLoat */
+.float-right{
+  float: right;
+}
+
+.float-left{
+  float: left;
+}
+
+/* Toggle */
+.toggle div {
+  display: inline-flex;
+  width: 50px;
+  float: left;
+  margin-right: 15px;
 }
 
 /* row added because of login screen x scroll issue*/
@@ -2900,53 +2925,119 @@ input:-webkit-autofill:active {
   color: #dc3545;
 }
 
-	.rectangle-205-uEBdwN {
-	  background-color: #d1d1d1;
-	  top: 32px;
-	  padding: 60px;
-	  text-align: center;
-	}
+/* Product types */
+.rectangle-205-uEBdwN {
+  background-color: #d1d1d1;
+  top: 32px;
+  padding: 40px;
+  text-align: center;
+  /* height: calc(100vh - 360px); */
+}
 
-	.rectangle-201-uEBdwN {
-	  background-color: #6d8bb8;
-	  top: 32px;
-	  padding: 60px;
-	  text-align: center;
-	}
+.rectangle-201-uEBdwN {
+  background-color: #6d8bb8;
+  top: 32px;
+  padding: 40px;
+  text-align: center;
+  /* height: calc(100vh - 360px); */
+}
 
-	.rectangle-206-uEBdwN {
-	  background-color: #f7b8b8;
-	  top: 32px;
-	  padding: 60px;
-	  text-align: center;
-	}
+.rectangle-206-uEBdwN {
+  background-color: #f7b8b8;
+  top: 32px;
+  padding: 40px;
+  text-align: center;
+  /* height: calc(100vh - 360px); */
+}
 
-	.tile-btn{
-		border: 0;
-		background-color: transparent;
-		padding: 0;
-	}
-  .rectangle-202-uEBdwN {
-    background-color: #5d7395;
-    top: 32px;
-    padding: 60px;
-    text-align: center;
-  }
+.tile-btn{
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+}
+
+.rectangle-202-uEBdwN {
+  background-color: #5d7395;
+  top: 32px;
+  padding: 40px;
+  text-align: center;
+  /* height: calc(100vh - 365px); */
+}
+
+.rectangle-203-uEBdwN {
+  background-color: #f19c9c;
+  top: 32px;
+  padding: 40px;
+  text-align: center;
+  /* height: calc(100vh - 365px); */
+}
+
+.rectangle-204-uEBdwN {
+  background-color: #c3bfbf;
+  top: 32px;
+  padding: 40px;
+  text-align: center;
+  /* height: calc(100vh - 365px);*/
+}
+
+/* .rectangle-205-uEBdwN .poppins-normal-white-24px , .rectangle-201-uEBdwN .poppins-normal-white-24px, .rectangle-206-uEBdwN .poppins-normal-white-24px,
+.rectangle-202-uEBdwN .poppins-normal-white-24px, .rectangle-203-uEBdwN .poppins-normal-white-24px, .rectangle-204-uEBdwN .poppins-normal-white-24px{
+  line-height: 17; 
+} */
   
-  .rectangle-203-uEBdwN {
-    background-color: #f19c9c;
-    top: 32px;
-    padding: 60px;
-    text-align: center;
-  }
-  
-  .rectangle-204-uEBdwN {
-    background-color: #c3bfbf;
-    top: 32px;
-    padding: 60px;
-    text-align: center;
-  }
-  
-  .cross-icon{
-    text-align: center;
-  }
+/* Order fail */
+.cross-icon{
+  text-align: center;
+}
+
+/* Customer cart */
+.cart-input{
+  width: auto  !important;
+  border: 1px solid #dedede !important;
+  padding: 10px !important;
+}
+
+.fill-height-or-more {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+} 
+
+.fill-height-or-more .rectangle-205-uEBdwN,
+.fill-height-or-more .rectangle-201-uEBdwN,
+.fill-height-or-more .rectangle-206-uEBdwN,
+.fill-height-or-more .rectangle-202-uEBdwN,
+.fill-height-or-more .rectangle-203-uEBdwN,
+.fill-height-or-more .rectangle-204-uEBdwN {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}

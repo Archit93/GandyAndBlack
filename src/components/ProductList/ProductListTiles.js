@@ -23,7 +23,7 @@ const ProductListTiles = (props) => {
             <div
                 style={{ width: "100%", height: "100%" }}
             >
-                <div className="row">
+                <div className="row fill-height-or-more">
                     <button className="col-lg-4 tile-btn" onClick={() => onTileClick("Dermal Filler")}>
                         <div className="rectangle-202-uEBdwN">
                             <div className="poppins-normal-white-24px">
@@ -46,7 +46,7 @@ const ProductListTiles = (props) => {
                         </div>
                     </button>
                 </div>
-                <div className="row">
+                <div className="row fill-height-or-more">
                     <button className="col-lg-4 tile-btn" onClick={() => onTileClick("Fat Dissolver")}>
                         <div className="rectangle-205-uEBdwN">
                             <div className="poppins-normal-white-24px">

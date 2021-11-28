@@ -51,6 +51,10 @@ const getRowStyle = params => {
   }
 };
 
+const setAutoHeight = () => {
+  gridApi.setDomLayout('autoHeight');
+  document.querySelector('#myGrid').style.height = '';
+};
 
   return (
     <div id="myorders">
@@ -59,16 +63,24 @@ const getRowStyle = params => {
       </div>
       <div className="container-fluid">
         <div
+          id="myGrid"
           className="ag-theme-alpine"
-          style={{ height: "calc(100vh - 315px)", width: "100%" }}
-        >
+          style={{
+            height: '100%',
+            width: '100%',
+          }}
+         >
           <AgGridReact
           getRowStyle={getRowStyle}
             getRowHeight={getRowHeight}
             rowData={rowData()}
             columnDefs={columnDefs()}
+            
             defaultColDef={defaultColDef}
             onGridReady={onGridReady}
+
+            statusBar={{ items: [{ component: 'agAggregationComponent' }] }}
+            domLayout={'autoHeight'}
           ></AgGridReact>
         </div>
         {/* <Table responsive>
