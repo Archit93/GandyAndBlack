@@ -10,7 +10,7 @@ const CustomerPaymentSuccess = (props) => {
       </div>
       <div id="checkout">
         <div className="container-fluid">
-          <div className="card px-0 pt-4 pb-0 mt-3 mb-3">
+          <div className="card px-0 pb-0 mb-3">
             <div className="row">
               <div className="col-md-12 mx-0">
                 <form id="msform">
