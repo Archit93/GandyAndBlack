@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import { SET_DRAWER_OPEN } from "../../constants/actionTypes";
+import { SET_DRAWER_OPEN, SET_TILE_CLICKED } from "../../constants/actionTypes";
 
 const HeaderMenu = (props) => {
   const { cartCount, dispatch } = props;
@@ -39,7 +39,14 @@ const HeaderMenu = (props) => {
             <li className="nav-item active">
               <button
                 className="nav-link"
-                onClick={() => history.push("/productlist")}
+                onClick={() => {
+                  dispatch({
+                    type: SET_TILE_CLICKED,
+                    payload: ""
+                  });
+                  history.push("/producttypes")
+                }
+              }
               >
                 Products
               </button>

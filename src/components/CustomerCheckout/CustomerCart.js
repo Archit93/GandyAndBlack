@@ -105,7 +105,7 @@ const CustomerCart = (props) => {
                           className="previous action-button-previous"
                           type="submit"
                           onClick={() => {
-                            history.push("/productlist");
+                            history.push("/producttypes");
                           }}
                         >
                           Back
