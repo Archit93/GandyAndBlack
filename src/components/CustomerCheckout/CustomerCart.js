@@ -45,6 +45,44 @@ const CustomerCart = (props) => {
     window.sessionStorage.setItem("cart", JSON.stringify(filtered));
   };
 
+  const updateProductQuantity = (e, product) => {
+    const {productList} = applicationState;
+    const productlistArray = [];
+    tempCart.forEach((productInCart) => {
+      if (productInCart.productid === product.productid) {
+        productInCart.quantity = e.target.value ? Number(e.target.value) : e.target.value;
+      }
+    })
+    productList.map((rowdetail) => {
+      let productListObject = Object.assign(rowdetail);
+      if (rowdetail.productid === product.productid) {
+        productListObject = {
+          ...rowdetail,
+          quantity:  e.target.value ? Number(e.target.value) : 0,
+        };
+      }
+      productlistArray.push(productListObject);
+    });
+    setTempCart(tempCart);
+    dispatch({
+      type: EDIT_PRODUCT_QUANTITY,
+      payload: productlistArray,
+      cartDetails: tempCart
+    });
+    window.sessionStorage.setItem("cart", JSON.stringify(tempCart));
+  }
+  
+  const isNextButtonDisabled = () => {
+    let disableNextButton = false;
+    disableNextButton = !(tempCart && tempCart.length > 0)
+    tempCart.forEach((productInCart) => {
+      if(!productInCart.quantity) {
+        disableNextButton = true
+      }
+    })
+    return disableNextButton
+  }
+
   return (
     <div>
       <div>
@@ -62,20 +100,20 @@ const CustomerCart = (props) => {
                       <fieldset>
                         <h2 className="fs-title">My Cart</h2>
                         {tempCart &&
-                          tempCart?.map((product) => (
+                          tempCart ?.map((product) => (
                             <div className="form-card" key={product.productid}>
                               <div className="h5">
                                 <span style={{ fontWeight: "600" }}>{product.brand}</span>
-                                <span style={{ float: "right", cursor: "pointer" }} 
-                                onClick={(e) =>
-                                  removeItemFromCart(e, product.productid)
-                                }>
-                                  <i class="fa fa-trash icon-red"></i>
+                                <span style={{ float: "right", cursor: "pointer" }}
+                                  onClick={(e) =>
+                                    removeItemFromCart(e, product.productid)
+                                  }>
+                                  <i className="fa fa-trash icon-red"></i>
                                 </span>
                                 <span style={{ float: "right" }}>
                                   £{product.salepriceperunit}
                                 </span>
-                                
+
                               </div>
                               <div className="h6">
                                 <span>
@@ -88,14 +126,15 @@ const CustomerCart = (props) => {
                               <div className="h6">
                                 <span className="mrr-5">QTY : </span>
                                 <span>
-                                <input
-                                type="number"
-                                className="cart-input"
-                                name="quantity"
-                                id="Quantity"
-                                value={product.quantity}
-                              />
-                              </span>
+                                  <input
+                                    type="number"
+                                    className="cart-input"
+                                    name="quantity"
+                                    id={`quantity-${product.productid}`}
+                                    value={product.quantity}
+                                    onChange={(e) => updateProductQuantity(e, product)}
+                                  />
+                                </span>
                               </div>
                             </div>
                           ))}
@@ -116,7 +155,7 @@ const CustomerCart = (props) => {
                           onClick={() => {
                             history.push("/customershipping_info");
                           }}
-                          disabled = {!(cartDetails && cartDetails.length > 0)}
+                          disabled={isNextButtonDisabled()}
                         >
                           Next
                         </button>
