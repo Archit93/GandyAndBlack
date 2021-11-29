@@ -1,9 +1,8 @@
 const cors = require("cors");
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
-const stripe = require("stripe")(
-  "sk_test_51JumLXBPQeAuTgL1QVsE0GVcb1QTHCvZvQyt8CHmamQksCsoQcm6DHiZLSJceUX4YQjwVvZznLfjzEprdr2lqWWw0059xAZwXu"
-);
+const { port, secretKey } = require("./config");
+const stripe = require("stripe")(secretKey);
 
 const app = express();
 app.use(express.json());
@@ -12,7 +11,6 @@ app.use(cors());
 app.post("/checkout", cors(), async (req, res) => {
   try {
     const { product, token } = req.body;
-    console.log(token);
     const customer = await stripe.customers.create({
       email: token.email,
       source: token.id,
@@ -20,11 +18,11 @@ app.post("/checkout", cors(), async (req, res) => {
 
     const charge = await stripe.charges.create(
       {
-        amount: product.price * 100,
+        amount: Math.round(product.price * 100),
         currency: "gbp",
         customer: customer.id,
         receipt_email: token.email,
-        description: `Purchased the ${product.name}`,
+        description: product.name,
         shipping: {
           name: token.card.name,
           address: {
@@ -37,17 +35,15 @@ app.post("/checkout", cors(), async (req, res) => {
         },
       },
       {
-        idempotency_key: uuidv4(),
+        idempotencyKey: uuidv4(),
       }
     );
-    console.log("Charge:", { charge });
     res.json({ message: "Payment success", success: true });
   } catch (error) {
-    console.error("Error:", error);
     res.json({ message: "Payment falied", success: false });
   }
 });
 
-app.listen(process.env.PORT || 8080, () => {
+app.listen(port || 8080, () => {
   console.log("Server is listening...");
 });

@@ -10,10 +10,7 @@ import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
 import { MobileViewColumnProductType } from "./MobileViewColumnProductType";
 import { MobileViewColumnBrand } from "./MobileViewColumnBrand";
 import { ColumnQuantity } from "./ColumnQuantity";
-import {
-  IS_CART_EMPTY,
-  SET_TILE_CLICKED,
-} from "../../constants/actionTypes";
+import { IS_CART_EMPTY, SET_TILE_CLICKED } from "../../constants/actionTypes";
 import { updateCartDetails } from "../../serviceCalls/updateCartDetails";
 import HeaderMenu from "../common/HeaderMenu";
 
@@ -24,7 +21,9 @@ const ProductList = (props) => {
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
 
-  const [isLocalCartEmpty, setIsLocalCartEmpty] = React.useState(!(cartDetails && cartDetails.length > 0));
+  const [isLocalCartEmpty, setIsLocalCartEmpty] = React.useState(
+    !(cartDetails && cartDetails.length > 0)
+  );
 
   //const [cartCount, setCartCount] = React.useState(cartDetails.length);
   const [tempCart, setTempCart] = React.useState(cartDetails);
@@ -45,20 +44,23 @@ const ProductList = (props) => {
   };
 
   const frameWorkComponentChange = ({ api }) => {
-    
     const { productList } = applicationState;
     const productlistArray = productList;
     const tempArray = [];
     api.forEachNode((node) => {
-      const findIndexOfTheRowInProductList = productlistArray.findIndex((product) => { return product.productid === node.data.productid });
+      const findIndexOfTheRowInProductList = productlistArray.findIndex(
+        (product) => {
+          return product.productid === node.data.productid;
+        }
+      );
       productlistArray[findIndexOfTheRowInProductList] = node.data;
-    })
+    });
 
     productlistArray.forEach((product) => {
       if (product.quantity && product.quantity !== 0) {
         tempArray.push(product);
       }
-    })
+    });
 
     // api.forEachNode((node) => {
     //   if (node.data.quantity !== 0) {
@@ -82,7 +84,7 @@ const ProductList = (props) => {
     dispatch({
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
-      cartDetails: tempArray
+      cartDetails: tempArray,
     });
     window.sessionStorage.setItem("cart", JSON.stringify(tempArray));
   };
@@ -90,16 +92,23 @@ const ProductList = (props) => {
   const rowData = () => {
     const { productList, tileClicked } = applicationState;
     const productlistArray = [];
-    if ((productList && productList.length > 0) && (tileClicked && tileClicked.length > 0)) {
-      const filteredProductList = productList.filter((product) => { return product.producttype === tileClicked });
+    if (
+      productList &&
+      productList.length > 0 &&
+      tileClicked &&
+      tileClicked.length > 0
+    ) {
+      const filteredProductList = productList.filter((product) => {
+        return product.producttype === tileClicked;
+      });
       filteredProductList.forEach((rowdetail) => {
         productlistArray.push({
           ...rowdetail,
           quantity: rowdetail.quantity ? Number(rowdetail.quantity) : 0,
-        })
-        return productlistArray
-      })
-      return productlistArray
+        });
+        return productlistArray;
+      });
+      return productlistArray;
     } else {
       return productlistArray;
     }
@@ -119,26 +128,26 @@ const ProductList = (props) => {
   };
 
   const columnDefs = ({ frameWorkComponentChange }) =>
-    applicationState ?.mobileView
+    applicationState?.mobileView
       ? [
-        {
-          field: "quantity",
-          headerName: "Product List",
-          cellRendererFramework: MobileViewColumnBrand,
-        },
-      ]
+          {
+            field: "quantity",
+            headerName: "Product List",
+            cellRendererFramework: MobileViewColumnBrand,
+          },
+        ]
       : [
-        { field: "brand", headerName: "Brand" },
-        { field: "producttype", headerName: "Product Type" },
-        { field: "productdesc", headerName: "Description" },
-        {
-          field: "quantity",
-          headerName: "Quantity",
-          editable: true,
-          cellRendererFramework: ColumnQuantity,
-        },
-        { field: "salepriceperunit", headerName: "Sales Per Unit" },
-      ];
+          { field: "brand", headerName: "Brand" },
+          { field: "producttype", headerName: "Product Type" },
+          { field: "productdesc", headerName: "Description" },
+          {
+            field: "quantity",
+            headerName: "Quantity",
+            editable: true,
+            cellRendererFramework: ColumnQuantity,
+          },
+          { field: "salepriceperunit", headerName: "Sales Per Unit" },
+        ];
 
   const defaultColDef = React.useMemo(
     () => ({
@@ -154,7 +163,7 @@ const ProductList = (props) => {
   };
 
   const getRowHeight = () => (applicationState.mobileView ? 300 : 65);
-
+  console.log(applicationState);
   const onProceed = (e) => {
     // let customerCartArray = [];
     // gridApi.forEachNode((node) => {
@@ -173,17 +182,19 @@ const ProductList = (props) => {
     history.push("/customercart_details");
   };
 
-
   // set background colour on even rows again, this looks bad, should be using CSS classes
-  const getRowStyle = params => {
+  const getRowStyle = (params) => {
     if (params.node.rowIndex % 2 === 0) {
-      return { background: '#e3adab' };
+      return { background: "#e3adab" };
     }
   };
   return (
     <div id="productlist">
       <div>
-        <HeaderMenu dispatch={dispatch} cartCount={cartDetails ? cartDetails.length : 0} />
+        <HeaderMenu
+          dispatch={dispatch}
+          cartCount={cartDetails ? cartDetails.length : 0}
+        />
       </div>
       <div
         className="container-fluid"
@@ -218,26 +229,25 @@ const ProductList = (props) => {
             type="submit"
             name="btn-checkout"
             id="btn-checkout"
-            onClick={(e) => onProceed(e)}
-            disabled={isLocalCartEmpty}
+            onClick={() => {
+              dispatch({
+                type: SET_TILE_CLICKED,
+                payload: "",
+              });
+              history.push("/producttypes");
+            }}
           >
-            Proceed to checkout
+            Back to Product Types
           </button>
           <button
             className="btn btn-main"
             type="submit"
             name="btn-checkout"
             id="btn-checkout"
-            onClick={() => {
-              dispatch({
-                type: SET_TILE_CLICKED,
-                payload: ""
-              })
-              history.push("/producttypes");
-            }
-            }
+            onClick={(e) => onProceed(e)}
+            disabled={isLocalCartEmpty}
           >
-            Back to Product Types
+            Proceed to Checkout
           </button>
         </div>
       </div>

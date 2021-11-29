@@ -41,8 +41,16 @@ export const isValidName = (value) => {
 };
 
 export const isValidPostcode = (value) => {
+  let formattedPostCode = value;
+  const postCodeMatch = formattedPostCode
+    .toUpperCase()
+    .match(/^([A-Z]{1,2}\d{1,2}[A-Z]?)\s*(\d[A-Z]{2})$/);
+  if (postCodeMatch) {
+    postCodeMatch.shift();
+    formattedPostCode = postCodeMatch.join(" ");
+  }
   const bool =
-    value && !regexes.postcode.test(value)
+    formattedPostCode && !regexes.postcode.test(formattedPostCode)
       ? "This looks like an invalid postcode. Could you please check?"
       : undefined;
   return bool;
