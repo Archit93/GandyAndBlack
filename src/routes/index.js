@@ -84,7 +84,7 @@ export const AppRouter = (props) => {
           <ProductListTiles {...props} />
         </Route>
 
-        <Route exact={true} path="/cutomerfail">
+        <Route exact={true} path="/customerfail">
           <CustomerPaymentFail {...props} />
         </Route>
       </Switch>

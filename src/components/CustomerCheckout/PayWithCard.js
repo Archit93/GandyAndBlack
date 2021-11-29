@@ -31,7 +31,7 @@ const PayWithCard = (props) => {
       history,
       token,
       addresses,
-      totalAmount: applicationState.totalAmount,
+      applicationState,
     });
   };
 

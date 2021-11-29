@@ -29,7 +29,9 @@ export default function PayPal(props) {
           });
         },
         onApprove: async (data, actions) => {
+          console.log(data);
           const order = await actions.order.capture();
+          console.log(order);
           order && history.push("/customerpayment_success");
         },
         onError: (err) => {

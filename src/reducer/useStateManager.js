@@ -15,6 +15,9 @@ export const useStateManager = (
     isLoading: false,
     forgotPasswordError: "",
     totalAmount: 0,
+    totalVatAmount: 0,
+    subTotalAmount: 0,
+    shippingCost: 0,
     paymentMethod: "",
     adminPlaceOrder: [],
     signUpStatus: null,
@@ -44,7 +47,7 @@ export const useStateManager = (
     case actionTypes.SET_PRODUCT_LIST:
       return {
         ...state,
-        productList: action.payload
+        productList: action.payload,
       };
     case actionTypes.SET_USER_DETAILS:
       return {
@@ -70,7 +73,7 @@ export const useStateManager = (
       return {
         ...state,
         productList: action.payload,
-        cartDetails: action.cartDetails ? action.cartDetails : []
+        cartDetails: action.cartDetails ? action.cartDetails : [],
       };
     case actionTypes.SET_TILE_CLICKED:
       return {
@@ -95,7 +98,10 @@ export const useStateManager = (
     case actionTypes.SET_TOTAL_AMOUNT:
       return {
         ...state,
-        totalAmount: action.payload,
+        subTotalAmount: action.payload.subTotalAmount,
+        totalVatAmount: action.payload.totalVatAmount,
+        totalAmount: action.payload.totalAmount,
+        shippingCost: action.payload.shippingCost,
       };
     case actionTypes.SET_PAYMENT_METHOD:
       return {

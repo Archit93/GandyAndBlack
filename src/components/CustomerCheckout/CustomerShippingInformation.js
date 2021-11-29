@@ -12,7 +12,7 @@ import {
 } from "../../utils/regexUtils";
 import { SET_CUSTOMER_BILLING_DETAILS } from "../../constants/actionTypes";
 import { updateCustomerDetails } from "../../serviceCalls/updateCustomerDetails";
-import ToggleButton from 'react-toggle-button'
+import ToggleButton from "react-toggle-button";
 
 const CustomerShippingInformation = (props) => {
   const history = useHistory();
@@ -37,11 +37,11 @@ const CustomerShippingInformation = (props) => {
   );
   const [emailError, setEmailError] = React.useState("");
   const [address, setAddress] = React.useState(
-    applicationState?.customerDetails?.address ?? ""
+    applicationState?.customerDetails?.address[0]?.addressbody ?? ""
   );
   const [addressError, setAddressError] = React.useState("");
-  const [postcode, setPostcode] = React.useState(
-    applicationState?.customerDetails?.postcode ?? ""
+  const [postCode, setPostcode] = React.useState(
+    applicationState?.customerDetails?.address[0]?.postcode ?? ""
   );
   const [postcodeError, setPostcodeError] = React.useState("");
   const [firstNameError, setFirstNameError] = React.useState("");
@@ -144,8 +144,9 @@ const CustomerShippingInformation = (props) => {
         lastName,
         email,
         instagramId,
+        phoneNo,
         address,
-        postcode,
+        postCode,
         tradeOfBusiness,
       };
       dispatch({
@@ -261,7 +262,7 @@ const CustomerShippingInformation = (props) => {
                             placeholder="Post Code"
                             onChange={(e) => onPostcodeChange(e)}
                             onBlur={(e) => validatePostcode(e)}
-                            value={postcode}
+                            value={postCode}
                           />
                           {postcodeError ? (
                             <span>{postcodeError}</span>
@@ -300,7 +301,9 @@ const CustomerShippingInformation = (props) => {
                               // }}
                               />
                             </span>
-                            <span className="float-left">Is your Shipping address same as Billing address?</span>
+                            <span className="float-left">
+                              Is your Shipping address same as Billing address?
+                            </span>
                           </div>
                         </div>
                         {emptyCredentialsError ? (

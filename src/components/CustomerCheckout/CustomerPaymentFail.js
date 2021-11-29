@@ -1,8 +1,10 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import HeaderMenu from "../common/HeaderMenu.js";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 
 const CustomerPaymentFail = (props) => {
+  const history = useHistory();
   return (
     <div>
       <div>
@@ -19,26 +21,33 @@ const CustomerPaymentFail = (props) => {
                     <div className="col-lg-12 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
                       <fieldset>
                         <div className="form-card">
-                            <div>
-                            <h2 className="fs-title text-center">Order Failed!</h2>
-                            </div>
-                            <div className="row justify-content-center">
+                          <div>
+                            <h2 className="fs-title text-center">
+                              Order Failed!
+                            </h2>
+                          </div>
+                          <div className="row justify-content-center">
                             <div className="col-3 cross-icon">
-                            <i class="fa fa-times-circle fa-5x" aria-hidden="true"></i>
+                              <i
+                                class="fa fa-times-circle fa-5x"
+                                aria-hidden="true"
+                              ></i>
                             </div>
-                            </div>
-                            <div className="row justify-content-center">
+                          </div>
+                          <div className="row justify-content-center">
                             <div className="col-7 text-center">
-                                <h5>Please try again</h5>
+                              <h5>Please try again</h5>
                             </div>
-                            </div>
-                            <div className="text-center mrt-20">
-                                <button
-                                className="btn btn-secondary"
-                                type="submit">
-                                Back to Home
-                                </button>
-                            </div>
+                          </div>
+                          <div className="text-center mrt-20">
+                            <button
+                              className="btn btn-secondary"
+                              type="submit"
+                              onClick={() => history.push("/producttypes")}
+                            >
+                              Back to Home
+                            </button>
+                          </div>
                         </div>
                       </fieldset>
                     </div>
