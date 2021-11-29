@@ -36,12 +36,14 @@ const CustomerPaymentSuccess = (props) => {
                             </div>
                           </div>
                           <div className="text-center mrt-20">
-                                <button
-                                className="btn btn-secondary"
-                                type="submit">
-                                Continue Shopping
-                                </button>
-                            </div>
+                            <button
+                              className="btn btn-secondary"
+                              type="submit"
+                              // onClick={() => history.push("/productlist")}
+                            >
+                              Continue Shopping
+                            </button>
+                          </div>
                         </div>
                       </fieldset>
                     </div>

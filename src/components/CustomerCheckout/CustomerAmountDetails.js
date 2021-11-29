@@ -20,10 +20,21 @@ const CustomerAmountDetails = (props) => {
       const vatAmount = vatArray.reduce(reducer);
       setSubTotalAmount(subTotalValue);
       setFinalVatAmount(vatAmount);
-      setTotalAmount(subTotalValue + vatAmount + Number(shippingCost));
+      setTotalAmount(
+        (subTotalValue + vatAmount + Number(shippingCost)).toFixed(2)
+      );
       dispatch({
         type: SET_TOTAL_AMOUNT,
-        payload: subTotalValue + vatAmount + Number(shippingCost),
+        payload: {
+          shippingCost,
+          subTotalAmount: subTotalValue,
+          totalVatAmount: vatAmount,
+          totalAmount: (
+            subTotalValue +
+            vatAmount +
+            Number(shippingCost)
+          ).toFixed(2),
+        },
       });
     }
   }, [cartDetails, shippingCost]);
@@ -51,7 +62,9 @@ const CustomerAmountDetails = (props) => {
           </div>
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-12 col-xs-12 p-0">
-              <label className="h6" style={{verticalAlign: "sub"}}>Shipping Cost</label>
+              <label className="h6" style={{ verticalAlign: "sub" }}>
+                Shipping Cost
+              </label>
             </div>
             <div className="col-lg-8 col-md-6 col-sm-12 col-xs-12 p-0">
               <select
