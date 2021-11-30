@@ -5,19 +5,27 @@ import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 import {
   EDIT_PRODUCT_QUANTITY,
+  SET_TOTAL_AMOUNT
 } from "../../constants/actionTypes";
 
 const CustomerCart = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
   const { cartDetails, productList } = applicationState;
+
   const [tempCart, setTempCart] = React.useState(cartDetails);
+  const [subTotalAmount, setSubTotalAmount] = React.useState("");
+  const [finalVatAmount, setFinalVatAmount] = React.useState("0");
+  const [totalAmount, setTotalAmount] = React.useState("");
+  const [shippingCost, setShippingCost] = React.useState("9.98");
 
   React.useEffect(() => {
     const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
     if (cartData) {
       setTempCart(cartData);
+      settingAmountDetails(cartDetails, shippingCost);
     }
+
   }, []);
 
   const removeItemFromCart = (e, productid) => {
@@ -36,7 +44,9 @@ const CustomerCart = (props) => {
       }
       productlistArray.push(productListObject);
     });
+
     setTempCart(filtered);
+    settingAmountDetails(filtered, shippingCost)
     dispatch({
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
@@ -46,7 +56,7 @@ const CustomerCart = (props) => {
   };
 
   const updateProductQuantity = (e, product) => {
-    const {productList} = applicationState;
+    const { productList } = applicationState;
     const productlistArray = [];
     tempCart.forEach((productInCart) => {
       if (productInCart.productid === product.productid) {
@@ -58,25 +68,67 @@ const CustomerCart = (props) => {
       if (rowdetail.productid === product.productid) {
         productListObject = {
           ...rowdetail,
-          quantity:  e.target.value ? Number(e.target.value) : 0,
+          quantity: e.target.value ? Number(e.target.value) : 0,
         };
       }
       productlistArray.push(productListObject);
     });
     setTempCart(tempCart);
+    settingAmountDetails(tempCart, shippingCost);
     dispatch({
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
       cartDetails: tempCart
     });
+
     window.sessionStorage.setItem("cart", JSON.stringify(tempCart));
   }
-  
+
+  const settingAmountDetails = (updatedCart, shippingCost) => {
+    let subTotalValue = 0;
+    let vatAmount = 0;
+
+    if (updatedCart && updatedCart.length > 0) {
+      const totalArray = updatedCart ?.map(
+        (prod) => prod.salepriceperunit * prod.quantity
+      );
+      const vatArray = updatedCart ?.map((prod) => prod.vat);
+      const reducer = (previousValue, currentValue) =>
+        previousValue + currentValue;
+      subTotalValue = totalArray.reduce(reducer);
+      vatAmount = vatArray.reduce(reducer);
+      setSubTotalAmount(subTotalValue);
+      setFinalVatAmount(vatAmount);
+      setTotalAmount(
+        (subTotalValue + vatAmount + Number(shippingCost)).toFixed(2)
+      );
+      setShippingCost(shippingCost);
+    } else {
+      setSubTotalAmount(0);
+      setFinalVatAmount(0);
+      setTotalAmount(0);
+      setShippingCost("0");
+    }
+    dispatch({
+      type: SET_TOTAL_AMOUNT,
+      payload: {
+        shippingCost,
+        subTotalAmount: subTotalValue,
+        totalVatAmount: vatAmount,
+        totalAmount: (
+          subTotalValue +
+          vatAmount +
+          Number(shippingCost)
+        ).toFixed(2),
+      },
+    });
+  }
+
   const isNextButtonDisabled = () => {
     let disableNextButton = false;
     disableNextButton = !(tempCart && tempCart.length > 0)
     tempCart.forEach((productInCart) => {
-      if(!productInCart.quantity) {
+      if (!productInCart.quantity) {
         disableNextButton = true
       }
     })
@@ -163,7 +215,11 @@ const CustomerCart = (props) => {
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                       <CustomerAmountDetails
-                        cartDetails={tempCart}
+                        subTotalAmount={subTotalAmount}
+                        finalVatAmount={finalVatAmount}
+                        totalAmount={totalAmount}
+                        shippingCost={shippingCost}
+                        changeShippingCost={(newShippingCost) => settingAmountDetails(tempCart, newShippingCost)}
                         dispatch={dispatch}
                       />
                     </div>

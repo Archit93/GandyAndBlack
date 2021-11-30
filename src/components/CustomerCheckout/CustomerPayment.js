@@ -7,12 +7,12 @@ import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 import PayPal from "./PayPal.js";
 import CustomerPaymentSuccess from "./CustomerPaymentSuccess.js";
-import { SET_PAYMENT_METHOD } from "../../constants/actionTypes";
+import { SET_PAYMENT_METHOD, SET_TOTAL_AMOUNT} from "../../constants/actionTypes";
 
 const CustomerPayment = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails } = applicationState;
+  const { cartDetails, subTotalAmount, totalVatAmount, totalAmount, shippingCost } = applicationState;
   const [paymentMethod, setPaymentMethod] = React.useState(
     applicationState.paymentMethod
   );
@@ -70,6 +70,23 @@ const CustomerPayment = (props) => {
       history.push("/customerpayment_success");
     }
   };
+
+  const settingAmountDetails = (shippingCost) => {
+
+    dispatch({
+      type: SET_TOTAL_AMOUNT,
+      payload: {
+        shippingCost,
+        subTotalAmount: subTotalAmount,
+        totalVatAmount: totalVatAmount,
+        totalAmount: (
+          subTotalAmount +
+          totalVatAmount +
+          Number(shippingCost)
+        ).toFixed(2),
+      },
+    });
+  }
   return (
     <div>
       <div>
@@ -160,8 +177,12 @@ const CustomerPayment = (props) => {
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <CustomerAmountDetails
-                      cartDetails={tempCart}
-                      dispatch={dispatch}
+                       subTotalAmount={subTotalAmount}
+                       finalVatAmount={totalVatAmount}
+                       totalAmount={totalAmount}
+                       shippingCost={shippingCost}
+                       changeShippingCost={(newShippingCost) => settingAmountDetails(newShippingCost)}
+                       dispatch={dispatch}
                     />
                   </div>
                 </div>

@@ -163,7 +163,6 @@ const ProductList = (props) => {
   };
 
   const getRowHeight = () => (applicationState.mobileView ? 300 : 65);
-  console.log(applicationState);
   const onProceed = (e) => {
     // let customerCartArray = [];
     // gridApi.forEachNode((node) => {

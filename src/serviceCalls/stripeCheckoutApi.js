@@ -25,8 +25,6 @@ export const stripeCheckoutApi = async ({
           item.quantity,
         ]);
         let productidcartmap = Object.fromEntries(itemList);
-        console.log(applicationState?.customerDetails);
-        console.log(productidcartmap);
         const placeOrderRequest = {
           address: applicationState?.customerDetails?.address || "",
           cart: {
@@ -44,7 +42,6 @@ export const stripeCheckoutApi = async ({
           paymentMethod: "CARD",
           postalcode: applicationState?.customerDetails?.postCode || "",
         };
-        console.log(placeOrderRequest);
         placeOrderApiCall({
           dispatch,
           history,
