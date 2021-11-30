@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
+import Alert from "@material-ui/lab/Alert";
 import {
   isValidName,
   isValidEmail,
@@ -14,8 +15,7 @@ import { signInApiCall } from "../serviceCalls/signInApiCall";
 const SignUp = (props) => {
   const history = useHistory();
   const { applicationState } = props;
-  const { isLoading } = applicationState;
-
+  const { isLoading, signUpStatus } = applicationState;
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmailAddress] = React.useState("");
@@ -116,6 +116,11 @@ const SignUp = (props) => {
           <img src="./GD LOGOS-01.jpeg" alt="" />
         </header>
         <div id="signup">
+          {signUpStatus.signUpError && (
+            <Alert severity="error">
+              Somthing's gone wrong! Please try again.
+            </Alert>
+          )}
           <div role="main">
             <form method="post">
               <div className="form-floating mb-2">

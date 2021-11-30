@@ -13,7 +13,9 @@ export const useStateManager = (
     billingAddressDetails: {},
     isSameAddress: true,
     orderDetails: [],
-    config: {},
+    config: {
+      signInError: false,
+    },
     isCartEmpty: true,
     isLoading: false,
     forgotPasswordError: "",
@@ -23,7 +25,10 @@ export const useStateManager = (
     shippingCost: 0,
     paymentMethod: "",
     adminPlaceOrder: [],
-    signUpStatus: {},
+    signUpStatus: {
+      signUpError: false,
+    },
+    profileUpdateStatus: "",
   },
   action
 ) => {
@@ -40,6 +45,7 @@ export const useStateManager = (
           ...state.config,
           authToken: action.payload.authToken,
           userType: action.payload.userType,
+          signInError: action.signInError,
         },
       };
     case actionTypes.SET_SIGN_UP_DATA:
@@ -56,7 +62,7 @@ export const useStateManager = (
       return {
         ...state,
         customerDetails: action.payload,
-        orderDetails: action.orderDetails,
+        // orderDetails: action.orderDetails,
         shippingAddressDetails: action.shippingAddressDetails,
         isLoading: false,
       };
@@ -92,9 +98,10 @@ export const useStateManager = (
     case actionTypes.SET_CUSTOMER_BILLING_DETAILS:
       return {
         ...state,
-        customerDetails: action.payload.customerDetails,
-        billingAddressDetails: action.payload.billingAddressDetails,
-        isSameAddress: action.payload.isSameAddress,
+        shippingAddressDetails: action.payload?.shippingAddressDetails,
+        billingAddressDetails:
+          action.payload?.billingAddressDetails || state.billingAddressDetails,
+        isSameAddress: action.payload?.isSameAddress || state.isSameAddress,
       };
     case actionTypes.SET_IS_LOADING:
       return {
@@ -129,6 +136,11 @@ export const useStateManager = (
       return {
         ...state,
         adminPlaceOrder: action.payload,
+      };
+    case actionTypes.SET_PROFILE_UPDATE_STATUS:
+      return {
+        ...state,
+        profileUpdateStatus: action.payload,
       };
     case actionTypes.SET_ERROR:
     case actionTypes.RESET_ALL_DATA:
