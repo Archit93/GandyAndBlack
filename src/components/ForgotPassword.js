@@ -2,11 +2,13 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { isValidEmail } from "../utils/regexUtils";
 import { forgotPasswordApiCall } from "../serviceCalls/forgotPasswordApiCall";
+import { SET_IS_LOADING } from "../constants/actionTypes";
 
 const ForgotPassword = (props) => {
   const history = useHistory();
   const {
     applicationState: { forgotPasswordError },
+    dispatch
   } = props;
   const [email, setEmailAddress] = React.useState("");
   const [emailError, setEmailError] = React.useState("");
@@ -30,6 +32,10 @@ const ForgotPassword = (props) => {
         history: history,
         email: email,
       });
+      dispatch({
+        type: SET_IS_LOADING,
+        isLoading: true
+      })
     }
   };
 

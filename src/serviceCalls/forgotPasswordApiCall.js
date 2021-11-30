@@ -1,9 +1,7 @@
 import axios from "axios";
 import { makeApiRequestHeader } from "../utils/makeApiRequestHeader";
 import {
-  SET_SIGN_IN_DATA,
-  SET_ERROR,
-  SET_INITIAL_RESPONSE,
+  SET_IS_LOADING,
   SET_FORGOT_PASSWORD_ERROR,
 } from "../constants/actionTypes";
 
@@ -14,29 +12,18 @@ export const forgotPasswordApiCall = async ({ dispatch, history, email }) => {
   const apiUrl = `${baseUrl}/user/reset/password/${email}`;
   await axios
     .get(apiUrl, null, apiRequestHeader)
-    .then((apiResponse) => {
+    .then(() => {
       dispatch({
-        type: SET_SIGN_IN_DATA,
-        payload: apiResponse.data.body,
-      });
-      if (apiResponse.data.body.role) {
-        // TODO : Navigation and API Calls based on roles
-        // dispatch({
-        //     type: SET_SIGN_IN_DATA,
-        //     payload: apiResponse.data.body
-        // })
-        history.push("/customer_list");
-      } else {
-        // TODO : Navigation and API Calls based on roles
-        dispatch({ type: SET_INITIAL_RESPONSE });
+        type: SET_IS_LOADING,
+        isLoading: false
+      })
         history.push("/signin");
-      }
     })
     .catch((error) => {
       if (error.response.status === 500) {
         dispatch({
           type: SET_FORGOT_PASSWORD_ERROR,
-          payload: error.response.data,
+          payload: error.response.data
         });
       }
 
