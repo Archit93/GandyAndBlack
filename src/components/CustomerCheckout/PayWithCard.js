@@ -9,12 +9,19 @@ import CustomerAmountDetails from "./CustomerAmountDetails";
 import PayPal from "./PayPal.js";
 import CustomerPaymentSuccess from "./CustomerPaymentSuccess.js";
 import { stripeCheckoutApi } from "../../serviceCalls/stripeCheckoutApi";
-import { SET_IS_LOADING } from "../../constants/actionTypes";
+import { SET_IS_LOADING, SET_TOTAL_AMOUNT } from "../../constants/actionTypes";
 
 const PayWithCard = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails, isLoading } = applicationState;
+  const {
+    cartDetails,
+    isLoading,
+    subTotalAmount,
+    totalVatAmount,
+    totalAmount,
+    shippingCost,
+  } = applicationState;
   const [tempCart, setTempCart] = React.useState(cartDetails);
 
   React.useEffect(() => {
@@ -32,6 +39,22 @@ const PayWithCard = (props) => {
       token,
       addresses,
       applicationState,
+    });
+  };
+
+  const settingAmountDetails = (shippingCost) => {
+    dispatch({
+      type: SET_TOTAL_AMOUNT,
+      payload: {
+        shippingCost,
+        subTotalAmount: subTotalAmount,
+        totalVatAmount: totalVatAmount,
+        totalAmount: (
+          subTotalAmount +
+          totalVatAmount +
+          Number(shippingCost)
+        ).toFixed(2),
+      },
     });
   };
 
@@ -82,7 +105,13 @@ const PayWithCard = (props) => {
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <CustomerAmountDetails
-                      cartDetails={tempCart}
+                      subTotalAmount={subTotalAmount}
+                      finalVatAmount={totalVatAmount}
+                      totalAmount={totalAmount}
+                      shippingCost={shippingCost}
+                      changeShippingCost={(newShippingCost) =>
+                        settingAmountDetails(newShippingCost)
+                      }
                       dispatch={dispatch}
                     />
                   </div>

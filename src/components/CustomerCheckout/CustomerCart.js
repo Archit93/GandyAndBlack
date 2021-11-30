@@ -5,7 +5,7 @@ import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 import {
   EDIT_PRODUCT_QUANTITY,
-  SET_TOTAL_AMOUNT
+  SET_TOTAL_AMOUNT,
 } from "../../constants/actionTypes";
 
 const CustomerCart = (props) => {
@@ -25,7 +25,6 @@ const CustomerCart = (props) => {
       setTempCart(cartData);
       settingAmountDetails(cartDetails, shippingCost);
     }
-
   }, []);
 
   const removeItemFromCart = (e, productid) => {
@@ -46,11 +45,11 @@ const CustomerCart = (props) => {
     });
 
     setTempCart(filtered);
-    settingAmountDetails(filtered, shippingCost)
+    settingAmountDetails(filtered, shippingCost);
     dispatch({
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
-      cartDetails: filtered
+      cartDetails: filtered,
     });
     window.sessionStorage.setItem("cart", JSON.stringify(filtered));
   };
@@ -60,9 +59,11 @@ const CustomerCart = (props) => {
     const productlistArray = [];
     tempCart.forEach((productInCart) => {
       if (productInCart.productid === product.productid) {
-        productInCart.quantity = e.target.value ? Number(e.target.value) : e.target.value;
+        productInCart.quantity = e.target.value
+          ? Number(e.target.value)
+          : e.target.value;
       }
-    })
+    });
     productList.map((rowdetail) => {
       let productListObject = Object.assign(rowdetail);
       if (rowdetail.productid === product.productid) {
@@ -78,21 +79,21 @@ const CustomerCart = (props) => {
     dispatch({
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
-      cartDetails: tempCart
+      cartDetails: tempCart,
     });
 
     window.sessionStorage.setItem("cart", JSON.stringify(tempCart));
-  }
+  };
 
   const settingAmountDetails = (updatedCart, shippingCost) => {
     let subTotalValue = 0;
     let vatAmount = 0;
 
     if (updatedCart && updatedCart.length > 0) {
-      const totalArray = updatedCart ?.map(
+      const totalArray = updatedCart?.map(
         (prod) => prod.salepriceperunit * prod.quantity
       );
-      const vatArray = updatedCart ?.map((prod) => prod.vat);
+      const vatArray = updatedCart?.map((prod) => prod.vat);
       const reducer = (previousValue, currentValue) =>
         previousValue + currentValue;
       subTotalValue = totalArray.reduce(reducer);
@@ -115,25 +116,23 @@ const CustomerCart = (props) => {
         shippingCost,
         subTotalAmount: subTotalValue,
         totalVatAmount: vatAmount,
-        totalAmount: (
-          subTotalValue +
-          vatAmount +
-          Number(shippingCost)
-        ).toFixed(2),
+        totalAmount: (subTotalValue + vatAmount + Number(shippingCost)).toFixed(
+          2
+        ),
       },
     });
-  }
+  };
 
   const isNextButtonDisabled = () => {
     let disableNextButton = false;
-    disableNextButton = !(tempCart && tempCart.length > 0)
+    disableNextButton = !(tempCart && tempCart.length > 0);
     tempCart.forEach((productInCart) => {
       if (!productInCart.quantity) {
-        disableNextButton = true
+        disableNextButton = true;
       }
-    })
-    return disableNextButton
-  }
+    });
+    return disableNextButton;
+  };
 
   return (
     <div>
@@ -152,20 +151,23 @@ const CustomerCart = (props) => {
                       <fieldset>
                         <h2 className="fs-title">My Cart</h2>
                         {tempCart &&
-                          tempCart ?.map((product) => (
+                          tempCart?.map((product) => (
                             <div className="form-card" key={product.productid}>
                               <div className="h5">
-                                <span style={{ fontWeight: "600" }}>{product.brand}</span>
-                                <span style={{ float: "right", cursor: "pointer" }}
+                                <span style={{ fontWeight: "600" }}>
+                                  {product.brand}
+                                </span>
+                                <span
+                                  style={{ float: "right", cursor: "pointer" }}
                                   onClick={(e) =>
                                     removeItemFromCart(e, product.productid)
-                                  }>
+                                  }
+                                >
                                   <i className="fa fa-trash icon-red"></i>
                                 </span>
                                 <span style={{ float: "right" }}>
                                   £{product.salepriceperunit}
                                 </span>
-
                               </div>
                               <div className="h6">
                                 <span>
@@ -184,7 +186,9 @@ const CustomerCart = (props) => {
                                     name="quantity"
                                     id={`quantity-${product.productid}`}
                                     value={product.quantity}
-                                    onChange={(e) => updateProductQuantity(e, product)}
+                                    onChange={(e) =>
+                                      updateProductQuantity(e, product)
+                                    }
                                   />
                                 </span>
                               </div>
@@ -219,7 +223,9 @@ const CustomerCart = (props) => {
                         finalVatAmount={finalVatAmount}
                         totalAmount={totalAmount}
                         shippingCost={shippingCost}
-                        changeShippingCost={(newShippingCost) => settingAmountDetails(tempCart, newShippingCost)}
+                        changeShippingCost={(newShippingCost) =>
+                          settingAmountDetails(tempCart, newShippingCost)
+                        }
                         dispatch={dispatch}
                       />
                     </div>

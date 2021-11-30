@@ -33,15 +33,29 @@ export const getProductsApiCall = async ({
         axios
           .all([
             axios.get(`${baseUrl}/user/account/${email}`, apiRequestHeader),
-            axios.get(`${baseUrl}/order/customers/email?email=${email}`, apiRequestHeader)
+            axios.get(
+              `${baseUrl}/order/customers/email?email=${email}`,
+              apiRequestHeader
+            ),
           ])
           .then(
             axios.spread((customerDetails, customerOrders) => {
               dispatch({ type: SET_IS_LOADING, payload: false });
+              const shippingAddressDetails = {
+                firstName: customerDetails?.data?.firstname ?? "",
+                lastName: customerDetails?.data?.lastname ?? "",
+                email: customerDetails?.data?.email ?? "",
+                phoneNo: customerDetails?.data?.mobileno ?? "",
+                address: customerDetails?.data?.address?.[0]?.addressbody ?? "",
+                postCode: customerDetails?.data?.address?.[0]?.postcode ?? "",
+                instagramId: customerDetails?.data?.instaname ?? "",
+                tradeOfBusiness: customerDetails?.data?.tradeofbuisness ?? "",
+              };
               dispatch({
                 type: SET_USER_DETAILS,
                 payload: customerDetails.data,
-                orderDetails : customerOrders.data
+                orderDetails: customerOrders.data,
+                shippingAddressDetails,
               });
               history.push("/producttypes");
             })

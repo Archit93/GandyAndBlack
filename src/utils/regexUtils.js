@@ -1,6 +1,6 @@
 export const regexes = {
-  address: /^[a-zA-Z0-9#.\-'/ ]*$/,
-  name: /\b([A-Za-zÀ-ÿ][-,a-z. ']+[ ]*)+/,
+  address: /[\w`#/&'-]*/,
+  name: /^[A-Za-z]+$/,
   email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   password: /((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,}))/,
   phone: /^(07[\d]{9})$/,
