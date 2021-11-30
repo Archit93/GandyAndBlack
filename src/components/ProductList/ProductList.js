@@ -9,6 +9,7 @@ import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
 
 import { MobileViewColumnProductType } from "./MobileViewColumnProductType";
 import { MobileViewColumnBrand } from "./MobileViewColumnBrand";
+import {MobileViewColumnDescription} from "./MobileViewColumnDescription";
 import { ColumnQuantity } from "./ColumnQuantity";
 import { IS_CART_EMPTY, SET_TILE_CLICKED } from "../../constants/actionTypes";
 import { updateCartDetails } from "../../serviceCalls/updateCartDetails";
@@ -128,32 +129,42 @@ const ProductList = (props) => {
   };
 
   const columnDefs = ({ frameWorkComponentChange }) =>
-    applicationState?.mobileView
+    applicationState ?.mobileView
       ? [
-          {
-            field: "quantity",
-            headerName: "Product List",
-            cellRendererFramework: MobileViewColumnBrand,
-          },
-        ]
+        {
+          field: "brand",
+          headerName: "Brand",
+          cellRendererFramework: MobileViewColumnBrand,
+        },
+        {
+          field: "producttype",
+          headerName: "Product List",
+          cellRendererFramework: MobileViewColumnProductType,
+        },
+        {
+          field: "productdesc",
+          headerName: "Product Description",
+          cellRendererFramework: MobileViewColumnDescription,
+        }
+      ]
       : [
-          { field: "brand", headerName: "Brand" },
-          { field: "producttype", headerName: "Product Type" },
-          { field: "productdesc", headerName: "Description" },
-          {
-            field: "quantity",
-            headerName: "Quantity",
-            editable: true,
-            cellRendererFramework: ColumnQuantity,
-          },
-          { field: "salepriceperunit", headerName: "Sales Per Unit" },
-        ];
+        { field: "brand", headerName: "Brand" },
+        { field: "producttype", headerName: "Product Type" },
+        { field: "productdesc", headerName: "Description" },
+        {
+          field: "quantity",
+          headerName: "Quantity",
+          editable: true,
+          cellRendererFramework: ColumnQuantity,
+        },
+        { field: "salepriceperunit", headerName: "Sales Per Unit" },
+      ];
 
   const defaultColDef = React.useMemo(
     () => ({
       resizable: true,
       sortable: true,
-      minWidth: 256,
+      // minWidth: 256,
     }),
     []
   );
@@ -162,7 +173,7 @@ const ProductList = (props) => {
     gridApi.setQuickFilter(event.target.value);
   };
 
-  const getRowHeight = () => (applicationState.mobileView ? 300 : 65);
+  const getRowHeight = () => (applicationState.mobileView ? 300 : 30);
   const onProceed = (e) => {
     // let customerCartArray = [];
     // gridApi.forEachNode((node) => {

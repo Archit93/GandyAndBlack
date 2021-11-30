@@ -1,10 +1,10 @@
 import React from 'react';
 
-export const MobileViewColumnProductType = (params) => {
+export const MobileViewColumnDescription = (params) => {
     const { api, data, column, node, context } = params;
     return (
         <div>
-            <p>{data.producttype} {data.salepriceperunit}</p>
+            <p>{data.productdesc}</p>
         </div>
     );
 }

@@ -27,10 +27,10 @@ export const MobileViewColumnBrand = (params) => {
 
     return (
         <div>
-            <p> Brand : {data.brand}</p>
-            <p> Product Type : {data.producttype}</p>
+            <p> {data.brand}</p>
+            {/* <p> Product Type : {data.producttype}</p>
             <p> Product Description : {data.productdesc} </p>
-            <p> Sales Per Unit : {data.salepriceperunit} </p>
+            <p> Sales Per Unit : {data.salepriceperunit} </p> */}
             <div style={{width: "calc(100vw - 185px)"}}>
             <span className="my-renderer">
             {params.value != null &&
