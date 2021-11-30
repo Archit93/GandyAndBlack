@@ -148,12 +148,12 @@ const UserProfileSection = (props) => {
               placeholder="Postcode"
               onChange={(e) => onPostcodeChange(e)}
               onBlur={(e) => validatePostcode(e)}
-              value={profileDetails.postcode}
+              value={profileDetails.postCode}
             />
             <label htmlFor="floatingInput">Postcode</label>
           </div>
-          {profileDetailsError.postcodeError ? (
-            <span>{profileDetailsError.postcodeError}</span>
+          {profileDetailsError.postCodeError ? (
+            <span>{profileDetailsError.postCodeError}</span>
           ) : (
             <React.Fragment />
           )}

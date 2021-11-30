@@ -2,8 +2,7 @@ import * as React from "react";
 import { CSSTransition } from "react-transition-group";
 
 const UpdatePasswordModal = (props) => {
-  const { show, title, children, onClose, passwordError, updatePassword } =
-    props;
+  const { show, title, children, onClose, updatePassword } = props;
   return (
     <CSSTransition in={show} unmountOnExit timeout={{ enter: 0, exit: 300 }}>
       <div className="modal">
@@ -13,11 +12,7 @@ const UpdatePasswordModal = (props) => {
           </div>
           <div className="modal-body">{children}</div>
           <div className="modal-footer text-align-center">
-            <button
-              className="btn btn-main"
-              disabled={passwordError === ""}
-              onClick={updatePassword}
-            >
+            <button className="btn btn-main" onClick={updatePassword}>
               Update Password
             </button>
             <button

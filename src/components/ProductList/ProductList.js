@@ -161,7 +161,6 @@ const ProductList = (props) => {
   const onFilterTextBoxChanged = (event) => {
     gridApi.setQuickFilter(event.target.value);
   };
-
   const getRowHeight = () => (applicationState.mobileView ? 300 : 65);
   const onProceed = (e) => {
     // let customerCartArray = [];

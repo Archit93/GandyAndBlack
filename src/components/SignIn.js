@@ -2,6 +2,7 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
+import Alert from "@material-ui/lab/Alert";
 import { isValidEmail, isValidPassword } from "../utils/regexUtils";
 import { SET_INITIAL_RESPONSE, SET_IS_LOADING } from "../constants/actionTypes";
 import { signInApiCall } from "../serviceCalls/signInApiCall";
@@ -10,9 +11,10 @@ import { Spinner } from "react-bootstrap";
 const SignIn = (props) => {
   const history = useHistory();
   const {
-    applicationState: { isLoading },
+    applicationState: { isLoading, config },
     dispatch,
   } = props;
+  const { signInError } = config;
   const [email, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordShown, setPasswordShown] = React.useState(false);
@@ -60,6 +62,7 @@ const SignIn = (props) => {
       });
     }
   };
+
   const componentToDisplay = () => {
     if (isLoading) {
       return (
@@ -85,6 +88,11 @@ const SignIn = (props) => {
               <img src="./GD LOGOS-01.jpeg" alt="" />
             </header>
             <div id="login">
+              {signInError && (
+                <Alert severity="error">
+                  Somthing's gone wrong! Please try again.
+                </Alert>
+              )}
               <div role="main">
                 <form method="post">
                   <div className="form-floating mb-3">

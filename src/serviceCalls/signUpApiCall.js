@@ -46,17 +46,20 @@ export const signUpApiCall = async ({
   await axios
     .post(apiUrl, requestBody, apiRequestHeader)
     .then((apiResponse) => {
-      console.log(apiResponse);
       dispatch({
         type: SET_SIGN_UP_DATA,
-        payload: { data: apiResponse.data, status: apiResponse.status },
+        payload: {
+          data: apiResponse.data,
+          signUpError: apiResponse.status !== "200",
+        },
       });
       dispatch({ type: SET_IS_LOADING, payload: false });
       history.push("/signin");
     })
     .catch(() => {
       dispatch({
-        type: SET_ERROR,
+        type: SET_SIGN_UP_DATA,
+        payload: { data: "", signUpError: true },
       });
     });
 };
