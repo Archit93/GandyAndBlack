@@ -70,7 +70,7 @@ const setAutoHeight = () => {
           }}
          >
           <AgGridReact
-          getRowStyle={getRowStyle}
+            getRowStyle={getRowStyle}
             getRowHeight={getRowHeight}
             rowData={rowData()}
             columnDefs={columnDefs()}

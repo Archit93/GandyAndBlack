@@ -173,7 +173,7 @@ const ProductList = (props) => {
     gridApi.setQuickFilter(event.target.value);
   };
 
-  const getRowHeight = () => (applicationState.mobileView ? 300 : 30);
+  const getRowHeight = () => (applicationState.mobileView ? 110 : 65);
   const onProceed = (e) => {
     // let customerCartArray = [];
     // gridApi.forEachNode((node) => {
@@ -198,6 +198,12 @@ const ProductList = (props) => {
       return { background: "#e3adab" };
     }
   };
+
+  const setAutoHeight = () => {
+    gridApi.setDomLayout('autoHeight');
+    document.querySelector('#myGrid').style.height = '';
+  };
+
   return (
     <div id="productlist">
       <div>
@@ -218,8 +224,14 @@ const ProductList = (props) => {
           onChange={(event) => onFilterTextBoxChanged(event)}
         />
         <div
+          // className="ag-theme-alpine"
+          // style={{ height: "calc(100vh - 335px)", width: "100%" }}
+          id="myGrid"
           className="ag-theme-alpine"
-          style={{ height: "calc(100vh - 315px)", width: "100%" }}
+          style={{
+            height: '100%',
+            width: '100%',
+          }}
         >
           <AgGridReact
             getRowStyle={getRowStyle}
@@ -231,11 +243,12 @@ const ProductList = (props) => {
             defaultColDef={defaultColDef}
             onGridReady={onGridReady}
             context={{ frameWorkComponentChange: frameWorkComponentChange }}
+            domLayout={'autoHeight'}
           ></AgGridReact>
         </div>
         <div className="text-center mrt-20">
           <button
-            className="btn btn-main"
+            className="btn btn-secondary"
             type="submit"
             name="btn-checkout"
             id="btn-checkout"

@@ -31,12 +31,13 @@ export const MobileViewColumnBrand = (params) => {
             {/* <p> Product Type : {data.producttype}</p>
             <p> Product Description : {data.productdesc} </p>
             <p> Sales Per Unit : {data.salepriceperunit} </p> */}
-            <div style={{width: "calc(100vw - 185px)"}}>
+            <div>
+                {/*  style={{width: "calc(100vw - 185px)"}} */}
             <span className="my-renderer">
             {params.value != null &&
                 <>
                     <button className="btn btn-quantity" onClick={(event) => onIncrement(event)}>+</button>
-                    <input id="demoInput" type="number" value={quantityValue} 
+                    <input id="demoInput" type="number" value={quantityValue} className="quantity-inputbtn" 
                         onChange={(event) =>  onInputChange(event)} 
                         onBlur ={() =>  onInputBlur()} />
 
