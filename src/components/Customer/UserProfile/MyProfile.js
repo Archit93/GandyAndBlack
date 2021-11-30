@@ -22,15 +22,15 @@ const MyProfile = (props) => {
   const { cartDetails, config, isLoading } = applicationState;
   const [tempCart, setTempCart] = React.useState(cartDetails ?? []);
   const [profileDetails, setProfileDetails] = React.useState({
-    firstName: applicationState?.customerDetails?.firstname ?? "",
-    lastName: applicationState?.customerDetails?.lastname ?? "",
-    email: applicationState?.customerDetails?.email ?? "",
-    address: applicationState?.customerDetails?.address[0].addressbody ?? "",
-    postcode: applicationState?.customerDetails?.address[0].postcode ?? "",
-    phoneNo: applicationState?.customerDetails?.mobileno ?? "",
-    instagramId: applicationState?.customerDetails?.instaname ?? "",
+    firstName: applicationState?.shippingAddressDetails?.firstName ?? "",
+    lastName: applicationState?.shippingAddressDetails?.lastName ?? "",
+    email: applicationState?.shippingAddressDetails?.email ?? "",
+    phoneNo: applicationState?.shippingAddressDetails?.phoneNo ?? "",
+    address: applicationState?.shippingAddressDetails?.address ?? "",
+    postCode: applicationState?.shippingAddressDetails?.postCode ?? "",
+    instagramId: applicationState?.shippingAddressDetails?.instagramId ?? "",
     tradeOfBusiness:
-      applicationState?.customerDetails?.tradeofbuisness ??
+      applicationState?.shippingAddressDetails?.tradeOfBusiness ??
       "Mobile Practitioners",
   });
   const [profileDetailsError, setProfileDetailsError] = React.useState({
@@ -265,7 +265,7 @@ const MyProfile = (props) => {
         <div id="profile">
           <UserProfileHeaderSection
             showUpdatePassowrdModal={showUpdatePassowrdModal}
-            customerDetails={applicationState.customerDetails}
+            customerDetails={applicationState.shippingAddressDetails}
           />
           <div className="container-fluid">
             <UserProfileSection

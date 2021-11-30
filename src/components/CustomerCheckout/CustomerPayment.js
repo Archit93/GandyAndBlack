@@ -7,12 +7,21 @@ import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 import PayPal from "./PayPal.js";
 import CustomerPaymentSuccess from "./CustomerPaymentSuccess.js";
-import { SET_PAYMENT_METHOD, SET_TOTAL_AMOUNT} from "../../constants/actionTypes";
+import {
+  SET_PAYMENT_METHOD,
+  SET_TOTAL_AMOUNT,
+} from "../../constants/actionTypes";
 
 const CustomerPayment = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails, subTotalAmount, totalVatAmount, totalAmount, shippingCost } = applicationState;
+  const {
+    cartDetails,
+    subTotalAmount,
+    totalVatAmount,
+    totalAmount,
+    shippingCost,
+  } = applicationState;
   const [paymentMethod, setPaymentMethod] = React.useState(
     applicationState.paymentMethod
   );
@@ -37,26 +46,6 @@ const CustomerPayment = (props) => {
     purchase_units.push(purchaseUnitObject);
   });
 
-  const handleToken = async (token, addresses) => {
-    const response = await axios.post(
-      "https://d7okb.sse.codesandbox.io/checkout",
-      {
-        token,
-        product: {
-          name: "Tesla Roadster",
-          price: 10000,
-          description: "Cool car",
-        },
-      }
-    );
-    const { status } = response.data;
-    if (status === "success") {
-      console.log("Success! Check email for details");
-    } else {
-      console.log("Something went wrong");
-    }
-  };
-
   const validateSubmit = (e) => {
     dispatch({
       type: SET_PAYMENT_METHOD,
@@ -72,7 +61,6 @@ const CustomerPayment = (props) => {
   };
 
   const settingAmountDetails = (shippingCost) => {
-
     dispatch({
       type: SET_TOTAL_AMOUNT,
       payload: {
@@ -86,7 +74,7 @@ const CustomerPayment = (props) => {
         ).toFixed(2),
       },
     });
-  }
+  };
   return (
     <div>
       <div>
@@ -177,12 +165,14 @@ const CustomerPayment = (props) => {
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <CustomerAmountDetails
-                       subTotalAmount={subTotalAmount}
-                       finalVatAmount={totalVatAmount}
-                       totalAmount={totalAmount}
-                       shippingCost={shippingCost}
-                       changeShippingCost={(newShippingCost) => settingAmountDetails(newShippingCost)}
-                       dispatch={dispatch}
+                      subTotalAmount={subTotalAmount}
+                      finalVatAmount={totalVatAmount}
+                      totalAmount={totalAmount}
+                      shippingCost={shippingCost}
+                      changeShippingCost={(newShippingCost) =>
+                        settingAmountDetails(newShippingCost)
+                      }
+                      dispatch={dispatch}
                     />
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 import {
   isValidName,
   isValidEmail,
@@ -12,6 +13,9 @@ import { signInApiCall } from "../serviceCalls/signInApiCall";
 
 const SignUp = (props) => {
   const history = useHistory();
+  const { applicationState } = props;
+  const { isLoading } = applicationState;
+
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmailAddress] = React.useState("");
@@ -92,6 +96,13 @@ const SignUp = (props) => {
 
   return (
     <div className="row">
+      {isLoading && (
+        <div className="d-flex justify-content-center loader">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
       <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12 p-0">
         <div id="world-map-wrapper">
           <img
