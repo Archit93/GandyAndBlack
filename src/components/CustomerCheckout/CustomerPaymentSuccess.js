@@ -1,12 +1,15 @@
 import * as React from "react";
 import HeaderMenu from "../common/HeaderMenu.js";
 import CheckoutProgressBar from "./CheckoutProgressBar";
+import { useHistory } from "react-router-dom";
 
 const CustomerPaymentSuccess = (props) => {
+  const {dispatch} = props;
+  const history = useHistory();
   return (
     <div>
       <div>
-        <HeaderMenu />
+        <HeaderMenu dispatch={dispatch} />
       </div>
       <div id="checkout">
         <div className="container-fluid">
@@ -39,7 +42,7 @@ const CustomerPaymentSuccess = (props) => {
                             <button
                               className="btn btn-secondary"
                               type="submit"
-                              // onClick={() => history.push("/productlist")}
+                              onClick={() => history.push("/producttypes")}
                             >
                               Continue Shopping
                             </button>

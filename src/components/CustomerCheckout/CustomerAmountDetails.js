@@ -2,47 +2,48 @@ import * as React from "react";
 import { SET_TOTAL_AMOUNT } from "../../constants/actionTypes";
 
 const CustomerAmountDetails = (props) => {
-  const { dispatch, cartDetails } = props;
-  const [shippingCost, setShippingCost] = React.useState("9.98");
-  const [subTotalAmount, setSubTotalAmount] = React.useState("");
-  const [finalVatAmount, setFinalVatAmount] = React.useState("0");
-  const [totalAmount, setTotalAmount] = React.useState("");
+  const { dispatch, cartDetails, subTotalAmount, finalVatAmount, totalAmount, shippingCost, changeShippingCost } = props;
+  //const [shippingCost, setShippingCost] = React.useState("9.98");
 
-  React.useEffect(() => {
-    if (cartDetails && cartDetails.length > 0) {
-      const totalArray = cartDetails?.map(
-        (prod) => prod.salepriceperunit * prod.quantity
-      );
-      const vatArray = cartDetails?.map((prod) => prod.vat);
-      const reducer = (previousValue, currentValue) =>
-        previousValue + currentValue;
-      const subTotalValue = totalArray.reduce(reducer);
-      const vatAmount = vatArray.reduce(reducer);
-      setSubTotalAmount(subTotalValue);
-      setFinalVatAmount(vatAmount);
-      setTotalAmount(
-        (subTotalValue + vatAmount + Number(shippingCost)).toFixed(2)
-      );
-      dispatch({
-        type: SET_TOTAL_AMOUNT,
-        payload: {
-          shippingCost,
-          subTotalAmount: subTotalValue,
-          totalVatAmount: vatAmount,
-          totalAmount: (
-            subTotalValue +
-            vatAmount +
-            Number(shippingCost)
-          ).toFixed(2),
-        },
-      });
-    }
-  }, [cartDetails, shippingCost]);
 
-  const onShippingCostChange = (e) => {
-    setShippingCost(e.target.value);
-    setTotalAmount(subTotalAmount + Number(shippingCost));
-  };
+  
+  // const [subTotalAmount, setSubTotalAmount] = React.useState("");
+  // const [finalVatAmount, setFinalVatAmount] = React.useState("0");
+  // const [totalAmount, setTotalAmount] = React.useState("");
+  // React.useMemo(() => {
+  //   if (cartDetails && cartDetails.length > 0) {
+  //     const totalArray = cartDetails ?.map(
+  //       (prod) => prod.salepriceperunit * prod.quantity
+  //     );
+  //     const vatArray = cartDetails ?.map((prod) => prod.vat);
+  //     const reducer = (previousValue, currentValue) =>
+  //       previousValue + currentValue;
+  //     const subTotalValue = totalArray.reduce(reducer);
+  //     const vatAmount = vatArray.reduce(reducer);
+  //     setSubTotalAmount(subTotalValue);
+  //     setFinalVatAmount(vatAmount);
+  //     setTotalAmount(
+  //       (subTotalValue + vatAmount + Number(shippingCost)).toFixed(2)
+  //     );
+  //     dispatch({
+  //       type: SET_TOTAL_AMOUNT,
+  //       payload: {
+  //         shippingCost,
+  //         subTotalAmount: subTotalValue,
+  //         totalVatAmount: vatAmount,
+  //         totalAmount: (
+  //           subTotalValue +
+  //           vatAmount +
+  //           Number(shippingCost)
+  //         ).toFixed(2),
+  //       },
+  //     });
+  //   }
+  // }, [[JSON.stringify(cartDetails)], shippingCost]);
+
+  // const onShippingCostChange = (e) => {
+  //   setShippingCost(e.target.value);
+  // };
 
   return (
     <>
@@ -71,7 +72,7 @@ const CustomerAmountDetails = (props) => {
                 className="form-control"
                 id="shipping"
                 name="shipping"
-                onChange={onShippingCostChange}
+                onChange={(e) => changeShippingCost(e.target.value)}
                 value={shippingCost}
               >
                 <option value="0">Click and collect 0 GBP</option>

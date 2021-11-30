@@ -10,14 +10,15 @@ import {
   isValidPostcode,
   isValidPhone,
 } from "../../utils/regexUtils";
-import { SET_CUSTOMER_BILLING_DETAILS } from "../../constants/actionTypes";
+import { SET_CUSTOMER_BILLING_DETAILS, SET_TOTAL_AMOUNT } from "../../constants/actionTypes";
 import { updateCustomerDetails } from "../../serviceCalls/updateCustomerDetails";
 import ToggleButton from "react-toggle-button";
 
 const CustomerShippingInformation = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails } = applicationState;
+  const { cartDetails, subTotalAmount, totalVatAmount, totalAmount, shippingCost } = applicationState;
+  
   const [tempCart, setTempCart] = React.useState(cartDetails);
   React.useEffect(() => {
     const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
@@ -157,6 +158,23 @@ const CustomerShippingInformation = (props) => {
       history.push("/customerpayment_info");
     }
   };
+
+  const settingAmountDetails = (shippingCost) => {
+
+    dispatch({
+      type: SET_TOTAL_AMOUNT,
+      payload: {
+        shippingCost,
+        subTotalAmount: subTotalAmount,
+        totalVatAmount: totalVatAmount,
+        totalAmount: (
+          subTotalAmount +
+          totalVatAmount +
+          Number(shippingCost)
+        ).toFixed(2),
+      },
+    });
+  }
 
   return (
     <div>
@@ -333,7 +351,11 @@ const CustomerShippingInformation = (props) => {
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                       <CustomerAmountDetails
-                        cartDetails={tempCart}
+                        subTotalAmount={subTotalAmount}
+                        finalVatAmount={totalVatAmount}
+                        totalAmount={totalAmount}
+                        shippingCost={shippingCost}
+                        changeShippingCost={(newShippingCost) => settingAmountDetails(newShippingCost)}
                         dispatch={dispatch}
                       />
                     </div>

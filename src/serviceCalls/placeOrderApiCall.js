@@ -20,7 +20,6 @@ export const placeOrderApiCall = async ({
   await axios
     .post(apiUrl, placeOrderRequest, apiRequestHeader)
     .then((apiResponse) => {
-      console.log(apiResponse);
       dispatch({ type: SET_IS_LOADING, payload: false });
       history.push("/customerpayment_success");
     })
