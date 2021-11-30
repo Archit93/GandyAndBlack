@@ -26,21 +26,21 @@ export const stripeCheckoutApi = async ({
         ]);
         let productidcartmap = Object.fromEntries(itemList);
         const placeOrderRequest = {
-          address: applicationState?.customerDetails?.address || "",
+          address: applicationState?.shippingAddressDetails?.address || "",
           cart: {
             ordershippingcost: Number(applicationState?.shippingCost),
             productidcartmap,
             subtotal: applicationState?.subTotalAmount,
             totalvat: applicationState?.totalVatAmount,
-            userId: applicationState?.customerDetails?.email || "",
+            userId: applicationState?.shippingAddressDetails?.email || "",
           },
           cppcode: "",
-          email: applicationState?.customerDetails?.email || "",
-          firstname: applicationState?.customerDetails?.firstName || "",
-          lastname: applicationState?.customerDetails?.lastName || "",
-          mobileno: applicationState?.customerDetails?.phoneNo || "",
+          email: applicationState?.shippingAddressDetails?.email || "",
+          firstname: applicationState?.shippingAddressDetails?.firstName || "",
+          lastname: applicationState?.shippingAddressDetails?.lastName || "",
+          mobileno: applicationState?.shippingAddressDetails?.phoneNo || "",
           paymentMethod: "CARD",
-          postalcode: applicationState?.customerDetails?.postCode || "",
+          postalcode: applicationState?.shippingAddressDetails?.postCode || "",
         };
         placeOrderApiCall({
           dispatch,

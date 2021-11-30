@@ -10,16 +10,24 @@ import {
   isValidPostcode,
   isValidPhone,
 } from "../../utils/regexUtils";
-import { SET_CUSTOMER_BILLING_DETAILS, SET_TOTAL_AMOUNT } from "../../constants/actionTypes";
+import {
+  SET_CUSTOMER_BILLING_DETAILS,
+  SET_TOTAL_AMOUNT,
+} from "../../constants/actionTypes";
 import { updateCustomerDetails } from "../../serviceCalls/updateCustomerDetails";
 import ToggleButton from "react-toggle-button";
 
 const CustomerShippingInformation = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails, subTotalAmount, totalVatAmount, totalAmount, shippingCost } = applicationState;
-  
-  const [tempCart, setTempCart] = React.useState(cartDetails);
+  const {
+    cartDetails,
+    subTotalAmount,
+    totalVatAmount,
+    totalAmount,
+    shippingCost,
+  } = applicationState;
+
   React.useEffect(() => {
     const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
     if (cartData) {
@@ -27,140 +35,223 @@ const CustomerShippingInformation = (props) => {
     }
   }, []);
 
-  const [firstName, setFirstName] = React.useState(
-    applicationState?.customerDetails?.firstname ?? ""
-  );
-  const [lastName, setLastName] = React.useState(
-    applicationState?.customerDetails?.lastname ?? ""
-  );
-  const [email, setEmailAddress] = React.useState(
-    applicationState?.customerDetails?.email ?? ""
-  );
-  const [emailError, setEmailError] = React.useState("");
-  const [address, setAddress] = React.useState(
-    applicationState?.customerDetails?.address[0]?.addressbody ?? ""
-  );
-  const [addressError, setAddressError] = React.useState("");
-  const [postCode, setPostcode] = React.useState(
-    applicationState?.customerDetails?.address[0]?.postcode ?? ""
-  );
-  const [postcodeError, setPostcodeError] = React.useState("");
-  const [firstNameError, setFirstNameError] = React.useState("");
-  const [lastNameError, setLastNameError] = React.useState("");
-  const [phoneNo, setPhoneNo] = React.useState(
-    applicationState?.customerDetails?.mobileno ?? ""
-  );
-  const [phoneNoError, setPhoneNoError] = React.useState("");
-  const [instagramId, setInstagramId] = React.useState(
-    applicationState?.customerDetails?.instaname ?? ""
-  );
-  const [tradeOfBusiness, setTradeOfBusiness] = React.useState(
-    applicationState?.customerDetails?.tradeofbuisness ?? "Mobile Practitioners"
-  );
-  const [emptyCredentialsError, setEmptyCredentialsError] = React.useState("");
+  const [tempCart, setTempCart] = React.useState(cartDetails);
+  const [shippingAddressDetails, setShippingAddressDetails] = React.useState({
+    firstName: applicationState?.shippingAddressDetails?.firstName ?? "",
+    lastName: applicationState?.shippingAddressDetails?.lastName ?? "",
+    email: applicationState?.shippingAddressDetails?.email ?? "",
+    phoneNo: applicationState?.shippingAddressDetails?.phoneNo ?? "",
+    address: applicationState?.shippingAddressDetails?.address ?? "",
+    postCode: applicationState?.shippingAddressDetails?.postCode ?? "",
+    instagramId: applicationState?.shippingAddressDetails?.instagramId ?? "",
+    tradeOfBusiness:
+      applicationState?.shippingAddressDetails?.tradeOfBusiness ?? "",
+  });
 
-  const onNameChange = (e) => {
-    if (e.target.id === "fname") {
-      setFirstName(e.target.value);
-      setFirstNameError("");
-    } else {
-      setLastName(e.target.value);
-      setLastNameError("");
-    }
-    setEmptyCredentialsError("");
+  const [shippingAddressDetailsError, setShippingAddressDetailsError] =
+    React.useState({
+      firstNameError: "",
+      lastNameError: "",
+      emailError: "",
+      phoneNoError: "",
+      addressError: "",
+      postCodeError: "",
+      instagramIdError: "",
+      tradeOfBusinessError: "",
+    });
+
+  const [billingAddressDetails, setBillingAddressDetails] = React.useState({
+    firstNameBilling:
+      applicationState?.billingAddressDetails?.firstNameBilling ?? "",
+    lastNameBilling:
+      applicationState?.billingAddressDetails?.lastNameBilling ?? "",
+    emailBilling: applicationState?.billingAddressDetails?.emailBilling ?? "",
+    phoneNoBilling:
+      applicationState?.billingAddressDetails?.phoneNoBilling ?? "",
+    billingAddress:
+      applicationState?.billingAddressDetails?.billingAddress ?? "",
+    billingPostCode:
+      applicationState?.billingAddressDetails?.billingPostCode ?? "",
+  });
+
+  const [billingAddressDetailsError, setBillingAddressDetailsError] =
+    React.useState({
+      firstNameBillingError: "",
+      lastNameBillingError: "",
+      emailBillingError: "",
+      phoneNoBillingError: "",
+      billingAddressError: "",
+      billingPostCodeError: "",
+    });
+
+  const [emptyCredentialsError, setEmptyCredentialsError] = React.useState("");
+  const [isSameAddress, setIsSameAddress] = React.useState(
+    applicationState?.isSameAddress ?? true
+  );
+
+  const onShippingFieldChange = (e) => {
+    setShippingAddressDetails({
+      ...shippingAddressDetails,
+      [e.target.id]: e.target.value,
+    });
+    setShippingAddressDetailsError({
+      ...shippingAddressDetailsError,
+      [`${e.target.id}Error`]: "",
+    });
+  };
+
+  const onBillingFieldChange = (e) => {
+    setBillingAddressDetails({
+      ...billingAddressDetails,
+      [e.target.id]: e.target.value,
+    });
+    setBillingAddressDetailsError({
+      ...billingAddressDetailsError,
+      [`${e.target.id}Error`]: "",
+    });
+  };
+
+  const toggleIsSameAddress = () => {
+    setBillingAddressDetails({
+      firstNameBilling: shippingAddressDetails.firstName,
+      lastNameBilling: shippingAddressDetails.lastName,
+      emailBilling: shippingAddressDetails.email,
+      phoneNoBilling: shippingAddressDetails.phoneNo,
+      billingAddress: shippingAddressDetails.address,
+      billingPostCode: shippingAddressDetails.postCode,
+    });
+    setIsSameAddress(!isSameAddress);
   };
 
   const validateName = (e) => {
     const { id, value } = e?.target;
-    if (id === "fname") {
-      setFirstNameError(isValidName(value));
-    } else {
-      setLastNameError(isValidName(value));
+    switch (id) {
+      case "firstName":
+        setShippingAddressDetailsError({
+          ...shippingAddressDetailsError,
+          firstNameError: isValidName(value),
+        });
+        break;
+      case "lastName":
+        setShippingAddressDetailsError({
+          ...shippingAddressDetailsError,
+          lastNameError: isValidName(value),
+        });
+      case "firstNameBilling":
+        setBillingAddressDetailsError({
+          ...billingAddressDetailsError,
+          firstNameBillingError: isValidName(value),
+        });
+      case "lastNameBilling":
+        setBillingAddressDetailsError({
+          ...billingAddressDetailsError,
+          lastNameBillingError: isValidName(value),
+        });
     }
   };
 
   const validateEmail = (e) => {
-    const { value } = e?.target;
-    setEmailError(isValidEmail(value));
-  };
-
-  const onEmailChange = (e) => {
-    setEmailAddress(e.target.value);
-    setEmailError("");
+    const { id, value } = e?.target;
+    if (id === "email") {
+      setShippingAddressDetailsError({
+        ...shippingAddressDetailsError,
+        emailError: isValidEmail(value),
+      });
+    } else {
+      setBillingAddressDetailsError({
+        ...billingAddressDetailsError,
+        emailBillingError: isValidEmail(value),
+      });
+    }
   };
 
   const validateAddress = (e) => {
-    const { value } = e?.target;
-    setAddressError(isValidAddress(value));
-  };
-
-  const onAddressChange = (e) => {
-    setAddress(e.target.value);
-    setAddressError("");
+    const { id, value } = e?.target;
+    if (id === "address") {
+      setShippingAddressDetailsError({
+        ...shippingAddressDetailsError,
+        addressError: isValidAddress(value),
+      });
+    } else {
+      setBillingAddressDetailsError({
+        ...billingAddressDetailsError,
+        billingAddressError: isValidAddress(value),
+      });
+    }
   };
 
   const validatePostcode = (e) => {
-    const { value } = e?.target;
-    setPostcodeError(isValidPostcode(value));
-  };
-
-  const onPostcodeChange = (e) => {
-    setPostcode(e.target.value);
-    setPostcodeError("");
+    const { id, value } = e?.target;
+    if (id === "postCode") {
+      setShippingAddressDetailsError({
+        ...shippingAddressDetailsError,
+        postCodeError: isValidPostcode(value),
+      });
+    } else {
+      setBillingAddressDetailsError({
+        ...billingAddressDetailsError,
+        billingPostCodeError: isValidPostcode(value),
+      });
+    }
   };
 
   const validatePhone = (e) => {
-    const { value } = e?.target;
-    setPhoneNoError(isValidPhone(value));
-  };
-
-  const onPhoneChange = (e) => {
-    setPhoneNo(e.target.value);
-    setPhoneNoError("");
+    const { id, value } = e?.target;
+    if (id === "phoneNo") {
+      setShippingAddressDetailsError({
+        ...shippingAddressDetailsError,
+        phoneNoError: isValidPhone(value),
+      });
+    } else {
+      setBillingAddressDetailsError({
+        ...billingAddressDetailsError,
+        phoneNoBillingError: isValidPhone(value),
+      });
+    }
   };
 
   const validateSubmit = (e) => {
     if (
-      firstNameError ||
-      lastNameError ||
-      emailError ||
-      addressError ||
-      phoneNoError
+      shippingAddressDetailsError.firstNameError ||
+      shippingAddressDetailsError.lastNameError ||
+      shippingAddressDetailsError.emailError ||
+      shippingAddressDetailsError.addressError ||
+      shippingAddressDetailsError.phoneNoError
     ) {
       e.preventDefault();
     } else if (
-      firstName === "" ||
-      lastName === "" ||
-      email === "" ||
-      address === "" ||
-      phoneNo === ""
+      shippingAddressDetails.firstName === "" ||
+      shippingAddressDetails.lastName === "" ||
+      shippingAddressDetails.email === "" ||
+      shippingAddressDetails.address === "" ||
+      shippingAddressDetails.phoneNo === "" ||
+      (!isSameAddress &&
+        (billingAddressDetails.firstNameBilling === "" ||
+          billingAddressDetails.lastNameBilling === "" ||
+          billingAddressDetails.emailBilling === "" ||
+          billingAddressDetails.phoneNoBilling === "" ||
+          billingAddressDetails.billingAddress === "" ||
+          billingAddressDetails.billingPostCode === ""))
     ) {
       e.preventDefault();
       setEmptyCredentialsError(
         "Looks like you're missing something! Do you want to give it another try?"
       );
     } else {
-      const customerDetails = {
-        firstName,
-        lastName,
-        email,
-        instagramId,
-        phoneNo,
-        address,
-        postCode,
-        tradeOfBusiness,
-      };
       dispatch({
         type: SET_CUSTOMER_BILLING_DETAILS,
-        payload: customerDetails,
+        payload: {
+          shippingAddressDetails,
+          billingAddressDetails,
+          isSameAddress,
+        },
       });
-      // updateCustomerDetails(dispatch, customerDetails, history);
+      // updateCustomerDetails(dispatch, shippingAddressDetails, history);
       history.push("/customerpayment_info");
     }
   };
 
   const settingAmountDetails = (shippingCost) => {
-
     dispatch({
       type: SET_TOTAL_AMOUNT,
       payload: {
@@ -174,7 +265,7 @@ const CustomerShippingInformation = (props) => {
         ).toFixed(2),
       },
     });
-  }
+  };
 
   return (
     <div>
@@ -191,99 +282,116 @@ const CustomerShippingInformation = (props) => {
                   <div className="row">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
                       <fieldset>
-                        <h2 className="fs-title">Billing Address</h2>
+                        <h2 className="fs-title">Shipping Address</h2>
                         <div className="form-card">
                           <input
                             type="text"
-                            name="fname"
+                            name="firstName"
                             className="form-control"
-                            id="fname"
+                            id="firstName"
                             placeholder="First Name*"
-                            onChange={(e) => onNameChange(e)}
+                            onChange={(e) => onShippingFieldChange(e)}
                             onBlur={(e) => validateName(e)}
-                            value={firstName}
+                            value={shippingAddressDetails.firstName}
                           />
-                          {firstNameError ? (
-                            <span>{firstNameError}</span>
+                          {shippingAddressDetailsError.firstNameError ? (
+                            <span className="error">
+                              {shippingAddressDetailsError.firstNameError}
+                            </span>
                           ) : (
                             <React.Fragment />
                           )}
                           <input
                             type="text"
-                            name="lname"
+                            name="lastName"
                             className="form-control"
-                            id="lname"
+                            id="lastName"
                             placeholder="Last Name*"
-                            onChange={(e) => onNameChange(e)}
+                            onChange={(e) => onShippingFieldChange(e)}
                             onBlur={(e) => validateName(e)}
-                            value={lastName}
+                            value={shippingAddressDetails.lastName}
                           />
-                          {lastNameError ? (
-                            <span>{lastNameError}</span>
+                          {shippingAddressDetailsError.lastNameError ? (
+                            <span className="error">
+                              {shippingAddressDetailsError.lastNameError}
+                            </span>
                           ) : (
                             <React.Fragment />
                           )}
                           <input
                             type="text"
                             name="email"
+                            id="email"
                             className="form-control"
                             placeholder="Email*"
-                            onChange={(e) => onEmailChange(e)}
+                            onChange={(e) => onShippingFieldChange(e)}
                             onBlur={(e) => validateEmail(e)}
-                            value={email}
+                            value={shippingAddressDetails.email}
                           />
-                          {emailError ? (
-                            <span>{emailError}</span>
+                          {shippingAddressDetailsError.emailError ? (
+                            <span className="error">
+                              {shippingAddressDetailsError.emailError}
+                            </span>
                           ) : (
                             <React.Fragment />
                           )}
                           <input
                             type="text"
                             name="phoneNo"
+                            id="phoneNo"
                             className="form-control"
                             placeholder="Contact No."
-                            onChange={(e) => onPhoneChange(e)}
+                            onChange={(e) => onShippingFieldChange(e)}
                             onBlur={(e) => validatePhone(e)}
-                            value={phoneNo}
+                            value={shippingAddressDetails.phoneNo}
                           />
-                          {phoneNoError ? (
-                            <span>{phoneNoError}</span>
+                          {shippingAddressDetailsError.phoneNoError ? (
+                            <span className="error">
+                              {shippingAddressDetailsError.phoneNoError}
+                            </span>
                           ) : (
                             <React.Fragment />
                           )}
                           <input
                             type="text"
                             name="instagramId"
+                            id="instagramId"
                             className="form-control"
                             placeholder="Instagram Name"
-                            onChange={(e) => setInstagramId(e.target.value)}
-                            value={instagramId}
+                            onChange={(e) => onShippingFieldChange(e)}
+                            value={shippingAddressDetails.instagramId}
                           />
                           <input
                             type="text"
-                            name="delivery_address"
+                            name="address"
+                            id="address"
                             placeholder="Delivery Address*"
                             className="form-control"
-                            onChange={(e) => onAddressChange(e)}
+                            onChange={(e) => onShippingFieldChange(e)}
                             onBlur={(e) => validateAddress(e)}
-                            value={address}
+                            value={shippingAddressDetails.address}
                           />
-                          {addressError ? (
-                            <span>{addressError}</span>
+                          {shippingAddressDetailsError.addressError ? (
+                            <span className="error">
+                              {shippingAddressDetailsError.addressError}
+                            </span>
                           ) : (
                             <React.Fragment />
                           )}
                           <input
                             type="text"
-                            name="postcode"
+                            name="postCode"
+                            id="postCode"
                             className="form-control"
-                            placeholder="Post Code"
-                            onChange={(e) => onPostcodeChange(e)}
+                            placeholder="Post Code*"
+                            onChange={(e) => onShippingFieldChange(e)}
                             onBlur={(e) => validatePostcode(e)}
-                            value={postCode}
+                            value={shippingAddressDetails.postCode}
                           />
-                          {postcodeError ? (
-                            <span>{postcodeError}</span>
+                          {shippingAddressDetailsError.postCodeError ? (
+                            <span className="error">
+                              {shippingAddressDetailsError.postCodeError}
+                            </span>
                           ) : (
                             <React.Fragment />
                           )}
@@ -293,8 +401,8 @@ const CustomerShippingInformation = (props) => {
                             id="tradeOfBusiness"
                             className="form-control"
                             name="tradeOfBusiness"
-                            onChange={(e) => setTradeOfBusiness(e.target.value)}
-                            value={tradeOfBusiness}
+                            onChange={(e) => onBillingFieldChange(e)}
+                            value={shippingAddressDetails.tradeOfBusiness}
                           >
                             <option value="Mobile Practitioners">
                               Mobile Practitioners
@@ -309,43 +417,18 @@ const CustomerShippingInformation = (props) => {
                           <div className="toggle mrt-20 pdb-30">
                             <span>
                               <ToggleButton
-                              // inactiveLabel={<X/>}
-                              // activeLabel={<Check/>}
-                              // value={self.state.value}
-                              // onToggle={(value) => {
-                              //   self.setState({
-                              //     value: !value,
-                              //   })
-                              // }}
+                                value={isSameAddress}
+                                onToggle={() =>
+                                  toggleIsSameAddress(!isSameAddress)
+                                }
+                                thumbStyle={{ borderRadius: 2 }}
+                                trackStyle={{ borderRadius: 2 }}
                               />
                             </span>
                             <span className="float-left">
-                              Is your Shipping address same as Billing address?
+                              Is your Billing address same as Shipping address?
                             </span>
                           </div>
-                        </div>
-                        {emptyCredentialsError ? (
-                          <div>{emptyCredentialsError}</div>
-                        ) : (
-                          <React.Fragment />
-                        )}
-                        <div className="mt-4">
-                          <button
-                            className="previous action-button-previous"
-                            type="submit"
-                            onClick={() => {
-                              history.push("/customercart_details");
-                            }}
-                          >
-                            Back
-                          </button>
-                          <button
-                            className="next action-button"
-                            type="submit"
-                            onClick={validateSubmit}
-                          >
-                            Proceed to Pay
-                          </button>
                         </div>
                       </fieldset>
                     </div>
@@ -355,10 +438,154 @@ const CustomerShippingInformation = (props) => {
                         finalVatAmount={totalVatAmount}
                         totalAmount={totalAmount}
                         shippingCost={shippingCost}
-                        changeShippingCost={(newShippingCost) => settingAmountDetails(newShippingCost)}
+                        changeShippingCost={(newShippingCost) =>
+                          settingAmountDetails(newShippingCost)
+                        }
                         dispatch={dispatch}
                       />
                     </div>
+                  </div>
+                  {!isSameAddress && (
+                    <div className="row">
+                      <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
+                        <fieldset>
+                          <h2 className="fs-title">Billing Address</h2>
+                          <div className="form-card">
+                            <input
+                              type="text"
+                              name="firstNameBilling"
+                              className="form-control"
+                              id="firstNameBilling"
+                              placeholder="First Name*"
+                              onChange={(e) => onBillingFieldChange(e)}
+                              onBlur={(e) => validateName(e)}
+                              value={billingAddressDetails.firstNameBilling}
+                            />
+                            {billingAddressDetailsError.firstNameBillingError ? (
+                              <span className="error">
+                                {
+                                  billingAddressDetailsError.firstNameBillingError
+                                }
+                              </span>
+                            ) : (
+                              <React.Fragment />
+                            )}
+                            <input
+                              type="text"
+                              name="lastNameBilling"
+                              className="form-control"
+                              id="lastNameBilling"
+                              placeholder="Last Name*"
+                              onChange={(e) => onBillingFieldChange(e)}
+                              onBlur={(e) => validateName(e)}
+                              value={billingAddressDetails.lastNameBilling}
+                            />
+                            {billingAddressDetailsError.lastNameBillingError ? (
+                              <span className="error">
+                                {
+                                  billingAddressDetailsError.lastNameBillingError
+                                }
+                              </span>
+                            ) : (
+                              <React.Fragment />
+                            )}
+                            <input
+                              type="text"
+                              name="emailBilling"
+                              id="emailBilling"
+                              className="form-control"
+                              placeholder="Email*"
+                              onChange={(e) => onBillingFieldChange(e)}
+                              onBlur={(e) => validateEmail(e)}
+                              value={billingAddressDetails.emailBilling}
+                            />
+                            {billingAddressDetailsError.emailBillingError ? (
+                              <span className="error">
+                                {billingAddressDetailsError.emailBillingError}
+                              </span>
+                            ) : (
+                              <React.Fragment />
+                            )}
+                            <input
+                              type="text"
+                              name="phoneNoBilling"
+                              id="phoneNoBilling"
+                              className="form-control"
+                              placeholder="Billing Contact No."
+                              onChange={(e) => onBillingFieldChange(e)}
+                              onBlur={(e) => validatePhone(e)}
+                              value={billingAddressDetails.phoneNoBilling}
+                            />
+                            {billingAddressDetailsError.phoneNoBillingError ? (
+                              <span className="error">
+                                {billingAddressDetailsError.phoneNoBillingError}
+                              </span>
+                            ) : (
+                              <React.Fragment />
+                            )}
+                            <input
+                              type="text"
+                              name="billingAddress"
+                              id="billingAddress"
+                              placeholder="Billing Address*"
+                              className="form-control"
+                              onChange={(e) => onBillingFieldChange(e)}
+                              onBlur={(e) => validateAddress(e)}
+                              value={billingAddressDetails.billingAddress}
+                            />
+                            {billingAddressDetailsError.billingAddressError ? (
+                              <span className="error">
+                                {billingAddressDetailsError.billingAddressError}
+                              </span>
+                            ) : (
+                              <React.Fragment />
+                            )}
+                            <input
+                              type="text"
+                              name="billingPostCode"
+                              id="billingPostCode"
+                              className="form-control"
+                              placeholder="Billing Post Code*"
+                              onChange={(e) => onBillingFieldChange(e)}
+                              onBlur={(e) => validatePostcode(e)}
+                              value={billingAddressDetails.billingPostCode}
+                            />
+                            {billingAddressDetailsError.billingPostCodeError ? (
+                              <span className="error">
+                                {
+                                  billingAddressDetailsError.billingPostCodeError
+                                }
+                              </span>
+                            ) : (
+                              <React.Fragment />
+                            )}
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                  )}
+                  <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
+                    {emptyCredentialsError ? (
+                      <div className="mb-4">{emptyCredentialsError}</div>
+                    ) : (
+                      <React.Fragment />
+                    )}
+                    <button
+                      className="previous action-button-previous"
+                      type="submit"
+                      onClick={() => {
+                        history.push("/customercart_details");
+                      }}
+                    >
+                      Back
+                    </button>
+                    <button
+                      className="next action-button"
+                      type="submit"
+                      onClick={validateSubmit}
+                    >
+                      Proceed to Pay
+                    </button>
                   </div>
                 </form>
               </div>

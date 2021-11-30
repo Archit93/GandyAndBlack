@@ -9,6 +9,9 @@ export const useStateManager = (
     customerList: [],
     cartDetails: [],
     customerDetails: {},
+    shippingAddressDetails: {},
+    billingAddressDetails: {},
+    isSameAddress: true,
     orderDetails: [],
     config: {},
     isCartEmpty: true,
@@ -20,7 +23,7 @@ export const useStateManager = (
     shippingCost: 0,
     paymentMethod: "",
     adminPlaceOrder: [],
-    signUpStatus: null,
+    signUpStatus: {},
   },
   action
 ) => {
@@ -54,6 +57,7 @@ export const useStateManager = (
         ...state,
         customerDetails: action.payload,
         orderDetails: action.orderDetails,
+        shippingAddressDetails: action.shippingAddressDetails,
         isLoading: false,
       };
     case actionTypes.SET_FORGOT_PASSWORD_ERROR:
@@ -88,7 +92,9 @@ export const useStateManager = (
     case actionTypes.SET_CUSTOMER_BILLING_DETAILS:
       return {
         ...state,
-        customerDetails: action.payload,
+        customerDetails: action.payload.customerDetails,
+        billingAddressDetails: action.payload.billingAddressDetails,
+        isSameAddress: action.payload.isSameAddress,
       };
     case actionTypes.SET_IS_LOADING:
       return {

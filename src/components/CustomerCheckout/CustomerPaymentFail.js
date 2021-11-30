@@ -29,7 +29,7 @@ const CustomerPaymentFail = (props) => {
                           <div className="row justify-content-center">
                             <div className="col-3 cross-icon">
                               <i
-                                class="fa fa-times-circle fa-5x"
+                                className="fa fa-times-circle fa-5x"
                                 aria-hidden="true"
                               ></i>
                             </div>
