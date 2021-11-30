@@ -23,50 +23,36 @@ const ProductListTiles = (props) => {
             <div
                 style={{ width: "100%", height: "100%" }}
             >
-                <div className="row fill-height-or-more">
-                    <button className="col-lg-4 tile-btn" onClick={() => onTileClick("Dermal Filler")}>
-                        <div className="rectangle-202-uEBdwN">
-                            <div className="poppins-normal-white-24px">
+                <div className="row">
+                    <button className="col-lg-4 col-md-4 col-sm-6 col-xs-12 tile-btn tile-one" onClick={() => onTileClick("Dermal Filler")}>
+                        <div className="poppins-normal-white-24px">
                                 SHOP DERMAL FILLERS
-		        </div>
-                        </div>
+		                </div>
                     </button>
-                    <button className="col-lg-4 tile-btn" onClick={() => onTileClick("Body Filler")}>
-                        <div className="rectangle-203-uEBdwN">
-                            <div className="poppins-normal-white-24px">
+                    <button className="col-lg-4 col-md-4 col-sm-6 col-xs-12 tile-btn tile-two" onClick={() => onTileClick("Body Filler")}>
+                        <div className="poppins-normal-white-24px">
                                 SHOP BODY FILLERS
-	          	</div>
-                        </div>
+	          	        </div>
                     </button>
-                    <button className="col-lg-4 tile-btn" onClick={() => onTileClick("Skin Booster")}>
-                        <div className="rectangle-204-uEBdwN">
-                            <div className="about-gandy-black-uEBdwN poppins-normal-white-24px">
+                    <button className="col-lg-4 col-md-4 col-sm-6 col-xs-12 tile-btn tile-three" onClick={() => onTileClick("Skin Booster")}>
+                        <div className="about-gandy-black-uEBdwN poppins-normal-white-24px">
                                 SHOP SKIN BOOSTERS
-	          	</div>
                         </div>
                     </button>
-                </div>
-                <div className="row fill-height-or-more">
-                    <button className="col-lg-4 tile-btn" onClick={() => onTileClick("Fat Dissolver")}>
-                        <div className="rectangle-205-uEBdwN">
-                            <div className="poppins-normal-white-24px">
+                    <button className="col-lg-4 col-md-4 col-sm-6 col-xs-12 tile-btn tile-four" onClick={() => onTileClick("Fat Dissolver")}>
+                        <div className="poppins-normal-white-24px">
                                 SHOP FAT DISSOLVERS
-		        </div>
-                        </div>
+		                </div>
                     </button>
-                    <button className="col-lg-4 tile-btn" onClick={() => onTileClick("Body Filler")}>
-                        <div className="rectangle-201-uEBdwN">
-                            <div className="poppins-normal-white-24px">
+                    <button className="col-lg-4 col-md-4 col-sm-6 col-xs-12 tile-btn tile-five" onClick={() => onTileClick("Body Filler")}>
+                        <div className="poppins-normal-white-24px">
                                 SHOP CONSUMABLES
-	          	</div>
-                        </div>
+	          	        </div>
                     </button>
-                    <button className="col-lg-4 tile-btn" onClick={() => onTileClick("Body Filler")}>
-                        <div className="rectangle-206-uEBdwN">
-                            <div className="about-gandy-black-uEBdwN poppins-normal-white-24px">
+                    <button className="col-lg-4 col-md-4 col-sm-6 col-xs-12 tile-btn tile-six" onClick={() => onTileClick("Body Filler")}>
+                        <div className="about-gandy-black-uEBdwN poppins-normal-white-24px">
                                 SHOP EXTRAS
-	          	</div>
-                        </div>
+	          	        </div>
                     </button>
                 </div>
             </div>

@@ -35,12 +35,12 @@ export const MobileViewColumnBrand = (params) => {
             <span className="my-renderer">
             {params.value != null &&
                 <>
-                    <button className="btn btn-main" onClick={(event) => onIncrement(event)}>+</button>
+                    <button className="btn btn-quantity" onClick={(event) => onIncrement(event)}>+</button>
                     <input id="demoInput" type="number" value={quantityValue} 
                         onChange={(event) =>  onInputChange(event)} 
                         onBlur ={() =>  onInputBlur()} />
 
-                    <button className="btn btn-main" onClick={(event) => onDecrement(event)}>-</button>
+                    <button className="btn btn-quantity" onClick={(event) => onDecrement(event)}>-</button>
 
                 </>
             }
