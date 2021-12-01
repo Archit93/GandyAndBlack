@@ -63,11 +63,26 @@ const App = () => {
     customerList: [],
     cartDetails: [],
     customerDetails: {},
-    config: {},
+    shippingAddressDetails: {},
+    billingAddressDetails: {},
+    isSameAddress: true,
+    orderDetails: [],
+    config: {
+      signInError: false,
+    },
     isCartEmpty: true,
     isLoading: false,
     forgotPasswordError: "",
-    adminPlaceOrder: []
+    totalAmount: 0,
+    totalVatAmount: 0,
+    subTotalAmount: 0,
+    shippingCost: 0,
+    paymentMethod: "",
+    adminPlaceOrder: [],
+    signUpStatus: {
+      signUpError: false,
+    },
+    profileUpdateStatus: "",
   });
   React.useEffect(() => {
     const setResponsiveness = () => {

@@ -12,14 +12,20 @@ import {
   isValidPhone,
   isValidPassword,
 } from "../../../utils/regexUtils";
-import { UPDATE_CUSTOMER_DETAILS } from "../../../constants/actionTypes";
+import {
+  SET_CUSTOMER_BILLING_DETAILS,
+  SET_IS_LOADING,
+  SET_PROFILE_UPDATE_STATUS,
+} from "../../../constants/actionTypes";
 import { updateCustomerDetails } from "../../../serviceCalls/updateCustomerDetails";
 import HeaderMenu from "../../common/HeaderMenu.js";
+import Alert from "@material-ui/lab/Alert";
 
 const MyProfile = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails, config, isLoading } = applicationState;
+  const { cartDetails, config, isLoading, profileUpdateStatus } =
+    applicationState;
   const [tempCart, setTempCart] = React.useState(cartDetails ?? []);
   const [profileDetails, setProfileDetails] = React.useState({
     firstName: applicationState?.shippingAddressDetails?.firstName ?? "",
@@ -37,7 +43,7 @@ const MyProfile = (props) => {
     firstNameError: "",
     lastNameError: "",
     addressError: "",
-    postcodeError: "",
+    postCodeError: "",
     phoneNoError: "",
     tradeOfBusinessError: "",
   });
@@ -103,8 +109,8 @@ const MyProfile = (props) => {
   };
 
   const onPostcodeChange = (e) => {
-    setProfileDetails({ ...profileDetails, postcode: e.target.value });
-    setProfileDetailsError({ ...profileDetailsError, postcodeError: "" });
+    setProfileDetails({ ...profileDetails, postCode: e.target.value });
+    setProfileDetailsError({ ...profileDetailsError, postCodeError: "" });
     setEmptyCredentialsError("");
   };
 
@@ -149,7 +155,7 @@ const MyProfile = (props) => {
           {
             addressbody: profileDetails.address,
             addresstype: "",
-            postcode: profileDetails.postcode,
+            postcode: profileDetails.postCode,
           },
         ],
         email: profileDetails.email,
@@ -169,6 +175,7 @@ const MyProfile = (props) => {
         tradeofbuisness: profileDetails.tradeOfBusiness,
         usercredebility: "",
       };
+      props.dispatch({ type: SET_IS_LOADING, payload: true });
       updateCustomerDetails({
         dispatch,
         customerDetails,
@@ -199,15 +206,16 @@ const MyProfile = (props) => {
       profileDetails.email === "" ||
       profileDetails.address === "" ||
       profileDetails.phoneNo === "" ||
-      profileDetails.postcode === ""
+      profileDetails.postCode === ""
     ) {
       setEmptyCredentialsError(
         "Looks like you're missing something! Do you want to give it another try?"
       );
       e.preventDefault();
     } else {
+      props.dispatch({ type: SET_IS_LOADING, payload: true });
       dispatch({
-        type: UPDATE_CUSTOMER_DETAILS,
+        type: SET_CUSTOMER_BILLING_DETAILS,
         payload: profileDetails,
       });
       const customerDetails = {
@@ -215,7 +223,7 @@ const MyProfile = (props) => {
           {
             addressbody: profileDetails.address,
             addresstype: "",
-            postcode: profileDetails.postcode,
+            postcode: profileDetails.postCode,
           },
         ],
         email: profileDetails.email,
@@ -242,13 +250,20 @@ const MyProfile = (props) => {
         history,
         flag: false,
       });
-      // history.push("/customerpayment_info");
     }
   };
 
   const showUpdatePassowrdModal = (showModalValue) => {
     setShowModal(showModalValue);
   };
+
+  const closeAlert = () => {
+    dispatch({
+      type: SET_PROFILE_UPDATE_STATUS,
+      payload: "",
+    });
+  };
+
   return (
     <>
       {isLoading && (
@@ -265,9 +280,14 @@ const MyProfile = (props) => {
         <div id="profile">
           <UserProfileHeaderSection
             showUpdatePassowrdModal={showUpdatePassowrdModal}
-            customerDetails={applicationState.shippingAddressDetails}
+            shippingAddressDetails={applicationState?.shippingAddressDetails}
           />
           <div className="container-fluid">
+            {profileUpdateStatus && (
+              <Alert className="mb-4" severity="success" onClose={closeAlert}>
+                {profileUpdateStatus}
+              </Alert>
+            )}
             <UserProfileSection
               validateName={validateName}
               onNameChange={onNameChange}
@@ -287,7 +307,6 @@ const MyProfile = (props) => {
               title="Please enter new password:"
               onClose={() => showUpdatePassowrdModal(false)}
               show={showModal}
-              passwordError={passwordError}
               updatePassword={updatePassword}
             >
               <div className="form-floating mb-3">
@@ -309,7 +328,7 @@ const MyProfile = (props) => {
                 ></i>
               </div>
               {passwordError ? (
-                <span>{passwordError}</span>
+                <span className="error">{passwordError}</span>
               ) : (
                 <React.Fragment />
               )}

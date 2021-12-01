@@ -29,7 +29,7 @@ export const isValidPassword = (value) => {
     value && !regexes.password.test(value)
       ? "Please enter a capital, a small letter and a numeric field and total 6 chars long."
       : undefined;
-  return undefined;
+  return bool;
 };
 
 export const isValidName = (value) => {

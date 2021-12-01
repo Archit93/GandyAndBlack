@@ -25,8 +25,8 @@ export const signInApiCall = async ({ dispatch, history, email, password }) => {
       dispatch({
         type: SET_SIGN_IN_DATA,
         payload: apiResponse.data.body,
+        signInError: false,
       });
-
       getProductsApiCall({
         dispatch,
         history,
@@ -34,10 +34,12 @@ export const signInApiCall = async ({ dispatch, history, email, password }) => {
         email,
       });
     })
-    .catch(() => {
+    .catch((error) => {
       dispatch({ type: SET_IS_LOADING, payload: false });
       dispatch({
-        type: SET_ERROR,
+        type: SET_SIGN_IN_DATA,
+        payload: {},
+        signInError: true,
       });
     });
 };
