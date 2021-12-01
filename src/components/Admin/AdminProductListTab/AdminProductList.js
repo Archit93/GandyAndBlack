@@ -54,7 +54,7 @@ const AdminProductList = (props) => {
   ];
 
   const rowData = () => {
-    return applicationState?.productList || [];
+    return applicationState ?.productList || [];
   };
 
   const defaultColDef = React.useMemo(
@@ -81,70 +81,57 @@ const AdminProductList = (props) => {
   };
 
   // set background colour on even rows again, this looks bad, should be using CSS classes
-  const getRowStyle = (params) => {
+  const getRowStyle = params => {
     if (params.node.rowIndex % 2 === 0) {
-      return { background: "#e3adab" };
+      return { background: '#e3adab' };
     }
+  };
+  return (
+    <div id="adminproductlist">
+      <div>
+        <AdminHeaderMenu />
+      </div>
+      <div
+        className="container-fluid"
+        style={{ width: "100%", height: "100%" }}
+      >
+        <input
+          className="search-bottom-margin"
+          type="text"
+          id="filter-text-box"
+          placeholder="Filter..."
+          onChange={(event) => onFilterTextBoxChanged(event)}
+        />
 
-    const showDeleteProductModal = (showModalValue) => {
-        setDeleteProductModal(showModalValue);
-    }
-    const showAddProductModal = (showModalValue) => {
-        setAddProductModal(showModalValue);
-    }
-
-    // set background colour on even rows again, this looks bad, should be using CSS classes
-    const getRowStyle = params => {
-        if (params.node.rowIndex % 2 === 0) {
-            return { background: '#e3adab' };
-        }
-    };
-    return (
-        <div id="adminproductlist">
-            <div>
-                <AdminHeaderMenu />
-            </div>
-            <div
-                className="container-fluid"
-                style={{ width: "100%", height: "100%" }}
-            >
-                <input
-                    className="search-bottom-margin"
-                    type="text"
-                    id="filter-text-box"
-                    placeholder="Filter..."
-                    onChange={(event) => onFilterTextBoxChanged(event)}
-                />
-
-                <div
-                    className="ag-theme-alpine"
-                    style={{ height: "calc(100vh - 315px)", width: "100%" }}
-                >
-                    <AgGridReact
-                        getRowStyle={getRowStyle}
-                        rowData={rowData()}
-                        columnDefs={columnDefs()}
-                        defaultColDef={defaultColDef}
-                        onGridReady={onGridReady}
-                        context={{
-                            frameWorkComponentChange: frameWorkComponentChange,
-                            showUpdateProductModal: showUpdateProductModal,
-                            showDeleteProductModal: showDeleteProductModal
-                        }}
-                        rowSelection={'multiple'}
-                    >
-                    </AgGridReact>
-                </div>
-                <div className="text-center mrt-20">
-                    <button
-                        className="btn btn-main"
-                        type="submit"
-                        name="btn-checkout"
-                        id="btn-checkout"
-                        disabled={false}
-                        onClick={() => showAddProductModal(true)}
-                    >
-                        Add Product
+        <div
+          className="ag-theme-alpine"
+          style={{ height: "calc(100vh - 315px)", width: "100%" }}
+        >
+          <AgGridReact
+            getRowStyle={getRowStyle}
+            rowData={rowData()}
+            columnDefs={columnDefs()}
+            defaultColDef={defaultColDef}
+            onGridReady={onGridReady}
+            context={{
+              frameWorkComponentChange: frameWorkComponentChange,
+              showUpdateProductModal: showUpdateProductModal,
+              showDeleteProductModal: showDeleteProductModal
+            }}
+            rowSelection={'multiple'}
+          >
+          </AgGridReact>
+        </div>
+        <div className="text-center mrt-20">
+          <button
+            className="btn btn-main"
+            type="submit"
+            name="btn-checkout"
+            id="btn-checkout"
+            disabled={false}
+            onClick={() => showAddProductModal(true)}
+          >
+            Add Product
           </button>
           <button
             className="btn btn-secondary"
@@ -165,7 +152,7 @@ const AdminProductList = (props) => {
             Export Products
           </button>
         </div>
-        {applicationState?.productList && (
+        {applicationState ?.productList && (
           <>
             <UpdateProductModal
               onClose={() => showUpdateProductModal(false)}
