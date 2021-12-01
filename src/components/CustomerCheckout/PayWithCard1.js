@@ -243,36 +243,45 @@ const PayWithCard1 = (props) => {
       <div>
         <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
       </div>
-      <div className="row col-lg-4 col-md-8 col-sm-12 col-xs-12 order-md-first order-last mrt-150">
-        <form onSubmit={handleFormSubmit}>
-          <CardElementContainer>
-            <CardElement
-              options={cardElementOpts}
-              onChange={handleCardDetailsChange}
-            />
-          </CardElementContainer>
-          {/* TIP always disable your submit button while processing payments */}
-          {checkoutError && <span className="error">{checkoutError}</span>}
-          <SubmitButton
-            className="next action-button"
-            disabled={isProcessing || !stripe || checkoutError}
-          >
-            {isProcessing ? "Processing..." : `Pay $${totalAmount}`}
-          </SubmitButton>
+      <div className="container-fluid">
+        <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 order-md-first order-last payment-card">
+          <form onSubmit={handleFormSubmit} className="px-0">
+            <CardElementContainer>
+              <CardElement
+                options={cardElementOpts}
+                onChange={handleCardDetailsChange}
+              />
+            </CardElementContainer>
+            {/* TIP always disable your submit button while processing payments */}
+            {checkoutError && <span className="error">{checkoutError}</span>}
+            <div className="payment-cards mrt-20">
+                <img src="visa.png"/>
+                <img src="amex.png"/>
+                <img src="icons8-discover-96.png"/>
+                <img src="icons8-mastercard-logo-96.png"/>
+                <span style={{lineHeight: "3.5"}}>more..</span>
+            </div>
+            <SubmitButton
+              className="action-button mrt-20"
+              disabled={isProcessing || !stripe || checkoutError}
+            >
+              {isProcessing ? "Processing..." : `Pay $${totalAmount}`}
+            </SubmitButton>
 
-          {/* <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <CustomerAmountDetails
-            subTotalAmount={subTotalAmount}
-            finalVatAmount={totalVatAmount}
-            totalAmount={totalAmount}
-            shippingCost={shippingCost}
-            changeShippingCost={(newShippingCost) =>
-              settingAmountDetails(newShippingCost)
-            }
-            dispatch={dispatch}
-          />
-        </div> */}
-        </form>
+            {/* <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <CustomerAmountDetails
+              subTotalAmount={subTotalAmount}
+              finalVatAmount={totalVatAmount}
+              totalAmount={totalAmount}
+              shippingCost={shippingCost}
+              changeShippingCost={(newShippingCost) =>
+                settingAmountDetails(newShippingCost)
+              }
+              dispatch={dispatch}
+            />
+          </div> */}
+          </form>
+        </div>
       </div>
     </div>
   );
