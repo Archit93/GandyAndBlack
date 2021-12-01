@@ -85,7 +85,6 @@ const AdminProductList = (props) => {
     if (params.node.rowIndex % 2 === 0) {
       return { background: "#e3adab" };
     }
-<<<<<<< HEAD
 
     const showDeleteProductModal = (showModalValue) => {
         setDeleteProductModal(showModalValue);
@@ -146,54 +145,6 @@ const AdminProductList = (props) => {
                         onClick={() => showAddProductModal(true)}
                     >
                         Add Product
-=======
-  };
-  return (
-    <div id="">
-      <div>
-        <AdminHeaderMenu />
-      </div>
-      <div
-        className="container-fluid"
-        style={{ width: "100%", height: "100%" }}
-      >
-        <input
-          className="search-bottom-margin"
-          type="text"
-          id="filter-text-box"
-          placeholder="Filter..."
-          onChange={(event) => onFilterTextBoxChanged(event)}
-        />
-
-        <div
-          className="ag-theme-alpine"
-          style={{ height: "calc(100vh - 315px)", width: "100%" }}
-        >
-          <AgGridReact
-            getRowStyle={getRowStyle}
-            rowData={rowData()}
-            columnDefs={columnDefs()}
-            defaultColDef={defaultColDef}
-            onGridReady={onGridReady}
-            context={{
-              frameWorkComponentChange: frameWorkComponentChange,
-              showUpdateProductModal: showUpdateProductModal,
-              showDeleteProductModal: showDeleteProductModal,
-            }}
-            rowSelection={"multiple"}
-          ></AgGridReact>
-        </div>
-        <div className="text-center mrt-20">
-          <button
-            className="btn btn-main"
-            type="submit"
-            name="btn-checkout"
-            id="btn-checkout"
-            disabled={false}
-            onClick={() => showAddProductModal(true)}
-          >
-            Add Product
->>>>>>> origin/develop
           </button>
           <button
             className="btn btn-secondary"
