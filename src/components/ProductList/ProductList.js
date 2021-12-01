@@ -155,7 +155,7 @@ const ProductList = (props) => {
           field: "quantity",
           headerName: "Quantity",
           editable: true,
-          cellRendererFramework: ColumnQuantity,
+          cellEditor: "columnQuantityEditor",
         },
         { field: "salepriceperunit", headerName: "Sales Per Unit" },
       ];
@@ -237,6 +237,9 @@ const ProductList = (props) => {
             getRowStyle={getRowStyle}
             getRowHeight={getRowHeight}
             rowData={rowData()}
+            frameworkComponents={{
+              columnQuantityEditor: ColumnQuantity
+          }}
             columnDefs={columnDefs({
               frameWorkComponentChange: frameWorkComponentChange,
             })}

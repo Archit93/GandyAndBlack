@@ -27,7 +27,6 @@ export const ProductQuantityEditor = React.forwardRef((props, ref) => {
             // Gets called once when editing is finished (eg if Enter is pressed).
             // If you return true, then the result of the edit will be ignored.
             isCancelAfterEnd() {
-                console.log(value);
                 // our editor will reject any value greater than 1000
                 return value > 1000;
             }
