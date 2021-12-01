@@ -44,6 +44,8 @@
 // export default App;
 
 import * as React from "react";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { AppRouter } from "./routes/index";
 import { useStateManager } from "./reducer/useStateManager";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -55,6 +57,16 @@ import "./styles/globals.css";
 import "./styles/styleguide.css";
 import { SET_MOBILE_VIEW } from "./constants/actionTypes";
 
+// Learning
+// To best leverage Stripe’s advanced fraud functionality,
+// include this script on every page, not just the checkout page.
+// This allows Stripe to detect anomalous behavior that may be indicative
+// of fraud as customers browse your website.
+// Note: This is why we are adding it to a Layout component.
+
+const stripePromise = loadStripe(
+  "pk_test_51JumLXBPQeAuTgL1NI4yDdkimtENKscd8FBy4LRA4ahqXVEbBRt4VgcobThjBxmwywgTwX1t2PtodBZYjYYp5gbY00cI3NjBn6"
+);
 const App = () => {
   const [reducer, dispatch] = React.useReducer(useStateManager, {
     mobileView: false,
@@ -102,7 +114,9 @@ const App = () => {
 
   return (
     <div>
-      <AppRouter applicationState={reducer} dispatch={dispatch} />
+      <Elements stripe={stripePromise}>
+        <AppRouter applicationState={reducer} dispatch={dispatch} />
+      </Elements>
     </div>
   );
 };
