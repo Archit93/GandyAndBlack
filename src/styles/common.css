@@ -512,7 +512,7 @@ textarea {
   border: 1px solid transparent;
   border-radius: 3px;
   transition: color var(--trans-dur), background-color var(--trans-dur),
-  border-color var(--trans-dur);
+    border-color var(--trans-dur);
   margin: 0 5px;
 }
 
@@ -2507,7 +2507,7 @@ div + .header-config {
   margin-bottom: 4px;
 }
 
-.my-renderer{
+.my-renderer {
   vertical-align: text-top;
 }
 
@@ -2632,7 +2632,9 @@ input:-webkit-autofill:active {
     align-items: center;
   }
 }
-
+.mrt-150 {
+  margin-top: 150px;
+}
 /* ============ small devices ============ */
 @media (max-width: 991px) {
   .dropdown-menu .dropdown-menu {
@@ -2669,7 +2671,7 @@ input:-webkit-autofill:active {
   margin-bottom: 20px;
 }
 
-.mrr-5{
+.mrr-5 {
   margin-right: 5px;
 }
 
@@ -2678,7 +2680,7 @@ input:-webkit-autofill:active {
   padding: 0 40px;
 }
 
-.pdb-30{
+.pdb-30 {
   padding-bottom: 30px;
 }
 
@@ -2689,11 +2691,11 @@ input:-webkit-autofill:active {
 }
 
 /* FLoat */
-.float-right{
+.float-right {
   float: right;
 }
 
-.float-left{
+.float-left {
   float: left;
 }
 
@@ -2905,23 +2907,25 @@ input:-webkit-autofill:active {
 }
 
 /* Ag grid */
-.ag-theme-alpine .ag-header-row, .ag-theme-alpine .ag-panel-title-bar-title, .ag-theme-alpine .ag-multi-filter-group-title-bar {
+.ag-theme-alpine .ag-header-row,
+.ag-theme-alpine .ag-panel-title-bar-title,
+.ag-theme-alpine .ag-multi-filter-group-title-bar {
   font-weight: 700;
   color: #fff !important;
   background: #7984a3;
 }
 
 /* table icon */
-.btn-icon{
+.btn-icon {
   border: 0;
   background: transparent;
 }
 
-.icon-blue{
+.icon-blue {
   color: #0e0864;
 }
 
-.icon-red{
+.icon-red {
   color: #dc3545;
 }
 
@@ -2950,7 +2954,7 @@ input:-webkit-autofill:active {
   /* height: calc(100vh - 360px); */
 }
 
-.tile-btn{
+.tile-btn {
   border: 0;
   background-color: transparent;
   padding: 0;
@@ -2984,15 +2988,15 @@ input:-webkit-autofill:active {
 .rectangle-202-uEBdwN .poppins-normal-white-24px, .rectangle-203-uEBdwN .poppins-normal-white-24px, .rectangle-204-uEBdwN .poppins-normal-white-24px{
   line-height: 17; 
 } */
-  
+
 /* Order fail */
-.cross-icon{
+.cross-icon {
   text-align: center;
 }
 
 /* Customer cart */
-.cart-input{
-  width: auto  !important;
+.cart-input {
+  width: auto !important;
   border: 1px solid #dedede !important;
   padding: 10px !important;
 }
@@ -3010,7 +3014,7 @@ input:-webkit-autofill:active {
   -moz-box-direction: normal;
   -ms-flex-direction: row;
   flex-direction: row;
-} 
+}
 
 .fill-height-or-more .rectangle-205-uEBdwN,
 .fill-height-or-more .rectangle-201-uEBdwN,

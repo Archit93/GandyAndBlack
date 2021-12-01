@@ -11,7 +11,7 @@ import CustomerPayment from "../components/CustomerCheckout/CustomerPayment";
 import CustomerPaymentSuccess from "../components/CustomerCheckout/CustomerPaymentSuccess";
 import MyProfile from "../components/Customer/UserProfile/MyProfile";
 import PayPal from "../components/CustomerCheckout/PayPal";
-import PayWithCard from "../components/CustomerCheckout/PayWithCard";
+import PayWithCard1 from "../components/CustomerCheckout/PayWithCard1";
 import MyOrders from "../components/MyOrders";
 import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustomersList";
 import CRM from "../components/Admin/CRMTab/CRM";
@@ -66,7 +66,7 @@ export const AppRouter = (props) => {
           <PayPal {...props} />
         </Route>
         <Route exact={true} path="/pay-with-card">
-          <PayWithCard {...props} />
+          <PayWithCard1 {...props} />
         </Route>
         <Route exact={true} path="/crm">
           <CRM {...props} />
