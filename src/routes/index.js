@@ -19,8 +19,8 @@ import HomePage from "../components/HomePage";
 import AdminProductList from "../components/Admin/AdminProductListTab/AdminProductList";
 import AdminPlaceOrder from "../components/Admin/AdminPlaceOrderTab/AdminPlaceOrder";
 import ProductListTiles from "../components/ProductList/ProductListTiles";
-
 import CustomerPaymentFail from "../components/CustomerCheckout/CustomerPaymentFail";
+import RequireAuth from "../components/RequireAuth";
 
 export const AppRouter = (props) => {
   return (
@@ -42,50 +42,49 @@ export const AppRouter = (props) => {
           <AboutUs {...props} />
         </Route>
         <Route exact={true} path="/productlist">
-          <ProductList {...props} />
+          {RequireAuth(ProductList, { ...props })}
         </Route>
         <Route exact={true} path="/customercart_details">
-          <CustomerCart {...props} />
+          {RequireAuth(CustomerCart, { ...props })}
         </Route>
         <Route exact={true} path="/customershipping_info">
-          <CustomerShippingInformation {...props} />
+          {RequireAuth(CustomerShippingInformation, { ...props })}
         </Route>
         <Route exact={true} path="/customerpayment_info">
-          <CustomerPayment {...props} />
+          {RequireAuth(CustomerPayment, { ...props })}
         </Route>
         <Route exact={true} path="/customerpayment_success">
-          <CustomerPaymentSuccess {...props} />
+          {RequireAuth(CustomerPaymentSuccess, { ...props })}
         </Route>
         <Route exact={true} path="/customer_list">
-          <AdminCustomersList {...props} />
+          {RequireAuth(AdminCustomersList, { ...props })}
         </Route>
         <Route exact={true} path="/my_profile">
-          <MyProfile {...props} />
+          {RequireAuth(MyProfile, { ...props })}
         </Route>
         <Route exact={true} path="/paypal">
-          <PayPal {...props} />
+          {RequireAuth(PayPal, { ...props })}
         </Route>
         <Route exact={true} path="/pay-with-card">
-          <PayWithCard1 {...props} />
+          {RequireAuth(PayWithCard1, { ...props })}
         </Route>
         <Route exact={true} path="/crm">
-          <CRM {...props} />
+          {RequireAuth(CRM, { ...props })}
         </Route>
         <Route exact={true} path="/my_orders">
-          <MyOrders {...props} />
+          {RequireAuth(MyOrders, { ...props })}
         </Route>
         <Route exact={true} path="/admin_product_list">
-          <AdminProductList {...props} />
+          {RequireAuth(AdminProductList, { ...props })}
         </Route>
         <Route exact={true} path="/place_order">
-          <AdminPlaceOrder {...props} />
+          {RequireAuth(AdminPlaceOrder, { ...props })}
         </Route>
         <Route exact={true} path="/producttypes">
-          <ProductListTiles {...props} />
+          {RequireAuth(ProductListTiles, { ...props })}
         </Route>
-
         <Route exact={true} path="/customerfail">
-          <CustomerPaymentFail {...props} />
+          {RequireAuth(CustomerPaymentFail, { ...props })}
         </Route>
       </Switch>
     </Router>

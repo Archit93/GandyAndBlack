@@ -66,7 +66,10 @@ export const getProductsApiCall = async ({
         axios
           .all([
             // axios.get(`${baseUrl}/admin/user/management/admin`, apiRequestHeader),
-            axios.get(`${baseUrl}/order/all`, apiRequestHeader),
+            axios.get(
+              `${baseUrl}/order/all?ordertype=INSTA_SITE`,
+              apiRequestHeader
+            ),
           ])
           .then(
             axios.spread((allOrders) => {
