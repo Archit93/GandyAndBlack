@@ -35,8 +35,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start:prod": "(cd server && npm i && node index.js) PORT=80 react-scripts start",
+    "start": "(cd server & npm --prefix server/ install & node server/index.js) & react-scripts start",
+    "start:prod": "(cd server & npm --prefix server/ install & node server/index.js) & PORT=80 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
