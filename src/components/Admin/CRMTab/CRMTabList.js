@@ -6,7 +6,6 @@ import CustomerDetailsTab from './CustomerDetailsTab';
 import ProductDetailsTab from './ProductDetailsTab';
 
 const CRMTabList = ({orderInfo}) => {
-  console.log(orderInfo);
     return(
         <Tabs>
           <TabList>

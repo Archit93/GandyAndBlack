@@ -35,7 +35,6 @@ const UpdateProductModal = (props) => {
   });
 
   const validateValue = (value, fieldName) => {
-    console.log(value, fieldName);
     value === ""
       ? setNewProductDetailsError({
           ...newProductDetailsError,

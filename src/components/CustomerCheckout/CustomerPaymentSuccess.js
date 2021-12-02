@@ -2,10 +2,36 @@ import * as React from "react";
 import HeaderMenu from "../common/HeaderMenu.js";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import { useHistory } from "react-router-dom";
+import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
+import {getMyOrdersApiCall} from "../../serviceCalls/getMyOrdersApiCall";
 
 const CustomerPaymentSuccess = (props) => {
-  const {dispatch} = props;
+  const { applicationState, dispatch } = props;
   const history = useHistory();
+
+  React.useEffect(()=> {
+    const { productList, config, customerDetails } = applicationState;
+    const productlistArray = [];
+    productList.forEach((product) => {
+      let productListObject = Object.assign(product);
+      productListObject = {
+        ...productListObject,
+        quantity: 0,
+      };
+      productlistArray.push(productListObject);
+    });
+    getMyOrdersApiCall({
+      dispatch: dispatch,
+      authToken: config.authToken,
+      email: customerDetails.email,
+      productList : productlistArray,
+      cartDetails: []
+    })
+  }, [applicationState.config.authToken]);
+
+  const onContinueShopping = () => {
+    history.push("/producttypes")
+  }
   return (
     <div>
       <div>
@@ -42,7 +68,7 @@ const CustomerPaymentSuccess = (props) => {
                             <button
                               className="btn btn-secondary"
                               type="submit"
-                              onClick={() => history.push("/producttypes")}
+                              onClick={() => onContinueShopping()}
                             >
                               Continue Shopping
                             </button>

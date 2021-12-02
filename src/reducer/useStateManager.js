@@ -63,7 +63,14 @@ export const useStateManager = (
       return {
         ...state,
         customerDetails: action.payload,
-        // orderDetails: action.orderDetails,
+        orderDetails: action.orderDetails ? action.orderDetails : state.orderDetails,
+        shippingAddressDetails: action.shippingAddressDetails,
+        isLoading: false,
+      };
+    case actionTypes.UPDATE_USER_DETAILS:
+      return {
+        ...state,
+        customerDetails: action.payload,
         shippingAddressDetails: action.shippingAddressDetails,
         isLoading: false,
       };
@@ -99,10 +106,10 @@ export const useStateManager = (
     case actionTypes.SET_CUSTOMER_BILLING_DETAILS:
       return {
         ...state,
-        shippingAddressDetails: action.payload?.shippingAddressDetails,
+        shippingAddressDetails: action.payload ?.shippingAddressDetails,
         billingAddressDetails:
-          action.payload?.billingAddressDetails || state.billingAddressDetails,
-        isSameAddress: action.payload?.isSameAddress || state.isSameAddress,
+          action.payload ?.billingAddressDetails || state.billingAddressDetails,
+        isSameAddress: action.payload ?.isSameAddress || state.isSameAddress,
       };
     case actionTypes.SET_IS_LOADING:
       return {

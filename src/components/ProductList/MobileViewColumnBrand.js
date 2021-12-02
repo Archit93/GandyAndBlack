@@ -38,14 +38,10 @@ export const MobileViewColumnBrand = (params) => {
         context.frameWorkComponentChange({ api })
     }
 
-    return (
-        <div>
+    const componentToDisplay = () => {
+        return Number(data.numberofstock) <= 0 ? (<div> <p> Out of stock </p></div>) : (<div>
             <p> {data.brand}</p>
-            {/* <p> Product Type : {data.producttype}</p>
-            <p> Product Description : {data.productdesc} </p>
-            <p> Sales Per Unit : {data.salepriceperunit} </p> */}
             <div>
-                {/*  style={{width: "calc(100vw - 185px)"}} */}
                 <span className="my-renderer">
                     {params.value != null &&
                         <>
@@ -71,12 +67,15 @@ export const MobileViewColumnBrand = (params) => {
                     }
                 </span>
             </div>
-        </div>
+        </div>)
+    }
+
+    return (
+        <>{componentToDisplay()}</>
     );
 }
 
 // export const MobileViewColumnBrand = React.forwardRef((props, ref) => {
-//     console.log("Helllooooo World");
 //     const { api, node, column, context } = props;
 //     const [value, setValue] = React.useState(parseInt(props.value));
 //     const refInput = React.useRef(null);
@@ -97,7 +96,6 @@ export const MobileViewColumnBrand = (params) => {
 //     });
 
 //     // const onInputBlur = () => {
-//     //     console.log(value);
 //     //     if (value && Number(value) <= Number(props.data.numberofstock)) {
 //     //         node.setDataValue(column.colId, Number(value));
 //     //     }

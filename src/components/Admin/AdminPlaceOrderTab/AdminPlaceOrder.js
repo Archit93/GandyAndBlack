@@ -28,7 +28,6 @@ const AdminPlaceOrder = (props) => {
     }
 
     const frameWorkComponentChange = ({ api }) => {
-        console.log(api);
     }
 
     const columnDefs = () => [

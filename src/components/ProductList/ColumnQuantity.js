@@ -39,8 +39,8 @@ export const ColumnQuantity = (params) => {
     context.frameWorkComponentChange({ api });
   };
 
-  return (
-    <span className="my-renderer">
+  const componentToDisplay = () => {
+    return Number(data.numberofstock) <= 0 ? (<span> Out of stock </span>) : (<span className="my-renderer">
       <>
         <button
           className="btn-quantity"
@@ -48,7 +48,7 @@ export const ColumnQuantity = (params) => {
           disabled={quantityValue === Number(data.numberofstock)}
         >
           +
-          </button>
+        </button>
         <input
           id={`quantity-input-${data.productid}`}
           type="number"
@@ -56,7 +56,7 @@ export const ColumnQuantity = (params) => {
           className="quantity-inputbtn"
           onChange={(event) => onInputChange(event)}
           onBlur={() => onInputBlur()}
-          disabled={data.numberofstock === 0} 
+          disabled={data.numberofstock === 0}
         />
 
         <button
@@ -65,10 +65,14 @@ export const ColumnQuantity = (params) => {
           disabled={quantityValue <= 0}
         >
           -
-          </button>
+        </button>
       </>
 
-    </span>
+    </span>)
+  }
+
+  return (
+    <>{componentToDisplay()}</>
   );
 };
 

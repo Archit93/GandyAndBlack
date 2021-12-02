@@ -3,7 +3,7 @@ import { makeApiRequestHeader } from "../utils/makeApiRequestHeader";
 import {
   SET_ERROR,
   SET_IS_LOADING,
-  SET_USER_DETAILS,
+  UPDATE_USER_DETAILS,
   SET_PROFILE_UPDATE_STATUS,
 } from "../constants/actionTypes";
 
@@ -54,7 +54,7 @@ export const updateCustomerDetails = async ({
                 tradeOfBusiness: customerDetails?.data?.tradeofbuisness ?? "",
               };
               dispatch({
-                type: SET_USER_DETAILS,
+                type: UPDATE_USER_DETAILS,
                 payload: customerDetails.data,
                 shippingAddressDetails: shippingAddressDetails,
               });
