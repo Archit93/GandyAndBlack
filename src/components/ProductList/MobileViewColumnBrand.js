@@ -17,11 +17,24 @@ export const MobileViewColumnBrand = (params) => {
     }
 
     const onInputChange = (event) => {
-        quantityValue = event.target.value;
-        node.setDataValue(column.colId, quantityValue);
+        if (event.target.value &&
+            !isNaN(event.target.value) &&
+            (Number(event.target.value) <= Number(data.numberofstock))
+        ) {
+            quantityValue = Number(event.target.value);
+
+        } else if (event.target.value &&
+            !isNaN(event.target.value) &&
+            (Number(event.target.value) > Number(data.numberofstock))) {
+            quantityValue = quantityValue;
+        }
+        else {
+            quantityValue = 0;
+        }
+        document.getElementById(`quantity-input-${data.productid}`).innerHTML = quantityValue;
+        node.setDataValue(column.colId, Number(quantityValue));
     }
     const onInputBlur = () => {
-        node.setDataValue(column.colId, quantityValue);
         context.frameWorkComponentChange({ api })
     }
 
@@ -33,22 +46,94 @@ export const MobileViewColumnBrand = (params) => {
             <p> Sales Per Unit : {data.salepriceperunit} </p> */}
             <div>
                 {/*  style={{width: "calc(100vw - 185px)"}} */}
-            <span className="my-renderer">
-            {params.value != null &&
-                <>
-                    <button className="btn btn-quantity" onClick={(event) => onIncrement(event)}>+</button>
-                    <input id="demoInput" type="number" value={quantityValue} className="quantity-inputbtn" 
-                        onChange={(event) =>  onInputChange(event)} 
-                        onBlur ={() =>  onInputBlur()} />
+                <span className="my-renderer">
+                    {params.value != null &&
+                        <>
+                            <button className="btn btn-quantity"
+                                onClick={(event) => onIncrement(event)}
+                                disabled={quantityValue === Number(data.numberofstock)}>
+                                +
+                            </button>
+                            <input
+                                id={`quantity-input-${data.productid}`}
+                                type="number"
+                                value={quantityValue}
+                                className="quantity-inputbtn"
+                                onChange={(event) => onInputChange(event)}
+                                onBlur={() => onInputBlur()}
+                                disabled={data.numberofstock === 0} />
 
-                    <button className="btn btn-quantity" onClick={(event) => onDecrement(event)}>-</button>
+                            <button className="btn btn-quantity"
+                                onClick={(event) => onDecrement(event)}
+                                disabled={quantityValue <= 0}>-</button>
 
-                </>
-            }
-        </span>
-            
-
+                        </>
+                    }
+                </span>
             </div>
         </div>
     );
 }
+
+// export const MobileViewColumnBrand = React.forwardRef((props, ref) => {
+//     console.log("Helllooooo World");
+//     const { api, node, column, context } = props;
+//     const [value, setValue] = React.useState(parseInt(props.value));
+//     const refInput = React.useRef(null);
+
+//     React.useImperativeHandle(ref, () => {
+//         return {
+//             getValue() {
+
+//                 return Number(value);
+//             },
+//             isCancelBeforeStart() {
+//                 return false;
+//             },
+//             isCancelAfterEnd() {
+//                 return Number(value) > Number(props.data.numberofstock);
+//             }
+//         };
+//     });
+
+//     // const onInputBlur = () => {
+//     //     console.log(value);
+//     //     if (value && Number(value) <= Number(props.data.numberofstock)) {
+//     //         node.setDataValue(column.colId, Number(value));
+//     //     }
+//     //     else {
+//     //         setValue(0);
+//     //         node.setDataValue(column.colId, 0);
+//     //     }
+//     //     context.frameWorkComponentChange({ api: api });
+//     // }
+
+//     return (
+//         <>
+//             <p>{props.data.brand}</p>
+//             <span className="my-renderer">
+//                 <button
+//                     className="btn btn-quantity"
+//                     onClick={() => setValue(value ? Number(value) + 1 : 1)}
+//                     disabled={value === Number(props.data.numberofstock)}
+//                 >+</button>
+//                 <input type="number"
+//                     className="quantity-inputbtn"
+//                     ref={refInput}
+//                     value={value}
+//                     min="0"
+//                     max={props.data.numberofstock}
+//                     onChange={event => setValue(event.target.value ? Number(event.target.value) : event.target.value)}
+//                 />
+
+//                 <button
+//                     className="btn btn-quantity"
+//                     onClick={() =>
+//                         setValue(value ? Number(value) - 1 : 0)
+//                     }
+//                     disabled={value <= 0}
+//                 >-</button>
+//             </span>
+//         </>
+//     );
+// });

@@ -8,7 +8,7 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
 
 import { MobileViewColumnProductType } from "./MobileViewColumnProductType";
-import { MobileViewColumnBrand } from "./MobileViewColumnBrand";
+import {MobileViewColumnBrand} from "./MobileViewColumnBrand";
 import {MobileViewColumnDescription} from "./MobileViewColumnDescription";
 import { ColumnQuantity } from "./ColumnQuantity";
 import { IS_CART_EMPTY, SET_TILE_CLICKED } from "../../constants/actionTypes";
@@ -30,13 +30,6 @@ const ProductList = (props) => {
   const [tempCart, setTempCart] = React.useState(cartDetails);
 
   const history = useHistory();
-
-  // React.useEffect(() => {
-  //   const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
-  //   if (cartData) {
-  //     setCartCount(cartData.length);
-  //   }
-  // }, [applicationState.tileClicked]);
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -62,7 +55,6 @@ const ProductList = (props) => {
         tempArray.push(product);
       }
     });
-
     // api.forEachNode((node) => {
     //   if (node.data.quantity !== 0) {
     //     tempArray.push({
@@ -113,28 +105,36 @@ const ProductList = (props) => {
     } else {
       return productlistArray;
     }
-
-    // const productlistArray = [];
-    // applicationState?.productList && applicationState?.
-    // applicationState?.productList &&
-    //   applicationState.productList.map((rowdetail) => {
-    //     let productListObject = Object.assign({});
-    //     productListObject = {
-    //       ...rowdetail,
-    //       quantity: rowdetail.quantity ? Number(rowdetail.quantity) : 0,
-    //     };
-    //     productlistArray.push(productListObject);
-    //   });
-    // return productlistArray;
   };
 
-  const columnDefs = ({ frameWorkComponentChange }) =>
-    applicationState ?.mobileView
+  const columDefsForMobile = () => [
+    {
+      field: "quantity",
+      headerName: "Quantity",
+      editable: false,
+      cellRenderer: "mobileQuantityEditor"
+    },
+    {
+      field: "producttype",
+      headerName: "Product List",
+      cellRendererFramework: MobileViewColumnProductType,
+    },
+    {
+      field: "productdesc",
+      headerName: "Product Description",
+      cellRendererFramework: MobileViewColumnDescription,
+    }
+  ]
+
+
+  const columnDefs = ({ frameWorkComponentChange }) => {
+   return applicationState.mobileView
       ? [
         {
-          field: "brand",
+          field: "quantity",
           headerName: "Brand",
-          cellRendererFramework: MobileViewColumnBrand,
+          editable: false,
+          cellRenderer: "mobileQuantityEditor"
         },
         {
           field: "producttype",
@@ -154,11 +154,12 @@ const ProductList = (props) => {
         {
           field: "quantity",
           headerName: "Quantity",
-          editable: true,
-          cellEditor: "columnQuantityEditor",
+          editable: false,
+          cellRenderer: "columnQuantityEditor",
         },
         { field: "salepriceperunit", headerName: "Sales Per Unit" },
       ];
+  }
 
   const defaultColDef = React.useMemo(
     () => ({
@@ -199,11 +200,6 @@ const ProductList = (props) => {
     }
   };
 
-  const setAutoHeight = () => {
-    gridApi.setDomLayout('autoHeight');
-    document.querySelector('#myGrid').style.height = '';
-  };
-
   return (
     <div id="productlist">
       <div>
@@ -237,9 +233,6 @@ const ProductList = (props) => {
             getRowStyle={getRowStyle}
             getRowHeight={getRowHeight}
             rowData={rowData()}
-            frameworkComponents={{
-              columnQuantityEditor: ColumnQuantity
-          }}
             columnDefs={columnDefs({
               frameWorkComponentChange: frameWorkComponentChange,
             })}
@@ -247,6 +240,10 @@ const ProductList = (props) => {
             onGridReady={onGridReady}
             context={{ frameWorkComponentChange: frameWorkComponentChange }}
             domLayout={'autoHeight'}
+            frameworkComponents={{
+              mobileQuantityEditor: MobileViewColumnBrand,
+              columnQuantityEditor: ColumnQuantity
+          }}
           ></AgGridReact>
         </div>
         <div className="text-center mrt-20">
@@ -263,7 +260,7 @@ const ProductList = (props) => {
               history.push("/producttypes");
             }}
           >
-            Back to Product Types
+            Back
           </button>
           <button
             className="btn btn-main"
