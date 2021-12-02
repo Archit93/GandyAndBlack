@@ -81,6 +81,7 @@ const App = () => {
     orderDetails: [],
     config: {
       signInError: false,
+      authToken: "",
     },
     isCartEmpty: true,
     isLoading: false,
