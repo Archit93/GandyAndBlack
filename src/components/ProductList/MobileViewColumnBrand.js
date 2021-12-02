@@ -38,14 +38,10 @@ export const MobileViewColumnBrand = (params) => {
         context.frameWorkComponentChange({ api })
     }
 
-    return (
-        <div>
+    const componentToDisplay = () => {
+        return Number(data.numberofstock) <= 0 ? (<div> <p> Out of stock </p></div>) : (<div>
             <p> {data.brand}</p>
-            {/* <p> Product Type : {data.producttype}</p>
-            <p> Product Description : {data.productdesc} </p>
-            <p> Sales Per Unit : {data.salepriceperunit} </p> */}
             <div>
-                {/*  style={{width: "calc(100vw - 185px)"}} */}
                 <span className="my-renderer">
                     {params.value != null &&
                         <>
@@ -71,7 +67,11 @@ export const MobileViewColumnBrand = (params) => {
                     }
                 </span>
             </div>
-        </div>
+        </div>)
+    }
+
+    return (
+        <>{componentToDisplay()}</>
     );
 }
 
