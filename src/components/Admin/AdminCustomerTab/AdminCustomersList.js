@@ -24,7 +24,6 @@ const AdminCustomersList = (props) => {
     }
 
     const frameWorkComponentChange = ({ api }) => {
-        console.log(api);
     }
 
     const columnDefs = [
