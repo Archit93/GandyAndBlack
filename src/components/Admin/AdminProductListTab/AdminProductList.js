@@ -54,7 +54,7 @@ const AdminProductList = (props) => {
   ];
 
   const rowData = () => {
-    return applicationState?.productList || [];
+    return applicationState ?.productList || [];
   };
 
   const defaultColDef = React.useMemo(
@@ -81,13 +81,13 @@ const AdminProductList = (props) => {
   };
 
   // set background colour on even rows again, this looks bad, should be using CSS classes
-  const getRowStyle = (params) => {
+  const getRowStyle = params => {
     if (params.node.rowIndex % 2 === 0) {
-      return { background: "#e3adab" };
+      return { background: '#e3adab' };
     }
   };
   return (
-    <div id="">
+    <div id="adminproductlist">
       <div>
         <AdminHeaderMenu />
       </div>
@@ -116,10 +116,11 @@ const AdminProductList = (props) => {
             context={{
               frameWorkComponentChange: frameWorkComponentChange,
               showUpdateProductModal: showUpdateProductModal,
-              showDeleteProductModal: showDeleteProductModal,
+              showDeleteProductModal: showDeleteProductModal
             }}
-            rowSelection={"multiple"}
-          ></AgGridReact>
+            rowSelection={'multiple'}
+          >
+          </AgGridReact>
         </div>
         <div className="text-center mrt-20">
           <button
@@ -151,7 +152,7 @@ const AdminProductList = (props) => {
             Export Products
           </button>
         </div>
-        {applicationState?.productList && (
+        {applicationState ?.productList && (
           <>
             <UpdateProductModal
               onClose={() => showUpdateProductModal(false)}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import { SET_DRAWER_OPEN, SET_TILE_CLICKED } from "../../constants/actionTypes";
+import { RESET_ALL_DATA, SET_TILE_CLICKED } from "../../constants/actionTypes";
 
 const HeaderMenu = (props) => {
   const { cartCount, dispatch } = props;
@@ -10,7 +10,7 @@ const HeaderMenu = (props) => {
     if (confirmLogout) {
       window.sessionStorage.clear("cart");
       dispatch({
-        type: SET_DRAWER_OPEN,
+        type: RESET_ALL_DATA,
       });
       history.push("/");
     } else {
@@ -42,11 +42,10 @@ const HeaderMenu = (props) => {
                 onClick={() => {
                   dispatch({
                     type: SET_TILE_CLICKED,
-                    payload: ""
+                    payload: "",
                   });
-                  history.push("/producttypes")
-                }
-              }
+                  history.push("/producttypes");
+                }}
               >
                 Products
               </button>

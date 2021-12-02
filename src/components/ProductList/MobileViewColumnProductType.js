@@ -4,7 +4,8 @@ export const MobileViewColumnProductType = (params) => {
     const { api, data, column, node, context } = params;
     return (
         <div>
-            <p>{data.productType} {data.salesPerUnit}</p>
+            <p>{data.producttype}</p>
+            <p>£{data.salepriceperunit} per unit</p>
         </div>
     );
 }

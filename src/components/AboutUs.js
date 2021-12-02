@@ -37,7 +37,7 @@ const AboutUs = (props) => {
                 </p>
               </div>
               <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <i className="fa fa-shopping-cart fa-4x service-icon"></i>
+                <i className="fa fa-smile-o fa-4x service-icon"></i>
                 <h2>PASSION</h2>
                 <p>
                   Enjoy the journey with us. We want your experience with us to
@@ -45,7 +45,7 @@ const AboutUs = (props) => {
                 </p>
               </div>
               <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <i className="fa fa-shopping-cart fa-4x service-icon"></i>
+                <i className="fa fa-smile-o fa-4x service-icon"></i>
                 <h2>QUALITY</h2>
                 <p>You can trust us to deliver 100% genuine products.</p>
               </div>

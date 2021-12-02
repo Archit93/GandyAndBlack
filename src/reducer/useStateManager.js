@@ -15,6 +15,7 @@ export const useStateManager = (
     orderDetails: [],
     config: {
       signInError: false,
+      authToken: "",
     },
     isCartEmpty: true,
     isLoading: false,

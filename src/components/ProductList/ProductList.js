@@ -8,7 +8,8 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
 
 import { MobileViewColumnProductType } from "./MobileViewColumnProductType";
-import { MobileViewColumnBrand } from "./MobileViewColumnBrand";
+import {MobileViewColumnBrand} from "./MobileViewColumnBrand";
+import {MobileViewColumnDescription} from "./MobileViewColumnDescription";
 import { ColumnQuantity } from "./ColumnQuantity";
 import { IS_CART_EMPTY, SET_TILE_CLICKED } from "../../constants/actionTypes";
 import { updateCartDetails } from "../../serviceCalls/updateCartDetails";
@@ -29,13 +30,6 @@ const ProductList = (props) => {
   const [tempCart, setTempCart] = React.useState(cartDetails);
 
   const history = useHistory();
-
-  // React.useEffect(() => {
-  //   const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
-  //   if (cartData) {
-  //     setCartCount(cartData.length);
-  //   }
-  // }, [applicationState.tileClicked]);
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -61,7 +55,6 @@ const ProductList = (props) => {
         tempArray.push(product);
       }
     });
-
     // api.forEachNode((node) => {
     //   if (node.data.quantity !== 0) {
     //     tempArray.push({
@@ -112,48 +105,67 @@ const ProductList = (props) => {
     } else {
       return productlistArray;
     }
-
-    // const productlistArray = [];
-    // applicationState?.productList && applicationState?.
-    // applicationState?.productList &&
-    //   applicationState.productList.map((rowdetail) => {
-    //     let productListObject = Object.assign({});
-    //     productListObject = {
-    //       ...rowdetail,
-    //       quantity: rowdetail.quantity ? Number(rowdetail.quantity) : 0,
-    //     };
-    //     productlistArray.push(productListObject);
-    //   });
-    // return productlistArray;
   };
 
-  const columnDefs = ({ frameWorkComponentChange }) =>
-    applicationState?.mobileView
+  const columDefsForMobile = () => [
+    {
+      field: "quantity",
+      headerName: "Quantity",
+      editable: false,
+      cellRenderer: "mobileQuantityEditor"
+    },
+    {
+      field: "producttype",
+      headerName: "Product List",
+      cellRendererFramework: MobileViewColumnProductType,
+    },
+    {
+      field: "productdesc",
+      headerName: "Product Description",
+      cellRendererFramework: MobileViewColumnDescription,
+    }
+  ]
+
+
+  const columnDefs = ({ frameWorkComponentChange }) => {
+   return applicationState.mobileView
       ? [
-          {
-            field: "quantity",
-            headerName: "Product List",
-            cellRendererFramework: MobileViewColumnBrand,
-          },
-        ]
+        {
+          field: "quantity",
+          headerName: "Brand",
+          editable: false,
+          cellRenderer: "mobileQuantityEditor"
+        },
+        {
+          field: "producttype",
+          headerName: "Product List",
+          cellRendererFramework: MobileViewColumnProductType,
+        },
+        {
+          field: "productdesc",
+          headerName: "Product Description",
+          cellRendererFramework: MobileViewColumnDescription,
+        }
+      ]
       : [
-          { field: "brand", headerName: "Brand" },
-          { field: "producttype", headerName: "Product Type" },
-          { field: "productdesc", headerName: "Description" },
-          {
-            field: "quantity",
-            headerName: "Quantity",
-            editable: true,
-            cellRendererFramework: ColumnQuantity,
-          },
-          { field: "salepriceperunit", headerName: "Sales Per Unit" },
-        ];
+        { field: "brand", headerName: "Brand" },
+        { field: "producttype", headerName: "Product Type" },
+        { field: "productdesc", headerName: "Description" },
+        {
+          field: "quantity",
+          headerName: "Quantity",
+          editable: false,
+          cellRenderer: "columnQuantityEditor",
+        },
+        { field: "salepriceperunit", headerName: "Sales Per Unit" },
+      ];
+  }
 
   const defaultColDef = React.useMemo(
     () => ({
       resizable: true,
       sortable: true,
-      minWidth: 256,
+      // minWidth: 256,
     }),
     []
   );
@@ -161,7 +173,8 @@ const ProductList = (props) => {
   const onFilterTextBoxChanged = (event) => {
     gridApi.setQuickFilter(event.target.value);
   };
-  const getRowHeight = () => (applicationState.mobileView ? 300 : 65);
+
+  const getRowHeight = () => (applicationState.mobileView ? 110 : 65);
   const onProceed = (e) => {
     // let customerCartArray = [];
     // gridApi.forEachNode((node) => {
@@ -186,6 +199,7 @@ const ProductList = (props) => {
       return { background: "#e3adab" };
     }
   };
+
   return (
     <div id="productlist">
       <div>
@@ -206,8 +220,14 @@ const ProductList = (props) => {
           onChange={(event) => onFilterTextBoxChanged(event)}
         />
         <div
+          // className="ag-theme-alpine"
+          // style={{ height: "calc(100vh - 335px)", width: "100%" }}
+          id="myGrid"
           className="ag-theme-alpine"
-          style={{ height: "calc(100vh - 315px)", width: "100%" }}
+          style={{
+            height: '100%',
+            width: '100%',
+          }}
         >
           <AgGridReact
             getRowStyle={getRowStyle}
@@ -219,11 +239,16 @@ const ProductList = (props) => {
             defaultColDef={defaultColDef}
             onGridReady={onGridReady}
             context={{ frameWorkComponentChange: frameWorkComponentChange }}
+            domLayout={'autoHeight'}
+            frameworkComponents={{
+              mobileQuantityEditor: MobileViewColumnBrand,
+              columnQuantityEditor: ColumnQuantity
+          }}
           ></AgGridReact>
         </div>
         <div className="text-center mrt-20">
           <button
-            className="btn btn-main"
+            className="btn btn-secondary"
             type="submit"
             name="btn-checkout"
             id="btn-checkout"
@@ -235,7 +260,7 @@ const ProductList = (props) => {
               history.push("/producttypes");
             }}
           >
-            Back to Product Types
+            Back
           </button>
           <button
             className="btn btn-main"

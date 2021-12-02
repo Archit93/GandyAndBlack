@@ -425,7 +425,7 @@ const CustomerShippingInformation = (props) => {
                                 trackStyle={{ borderRadius: 2 }}
                               />
                             </span>
-                            <span className="float-left">
+                            <span className="float-left mrl-15">
                               Is your Billing address same as Shipping address?
                             </span>
                           </div>

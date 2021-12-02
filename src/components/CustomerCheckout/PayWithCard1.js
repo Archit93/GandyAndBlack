@@ -128,13 +128,13 @@ const PayWithCard1 = (props) => {
     try {
       const { data: clientSecret } = await axios
         .post("http://localhost:8080/checkout", {
-          amount: totalAmount * 100,
+          amount: Math.round(totalAmount * 100),
           receipt_email: "ssshackathon@gmail.com",
         })
         .catch((error) => {
           console.log(error);
           setProcessingTo(false);
-          dispatch({ type: SET_IS_LOADING, payload: true });
+          dispatch({ type: SET_IS_LOADING, payload: false });
         });
 
       const paymentMethodReq = await stripe.createPaymentMethod({
@@ -147,7 +147,7 @@ const PayWithCard1 = (props) => {
       if (paymentMethodReq.error) {
         setCheckoutError(paymentMethodReq.error.message);
         setProcessingTo(false);
-        dispatch({ type: SET_IS_LOADING, payload: true });
+        dispatch({ type: SET_IS_LOADING, payload: false });
       } else {
         const { error } = await stripe.confirmCardPayment(clientSecret, {
           payment_method: paymentMethodReq.paymentMethod.id,
@@ -261,12 +261,30 @@ const PayWithCard1 = (props) => {
                 <img src="icons8-mastercard-logo-96.png"/>
                 <span style={{lineHeight: "3.5"}}>more..</span>
             </div>
-            <SubmitButton
+            <div className="mt-4">
+            <button
+              className="previous action-button-previous"
+              type="submit"
+              onClick={() => {
+                history.push("/customerpayment_info");
+              }}
+            >
+              Back
+            </button>
+            <button
+              className="next action-button"
+              type="submit"
+              disabled={isProcessing || !stripe || checkoutError}
+            >
+              {isProcessing ? "Processing..." : `Pay £${totalAmount}`}
+            </button>
+          </div>
+            {/* <SubmitButton
               className="action-button mrt-20"
               disabled={isProcessing || !stripe || checkoutError}
             >
               {isProcessing ? "Processing..." : `Pay $${totalAmount}`}
-            </SubmitButton>
+            </SubmitButton> */}
 
             {/* <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <CustomerAmountDetails

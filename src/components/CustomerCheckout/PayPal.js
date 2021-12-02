@@ -121,20 +121,8 @@ export default function PayPal(props) {
               <div className="col-md-12 mx-0" id="msform">
                 <CheckoutProgressBar progressItem="Payment" />
                 <div className="row">
-                  <div style={{ width: "65%" }}>
+                  <div>
                     <div ref={paypal}></div>
-                  </div>
-                  <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <CustomerAmountDetails
-                      subTotalAmount={subTotalAmount}
-                      finalVatAmount={totalVatAmount}
-                      totalAmount={totalAmount}
-                      shippingCost={shippingCost}
-                      changeShippingCost={(newShippingCost) =>
-                        settingAmountDetails(newShippingCost)
-                      }
-                      dispatch={dispatch}
-                    />
                   </div>
                 </div>
                 <button
