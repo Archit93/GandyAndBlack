@@ -104,8 +104,8 @@ button:disabled {
   border: 0 none;
   border-radius: 0px;
   cursor: not-allowed;
-  padding: 10px;
-  margin: 10px 5px;
+  /* padding: 10px; */
+  /* margin: 10px 5px; */
 }
 
 button:not(:disabled) {
@@ -726,7 +726,7 @@ input:-webkit-autofill:active {
 
 /* ============ desktop view ============ */
 .logo {
-  width: 180px;
+  width: 140px;
 }
 
 .navbar button {
@@ -749,6 +749,10 @@ input:-webkit-autofill:active {
   font-weight: 600;
 }
 
+.nav-link i {
+  margin: 0;
+}
+
 .navbar-light .navbar-toggler {
   color: transparent;
   border-color: transparent;
@@ -763,6 +767,7 @@ input:-webkit-autofill:active {
   width: 100%;
   top: 0;
   z-index: 9;
+  padding: 0;
 }
 
 .dropdown-menu {
@@ -793,16 +798,19 @@ input:-webkit-autofill:active {
   .dropdown-menu li {
     position: relative;
   }
+
   .nav-item .submenu {
     display: none;
     position: absolute;
     left: 100%;
     top: -7px;
   }
+
   .nav-item .submenu-left {
     right: 100%;
     left: auto;
   }
+
   .dropdown-menu > li:hover {
     background-color: #f1f1f1;
   }
@@ -1206,4 +1214,33 @@ input:-webkit-autofill:active {
   .navbar {padding: .5rem 0;}
 
   .container-fluid{padding: 10px;}
+}
+
+/* Payment */
+.payment-card{
+  margin: 100px auto;
+  border: 1px solid #dedede;
+  padding: 15px;
+}
+
+.payment-cards{
+  text-align: center;
+}
+
+.payment-cards img:nth-child(1){
+  width: 45px;
+}
+
+.payment-cards img:nth-child(2){
+  width: 45px;
+  margin: 0 5px;
+}
+
+.payment-cards img:nth-child(3){
+  width: 45px;
+}
+
+.payment-cards img:nth-child(4){
+  width: 45px;
+  margin: 0 5px;
 }
