@@ -10,11 +10,15 @@ import { Spinner } from "react-bootstrap";
 
 const SignIn = (props) => {
   const history = useHistory();
+  const { applicationState, dispatch } = props;
   const {
-    applicationState: { isLoading, config },
-    dispatch,
-  } = props;
-  const { signInError } = config;
+    isLoading,
+    config = {
+      signInError: false,
+      authToken: "",
+    },
+  } = applicationState;
+  const { signInError = false } = config;
   const [email, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordShown, setPasswordShown] = React.useState(false);
