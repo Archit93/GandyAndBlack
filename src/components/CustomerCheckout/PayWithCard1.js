@@ -255,30 +255,30 @@ const PayWithCard1 = (props) => {
             {/* TIP always disable your submit button while processing payments */}
             {checkoutError && <span className="error">{checkoutError}</span>}
             <div className="payment-cards mrt-20">
-                <img src="visa.png"/>
-                <img src="amex.png"/>
-                <img src="icons8-discover-96.png"/>
-                <img src="icons8-mastercard-logo-96.png"/>
-                <span style={{lineHeight: "3.5"}}>more..</span>
+              <img src="visa.png" />
+              <img src="amex.png" />
+              <img src="icons8-discover-96.png" />
+              <img src="icons8-mastercard-logo-96.png" />
+              <span style={{ lineHeight: "3.5" }}>more..</span>
             </div>
             <div className="mt-4">
-            <button
-              className="previous action-button-previous"
-              type="submit"
-              onClick={() => {
-                history.push("/customerpayment_info");
-              }}
-            >
-              Back
-            </button>
-            <button
-              className="next action-button"
-              type="submit"
-              disabled={isProcessing || !stripe || checkoutError}
-            >
-              {isProcessing ? "Processing..." : `Pay £${totalAmount}`}
-            </button>
-          </div>
+              <button
+                className="previous action-button-previous"
+                type="submit"
+                onClick={() => {
+                  history.push("/customerpayment_info");
+                }}
+              >
+                Back
+              </button>
+              <button
+                className="next action-button"
+                type="submit"
+                disabled={isProcessing || !stripe || checkoutError}
+              >
+                {isProcessing ? "Processing..." : `Pay £${totalAmount}`}
+              </button>
+            </div>
             {/* <SubmitButton
               className="action-button mrt-20"
               disabled={isProcessing || !stripe || checkoutError}
