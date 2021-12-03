@@ -2,15 +2,20 @@ import axios from "axios";
 import { makeApiRequestHeader } from "../utils/makeApiRequestHeader";
 import { SET_ERROR } from "../constants/actionTypes";
 
-const baseUrl = "http://localhost:3000/stubData";
+const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8083";
 
 export const updateCartDetails = async ({
   dispatch,
   customerCartArray,
   history,
+  authToken,
 }) => {
-  const apiRequestHeader = makeApiRequestHeader("POST", null, null);
-  const apiUrl = `${baseUrl}/signIn.json`;
+  const apiRequestHeader = makeApiRequestHeader(
+    "POST",
+    { "x-auth-token": authToken },
+    null
+  );
+  const apiUrl = `${baseUrl}/cart`;
   await axios
     .post(apiUrl, customerCartArray, apiRequestHeader)
     .then((apiResponse) => {

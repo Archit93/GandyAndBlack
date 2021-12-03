@@ -5,6 +5,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
+import Alert from "@material-ui/lab/Alert";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 import PayPal from "./PayPal.js";
@@ -141,7 +142,6 @@ const PayWithCard1 = (props) => {
         type: "card",
         card: cardElement,
         billing_details: billingDetails,
-        // description: "Gandy & Black Asthetic Supplies",
       });
 
       if (paymentMethodReq.error) {
@@ -245,6 +245,10 @@ const PayWithCard1 = (props) => {
       </div>
       <div className="container-fluid">
         <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 order-md-first order-last payment-card">
+          <Alert severity="warning" className="mb-4">
+            Warning! Please do not exit tthe browser or go back while processing
+            the payment
+          </Alert>
           <form onSubmit={handleFormSubmit} className="px-0">
             <CardElementContainer>
               <CardElement
