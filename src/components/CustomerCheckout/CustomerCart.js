@@ -57,11 +57,17 @@ const CustomerCart = (props) => {
   const updateProductQuantity = (e, product) => {
     const { productList } = applicationState;
     const productlistArray = [];
+    const productBeingConsidered = productList.find(
+      (totalProduct) => totalProduct.productid === product.productid
+    );
     tempCart.forEach((productInCart) => {
       if (productInCart.productid === product.productid) {
         productInCart.quantity = e.target.value
           ? Number(e.target.value)
           : e.target.value;
+        productInCart.vat = e.target.value
+          ? Number(e.target.value) * Number(productBeingConsidered.vat)
+          : productInCart.vat;
       }
     });
     productList.map((rowdetail) => {

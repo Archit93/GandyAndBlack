@@ -50,7 +50,6 @@ export const signUpApiCall = async ({
         type: SET_SIGN_UP_DATA,
         payload: {
           data: apiResponse.data,
-          signUpError: apiResponse.status !== "200",
         },
       });
       dispatch({ type: SET_IS_LOADING, payload: false });

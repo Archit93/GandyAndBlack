@@ -4,7 +4,11 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import Alert from "@material-ui/lab/Alert";
 import { isValidEmail, isValidPassword } from "../utils/regexUtils";
-import { SET_INITIAL_RESPONSE, SET_IS_LOADING } from "../constants/actionTypes";
+import {
+  SET_INITIAL_RESPONSE,
+  SET_IS_LOADING,
+  SET_SIGN_UP_DATA,
+} from "../constants/actionTypes";
 import { signInApiCall } from "../serviceCalls/signInApiCall";
 import { Spinner } from "react-bootstrap";
 
@@ -13,6 +17,7 @@ const SignIn = (props) => {
   const { applicationState, dispatch } = props;
   const {
     isLoading,
+    signUpStatus,
     config = {
       signInError: false,
       authToken: "",
@@ -66,6 +71,12 @@ const SignIn = (props) => {
       });
     }
   };
+  const closeAlert = () => {
+    dispatch({
+      type: SET_SIGN_UP_DATA,
+      payload: { data: "", signUpError: false },
+    });
+  };
 
   const componentToDisplay = () => {
     if (isLoading) {
@@ -95,6 +106,11 @@ const SignIn = (props) => {
               {signInError && (
                 <Alert severity="error">
                   Somthing's gone wrong! Please try again.
+                </Alert>
+              )}
+              {signUpStatus?.data === "Sign up success for user" && (
+                <Alert severity="success" onClose={closeAlert}>
+                  {signUpStatus?.data}. Please login.
                 </Alert>
               )}
               <div role="main">

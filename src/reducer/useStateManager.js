@@ -53,6 +53,7 @@ export const useStateManager = (
       return {
         ...state,
         signUpStatus: action.payload,
+        isLoading: false,
       };
     case actionTypes.SET_PRODUCT_LIST:
       return {

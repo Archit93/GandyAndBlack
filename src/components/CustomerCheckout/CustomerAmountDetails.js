@@ -2,11 +2,17 @@ import * as React from "react";
 import { SET_TOTAL_AMOUNT } from "../../constants/actionTypes";
 
 const CustomerAmountDetails = (props) => {
-  const { dispatch, cartDetails, subTotalAmount, finalVatAmount, totalAmount, shippingCost, changeShippingCost } = props;
+  const {
+    dispatch,
+    cartDetails,
+    subTotalAmount,
+    finalVatAmount,
+    totalAmount,
+    shippingCost,
+    changeShippingCost,
+  } = props;
   //const [shippingCost, setShippingCost] = React.useState("9.98");
 
-
-  
   // const [subTotalAmount, setSubTotalAmount] = React.useState("");
   // const [finalVatAmount, setFinalVatAmount] = React.useState("0");
   // const [totalAmount, setTotalAmount] = React.useState("");

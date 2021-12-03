@@ -8,8 +8,8 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
 
 import { MobileViewColumnProductType } from "./MobileViewColumnProductType";
-import {MobileViewColumnBrand} from "./MobileViewColumnBrand";
-import {MobileViewColumnDescription} from "./MobileViewColumnDescription";
+import { MobileViewColumnBrand } from "./MobileViewColumnBrand";
+import { MobileViewColumnDescription } from "./MobileViewColumnDescription";
 import { ColumnQuantity } from "./ColumnQuantity";
 import { IS_CART_EMPTY, SET_TILE_CLICKED } from "../../constants/actionTypes";
 import { updateCartDetails } from "../../serviceCalls/updateCartDetails";
@@ -52,7 +52,10 @@ const ProductList = (props) => {
 
     productlistArray.forEach((product) => {
       if (product.quantity && product.quantity !== 0) {
-        tempArray.push(product);
+        tempArray.push({
+          ...product,
+          vat: product.vat * product.quantity,
+        });
       }
     });
     // api.forEachNode((node) => {
@@ -112,7 +115,7 @@ const ProductList = (props) => {
       field: "quantity",
       headerName: "Quantity",
       editable: false,
-      cellRenderer: "mobileQuantityEditor"
+      cellRenderer: "mobileQuantityEditor",
     },
     {
       field: "producttype",
@@ -123,43 +126,42 @@ const ProductList = (props) => {
       field: "productdesc",
       headerName: "Product Description",
       cellRendererFramework: MobileViewColumnDescription,
-    }
-  ]
-
+    },
+  ];
 
   const columnDefs = ({ frameWorkComponentChange }) => {
-   return applicationState.mobileView
+    return applicationState.mobileView
       ? [
-        {
-          field: "quantity",
-          headerName: "Brand",
-          editable: false,
-          cellRenderer: "mobileQuantityEditor"
-        },
-        {
-          field: "producttype",
-          headerName: "Product List",
-          cellRendererFramework: MobileViewColumnProductType,
-        },
-        {
-          field: "productdesc",
-          headerName: "Product Description",
-          cellRendererFramework: MobileViewColumnDescription,
-        }
-      ]
+          {
+            field: "quantity",
+            headerName: "Brand",
+            editable: false,
+            cellRenderer: "mobileQuantityEditor",
+          },
+          {
+            field: "producttype",
+            headerName: "Product List",
+            cellRendererFramework: MobileViewColumnProductType,
+          },
+          {
+            field: "productdesc",
+            headerName: "Product Description",
+            cellRendererFramework: MobileViewColumnDescription,
+          },
+        ]
       : [
-        { field: "brand", headerName: "Brand" },
-        { field: "producttype", headerName: "Product Type" },
-        { field: "productdesc", headerName: "Description" },
-        {
-          field: "quantity",
-          headerName: "Quantity",
-          editable: false,
-          cellRenderer: "columnQuantityEditor",
-        },
-        { field: "salepriceperunit", headerName: "Sales Per Unit" },
-      ];
-  }
+          { field: "brand", headerName: "Brand" },
+          { field: "producttype", headerName: "Product Type" },
+          { field: "productdesc", headerName: "Description" },
+          {
+            field: "quantity",
+            headerName: "Quantity",
+            editable: false,
+            cellRenderer: "columnQuantityEditor",
+          },
+          { field: "salepriceperunit", headerName: "Sales Per Unit" },
+        ];
+  };
 
   const defaultColDef = React.useMemo(
     () => ({
@@ -225,8 +227,8 @@ const ProductList = (props) => {
           id="myGrid"
           className="ag-theme-alpine"
           style={{
-            height: '100%',
-            width: '100%',
+            height: "100%",
+            width: "100%",
           }}
         >
           <AgGridReact
@@ -239,11 +241,11 @@ const ProductList = (props) => {
             defaultColDef={defaultColDef}
             onGridReady={onGridReady}
             context={{ frameWorkComponentChange: frameWorkComponentChange }}
-            domLayout={'autoHeight'}
+            domLayout={"autoHeight"}
             frameworkComponents={{
               mobileQuantityEditor: MobileViewColumnBrand,
-              columnQuantityEditor: ColumnQuantity
-          }}
+              columnQuantityEditor: ColumnQuantity,
+            }}
           ></AgGridReact>
         </div>
         <div className="text-center mrt-20">

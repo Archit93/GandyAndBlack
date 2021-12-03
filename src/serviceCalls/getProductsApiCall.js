@@ -37,9 +37,13 @@ export const getProductsApiCall = async ({
               `${baseUrl}/order/customers/email?email=${email}`,
               apiRequestHeader
             ),
+            // axios.get(
+            //   `${baseUrl}/cart/getDetails?userId=${email}`,
+            //   apiRequestHeader
+            // ),
           ])
           .then(
-            axios.spread((customerDetails, customerOrders) => {
+            axios.spread((customerDetails, customerOrders, customerCart) => {
               dispatch({ type: SET_IS_LOADING, payload: false });
               const shippingAddressDetails = {
                 firstName: customerDetails?.data?.firstname ?? "",
