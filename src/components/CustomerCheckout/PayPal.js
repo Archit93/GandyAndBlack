@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
+import Alert from "@material-ui/lab/Alert";
 import HeaderMenu from "../common/HeaderMenu.js";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
@@ -119,10 +120,15 @@ export default function PayPal(props) {
           <div className="card px-0 pt-4 pb-0 mt-3 mb-3">
             <div className="row">
               <div className="col-md-12 mx-0" id="msform">
-                <CheckoutProgressBar progressItem="Payment" />
-                <div className="row">
-                  <div>
-                    <div ref={paypal}></div>
+                <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 mb-4 order-md-first order-last payment-card">
+                  <div className="row">
+                    <Alert severity="warning" className="mb-4">
+                      Warning! Please do not exit tthe browser or go back while
+                      processing the payment
+                    </Alert>
+                    <div>
+                      <div ref={paypal}></div>
+                    </div>
                   </div>
                 </div>
                 <button

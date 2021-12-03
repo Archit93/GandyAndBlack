@@ -37,10 +37,10 @@ export const getProductsApiCall = async ({
               `${baseUrl}/order/customers/email?email=${email}`,
               apiRequestHeader
             ),
-            // axios.get(
-            //   `${baseUrl}/cart/getDetails?userId=${email}`,
-            //   apiRequestHeader
-            // ),
+            axios.get(
+              `${baseUrl}/cart/getDetails?userId=${email}`,
+              apiRequestHeader
+            ),
           ])
           .then(
             axios.spread((customerDetails, customerOrders, customerCart) => {
