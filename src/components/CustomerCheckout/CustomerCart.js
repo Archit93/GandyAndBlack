@@ -70,7 +70,6 @@ const CustomerCart = (props) => {
           : productInCart.vat;
       }
     });
-    console.log(tempCart);
     productList.map((rowdetail) => {
       let productListObject = Object.assign(rowdetail);
       if (rowdetail.productid === product.productid) {
