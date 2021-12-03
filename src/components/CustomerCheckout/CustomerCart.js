@@ -60,18 +60,14 @@ const CustomerCart = (props) => {
     const productBeingConsidered = productList.find(
       (totalProduct) => totalProduct.productid === product.productid
     );
-    console.log(productBeingConsidered);
-
     tempCart.forEach((productInCart) => {
       if (productInCart.productid === product.productid) {
-        console.log(e.target.value);
         productInCart.quantity = e.target.value
           ? Number(e.target.value)
           : e.target.value;
         productInCart.vat = e.target.value
           ? Number(e.target.value) * Number(productBeingConsidered.vat)
           : productInCart.vat;
-        console.log(productInCart);
       }
     });
     console.log(tempCart);
