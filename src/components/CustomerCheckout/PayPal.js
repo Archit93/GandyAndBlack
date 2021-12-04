@@ -120,7 +120,7 @@ export default function PayPal(props) {
             <div className="row">
               <div className="col-md-12 mx-0" id="msform">
                 <CheckoutProgressBar progressItem="Payment" />
-                <div className="row">
+                <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 payment-card">
                   <div>
                     <div ref={paypal}></div>
                   </div>

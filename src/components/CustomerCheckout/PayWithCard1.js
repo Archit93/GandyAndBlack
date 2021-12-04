@@ -244,69 +244,71 @@ const PayWithCard1 = (props) => {
         <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
       </div>
       <div id="checkout">
-      <div className="container-fluid">
-      <div className="card">
+        <div className="container-fluid">
+          <div className="card">
             <div className="row">
               <div className="col-md-12 mx-0" id="msform">
                 <CheckoutProgressBar progressItem="Payment" />
-        <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 payment-card">
-          <form onSubmit={handleFormSubmit} className="px-0">
-            <CardElementContainer>
-              <CardElement
-                options={cardElementOpts}
-                onChange={handleCardDetailsChange}
-              />
-            </CardElementContainer>
-            {/* TIP always disable your submit button while processing payments */}
-            {checkoutError && <span className="error">{checkoutError}</span>}
-            <div className="payment-cards mrt-20">
-              <img src="visa.png" />
-              <img src="amex.png" />
-              <img src="icons8-discover-96.png" />
-              <img src="icons8-mastercard-logo-96.png" />
-              <span style={{ lineHeight: "3.5" }}>more..</span>
-            </div>
-            <div className="text-center mt-4">
-              <button
-                className="previous action-button-previous"
-                type="submit"
-                onClick={() => {
-                  history.push("/customerpayment_info");
-                }}
-              >
-                Back
-              </button>
-              <button
-                className="next action-button"
-                type="submit"
-                disabled={isProcessing || !stripe || checkoutError}
-              >
-                {isProcessing ? "Processing..." : `Pay £${totalAmount}`}
-              </button>
-            </div>
-            {/* <SubmitButton
-              className="action-button mrt-20"
-              disabled={isProcessing || !stripe || checkoutError}
-            >
-              {isProcessing ? "Processing..." : `Pay $${totalAmount}`}
-            </SubmitButton> */}
+                  <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 payment-card">
+                    <form onSubmit={handleFormSubmit} className="px-0">
+                      <CardElementContainer>
+                        <CardElement
+                          options={cardElementOpts}
+                          onChange={handleCardDetailsChange}
+                        />
+                      </CardElementContainer>
+                      {/* TIP always disable your submit button while processing payments */}
+                      {checkoutError && <span className="error">{checkoutError}</span>}
+                      <div className="payment-cards mrt-20">
+                        <img src="visa.png" />
+                        <img src="amex.png" />
+                        <img src="icons8-discover-96.png" />
+                        <img src="icons8-mastercard-logo-96.png" />
+                        <span style={{ lineHeight: "3.5" }}>more..</span>
+                      </div>
+                      <div className="text-center mt-4">
+                        <button
+                          className="previous action-button-previous"
+                          type="submit"
+                          onClick={() => {
+                            history.push("/customerpayment_info");
+                          }}
+                        >
+                          Back
+                        </button>
+                        <button
+                          className="next action-button"
+                          type="submit"
+                          disabled={isProcessing || !stripe || checkoutError}
+                        >
+                          {isProcessing ? "Processing..." : `Pay £${totalAmount}`}
+                        </button>
+                      </div>
+                      {/* <SubmitButton
+                        className="action-button mrt-20"
+                        disabled={isProcessing || !stripe || checkoutError}
+                      >
+                        {isProcessing ? "Processing..." : `Pay $${totalAmount}`}
+                      </SubmitButton> */}
 
-            {/* <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <CustomerAmountDetails
-              subTotalAmount={subTotalAmount}
-              finalVatAmount={totalVatAmount}
-              totalAmount={totalAmount}
-              shippingCost={shippingCost}
-              changeShippingCost={(newShippingCost) =>
-                settingAmountDetails(newShippingCost)
-              }
-              dispatch={dispatch}
-            />
-          </div> */}
-          </form>
+                      {/* <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                      <CustomerAmountDetails
+                        subTotalAmount={subTotalAmount}
+                        finalVatAmount={totalVatAmount}
+                        totalAmount={totalAmount}
+                        shippingCost={shippingCost}
+                        changeShippingCost={(newShippingCost) =>
+                          settingAmountDetails(newShippingCost)
+                        }
+                        dispatch={dispatch}
+                      />
+                    </div> */}
+                    </form>
+                  </div>
+              </div>
+            </div>
+          </div>
         </div>
-        </div></div></div>
-      </div>
       </div>
     </div>
   );
