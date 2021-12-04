@@ -45,7 +45,7 @@ const AdminHeaderMenu = ({ cartCount }) => {
                 Place Order
               </button>
             </li>
-            <li className="nav-item active">
+            <li className="nav-item">
               <button
                 className="nav-link"
                 onClick={() => history.push("/crm")}
