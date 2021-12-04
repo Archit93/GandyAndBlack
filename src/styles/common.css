@@ -1200,6 +1200,10 @@ input:-webkit-autofill:active {
 /* ============ small devices ============ */
 
 @media (max-width: 991px){
+  /* cart */
+  #msform .mobile-padding{
+    padding: 0;
+  }
   /* customer shipping info btn */
   .toggle {
     display: flex;

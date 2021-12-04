@@ -197,7 +197,7 @@ const CustomerPayment = (props) => {
                       </button>
                     </fieldset>
                   </div>
-                  <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 px-0">
+                  <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 mobile-padding">
                     <CustomerAmountDetails
                       subTotalAmount={subTotalAmount}
                       finalVatAmount={totalVatAmount}
