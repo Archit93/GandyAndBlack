@@ -243,8 +243,13 @@ const PayWithCard1 = (props) => {
       <div>
         <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
       </div>
+      <div id="checkout">
       <div className="container-fluid">
-        <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 order-md-first order-last payment-card">
+      <div className="card">
+            <div className="row">
+              <div className="col-md-12 mx-0" id="msform">
+                <CheckoutProgressBar progressItem="Payment" />
+        <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 payment-card">
           <form onSubmit={handleFormSubmit} className="px-0">
             <CardElementContainer>
               <CardElement
@@ -261,7 +266,7 @@ const PayWithCard1 = (props) => {
               <img src="icons8-mastercard-logo-96.png" />
               <span style={{ lineHeight: "3.5" }}>more..</span>
             </div>
-            <div className="mt-4">
+            <div className="text-center mt-4">
               <button
                 className="previous action-button-previous"
                 type="submit"
@@ -300,6 +305,8 @@ const PayWithCard1 = (props) => {
           </div> */}
           </form>
         </div>
+        </div></div></div>
+      </div>
       </div>
     </div>
   );

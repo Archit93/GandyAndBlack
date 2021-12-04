@@ -7,7 +7,7 @@ export const DeleteProductColumn = (params) => {
             <>
                 <button
                     type="button"
-                    className="btn btn-icon"
+                    className="btn-icon"
                     onClick={() => context.showDeleteProductModal(true)}>
                     <i className="fa fa-trash icon-red"></i>
                 </button>

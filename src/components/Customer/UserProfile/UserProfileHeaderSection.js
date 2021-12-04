@@ -10,19 +10,10 @@ const UserProfileHeaderSection = ({
         <img src="./GB-PN-INSERT-CLIENT.jpg" alt="login background image" />
       </div>
       <div className="row mrlr-40">
-        <div className="profile-content">
+        <div className="container-fluid pt-0 pb-0">
           <div className="row align-items-end">
-            <div className="col-sm">
+            <div className="col-sm px-0">
               <div className="d-flex align-items-end mt-3 mt-sm-0">
-                <div className="flex-shrink-0">
-                  <div className="avatar-xxl me-3">
-                    <img
-                      src="./GB-PN-INSERT-CLIENT.jpg"
-                      alt=""
-                      className="img-fluid rounded-circle d-block img-thumbnail"
-                    />
-                  </div>
-                </div>
                 <div className="flex-grow-1">
                   <div>
                     <h5 className="font-size-16 mb-1">Hello, </h5>
@@ -34,7 +25,7 @@ const UserProfileHeaderSection = ({
                 </div>
               </div>
             </div>
-            <div className="col-sm-auto">
+            <div className="col-sm-auto px-0">
               <div className="d-flex align-items-start gap-2 mb-2 mt-4">
                 <div>
                   <button

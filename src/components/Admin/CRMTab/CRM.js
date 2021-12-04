@@ -8,6 +8,7 @@ import 'react-tabs/style/react-tabs.css';
 import { createCRMData } from '../../../utils/createCRMData';
 import CRMTabList from './CRMTabList'
 
+import AdminHeaderMenu from '../../common/AdminHeaderMenu';
 
 const CRM = (props) => {
   const { applicationState } = props;
@@ -29,18 +30,18 @@ const CRM = (props) => {
   }
   
   return (
-    <div className="row crm" style={{ height: '100vh' }}>
-      {/* <div className="col-lg-1 p-0">
-                <Header />
-            </div> */}
+    <div className="crm" id="crm">
+      <div>
+        <AdminHeaderMenu />
+      </div>
 
-      <div className="col-lg-12 p-0" style={{ width: '100%', height: '100%' }}>
-        <h1>Kanban</h1>
+      <div className="col-lg-12 p-0">
+        
         <div>
 
           {applicationState ?.crmDetails && <Board
             data={createCRMData(applicationState.crmDetails)}
-            style={{ height: 'calc(100vh - 57px)' }}
+            style={{ height: 'calc(100vh - 70px)' }}
             cardDraggable={false}
             hideCardDeleteIcon
             onCardClick={onCardClick}

@@ -160,18 +160,19 @@ const CustomerCart = (props) => {
                           tempCart?.map((product) => (
                             <div className="form-card" key={product.productid}>
                               <div className="h5">
-                                <span style={{ fontWeight: "600" }}>
+                                <span className="fw-bold">
                                   {product.brand}
                                 </span>
                                 <span
-                                  style={{ float: "right", cursor: "pointer" }}
+                                  className="float-right"
+                                  style={{ cursor: "pointer" }}
                                   onClick={(e) =>
                                     removeItemFromCart(e, product.productid)
                                   }
                                 >
                                   <i className="fa fa-trash icon-red"></i>
                                 </span>
-                                <span style={{ float: "right" }}>
+                                <span className="float-right">
                                   £{product.salepriceperunit}
                                 </span>
                               </div>

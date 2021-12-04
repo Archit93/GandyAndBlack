@@ -19,24 +19,40 @@ const HeaderMenu = (props) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white header-shadow navbar-fixed">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm navbar-fixed">
       <div className="container-fluid">
-        <button className="navbar-brand" href="#">
+        <button>
           <img src="./GD LOGOS-01.jpeg" alt="logo" className="logo" />
         </button>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#main_nav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <div className="d-flex float-right">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#main_nav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="mobile-hide d-flex">
+            <button
+              className="nav-link"
+              onClick={() => history.push("/customercart_details")}
+            >
+              <i className="fa fa-shopping-cart"></i>
+              <span className="position-absolute translate-middle badge rounded-pill bg-secondary">
+                {cartCount}
+              </span>
+            </button>
+            <button className="nav-link" onClick={(e) => logout(e)}>
+              <i className="fa fa-sign-out"></i>
+            </button>
+          </div>
+        </div>
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
-            <li className="nav-item active">
+            <li className="nav-item">
               <button
                 className="nav-link"
                 onClick={() => {
@@ -69,7 +85,7 @@ const HeaderMenu = (props) => {
               <ul className="dropdown-menu">
                 <li>
                   <button
-                    className="dropdown-item"
+                    className="dropdown-item pb-2 border-bottom"
                     onClick={() => history.push("/my_orders")}
                   >
                     My Orders
@@ -86,7 +102,7 @@ const HeaderMenu = (props) => {
               </ul>
             </li>
             <li
-              className="nav-item"
+              className="nav-item mx-2"
               style={!cartCount ? { pointerEvents: "none" } : null}
             >
               <button
@@ -99,7 +115,7 @@ const HeaderMenu = (props) => {
                 </span>
               </button>
             </li>
-            <li className="nav-item">
+            <li className="nav-item mx-2">
               <button className="nav-link" onClick={(e) => logout(e)}>
                 <i className="fa fa-sign-out"></i>
               </button>

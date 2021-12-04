@@ -44,8 +44,8 @@ const CustomerPaymentSuccess = (props) => {
               <div className="col-md-12 mx-0">
                 <form id="msform">
                   {/* <CheckoutProgressBar /> */}
-                  <div className="row">
-                    <div className="col-lg-12 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
+                  <div className="row justify-content-center">
+                    <div className="col-lg-12 col-md-8 col-sm-12 col-xs-12 ">
                       <fieldset>
                         <div className="form-card">
                           <div>
