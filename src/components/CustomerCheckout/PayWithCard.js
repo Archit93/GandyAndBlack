@@ -74,7 +74,7 @@ const PayWithCard = (props) => {
         <div className="container">
           <div className="card px-0 pt-4 pb-0 mt-3 mb-3">
             <div className="row">
-              <div className="col-md-12 mx-0" id="msform">
+              <div className="col-md-12 mx-0 px-0" id="msform">
                 <CheckoutProgressBar progressItem="Payment" />
                 <div className="row">
                   <div style={{ width: "65%" }}>

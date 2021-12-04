@@ -52,7 +52,7 @@ const CustomerPaymentSuccess = (props) => {
                             <h2 className="fs-title text-center">Success!</h2>
                           </div>
                           <div className="row justify-content-center">
-                            <div className="col-3">
+                            <div className="col-lg-3 col-md-3 col-sm-12">
                               <img
                                 src="https://img.icons8.com/color/96/000000/ok--v2.png"
                                 className="fit-image"
@@ -60,7 +60,7 @@ const CustomerPaymentSuccess = (props) => {
                             </div>
                           </div>
                           <div className="row justify-content-center">
-                            <div className="col-7 text-center">
+                            <div className="col-lg-7 col-md-7 col-sm-12 px-0 text-center">
                               <h5>Your Order Placed Sucessfully</h5>
                             </div>
                           </div>

@@ -149,11 +149,11 @@ const CustomerCart = (props) => {
         <div className="container-fluid">
           <div className="card px-0 pb-0">
             <div className="row">
-              <div className="col-md-12 mx-0">
+              <div className="col-md-12 mx-0 px-0">
                 <form id="msform">
                   <CheckoutProgressBar progressItem="Cart" />
                   <div className="row">
-                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
+                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last px-0">
                       <fieldset>
                         <h2 className="fs-title">My Cart</h2>
                         {tempCart &&
@@ -224,7 +224,7 @@ const CustomerCart = (props) => {
                         </button>
                       </fieldset>
                     </div>
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 px-0">
                       <CustomerAmountDetails
                         subTotalAmount={subTotalAmount}
                         finalVatAmount={finalVatAmount}

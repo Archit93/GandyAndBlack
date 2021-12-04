@@ -762,7 +762,6 @@ input:-webkit-autofill:active {
 }
 
 .navbar-collapse{
-  border-top: 1px solid #dedede;
   margin-top: 10px;
 }
 
@@ -823,6 +822,7 @@ input:-webkit-autofill:active {
 }
 
 @media all and (min-width: 992px) {
+  
   /* header menu */
   .mobile-hide{
     display: none !important;
@@ -1200,7 +1200,13 @@ input:-webkit-autofill:active {
 /* ============ small devices ============ */
 
 @media (max-width: 991px){
-  
+  /* customer shipping info btn */
+  .toggle {
+    display: flex;
+  }
+  .navbar-collapse{
+    border-top: 1px solid #dedede;
+  }
   .dropdown-menu .dropdown-menu {
     margin-left: 0.7rem;
     margin-right: 0.7rem;
