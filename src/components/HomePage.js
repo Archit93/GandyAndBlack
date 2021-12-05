@@ -5,9 +5,9 @@ const HomePage = (props) => {
   const history = useHistory();
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-white navbar-fixed">
+      <nav className="navbar navbar-expand-lg navbar-light bg-white header-shadow navbar-fixed">
         <div className="container-fluid">
-          <button onClick={() => history.push("/")}>
+          <button onClick={() => history.push("/")} className="navbar-brand">
             <img src="./GD LOGOS-01.jpeg" alt="logo" className="logo" />
           </button>
         </div>

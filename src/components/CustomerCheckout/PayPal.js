@@ -42,36 +42,36 @@ export default function PayPal(props) {
         onApprove: async (data, actions) => {
           dispatch({ type: SET_IS_LOADING, payload: true });
           await actions.order.capture().then((response) => {
-            const itemList = applicationState?.cartDetails?.map((item) => [
+            const itemList = applicationState ?.cartDetails ?.map((item) => [
               item.productid,
               item.quantity,
             ]);
             let productidcartmap = Object.fromEntries(itemList);
             const placeOrderRequest = {
-              address: applicationState?.shippingAddressDetails?.address || "",
+              address: applicationState ?.shippingAddressDetails ?.address || "",
               cart: {
-                ordershippingcost: Number(applicationState?.shippingCost),
+                ordershippingcost: Number(applicationState ?.shippingCost),
                 productidcartmap,
-                subtotal: applicationState?.subTotalAmount,
-                totalvat: applicationState?.totalVatAmount,
-                userId: applicationState?.shippingAddressDetails?.email || "",
+                subtotal: applicationState ?.subTotalAmount,
+                totalvat: applicationState ?.totalVatAmount,
+                userId: applicationState ?.shippingAddressDetails ?.email || "",
               },
               cppcode: "",
-              email: applicationState?.shippingAddressDetails?.email || "",
+              email: applicationState ?.shippingAddressDetails ?.email || "",
               firstname:
-                applicationState?.shippingAddressDetails?.firstName || "",
+                applicationState ?.shippingAddressDetails ?.firstName || "",
               lastname:
-                applicationState?.shippingAddressDetails?.lastName || "",
-              mobileno: applicationState?.shippingAddressDetails?.phoneNo || "",
+                applicationState ?.shippingAddressDetails ?.lastName || "",
+              mobileno: applicationState ?.shippingAddressDetails ?.phoneNo || "",
               paymentMethod: "PAYPAL",
               postalcode:
-                applicationState?.shippingAddressDetails?.postCode || "",
+                applicationState ?.shippingAddressDetails ?.postCode || "",
             };
             placeOrderApiCall({
               dispatch,
               history,
               placeOrderRequest,
-              authToken: applicationState?.config?.authToken,
+              authToken: applicationState ?.config ?.authToken,
             });
           });
         },
@@ -116,19 +116,18 @@ export default function PayPal(props) {
         <HeaderMenu dispatch={dispatch} cartCount={cartDetails.length} />
       </div>
       <div id="checkout">
-        <div className="container">
-          <div className="card px-0 pt-4 pb-0 mt-3 mb-3">
+        <div className="container-fluid">
+          <div className="card">
             <div className="row">
-              <div className="col-md-12 mx-0" id="msform">
-                <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 mb-4 order-md-first order-last payment-card">
-                  <div className="row">
-                    <Alert severity="warning" className="mb-4">
-                      Warning! Please do not exit tthe browser or go back while
-                      processing the payment
+              <div className="col-md-12 mx-0 px-0" id="msform">
+                <CheckoutProgressBar progressItem="Payment" />
+                <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 payment-card px-0">
+                  <Alert severity="warning" className="mb-4">
+                    Warning! Please do not exit tthe browser or go back while
+                    processing the payment
                     </Alert>
-                    <div>
-                      <div ref={paypal}></div>
-                    </div>
+                  <div>
+                    <div ref={paypal}></div>
                   </div>
                 </div>
                 <button

@@ -3,13 +3,14 @@ import HeaderMenu from "../common/HeaderMenu.js";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import { useHistory } from "react-router-dom";
 import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
-import {getMyOrdersApiCall} from "../../serviceCalls/getMyOrdersApiCall";
+import { getMyOrdersApiCall } from "../../serviceCalls/getMyOrdersApiCall";
+import { getProductsApiCall } from "../../serviceCalls/getProductsApiCall";
 
 const CustomerPaymentSuccess = (props) => {
   const { applicationState, dispatch } = props;
   const history = useHistory();
 
-  React.useEffect(()=> {
+  React.useEffect(() => {
     const { productList, config, customerDetails } = applicationState;
     const productlistArray = [];
     productList.forEach((product) => {
@@ -20,13 +21,23 @@ const CustomerPaymentSuccess = (props) => {
       };
       productlistArray.push(productListObject);
     });
-    getMyOrdersApiCall({
+    getProductsApiCall({
       dispatch: dispatch,
-      authToken: config.authToken,
+      history: history,
+      signInResponse: {
+        authToken: config.authToken,
+        userType: config.userType
+      },
       email: customerDetails.email,
-      productList : productlistArray,
-      cartDetails: []
+      moveToNextPage: false
     })
+    // getMyOrdersApiCall({
+    //   dispatch: dispatch,
+    //   authToken: config.authToken,
+    //   email: customerDetails.email,
+    //   productList: productlistArray,
+    //   cartDetails: []
+    // })
   }, [applicationState.config.authToken]);
 
   const onContinueShopping = () => {
@@ -44,15 +55,15 @@ const CustomerPaymentSuccess = (props) => {
               <div className="col-md-12 mx-0">
                 <form id="msform">
                   {/* <CheckoutProgressBar /> */}
-                  <div className="row">
-                    <div className="col-lg-12 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
+                  <div className="row justify-content-center">
+                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
                       <fieldset>
                         <div className="form-card">
                           <div>
                             <h2 className="fs-title text-center">Success!</h2>
                           </div>
                           <div className="row justify-content-center">
-                            <div className="col-3">
+                            <div className="col-lg-3 col-md-3 col-sm-12">
                               <img
                                 src="https://img.icons8.com/color/96/000000/ok--v2.png"
                                 className="fit-image"
@@ -60,7 +71,7 @@ const CustomerPaymentSuccess = (props) => {
                             </div>
                           </div>
                           <div className="row justify-content-center">
-                            <div className="col-7 text-center">
+                            <div className="col-lg-7 col-md-7 col-sm-12 px-0 text-center">
                               <h5>Your Order Placed Sucessfully</h5>
                             </div>
                           </div>

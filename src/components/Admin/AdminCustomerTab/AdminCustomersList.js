@@ -65,13 +65,32 @@ const AdminCustomersList = (props) => {
     }
 
     return (
-        <div id="productlist" className="row">
+        <div id="productlist">
            <div>
                 <AdminHeaderMenu />
             </div>
            
             <div className="" >
                 <div className="container-fluid">
+                    {/* Customer Details */}
+                    <div className="pd-20 bg-main bg-gradient text-white mb-4 rounded">
+                        <div className="row form-card">
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label><strong>Number Of Orders Made :-</strong> 2</label>
+                            </div>
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label><strong>Total Amount:-</strong> 299.9</label>
+                            </div>
+                        </div>
+                        <div className="row form-card mt-3">
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label><strong>Total Amount Paid :-</strong> 124</label> 
+                            </div>
+                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label><strong>Balance :-</strong> 23.45</label> 
+                            </div>
+                        </div>
+                    </div>
                     <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
                     <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 315px)', width: '100%' }}>
                         <AgGridReact
@@ -95,6 +114,7 @@ const AdminCustomersList = (props) => {
                         placeholder="Enter code"
                         />
                     </PromoCodeModal>
+                    
                 </div>
             </div>
         </div>

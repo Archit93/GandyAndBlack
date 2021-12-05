@@ -114,10 +114,10 @@ const CustomerPayment = (props) => {
         <div className="container-fluid">
           <div className="card px-0 pb-0 mb-3">
             <div className="row">
-              <div className="col-md-12 mx-0" id="msform">
+              <div className="col-md-12 mx-0 px-0" id="msform">
                 <CheckoutProgressBar progressItem="Payment" />
                 <div className="row">
-                  <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
+                  <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last px-0">
                     <fieldset>
                       <h2 className="fs-title">Payment Information</h2>
                       <div className="my-3 form-card">
@@ -193,7 +193,7 @@ const CustomerPayment = (props) => {
                       </button>
                     </fieldset>
                   </div>
-                  <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 mobile-padding">
                     <CustomerAmountDetails
                       subTotalAmount={subTotalAmount}
                       finalVatAmount={totalVatAmount}

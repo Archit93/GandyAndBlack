@@ -4,9 +4,9 @@ import { useHistory } from "react-router-dom";
 const AdminHeaderMenu = ({ cartCount }) => {
   const history = useHistory();
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white header-shadow navbar-fixed">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm navbar-fixed">
       <div className="container-fluid">
-        <button className="navbar-brand" href="#">
+        <button>
           <img src="./GD LOGOS-01.jpeg" alt="logo" className="logo" />
         </button>
         <button
@@ -21,7 +21,7 @@ const AdminHeaderMenu = ({ cartCount }) => {
         </button>
         <div className="collapse navbar-collapse" id="main_nav">
           <ul className="navbar-nav">
-            <li className="nav-item active">
+            <li className="nav-item">
               <button
                 className="nav-link"
                 onClick={() => history.push("/admin_product_list")}
@@ -29,7 +29,7 @@ const AdminHeaderMenu = ({ cartCount }) => {
                 Products
               </button>
             </li>
-            <li className="nav-item active">
+            <li className="nav-item">
               <button
                 className="nav-link"
                 onClick={() => history.push("/customer_list")}
@@ -37,7 +37,7 @@ const AdminHeaderMenu = ({ cartCount }) => {
                 Customers
               </button>
             </li>
-            <li className="nav-item active">
+            <li className="nav-item">
               <button
                 className="nav-link"
                 onClick={() => history.push("/place_order")}
@@ -45,7 +45,7 @@ const AdminHeaderMenu = ({ cartCount }) => {
                 Place Order
               </button>
             </li>
-            <li className="nav-item active">
+            <li className="nav-item">
               <button
                 className="nav-link"
                 onClick={() => history.push("/crm")}

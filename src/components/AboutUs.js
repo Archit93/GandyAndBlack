@@ -88,7 +88,7 @@ const AboutUs = (props) => {
 
         {/* Contact Section */}
         <div
-          className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-dark-grey"
+          className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-dark-grey px-0"
           id="contact"
         >
           <div className="container image-overlap-container">

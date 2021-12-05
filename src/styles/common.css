@@ -643,6 +643,29 @@ i {
 
 /************* Product List ************/
 
+/*for input up down arrows*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+.table-mb{
+  margin-bottom: 130px;
+}
+
+.fixed-bottom{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  left: 0;
+  border-top: 1px solid #dedede;
+  padding: 10px;
+}
+
 /* Product list table increment / decrement */
 .btn-quantity {
   border: 0;
@@ -738,6 +761,10 @@ input:-webkit-autofill:active {
   box-shadow: 0 0 8px 4px #ebebeb;
 }
 
+.navbar-collapse{
+  margin-top: 10px;
+}
+
 .navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link:hover {
   color: #e3adab;
@@ -767,7 +794,7 @@ input:-webkit-autofill:active {
   width: 100%;
   top: 0;
   z-index: 9;
-  padding: 0;
+  /* padding: 0; */
 }
 
 .dropdown-menu {
@@ -795,6 +822,16 @@ input:-webkit-autofill:active {
 }
 
 @media all and (min-width: 992px) {
+  
+  /* header menu */
+  .mobile-hide{
+    display: none !important;
+  }
+  
+  /* .navbar .container, .navbar .container-fluid, .navbar .container-lg, .navbar .container-md, .navbar .container-sm, .navbar .container-xl {
+    justify-content: inherit;
+  } */
+  
   .dropdown-menu li {
     position: relative;
   }
@@ -831,8 +868,9 @@ input:-webkit-autofill:active {
 #myprofile,
 #myorders,
 #producttype,
-#adminproductlist {
-  margin-top: 100px;
+#adminproductlist,
+#crm {
+  margin-top: 78px;
 }
 
 /* Margin */
@@ -869,7 +907,15 @@ input:-webkit-autofill:active {
   padding-bottom: 30px;
 }
 
+.pd-20{
+  padding: 20px;
+}
+
 /* Global */
+.bg-main{
+  background-color: rgb(227,173,171);
+}
+
 .text-align-center {
   text-align: center;
   justify-content: center;
@@ -917,11 +963,6 @@ input:-webkit-autofill:active {
   font-weight: 600;
 }
 
-.profile-content {
-  position: relative;
-  margin-top: -60px;
-}
-
 .avatar-xxl {
   height: 9.5rem;
   width: 10.5rem;
@@ -947,6 +988,7 @@ input:-webkit-autofill:active {
     no-repeat 0 50%;
   background-position: bottom;
   background-size: cover;
+  margin-top: 70px;
 }
 
 .react-trello-lane {
@@ -992,7 +1034,7 @@ input:-webkit-autofill:active {
   background-color: #cbe712;
   color: #fff;
   border-radius: 20px 0 0 20px;
-  margin: 20px 6px;
+  margin: 20px 10px;
   border: 0;
 }
 
@@ -1149,14 +1191,26 @@ input:-webkit-autofill:active {
 
 /* Customer cart */
 .cart-input {
-  width: auto !important;
+  width: 70px !important;
   border: 1px solid #dedede !important;
   padding: 10px !important;
+  text-align: center;
 }
 
 /* ============ small devices ============ */
 
 @media (max-width: 991px){
+  /* cart */
+  #msform .mobile-padding{
+    padding: 0;
+  }
+  /* customer shipping info btn */
+  .toggle {
+    display: flex;
+  }
+  .navbar-collapse{
+    border-top: 1px solid #dedede;
+  }
   .dropdown-menu .dropdown-menu {
     margin-left: 0.7rem;
     margin-right: 0.7rem;
@@ -1206,9 +1260,9 @@ input:-webkit-autofill:active {
   }
 
   /* Global */
-  .btn-main {
+  .btn-main, .btn-secondary {
     width: 100%;
-    margin: 0;
+    margin: 5px 0;
   }
 
   .navbar {padding: .5rem 0;}
@@ -1218,7 +1272,7 @@ input:-webkit-autofill:active {
 
 /* Payment */
 .payment-card{
-  margin: 100px auto;
+  margin: 50px auto;
   border: 1px solid #dedede;
   padding: 15px;
 }

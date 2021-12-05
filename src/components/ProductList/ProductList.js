@@ -229,7 +229,7 @@ const ProductList = (props) => {
           // className="ag-theme-alpine"
           // style={{ height: "calc(100vh - 335px)", width: "100%" }}
           id="myGrid"
-          className="ag-theme-alpine"
+          className="table-mb ag-theme-alpine"
           style={{
             height: "100%",
             width: "100%",
@@ -252,7 +252,7 @@ const ProductList = (props) => {
             }}
           ></AgGridReact>
         </div>
-        <div className="text-center mrt-20">
+        <div className="fixed-bottom text-center mrt-20">
           <button
             className="btn btn-secondary"
             type="submit"
