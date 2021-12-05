@@ -10,9 +10,9 @@ import CustomerPaymentSuccess from "./CustomerPaymentSuccess.js";
 import {
   SET_PAYMENT_METHOD,
   SET_TOTAL_AMOUNT,
-  SET_IS_LOADING
+  SET_IS_LOADING,
 } from "../../constants/actionTypes";
-import { placeOrderApiCall } from '../../serviceCalls/placeOrderApiCall';
+import { placeOrderApiCall } from "../../serviceCalls/placeOrderApiCall";
 
 const CustomerPayment = (props) => {
   const history = useHistory();
@@ -58,39 +58,35 @@ const CustomerPayment = (props) => {
     } else if (paymentMethod === "CARD") {
       history.push("/pay-with-card");
     } else {
-      const itemList = applicationState ?.cartDetails ?.map((item) => [
+      dispatch({ type: SET_IS_LOADING, payload: true });
+      const itemList = applicationState?.cartDetails?.map((item) => [
         item.productid,
         item.quantity,
       ]);
       let productidcartmap = Object.fromEntries(itemList);
       const placeOrderRequest = {
-        address: applicationState ?.shippingAddressDetails ?.address || "",
+        address: applicationState?.shippingAddressDetails?.address || "",
         cart: {
-          ordershippingcost: Number(applicationState ?.shippingCost),
+          ordershippingcost: Number(applicationState?.shippingCost),
           productidcartmap,
-          subtotal: applicationState ?.subTotalAmount,
-          totalvat: applicationState ?.totalVatAmount,
-          userId: applicationState ?.shippingAddressDetails ?.email || "",
+          subtotal: applicationState?.subTotalAmount,
+          totalvat: applicationState?.totalVatAmount,
+          userId: applicationState?.shippingAddressDetails?.email || "",
         },
         cppcode: "",
-        email: applicationState ?.shippingAddressDetails ?.email || "",
-        firstname:
-          applicationState ?.shippingAddressDetails ?.firstName || "",
-        lastname:
-          applicationState ?.shippingAddressDetails ?.lastName || "",
-        mobileno: applicationState ?.shippingAddressDetails ?.phoneNo || "",
-        paymentMethod: "PAYPAL",
-        postalcode:
-          applicationState ?.shippingAddressDetails ?.postCode || "",
+        email: applicationState?.shippingAddressDetails?.email || "",
+        firstname: applicationState?.shippingAddressDetails?.firstName || "",
+        lastname: applicationState?.shippingAddressDetails?.lastName || "",
+        mobileno: applicationState?.shippingAddressDetails?.phoneNo || "",
+        paymentMethod: "POD",
+        postalcode: applicationState?.shippingAddressDetails?.postCode || "",
       };
-      dispatch({ type: SET_IS_LOADING, payload: true });
       placeOrderApiCall({
         dispatch,
         history,
         placeOrderRequest,
-        authToken: applicationState ?.config ?.authToken,
+        authToken: applicationState?.config?.authToken,
       });
-      
     }
   };
 

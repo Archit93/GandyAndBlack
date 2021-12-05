@@ -178,21 +178,25 @@ const ProductList = (props) => {
 
   const getRowHeight = () => (applicationState.mobileView ? 110 : 65);
   const onProceed = (e) => {
-    // let customerCartArray = [];
-    // gridApi.forEachNode((node) => {
-    //   if (node.data.quantity !== 0) {
-    //     customerCartArray.push(node.data);
-    //   }
-    // });
-    // dispatch({
-    //   type: SET_CUSTOMER_CART_DETAILS,
-    //   payload: customerCartArray,
-    // });
-    // dispatch({
-    //   type: IS_CART_EMPTY,
-    //   payload: isLocalCartEmpty,
-    // });
-    history.push("/customercart_details");
+    const itemList = applicationState?.cartDetails?.map((item) => [
+      item.productid,
+      item.quantity,
+    ]);
+    let productidcartmap = Object.fromEntries(itemList);
+    const customerCartArray = {
+      ordershippingcost: Number(applicationState?.shippingCost),
+      productidcartmap,
+      subtotal: Number(applicationState?.subTotalAmount),
+      totalvat: Number(applicationState?.totalVatAmount),
+      userId: applicationState?.shippingAddressDetails?.email || "",
+    };
+    updateCartDetails({
+      dispatch,
+      customerCartArray,
+      history,
+      authToken: applicationState?.config?.authToken,
+    });
+    // history.push("/customercart_details");
   };
 
   // set background colour on even rows again, this looks bad, should be using CSS classes

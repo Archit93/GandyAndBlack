@@ -3,13 +3,14 @@ import HeaderMenu from "../common/HeaderMenu.js";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import { useHistory } from "react-router-dom";
 import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
-import {getMyOrdersApiCall} from "../../serviceCalls/getMyOrdersApiCall";
+import { getMyOrdersApiCall } from "../../serviceCalls/getMyOrdersApiCall";
+import { getProductsApiCall } from "../../serviceCalls/getProductsApiCall";
 
 const CustomerPaymentSuccess = (props) => {
   const { applicationState, dispatch } = props;
   const history = useHistory();
 
-  React.useEffect(()=> {
+  React.useEffect(() => {
     const { productList, config, customerDetails } = applicationState;
     const productlistArray = [];
     productList.forEach((product) => {
@@ -20,13 +21,23 @@ const CustomerPaymentSuccess = (props) => {
       };
       productlistArray.push(productListObject);
     });
-    getMyOrdersApiCall({
+    getProductsApiCall({
       dispatch: dispatch,
-      authToken: config.authToken,
+      history: history,
+      signInResponse: {
+        authToken: config.authToken,
+        userType: config.userType
+      },
       email: customerDetails.email,
-      productList : productlistArray,
-      cartDetails: []
+      moveToNextPage: false
     })
+    // getMyOrdersApiCall({
+    //   dispatch: dispatch,
+    //   authToken: config.authToken,
+    //   email: customerDetails.email,
+    //   productList: productlistArray,
+    //   cartDetails: []
+    // })
   }, [applicationState.config.authToken]);
 
   const onContinueShopping = () => {

@@ -5,6 +5,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
+import Alert from "@material-ui/lab/Alert";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 import PayPal from "./PayPal.js";
@@ -141,7 +142,6 @@ const PayWithCard1 = (props) => {
         type: "card",
         card: cardElement,
         billing_details: billingDetails,
-        // description: "Gandy & Black Asthetic Supplies",
       });
 
       if (paymentMethodReq.error) {
@@ -159,35 +159,35 @@ const PayWithCard1 = (props) => {
           return;
         } else {
           setProcessingTo(false);
-          const itemList = applicationState?.cartDetails?.map((item) => [
+          const itemList = applicationState ?.cartDetails ?.map((item) => [
             item.productid,
             item.quantity,
           ]);
           let productidcartmap = Object.fromEntries(itemList);
           const placeOrderRequest = {
-            address: applicationState?.shippingAddressDetails?.address || "",
+            address: applicationState ?.shippingAddressDetails ?.address || "",
             cart: {
-              ordershippingcost: Number(applicationState?.shippingCost),
+              ordershippingcost: Number(applicationState ?.shippingCost),
               productidcartmap,
-              subtotal: applicationState?.subTotalAmount,
-              totalvat: applicationState?.totalVatAmount,
-              userId: applicationState?.shippingAddressDetails?.email || "",
+              subtotal: applicationState ?.subTotalAmount,
+              totalvat: applicationState ?.totalVatAmount,
+              userId: applicationState ?.shippingAddressDetails ?.email || "",
             },
             cppcode: "",
-            email: applicationState?.shippingAddressDetails?.email || "",
+            email: applicationState ?.shippingAddressDetails ?.email || "",
             firstname:
-              applicationState?.shippingAddressDetails?.firstName || "",
-            lastname: applicationState?.shippingAddressDetails?.lastName || "",
-            mobileno: applicationState?.shippingAddressDetails?.phoneNo || "",
+              applicationState ?.shippingAddressDetails ?.firstName || "",
+            lastname: applicationState ?.shippingAddressDetails ?.lastName || "",
+            mobileno: applicationState ?.shippingAddressDetails ?.phoneNo || "",
             paymentMethod: "CARD",
             postalcode:
-              applicationState?.shippingAddressDetails?.postCode || "",
+              applicationState ?.shippingAddressDetails ?.postCode || "",
           };
           placeOrderApiCall({
             dispatch,
             history,
             placeOrderRequest,
-            authToken: applicationState?.config?.authToken,
+            authToken: applicationState ?.config ?.authToken,
           });
         }
       }
@@ -249,49 +249,53 @@ const PayWithCard1 = (props) => {
             <div className="row">
               <div className="col-md-12 mx-0 px-0" id="msform">
                 <CheckoutProgressBar progressItem="Payment" />
-                  <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 payment-card">
-                    <form onSubmit={handleFormSubmit} className="px-0">
-                      <CardElementContainer>
-                        <CardElement
-                          options={cardElementOpts}
-                          onChange={handleCardDetailsChange}
-                        />
-                      </CardElementContainer>
-                      {/* TIP always disable your submit button while processing payments */}
-                      {checkoutError && <span className="error">{checkoutError}</span>}
-                      <div className="payment-cards mrt-20">
-                        <img src="visa.png" />
-                        <img src="amex.png" />
-                        <img src="icons8-discover-96.png" />
-                        <img src="icons8-mastercard-logo-96.png" />
-                        <span style={{ lineHeight: "3.5" }}>more..</span>
-                      </div>
-                      <div className="text-center mt-4">
-                        <button
-                          className="previous action-button-previous"
-                          type="submit"
-                          onClick={() => {
-                            history.push("/customerpayment_info");
-                          }}
-                        >
-                          Back
+                <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 payment-card">
+                  <Alert severity="warning" className="mb-4">
+                    Warning! Please do not exit tthe browser or go back while processing
+                    the payment
+                  </Alert>
+                  <form onSubmit={handleFormSubmit} className="px-0">
+                    <CardElementContainer>
+                      <CardElement
+                        options={cardElementOpts}
+                        onChange={handleCardDetailsChange}
+                      />
+                    </CardElementContainer>
+                    {/* TIP always disable your submit button while processing payments */}
+                    {checkoutError && <span className="error">{checkoutError}</span>}
+                    <div className="payment-cards mrt-20">
+                      <img src="visa.png" />
+                      <img src="amex.png" />
+                      <img src="icons8-discover-96.png" />
+                      <img src="icons8-mastercard-logo-96.png" />
+                      <span style={{ lineHeight: "3.5" }}>more..</span>
+                    </div>
+                    <div className="text-center mt-4">
+                      <button
+                        className="previous action-button-previous"
+                        type="submit"
+                        onClick={() => {
+                          history.push("/customerpayment_info");
+                        }}
+                      >
+                        Back
                         </button>
-                        <button
-                          className="next action-button"
-                          type="submit"
-                          disabled={isProcessing || !stripe || checkoutError}
-                        >
-                          {isProcessing ? "Processing..." : `Pay £${totalAmount}`}
-                        </button>
-                      </div>
-                      {/* <SubmitButton
+                      <button
+                        className="next action-button"
+                        type="submit"
+                        disabled={isProcessing || !stripe || checkoutError}
+                      >
+                        {isProcessing ? "Processing..." : `Pay £${totalAmount}`}
+                      </button>
+                    </div>
+                    {/* <SubmitButton
                         className="action-button mrt-20"
                         disabled={isProcessing || !stripe || checkoutError}
                       >
                         {isProcessing ? "Processing..." : `Pay $${totalAmount}`}
                       </SubmitButton> */}
 
-                      {/* <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    {/* <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                       <CustomerAmountDetails
                         subTotalAmount={subTotalAmount}
                         finalVatAmount={totalVatAmount}
@@ -303,8 +307,8 @@ const PayWithCard1 = (props) => {
                         dispatch={dispatch}
                       />
                     </div> */}
-                    </form>
-                  </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
