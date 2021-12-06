@@ -58,25 +58,11 @@ const ProductList = (props) => {
         });
       }
     });
-    // api.forEachNode((node) => {
-    //   if (node.data.quantity !== 0) {
-    //     tempArray.push({
-    //       ...node.data,
-    //       quantity: node.data.quantity ? Number(node.data.quantity) : 0,
-    //     });
-    //   }
-    // });
     tempArray.length === 0
       ? setIsLocalCartEmpty(true)
       : setIsLocalCartEmpty(false);
 
-    //setCartCount(tempArray.length);
     setTempCart(tempArray);
-
-    // dispatch({
-    //   type: SET_CUSTOMER_CART_DETAILS,
-    //   payload: tempArray,
-    // });
     dispatch({
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
@@ -109,25 +95,6 @@ const ProductList = (props) => {
       return productlistArray;
     }
   };
-
-  const columDefsForMobile = () => [
-    {
-      field: "quantity",
-      headerName: "Quantity",
-      editable: false,
-      cellRenderer: "mobileQuantityEditor",
-    },
-    {
-      field: "producttype",
-      headerName: "Product List",
-      cellRendererFramework: MobileViewColumnProductType,
-    },
-    {
-      field: "productdesc",
-      headerName: "Product Description",
-      cellRendererFramework: MobileViewColumnDescription,
-    },
-  ];
 
   const columnDefs = ({ frameWorkComponentChange }) => {
     return applicationState.mobileView

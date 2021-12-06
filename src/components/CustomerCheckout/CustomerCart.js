@@ -21,6 +21,7 @@ const CustomerCart = (props) => {
 
   React.useEffect(() => {
     const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
+    console.log(cartData);
     if (cartData) {
       setTempCart(cartData);
       settingAmountDetails(cartDetails, shippingCost);

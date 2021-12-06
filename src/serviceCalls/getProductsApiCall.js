@@ -45,7 +45,7 @@ export const getProductsApiCall = async ({
           ])
           .then(
             axios.spread((customerDetails, customerOrders, customerCart) => {
-              dispatch({ type: SET_IS_LOADING, payload: false });
+              
               const shippingAddressDetails = {
                 firstName: customerDetails ?.data ?.firstname ?? "",
                 lastName: customerDetails ?.data ?.lastname ?? "",
@@ -57,11 +57,49 @@ export const getProductsApiCall = async ({
                 tradeOfBusiness: customerDetails ?.data ?.tradeofbuisness ?? "",
               };
 
+              const customerCartApiResponse = customerCart && customerCart.data ? customerCart.data : [];
+              const cartDetailsFromService = [];
+              const cartDetails = [];
+
+              customerCartApiResponse && 
+              customerCartApiResponse.length > 0 && 
+              customerCartApiResponse.productidcartmap &&
+                Object.keys(customerCartApiResponse.productidcartmap).map((key) => cartDetailsFromService.push({
+                  productid: key,
+                  quantity: customerCart.data.productidcartmap[key]
+                }));
+
+              cartDetailsFromService.map((productincart) => {
+                const findProduct = apiResponse.data.find((product) => {
+                  return product.productid === productincart.productid;
+                })
+                const findIndexOfTheRowInProductList = apiResponse.data.findIndex(
+                  (product) => {
+                    return product.productid === productincart.productid;
+                  }
+                );
+                apiResponse.data[findIndexOfTheRowInProductList] = Object.assign({}, {
+                  ...findProduct,
+                  quantity: productincart.quantity
+                })
+              })
+
+              apiResponse.data.forEach((product) => {
+                if (product.quantity && product.quantity !== 0) {
+                  cartDetails.push({
+                    ...product,
+                    vat: product.vat * product.quantity,
+                  });
+                }
+              });
+              dispatch({ type: SET_IS_LOADING, payload: false });
               dispatch({
                 type: SET_USER_DETAILS,
                 payload: customerDetails.data,
                 orderDetails: customerOrders.data,
                 shippingAddressDetails,
+                productList: apiResponse.data,
+                cartDetails: cartDetails
               });
               if (moveToNextPage) {
                 history.push("/producttypes");
@@ -71,20 +109,32 @@ export const getProductsApiCall = async ({
           );
         // history.push("/productlist");
       }
+      
       if (signInResponse.userType.toUpperCase() === "ADMIN") {
         axios
           .all([
-            // axios.get(`${baseUrl}/admin/user/management/admin`, apiRequestHeader),
+            axios.get(`${baseUrl}/admin/user/management/GANDYS_USER`, apiRequestHeader),
             axios.get(
               `${baseUrl}/order/all?ordertype=INSTA_SITE`,
               apiRequestHeader
             ),
           ])
           .then(
-            axios.spread((allOrders) => {
+            axios.spread((allUsers,allOrders) => {
+              
+              const allCustomersData = [];
+              allUsers && allUsers.data && allUsers.data.map((user) => {
+                allCustomersData.push({
+                  ...user,
+                  username: `${user.firstname ? user.firstname : "" } ${user.lastname ? user.lastname : "" }`,
+                  postcode: user.address && user.address.length > 0 ? user.address[0].postcode : "" 
+                })
+              })
+
               dispatch({
                 type: SET_KANBAN_DETAILS,
                 payload: allOrders.data,
+                customerList: allCustomersData
               });
             })
           );

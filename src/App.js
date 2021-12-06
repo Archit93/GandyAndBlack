@@ -96,6 +96,7 @@ const App = () => {
       signUpError: false,
     },
     profileUpdateStatus: "",
+    getCustomerOrderList: {}
   });
   React.useEffect(() => {
     const setResponsiveness = () => {
