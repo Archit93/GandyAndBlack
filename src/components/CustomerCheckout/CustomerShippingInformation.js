@@ -16,6 +16,7 @@ import {
 } from "../../constants/actionTypes";
 import { updateCustomerDetails } from "../../serviceCalls/updateCustomerDetails";
 import ToggleButton from "react-toggle-button";
+import AdminHeaderMenu from "../common/AdminHeaderMenu.js";
 
 const CustomerShippingInformation = (props) => {
   const history = useHistory();
@@ -26,6 +27,7 @@ const CustomerShippingInformation = (props) => {
     totalVatAmount,
     totalAmount,
     shippingCost,
+    config,
   } = applicationState;
 
   React.useEffect(() => {
@@ -270,7 +272,11 @@ const CustomerShippingInformation = (props) => {
   return (
     <div>
       <div>
-        <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
+        {config?.userType === "ADMIN" ? (
+          <AdminHeaderMenu />
+        ) : (
+          <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
+        )}
       </div>
       <div id="checkout">
         <div className="container-fluid">
@@ -278,7 +284,10 @@ const CustomerShippingInformation = (props) => {
             <div className="row">
               <div className="col-md-12 mx-0 px-0">
                 <form id="msform">
-                  <CheckoutProgressBar progressItem="Billing" />
+                  <CheckoutProgressBar
+                    progressItem="Billing"
+                    userType={config?.userType}
+                  />
                   <div className="row">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last px-0">
                       <fieldset>
@@ -426,7 +435,7 @@ const CustomerShippingInformation = (props) => {
                               />
                             </span>
                             <span className="float-left mrl-15">
-                              Is your Billing address same as Shipping address?
+                              Is Billing address same as Shipping address?
                             </span>
                           </div>
                         </div>
@@ -574,7 +583,9 @@ const CustomerShippingInformation = (props) => {
                       className="previous action-button-previous"
                       type="submit"
                       onClick={() => {
-                        history.push("/customercart_details");
+                        config?.userType === "ADMIN"
+                          ? history.push("/place_order")
+                          : history.push("/customercart_details");
                       }}
                     >
                       Back
