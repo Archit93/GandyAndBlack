@@ -7,21 +7,21 @@ import ProductDetailsTab from './ProductDetailsTab';
 
 const CRMTabList = ({orderInfo}) => {
     return(
-        <Tabs>
+        <Tabs style={{padding: "20px"}}>
           <TabList>
             <Tab>Order Details</Tab>
             <Tab>Customer Details</Tab>
             <Tab>Products Ordered</Tab>
           </TabList>
           {/* Order Details */}
-          <TabPanel>
+          <TabPanel className="tab-content">
             <OrderDetailsTab orderInfo={orderInfo}/>
           </TabPanel>
           {/* Customer Details */}
-          <TabPanel>
+          <TabPanel className="tab-content">
             <CustomerDetailsTab orderInfo={orderInfo}/>
           </TabPanel>
-          <TabPanel>
+          <TabPanel className="tab-content">
             <ProductDetailsTab orderInfo={orderInfo}/>
           </TabPanel>
         </Tabs>

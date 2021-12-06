@@ -2,7 +2,7 @@ import * as React from "react";
 
 const OrderDetailsTab = ({orderInfo}) => {
 
-    return (<><div className="row form-card mt-5">
+    return (<><div className="row form-card">
         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <label><strong>Order Id -</strong></label> {orderInfo.id}
             </div>

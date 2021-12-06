@@ -65,7 +65,7 @@ const AdminCustomersList = (props) => {
     }
 
     return (
-        <div id="productlist">
+        <div id="admincustlist">
            <div>
                 <AdminHeaderMenu />
             </div>
@@ -73,37 +73,42 @@ const AdminCustomersList = (props) => {
             <div className="" >
                 <div className="container-fluid">
                     {/* Customer Details */}
-                    <div className="pd-20 bg-main bg-gradient text-white mb-4 rounded">
-                        <div className="row form-card">
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label><strong>Number Of Orders Made :-</strong> 2</label>
-                            </div>
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label><strong>Total Amount:-</strong> 299.9</label>
-                            </div>
-                        </div>
-                        <div className="row form-card mt-3">
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label><strong>Total Amount Paid :-</strong> 124</label> 
-                            </div>
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label><strong>Balance :-</strong> 23.45</label> 
+                    <div className="image-overlap-container">
+                        <div class="image-container"><img src="./world-map.png" /></div>
+                        <div className="pd-20 bg-main rounded">
+                            <div className="row form-card">
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                    <label><strong>Number Of Orders Made :-</strong> 2</label>
+                                </div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                    <label><strong>Total Amount:-</strong> 299.9</label>
+                                </div>
+                            {/* </div>
+                            <div className="row form-card mt-3"> */}
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                    <label><strong>Total Amount Paid :-</strong> 124</label> 
+                                </div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                    <label><strong>Balance :-</strong> 23.45</label> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
-                    <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 315px)', width: '100%' }}>
-                        <AgGridReact
-                            rowData={rowData()}
-                            columnDefs={columnDefs}
-                            defaultColDef={defaultColDef}
-                            onGridReady={onGridReady}
-                            context={{
-                                frameWorkComponentChange: frameWorkComponentChange,
-                                showPromocodeModal: showPromocodeModal
-                            }}
-                        >
-                        </AgGridReact>
+                    <div className="">
+                        <input className="mt-4 search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
+                        <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 315px)', width: '100%' }}>
+                            <AgGridReact
+                                rowData={rowData()}
+                                columnDefs={columnDefs}
+                                defaultColDef={defaultColDef}
+                                onGridReady={onGridReady}
+                                context={{
+                                    frameWorkComponentChange: frameWorkComponentChange,
+                                    showPromocodeModal: showPromocodeModal
+                                }}
+                            >
+                            </AgGridReact>
+                        </div>
                     </div>
                     <PromoCodeModal title="Add Promocode" onClose={() =>  showPromocodeModal(false)} show={showModal}>
                         <p><strong>Please enter promotional code to be applied:</strong></p>
