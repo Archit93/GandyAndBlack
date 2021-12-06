@@ -11,7 +11,7 @@ import {
 const CustomerCart = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { cartDetails, productList } = applicationState;
+  const { cartDetails, productList, config } = applicationState;
 
   const [tempCart, setTempCart] = React.useState(cartDetails);
   const [subTotalAmount, setSubTotalAmount] = React.useState("");
@@ -152,7 +152,10 @@ const CustomerCart = (props) => {
             <div className="row">
               <div className="col-md-12 mx-0 px-0">
                 <form id="msform">
-                  <CheckoutProgressBar progressItem="Cart" />
+                  <CheckoutProgressBar
+                    progressItem="Cart"
+                    userType={config?.userType}
+                  />
                   <div className="row">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last px-0">
                       <fieldset>
@@ -161,9 +164,7 @@ const CustomerCart = (props) => {
                           tempCart?.map((product) => (
                             <div className="form-card" key={product.productid}>
                               <div className="h5">
-                                <span className="fw-bold">
-                                  {product.brand}
-                                </span>
+                                <span className="fw-bold">{product.brand}</span>
                                 <span
                                   className="float-right"
                                   style={{ cursor: "pointer" }}
