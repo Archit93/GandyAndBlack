@@ -70,57 +70,53 @@ const AdminCustomerOrderList = (props) => {
     }
 
     return (
-        <div className="crm" id="crm">
+        <div id="admincustorder">
             <div>
                 <AdminHeaderMenu />
             </div>
-            <div className="" >
-                <div className="container-fluid">
-                    <div className="image-overlap-container">
-                        <div className="image-container"><img src="./world-map.png" /></div>
-                        <div className="pd-20 bg-main rounded">
-                            <div className="row form-card">
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
-                                    <label><strong>Number Of Orders Made : </strong> {getCustomerOrderList.numberoforders}</label>
-                                </div>
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
-                                    <label><strong>Total Amount: </strong> £{getCustomerOrderList.totalamount}</label>
-                                </div>
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
-                                    <label><strong>Total Amount Paid : </strong> £{getCustomerOrderList.totalamountpaid}</label>
-                                </div>
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
-                                    <label><strong>Balance : </strong> £{(Number(getCustomerOrderList.totalamount) - Number(getCustomerOrderList.totalamountpaid)).toFixed(2)}</label>
-                                </div>
+            <div className="container-fluid" >
+                <div className="image-overlap-container">
+                    <div className="image-container"><img src="./world-map.png" /></div>
+                    <div className="pd-20 bg-main rounded">
+                        <div className="row form-card">
+                            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                <label><strong>Number Of Orders Made : </strong> {getCustomerOrderList.numberoforders}</label>
+                            </div>
+                            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                <label><strong>Total Amount: </strong> £{getCustomerOrderList.totalamount}</label>
+                            </div>
+                            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                <label><strong>Total Amount Paid : </strong> £{getCustomerOrderList.totalamountpaid}</label>
+                            </div>
+                            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                <label><strong>Balance : </strong> £{(Number(getCustomerOrderList.totalamount) - Number(getCustomerOrderList.totalamountpaid)).toFixed(2)}</label>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="" >
-            <div className="container-fluid">
-                <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
-                <div
-                    id="myGrid"
-                    className="ag-theme-alpine"
-                    style={{
-                        height: "calc(100vh - 335px)",
-                        width: '100%',
-                    }}
-                >
-                    <AgGridReact
-                        getRowStyle={getRowStyle}
-                        rowData={rowData()}
-                        columnDefs={columnDefs()}
-                        defaultColDef={defaultColDef}
-                        onGridReady={onGridReady}
-                        rowSelection={'multiple'}
-                        paginationAutoPageSize={true}
-                        pagination={true}
-                        onRowClicked={onRowClicked}
-                    ></AgGridReact>
+                <div>
+                    <input className="search-bottom-margin mt-4" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
+                    <div
+                        id="myGrid"
+                        className="ag-theme-alpine"
+                        style={{
+                            height: "calc(100vh - 335px)",
+                            width: '100%',
+                        }}
+                    >
+                        <AgGridReact
+                            getRowStyle={getRowStyle}
+                            rowData={rowData()}
+                            columnDefs={columnDefs()}
+                            defaultColDef={defaultColDef}
+                            onGridReady={onGridReady}
+                            rowSelection={'multiple'}
+                            paginationAutoPageSize={true}
+                            pagination={true}
+                            onRowClicked={onRowClicked}
+                        ></AgGridReact>
+                    </div>
                 </div>
-            </div>
             </div>
             <AdminOrderDetailsModal title={`Order Id`} onClose={() => setShowModal(false)} show={showModal}>
                 <CRMTabList orderInfo={orderInfo} />

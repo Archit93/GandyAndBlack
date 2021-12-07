@@ -7,7 +7,7 @@ export const RemoveItemColumn = (params) => {
             <>
                 <button
                     type="button"
-                    className="btn btn-icon"
+                    className="btn-icon"
                     onClick={() => context.showRemoveItemModal(true)}>
                     <i className="fa fa-trash icon-red"></i>
                 </button>
