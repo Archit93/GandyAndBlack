@@ -20,13 +20,11 @@ const CustomerCart = (props) => {
   const [shippingCost, setShippingCost] = React.useState("9.98");
 
   React.useEffect(() => {
-    const cartData = JSON.parse(window.sessionStorage.getItem("cart"));
-    console.log(cartData);
-    if (cartData) {
-      setTempCart(cartData);
+    if (tempCart) {
+      setTempCart(cartDetails);
       settingAmountDetails(cartDetails, shippingCost);
     }
-  }, []);
+  }, [cartDetails]);
 
   const removeItemFromCart = (e, productid) => {
     e.preventDefault();

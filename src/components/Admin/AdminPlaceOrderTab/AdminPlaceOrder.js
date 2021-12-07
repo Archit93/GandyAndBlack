@@ -72,7 +72,6 @@ const AdminPlaceOrder = (props) => {
     setplaceOrderData(placeOrderData);
   };
 
-  // set background colour on even rows again, this looks bad, should be using CSS classes
   const getRowStyle = (params) => {
     if (params.node.rowIndex % 2 === 0) {
       return { background: "#e3adab" };
@@ -81,7 +80,6 @@ const AdminPlaceOrder = (props) => {
 
   const placeOrder = () => {
     gridApi.forEachNode((node) => {
-      console.log(node.data);
     });
     history.push("/customershipping_info");
   };

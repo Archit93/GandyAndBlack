@@ -6,6 +6,7 @@ import {
   SET_KANBAN_DETAILS,
   SET_USER_DETAILS,
   SET_IS_LOADING,
+  SET_TOTAL_AMOUNT
 } from "../constants/actionTypes";
 
 const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8080";
@@ -45,7 +46,7 @@ export const getProductsApiCall = async ({
           ])
           .then(
             axios.spread((customerDetails, customerOrders, customerCart) => {
-              
+
               const shippingAddressDetails = {
                 firstName: customerDetails ?.data ?.firstname ?? "",
                 lastName: customerDetails ?.data ?.lastname ?? "",
@@ -61,28 +62,31 @@ export const getProductsApiCall = async ({
               const cartDetailsFromService = [];
               const cartDetails = [];
 
-              customerCartApiResponse && 
-              customerCartApiResponse.length > 0 && 
-              customerCartApiResponse.productidcartmap &&
+              customerCartApiResponse &&
+                Object.keys(customerCartApiResponse).length > 0 &&
+                customerCartApiResponse.productidcartmap &&
+                Object.keys(customerCartApiResponse.productidcartmap).length > 0 &&
                 Object.keys(customerCartApiResponse.productidcartmap).map((key) => cartDetailsFromService.push({
                   productid: key,
                   quantity: customerCart.data.productidcartmap[key]
                 }));
 
-              cartDetailsFromService.map((productincart) => {
-                const findProduct = apiResponse.data.find((product) => {
-                  return product.productid === productincart.productid;
-                })
-                const findIndexOfTheRowInProductList = apiResponse.data.findIndex(
-                  (product) => {
+              cartDetailsFromService &&
+                cartDetailsFromService.length > 0 &&
+                cartDetailsFromService.map((productincart) => {
+                  const findProduct = apiResponse.data.find((product) => {
                     return product.productid === productincart.productid;
-                  }
-                );
-                apiResponse.data[findIndexOfTheRowInProductList] = Object.assign({}, {
-                  ...findProduct,
-                  quantity: productincart.quantity
+                  })
+                  const findIndexOfTheRowInProductList = apiResponse.data.findIndex(
+                    (product) => {
+                      return product.productid === productincart.productid;
+                    }
+                  );
+                  apiResponse.data[findIndexOfTheRowInProductList] = Object.assign({}, {
+                    ...findProduct,
+                    quantity: productincart.quantity
+                  })
                 })
-              })
 
               apiResponse.data.forEach((product) => {
                 if (product.quantity && product.quantity !== 0) {
@@ -93,6 +97,21 @@ export const getProductsApiCall = async ({
                 }
               });
               dispatch({ type: SET_IS_LOADING, payload: false });
+              dispatch({
+                type: SET_TOTAL_AMOUNT,
+                payload: {
+                  shippingCost : customerCartApiResponse &&
+                  Object.keys(customerCartApiResponse).length > 0 &&
+                  customerCartApiResponse.ordershippingcost ? customerCartApiResponse.ordershippingcost : 0,
+                  subTotalAmount: customerCartApiResponse &&
+                  Object.keys(customerCartApiResponse).length > 0 &&
+                  customerCartApiResponse.subtotal ? customerCartApiResponse.subtotal : 0,
+                  totalVatAmount: customerCartApiResponse &&
+                  Object.keys(customerCartApiResponse).length > 0 &&
+                  customerCartApiResponse.totalvat ? customerCartApiResponse.totalvat : 0,
+                  totalAmount: 0
+                },
+              });
               dispatch({
                 type: SET_USER_DETAILS,
                 payload: customerDetails.data,
@@ -109,7 +128,7 @@ export const getProductsApiCall = async ({
           );
         // history.push("/productlist");
       }
-      
+
       if (signInResponse.userType.toUpperCase() === "ADMIN") {
         axios
           .all([
@@ -120,14 +139,14 @@ export const getProductsApiCall = async ({
             ),
           ])
           .then(
-            axios.spread((allUsers,allOrders) => {
-              
+            axios.spread((allUsers, allOrders) => {
+
               const allCustomersData = [];
               allUsers && allUsers.data && allUsers.data.map((user) => {
                 allCustomersData.push({
                   ...user,
-                  username: `${user.firstname ? user.firstname : "" } ${user.lastname ? user.lastname : "" }`,
-                  postcode: user.address && user.address.length > 0 ? user.address[0].postcode : "" 
+                  username: `${user.firstname ? user.firstname : ""} ${user.lastname ? user.lastname : ""}`,
+                  postcode: user.address && user.address.length > 0 ? user.address[0].postcode : ""
                 })
               })
 
