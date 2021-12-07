@@ -5,7 +5,6 @@ import axios from "axios";
 import Alert from "@material-ui/lab/Alert";
 import { isValidEmail, isValidPassword } from "../utils/regexUtils";
 import {
-  SET_INITIAL_RESPONSE,
   SET_IS_LOADING,
   SET_SIGN_UP_DATA,
 } from "../constants/actionTypes";

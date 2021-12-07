@@ -159,35 +159,35 @@ const PayWithCard1 = (props) => {
           return;
         } else {
           setProcessingTo(false);
-          const itemList = applicationState ?.cartDetails ?.map((item) => [
+          const itemList = applicationState?.cartDetails?.map((item) => [
             item.productid,
             item.quantity,
           ]);
           let productidcartmap = Object.fromEntries(itemList);
           const placeOrderRequest = {
-            address: applicationState ?.shippingAddressDetails ?.address || "",
+            address: applicationState?.shippingAddressDetails?.address || "",
             cart: {
-              ordershippingcost: Number(applicationState ?.shippingCost),
+              ordershippingcost: Number(applicationState?.shippingCost),
               productidcartmap,
-              subtotal: applicationState ?.subTotalAmount,
-              totalvat: applicationState ?.totalVatAmount,
-              userId: applicationState ?.shippingAddressDetails ?.email || "",
+              subtotal: applicationState?.subTotalAmount,
+              totalvat: applicationState?.totalVatAmount,
+              userId: applicationState?.shippingAddressDetails?.email || "",
             },
             cppcode: "",
-            email: applicationState ?.shippingAddressDetails ?.email || "",
+            email: applicationState?.shippingAddressDetails?.email || "",
             firstname:
-              applicationState ?.shippingAddressDetails ?.firstName || "",
-            lastname: applicationState ?.shippingAddressDetails ?.lastName || "",
-            mobileno: applicationState ?.shippingAddressDetails ?.phoneNo || "",
+              applicationState?.shippingAddressDetails?.firstName || "",
+            lastname: applicationState?.shippingAddressDetails?.lastName || "",
+            mobileno: applicationState?.shippingAddressDetails?.phoneNo || "",
             paymentMethod: "CARD",
             postalcode:
-              applicationState ?.shippingAddressDetails ?.postCode || "",
+              applicationState?.shippingAddressDetails?.postCode || "",
           };
           placeOrderApiCall({
             dispatch,
             history,
             placeOrderRequest,
-            authToken: applicationState ?.config ?.authToken,
+            authToken: applicationState?.config?.authToken,
           });
         }
       }
@@ -248,11 +248,10 @@ const PayWithCard1 = (props) => {
           <div className="card">
             <div className="row">
               <div className="col-md-12 mx-0 px-0" id="msform">
-                <CheckoutProgressBar progressItem="Payment" />
                 <div className="row col-lg-5 col-md-8 col-sm-12 col-xs-12 payment-card">
                   <Alert severity="warning" className="mb-4">
-                    Warning! Please do not exit tthe browser or go back while processing
-                    the payment
+                    Warning! Please do not exit tthe browser or go back while
+                    processing the payment
                   </Alert>
                   <form onSubmit={handleFormSubmit} className="px-0">
                     <CardElementContainer>
@@ -262,7 +261,9 @@ const PayWithCard1 = (props) => {
                       />
                     </CardElementContainer>
                     {/* TIP always disable your submit button while processing payments */}
-                    {checkoutError && <span className="error">{checkoutError}</span>}
+                    {checkoutError && (
+                      <span className="error">{checkoutError}</span>
+                    )}
                     <div className="payment-cards mrt-20">
                       <img src="visa.png" />
                       <img src="amex.png" />
@@ -279,7 +280,7 @@ const PayWithCard1 = (props) => {
                         }}
                       >
                         Back
-                        </button>
+                      </button>
                       <button
                         className="next action-button"
                         type="submit"
