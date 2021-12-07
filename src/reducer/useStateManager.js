@@ -30,6 +30,7 @@ export const useStateManager = (
       signUpError: false,
     },
     profileUpdateStatus: "",
+    getCustomerOrderList:{}
   },
   action
 ) => {
@@ -66,6 +67,8 @@ export const useStateManager = (
         customerDetails: action.payload,
         orderDetails: action.orderDetails ? action.orderDetails : state.orderDetails,
         shippingAddressDetails: action.shippingAddressDetails,
+        productList: action.productList,
+        cartDetails: action.cartDetails,
         isLoading: false,
       };
     case actionTypes.UPDATE_USER_DETAILS:
@@ -79,13 +82,6 @@ export const useStateManager = (
       return {
         ...state,
         forgotPasswordError: action.payload,
-        isLoading: false,
-      };
-    case actionTypes.SET_INITIAL_RESPONSE:
-      return {
-        ...state,
-        productList: tempData,
-        customerList: customerList,
         isLoading: false,
       };
     case actionTypes.EDIT_PRODUCT_QUANTITY:
@@ -139,6 +135,7 @@ export const useStateManager = (
     case actionTypes.SET_KANBAN_DETAILS:
       return {
         ...state,
+        customerList: action.customerList,
         crmDetails: action.payload,
       };
     case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:
@@ -151,6 +148,12 @@ export const useStateManager = (
         ...state,
         profileUpdateStatus: action.payload,
       };
+    case actionTypes.GET_CUSTOMER_ORDER_LIST:
+      return {
+        ...state,
+        getCustomerOrderList: action.payload,
+        isLoading: false
+      }
     case actionTypes.SET_ERROR:
     case actionTypes.RESET_ALL_DATA:
     default:

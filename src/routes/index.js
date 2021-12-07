@@ -21,6 +21,7 @@ import AdminPlaceOrder from "../components/Admin/AdminPlaceOrderTab/AdminPlaceOr
 import ProductListTiles from "../components/ProductList/ProductListTiles";
 import CustomerPaymentFail from "../components/CustomerCheckout/CustomerPaymentFail";
 import RequireAuth from "../components/RequireAuth";
+import AdminCustomerOrderList from "../components/Admin/AdminCustomerTab/AdminCustomerOrderList"
 
 export const AppRouter = (props) => {
   return (
@@ -85,6 +86,9 @@ export const AppRouter = (props) => {
         </Route>
         <Route exact={true} path="/customerfail">
           {RequireAuth(CustomerPaymentFail, { ...props })}
+        </Route>
+        <Route exact={true} path="/orders_by_customer">
+          {RequireAuth(AdminCustomerOrderList, { ...props })}
         </Route>
       </Switch>
     </Router>

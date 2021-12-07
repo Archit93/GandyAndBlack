@@ -12,6 +12,7 @@ import DeleteProductModal from "./DeleteProductModal";
 
 import AdminHeaderMenu from "../../common/AdminHeaderMenu";
 import AddProductModal from "./AddProductModal";
+import { StockFlagColumn } from "./StockFlagColumn";
 
 const AdminProductList = (props) => {
   const { applicationState, dispatch } = props;
@@ -35,7 +36,7 @@ const AdminProductList = (props) => {
   };
 
   const columnDefs = () => [
-    { field: "stockFlag", headerName: "Stock Flag" },
+    { field: "stockFlag", headerName: "Stock Flag", cellRenderer: "stockFlagComponent" },
     { field: "brand", headerName: "Brand" },
     { field: "producttype", headerName: "Product type" },
     { field: "productdesc", headerName: "Product description" },
@@ -105,7 +106,7 @@ const AdminProductList = (props) => {
 
         <div
           className="ag-theme-alpine"
-          style={{ height: "calc(100vh - 315px)", width: "100%" }}
+          style={{ height: "calc(100vh - 335px)", width: "100%" }}
         >
           <AgGridReact
             getRowStyle={getRowStyle}
@@ -119,6 +120,11 @@ const AdminProductList = (props) => {
               showDeleteProductModal: showDeleteProductModal
             }}
             rowSelection={'multiple'}
+            paginationAutoPageSize={true}
+            pagination={true}
+            frameworkComponents={{
+              stockFlagComponent: StockFlagColumn,
+            }}
           >
           </AgGridReact>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { AgGridReact } from 'ag-grid-react';
+import { useHistory } from "react-router-dom";
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -8,11 +9,16 @@ import { PromoCodeColumn } from './PromoCodeColumn';
 import PromoCodeModal from './PromoCodeModal';
 
 import AdminHeaderMenu from '../../common/AdminHeaderMenu';
+import { SET_IS_LOADING } from '../../../constants/actionTypes';
+import {getOrderListOfCustomerForAdmin} from '../../../serviceCalls/getOrderListOfCustomerForAdmin';
 
 
 const AdminCustomersList = (props) => {
 
     const { applicationState, dispatch } = props;
+    const {config: {authToken}} = applicationState;
+    const history = useHistory();
+
     const [gridApi, setGridApi] = React.useState(null);
     const [gridColumnApi, setGridColumnApi] = React.useState(null);
     const [showModal, setShowModal] = React.useState(false);
@@ -26,28 +32,41 @@ const AdminCustomersList = (props) => {
     const frameWorkComponentChange = ({ api }) => {
     }
 
+    const onRowClicked = params => {
+        dispatch({ type: SET_IS_LOADING, payload: true });
+        getOrderListOfCustomerForAdmin({
+            dispatch: dispatch,
+            history: history,
+            authToken: authToken,
+            email: params.data.email
+        })
+        
+    }
+
     const columnDefs = [
         { field: 'username', headerName: "Username" },
         { field: 'email', headerName: "Email" },
-        { field: 'instagramId', headerName: "Instagram Name" },
-        { field: 'mobileNumber', headerName: "Mobile Number" },
-        { field: 'userType', headerName: "User Type" },
-        { field: 'postCode', headerName: "Postal Code" },
-        { field: 'promoCode', headerName: "Promocode", cellRendererFramework: PromoCodeColumn }
+        { field: 'instaname', headerName: "Instagram Name" },
+        { field: 'mobileno', headerName: "Mobile Number" },
+        { field: 'tradeofbuisness', headerName: "User Type" },
+        { field: 'postcode', headerName: "Postal Code" },
+        //{ field: 'promoCode', headerName: "Promocode", cellRendererFramework: PromoCodeColumn }
     ];
 
     const rowData = () => {
         const customerlistArray = [];
         applicationState.customerList.map((rowdetail) => {
-            const customerListObject = Object.assign({});
-            customerListObject.username = rowdetail.username;
-            customerListObject.email = rowdetail.email;
-            customerListObject.instagramId = rowdetail.instagramId;
-            customerListObject.mobileNumber = Number(rowdetail.mobileNumber);
-            customerListObject.userType = rowdetail.userType;
-            customerListObject.postCode = rowdetail.postCode;
-            customerListObject.promoCode = rowdetail.promoCode;
-            customerlistArray.push(customerListObject);
+            // const customerListObject = Object.assign({});
+            // customerListObject.username = rowdetail.username;
+            // customerListObject.email = rowdetail.email;
+            // customerListObject.instaname = rowdetail.instaname;
+            // customerListObject.mobileno = rowdetail.mobileno;
+            // customerListObject.tradeofbuisness = rowdetail.tradeofbuisness;
+            // customerListObject.postcode = rowdetail.postcode;
+            //customerListObject.promoCode = rowdetail.promoCode;
+            //customerlistArray.push(customerListObject);
+
+            customerlistArray.push({ ...rowdetail });
         });
         return customerlistArray
     };
@@ -64,37 +83,25 @@ const AdminCustomersList = (props) => {
         setShowModal(showModalValue);
     }
 
+    const getRowStyle = (params) => {
+        if (params.node.rowIndex % 2 === 0) {
+            return { background: "#e3adab" };
+        }
+    };
+
     return (
         <div id="productlist">
-           <div>
+            <div>
                 <AdminHeaderMenu />
             </div>
-           
+
             <div className="" >
                 <div className="container-fluid">
-                    {/* Customer Details */}
-                    <div className="pd-20 bg-main bg-gradient text-white mb-4 rounded">
-                        <div className="row form-card">
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label><strong>Number Of Orders Made :-</strong> 2</label>
-                            </div>
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label><strong>Total Amount:-</strong> 299.9</label>
-                            </div>
-                        </div>
-                        <div className="row form-card mt-3">
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label><strong>Total Amount Paid :-</strong> 124</label> 
-                            </div>
-                            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label><strong>Balance :-</strong> 23.45</label> 
-                            </div>
-                        </div>
-                    </div>
                     <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
-                    <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 315px)', width: '100%' }}>
+                    <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 210px)', width: '100%' }}>
                         <AgGridReact
                             rowData={rowData()}
+                            getRowStyle={getRowStyle}
                             columnDefs={columnDefs}
                             defaultColDef={defaultColDef}
                             onGridReady={onGridReady}
@@ -102,19 +109,22 @@ const AdminCustomersList = (props) => {
                                 frameWorkComponentChange: frameWorkComponentChange,
                                 showPromocodeModal: showPromocodeModal
                             }}
+                            paginationAutoPageSize={true}
+                            pagination={true}
+                            onRowClicked={onRowClicked}
                         >
                         </AgGridReact>
                     </div>
-                    <PromoCodeModal title="Add Promocode" onClose={() =>  showPromocodeModal(false)} show={showModal}>
+                    {/* <PromoCodeModal title="Add Promocode" onClose={() => showPromocodeModal(false)} show={showModal}>
                         <p><strong>Please enter promotional code to be applied:</strong></p>
                         <input
-                        type="text"
-                        name="fname"
-                        className=""
-                        placeholder="Enter code"
+                            type="text"
+                            name="fname"
+                            className=""
+                            placeholder="Enter code"
                         />
-                    </PromoCodeModal>
-                    
+                    </PromoCodeModal> */}
+
                 </div>
             </div>
         </div>

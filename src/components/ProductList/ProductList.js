@@ -58,25 +58,11 @@ const ProductList = (props) => {
         });
       }
     });
-    // api.forEachNode((node) => {
-    //   if (node.data.quantity !== 0) {
-    //     tempArray.push({
-    //       ...node.data,
-    //       quantity: node.data.quantity ? Number(node.data.quantity) : 0,
-    //     });
-    //   }
-    // });
     tempArray.length === 0
       ? setIsLocalCartEmpty(true)
       : setIsLocalCartEmpty(false);
 
-    //setCartCount(tempArray.length);
     setTempCart(tempArray);
-
-    // dispatch({
-    //   type: SET_CUSTOMER_CART_DETAILS,
-    //   payload: tempArray,
-    // });
     dispatch({
       type: EDIT_PRODUCT_QUANTITY,
       payload: productlistArray,
@@ -109,25 +95,6 @@ const ProductList = (props) => {
       return productlistArray;
     }
   };
-
-  const columDefsForMobile = () => [
-    {
-      field: "quantity",
-      headerName: "Quantity",
-      editable: false,
-      cellRenderer: "mobileQuantityEditor",
-    },
-    {
-      field: "producttype",
-      headerName: "Product List",
-      cellRendererFramework: MobileViewColumnProductType,
-    },
-    {
-      field: "productdesc",
-      headerName: "Product Description",
-      cellRendererFramework: MobileViewColumnDescription,
-    },
-  ];
 
   const columnDefs = ({ frameWorkComponentChange }) => {
     return applicationState.mobileView
@@ -178,28 +145,39 @@ const ProductList = (props) => {
 
   const getRowHeight = () => (applicationState.mobileView ? 110 : 65);
   const onProceed = (e) => {
-    const itemList = applicationState?.cartDetails?.map((item) => [
+    const {cartDetails, shippingCost, config} = applicationState;
+    const itemList = cartDetails.map((item) => [
       item.productid,
       item.quantity,
     ]);
     let productidcartmap = Object.fromEntries(itemList);
+    let subTotalValue = 0;
+    let vatAmount = 0;
+    const totalArray = cartDetails.map(
+        (prod) => prod.salepriceperunit * prod.quantity
+    );
+    const vatArray = cartDetails.map((prod) => prod.vat);
+    const reducer = (previousValue, currentValue) =>
+        previousValue + currentValue;
+    subTotalValue = totalArray.reduce(reducer);
+    vatAmount = vatArray.reduce(reducer);
+
     const customerCartArray = {
-      ordershippingcost: Number(applicationState?.shippingCost),
+      ordershippingcost: Number(shippingCost),
       productidcartmap,
-      subtotal: Number(applicationState?.subTotalAmount),
-      totalvat: Number(applicationState?.totalVatAmount),
+      subtotal: Number(subTotalValue),
+      totalvat: Number(vatAmount),
       userId: applicationState?.shippingAddressDetails?.email || "",
     };
     updateCartDetails({
       dispatch,
       customerCartArray,
       history,
-      authToken: applicationState?.config?.authToken,
+      authToken: config.authToken,
     });
-    // history.push("/customercart_details");
+   
   };
 
-  // set background colour on even rows again, this looks bad, should be using CSS classes
   const getRowStyle = (params) => {
     if (params.node.rowIndex % 2 === 0) {
       return { background: "#e3adab" };
