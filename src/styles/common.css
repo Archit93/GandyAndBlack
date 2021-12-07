@@ -741,7 +741,7 @@ input:-webkit-autofill:active {
 }
 /* search bottom margin */
 .search-bottom-margin {
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   border: 1px solid #cacaca;
 }
 
@@ -869,7 +869,8 @@ input:-webkit-autofill:active {
 #myorders,
 #producttype,
 #adminproductlist,
-#crm {
+#crm,
+#admincustlist {
   margin-top: 78px;
 }
 
@@ -913,7 +914,12 @@ input:-webkit-autofill:active {
 
 /* Global */
 .bg-main{
-  background-color: rgb(227,173,171);
+  /* background-color: rgb(243 243 242);
+  border: 1px solid #dedede;
+  padding: 10px; */
+  background-color: rgb(227 173 171 / 22%);
+  border: 1px solid rgb(227 173 171 / 22%);
+  padding: 10px;
 }
 
 .text-align-center {
@@ -973,7 +979,8 @@ input:-webkit-autofill:active {
   height: 10.5rem;
 }
 
-/* admin kanban 
+/* admin kanban */
+/*
 .react-trello-board {
   border: 0;
   background-color: #fff;
@@ -996,7 +1003,7 @@ input:-webkit-autofill:active {
   color: #fff;
 }
 
-/* kanban modal */
+/* Start Kanban Modal */
 .crm .modal {
   position: fixed;
   left: 0;
@@ -1039,8 +1046,8 @@ input:-webkit-autofill:active {
 }
 
 .react-tabs__tab--selected {
-  background: #0e0864;
-  border-color: #0e0864;
+  background: var(--active-color);
+  border-color: var(--active-color);
   color: #fff;
   border-radius: 5px;
   padding-bottom: 10px;
@@ -1050,6 +1057,36 @@ input:-webkit-autofill:active {
   border-bottom: 0;
 }
 
+.tab-content{
+  border: 1px solid #dedede;
+  background-color: #fff;
+  border-radius: 0 4px 4px 4px;
+  padding: 20px 0;
+}
+
+.crm .modal-body{
+  background: #cbe71259;
+  background-image: url("white-concrete-wall.jpg");
+  background-position: center;
+  z-index: -1;
+  background-size: cover;
+}
+
+/* #crm .btn-main{
+  background-color: #0e0864;
+} */
+
+/* End Kanban Modal */
+
+/* Start Admin Customer list */
+#admincustlist .image-container img {
+  object-fit: cover;
+  position: absolute;
+  opacity: 0.1;
+  height: 100%;
+  width: 100%;
+}
+/* End Admin Customer list */
 /* general modal */
 .modal {
   position: fixed;
@@ -1090,18 +1127,20 @@ input:-webkit-autofill:active {
   transform: translateY(-200px);
 }
 
-.modal-header,
-.modal-footer {
+.modal-header{
   padding: 20px;
   border: 0;
 }
+
+#crm .modal-footer{padding: 0;}
 
 .modal-title {
   margin: 0;
 }
 
 .modal-body {
-  padding: 20px;
+  /* padding: 20px; */
+  padding: 0;
   border-top: 1px solid #eee;
 }
 

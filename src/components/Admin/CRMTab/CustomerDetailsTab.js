@@ -3,7 +3,7 @@ import * as React from "react";
 const CustomerDetailsTab = ({ orderInfo }) => {
 
   return (<>
-    <div className="row form-card mt-5">
+    <div className="row form-card">
       <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label><strong>Customer Name -</strong></label> {orderInfo.customerName}
       </div>

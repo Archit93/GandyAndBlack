@@ -74,26 +74,31 @@ const AdminCustomerOrderList = (props) => {
             <div>
                 <AdminHeaderMenu />
             </div>
-            <div className="container-fluid">
-                {/* Customer Details */}
-                <div className="pd-20 bg-main bg-gradient text-white mb-4 rounded">
-                    <div className="row form-card">
-                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <label><strong>Number Of Orders Made : </strong> {getCustomerOrderList.numberoforders}</label>
-                        </div>
-                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <label><strong>Total Amount: </strong> £{getCustomerOrderList.totalamount}</label>
-                        </div>
-                    </div>
-                    <div className="row form-card mt-3">
-                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <label><strong>Total Amount Paid : </strong> £{getCustomerOrderList.totalamountpaid}</label>
-                        </div>
-                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <label><strong>Balance : </strong> £{(Number(getCustomerOrderList.totalamount) - Number(getCustomerOrderList.totalamountpaid)).toFixed(2)}</label>
+            <div className="" >
+                <div className="container-fluid">
+                    <div className="image-overlap-container">
+                        <div className="image-container"><img src="./world-map.png" /></div>
+                        <div className="pd-20 bg-main rounded">
+                            <div className="row form-card">
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                    <label><strong>Number Of Orders Made : </strong> {getCustomerOrderList.numberoforders}</label>
+                                </div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                    <label><strong>Total Amount: </strong> £{getCustomerOrderList.totalamount}</label>
+                                </div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                    <label><strong>Total Amount Paid : </strong> £{getCustomerOrderList.totalamountpaid}</label>
+                                </div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 px-0">
+                                    <label><strong>Balance : </strong> £{(Number(getCustomerOrderList.totalamount) - Number(getCustomerOrderList.totalamountpaid)).toFixed(2)}</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="" >
+            <div className="container-fluid">
                 <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
                 <div
                     id="myGrid"
@@ -116,10 +121,11 @@ const AdminCustomerOrderList = (props) => {
                     ></AgGridReact>
                 </div>
             </div>
+            </div>
             <AdminOrderDetailsModal title={`Order Id`} onClose={() => setShowModal(false)} show={showModal}>
                 <CRMTabList orderInfo={orderInfo} />
             </AdminOrderDetailsModal>
-        </div>
+        </div >
     );
 };
 

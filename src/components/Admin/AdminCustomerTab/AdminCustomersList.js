@@ -90,8 +90,8 @@ const AdminCustomersList = (props) => {
     };
 
     return (
-        <div id="productlist">
-            <div>
+        <div id="admincustlist">
+           <div>
                 <AdminHeaderMenu />
             </div>
 
