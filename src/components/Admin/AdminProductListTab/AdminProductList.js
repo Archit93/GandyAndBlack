@@ -94,7 +94,6 @@ const AdminProductList = (props) => {
       </div>
       <div
         className="container-fluid"
-        style={{ width: "100%", height: "100%" }}
       >
         <input
           className="search-bottom-margin"
@@ -106,7 +105,7 @@ const AdminProductList = (props) => {
 
         <div
           className="ag-theme-alpine"
-          style={{ height: "calc(100vh - 335px)", width: "100%" }}
+          style={{ height: "calc(100vh - 309px)", width: "100%" }}
         >
           <AgGridReact
             getRowStyle={getRowStyle}

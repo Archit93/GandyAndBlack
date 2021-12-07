@@ -722,6 +722,8 @@ input[type=number]::-webkit-outer-spin-button {
   border: 0;
   border-bottom: 1px solid #dedede;
   border-radius: 0;
+  padding-left: 0;
+  color: #495057;
 }
 
 .form-select:focus {
@@ -870,7 +872,8 @@ input:-webkit-autofill:active {
 #producttype,
 #adminproductlist,
 #crm,
-#admincustlist {
+#admincustlist,
+#admincustorder {
   margin-top: 78px;
 }
 
@@ -913,6 +916,8 @@ input:-webkit-autofill:active {
 }
 
 /* Global */
+
+/* Button */
 .bg-main{
   /* background-color: rgb(243 243 242);
   border: 1px solid #dedede;
@@ -922,6 +927,7 @@ input:-webkit-autofill:active {
   padding: 10px;
 }
 
+/* Text Align */
 .text-align-center {
   text-align: center;
   justify-content: center;
@@ -949,7 +955,13 @@ input:-webkit-autofill:active {
   margin-left: 0; /*-15px*/
 }
 
-/*Profile*/
+/* Floating Label */
+.form-floating>label {
+  left: -3px;
+}
+/* End Global */
+
+/* Profile */
 .my-profile-banner {
   background-color: #252525;
 }
@@ -1034,6 +1046,7 @@ input:-webkit-autofill:active {
   display: none;
 }
 
+/* floating button */
 .crm .floating-modal-btn {
   position: absolute;
   left: -70px;
@@ -1045,6 +1058,7 @@ input:-webkit-autofill:active {
   border: 0;
 }
 
+/* Tabs */
 .react-tabs__tab--selected {
   background: var(--active-color);
   border-color: var(--active-color);
@@ -1058,10 +1072,15 @@ input:-webkit-autofill:active {
 }
 
 .tab-content{
-  border: 1px solid #dedede;
+  /* border: 1px solid #dedede; */
   background-color: #fff;
   border-radius: 0 4px 4px 4px;
-  padding: 20px 0;
+  /* padding: 20px 0; */
+}
+
+.product-detail-table{
+  height: calc(100vh - 315px);
+  width: 100%;
 }
 
 .crm .modal-body{
@@ -1086,8 +1105,34 @@ input:-webkit-autofill:active {
   height: 100%;
   width: 100%;
 }
+
+#admincustlist .ag-center-cols-container .ag-cell:first-child {
+  text-decoration: underline;
+  cursor: pointer;
+}
 /* End Admin Customer list */
-/* general modal */
+
+/* Start Orders By Customer */
+#admincustorder .ag-center-cols-container .ag-cell:first-child {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#admincustorder .modal-content {
+  width: 800px;
+}
+/* Modal Product detail tab - Table height */
+#admincustorder .product-detail-table{
+  height: calc(100vh - 365px);
+  width: 100%;
+}
+/* Modal content card view for Customer and order details */
+#admincustorder .modal .react-tabs__tab-panel--selected {
+  border: 1px solid #dedede;
+}
+/* Ends Orders By Customer */
+
+/* General modal */
 .modal {
   position: fixed;
   left: 0;
@@ -1127,20 +1172,32 @@ input:-webkit-autofill:active {
   transform: translateY(-200px);
 }
 
-.modal-header{
+.modal-header {
   padding: 20px;
   border: 0;
+  background: #7984a3;
+  color: #fff;
+}
+
+.modal-footer{
+  border-top: 0;
+  padding-top: 0;
 }
 
 #crm .modal-footer{padding: 0;}
+
+#crm .modal-header{
+  background-color: #fff;
+  color: unset;
+}
 
 .modal-title {
   margin: 0;
 }
 
 .modal-body {
-  /* padding: 20px; */
-  padding: 0;
+  padding: 20px;
+  /* padding: 0; */
   border-top: 1px solid #eee;
 }
 
