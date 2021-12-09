@@ -1,9 +1,11 @@
 import * as React from "react";
 import { CSSTransition } from "react-transition-group";
+import {editProductApiCall} from "../../../serviceCalls/editProductApiCall";
 
 const UpdateProductModal = (props) => {
-  const { dataForUpdateModal } = props;
+  const { config, dispatch, dataForUpdateModal, onClose, history } = props;
   const [newProductDetails, setNewProductDetails] = React.useState({});
+
   React.useEffect(() => {
     setNewProductDetails({
       productId: dataForUpdateModal?.productid ?? "",
@@ -72,6 +74,33 @@ const UpdateProductModal = (props) => {
     productStockYellowError,
     productStockRedError,
   } = newProductDetailsError;
+
+  const onEdit = () => {
+    const requestBodyForEdit = {
+      product: {
+        productid: productId,
+        brand: productBrand,
+        producttype: productType,
+        productdesc: productDescription,
+        salepriceperunit: Number(productPrice),
+        vat:  productVat,
+        threshold: productStockYellow,
+        breakpoint: productStockRed,
+        shortcode: productStockRed
+      },
+      warehousename: productWarehouse ? productWarehouse: "Liverpool",
+      warehousequantity: productWareHouseStock
+    }
+    editProductApiCall({
+      dispatch: dispatch,
+      authToken: config.authToken,
+      requestBodyForEdit: requestBodyForEdit,
+      history: history,
+      config: config
+    })
+    onClose();
+  }
+
 
   return (
     <>
@@ -215,7 +244,7 @@ const UpdateProductModal = (props) => {
                         });
                         setNewProductDetails({
                           ...newProductDetails,
-                          productPrice: e.target.value,
+                          productPrice: e.target.value ? Number(e.target.value) : 0,
                         });
                       }}
                       onBlur={(e) =>
@@ -261,7 +290,7 @@ const UpdateProductModal = (props) => {
                         });
                         setNewProductDetails({
                           ...newProductDetails,
-                          productWareHouseStock: e.target.value,
+                          productWareHouseStock: e.target.value ? Number(e.target.value) : 0,
                         });
                       }}
                       onBlur={(e) =>
@@ -289,7 +318,7 @@ const UpdateProductModal = (props) => {
                         });
                         setNewProductDetails({
                           ...newProductDetails,
-                          productVat: e.target.value,
+                          productVat: e.target.value ? Number(e.target.value) : 0,
                         });
                       }}
                       onBlur={(e) =>
@@ -345,7 +374,7 @@ const UpdateProductModal = (props) => {
                         });
                         setNewProductDetails({
                           ...newProductDetails,
-                          productStockYellow: e.target.value,
+                          productStockYellow: e.target.value ? Number(e.target.value) : 0,
                         });
                       }}
                       onBlur={(e) =>
@@ -373,7 +402,7 @@ const UpdateProductModal = (props) => {
                         });
                         setNewProductDetails({
                           ...newProductDetails,
-                          productStockRed: e.target.value,
+                          productStockRed: e.target.value ? Number(e.target.value) : 0,
                         });
                       }}
                       onBlur={(e) =>
@@ -391,9 +420,9 @@ const UpdateProductModal = (props) => {
                 <div className="modal-footer text-align-center">
                   <button
                     className="btn btn-main"
-                    onClick={() => props.onClose()}
+                    onClick={() => onEdit()}
                   >
-                    Add
+                    Edit
                   </button>
                   <button
                     className="btn floating-modal-btn btn-secondary"

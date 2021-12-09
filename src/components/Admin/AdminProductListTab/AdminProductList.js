@@ -1,5 +1,6 @@
 import React from "react";
 import { AgGridReact } from "ag-grid-react";
+import { useHistory } from "react-router-dom";
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
@@ -16,10 +17,12 @@ import { StockFlagColumn } from "./StockFlagColumn";
 
 const AdminProductList = (props) => {
   const { applicationState, dispatch } = props;
+  console.log(applicationState);
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
-
+  const history = useHistory();
   const [dataForUpdateModal, setDataForUpdateModal] = React.useState({});
+  const [dataForDeleteModal, setDataForDeleteModal] = React.useState({});
   const [showUpdateModal, setUpdateProductModal] = React.useState(false);
   const [showDeleteModal, setDeleteProductModal] = React.useState(false);
   const [showAddModal, setAddProductModal] = React.useState(false);
@@ -33,6 +36,11 @@ const AdminProductList = (props) => {
   const frameWorkComponentChange = ({ api, data, column, node, context }) => {
     setDataForUpdateModal(node.data);
     showUpdateProductModal(true);
+  };
+
+  const deleteComponentClick = ({ api, data, column, node, context }) => {
+    setDataForDeleteModal(node.data);
+    setDeleteProductModal(true);
   };
 
   const columnDefs = () => [
@@ -115,6 +123,7 @@ const AdminProductList = (props) => {
             onGridReady={onGridReady}
             context={{
               frameWorkComponentChange: frameWorkComponentChange,
+              deleteComponentClick: deleteComponentClick,
               showUpdateProductModal: showUpdateProductModal,
               showDeleteProductModal: showDeleteProductModal
             }}
@@ -163,11 +172,18 @@ const AdminProductList = (props) => {
               onClose={() => showUpdateProductModal(false)}
               show={showUpdateModal}
               dataForUpdateModal={dataForUpdateModal}
+              config={applicationState.config}
+              history={history}
+              dispatch={dispatch}
             />
             <DeleteProductModal
               title="Delete Product"
               onClose={() => showDeleteProductModal(false)}
               show={showDeleteModal}
+              dataForDeleteModal={dataForDeleteModal}
+              config={applicationState.config}
+              history={history}
+              dispatch={dispatch}
             >
               <p>
                 <strong>Are you sure you want to delete this product?</strong>
@@ -176,6 +192,9 @@ const AdminProductList = (props) => {
             <AddProductModal
               onClose={() => showAddProductModal(false)}
               show={showAddModal}
+              config={applicationState.config}
+              history={history}
+              dispatch={dispatch}
             />
           </>
         )}

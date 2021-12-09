@@ -137,6 +137,7 @@ export const useStateManager = (
         ...state,
         customerList: action.customerList,
         crmDetails: action.payload,
+        isLoading: false
       };
     case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:
       return {
