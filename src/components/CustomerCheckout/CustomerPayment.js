@@ -113,7 +113,7 @@ const CustomerPayment = (props) => {
       ) : (
         <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
       )}
-      <div id="checkout">
+      <div id="checkout" className={` ${config?.userType === "ADMIN" ? "admin" : ""}`}>
         <div className="container-fluid">
           <div className="card px-0 pb-0 mb-3">
             <div className="row">
@@ -123,7 +123,7 @@ const CustomerPayment = (props) => {
                   userType={config?.userType}
                 />
                 <div className="row">
-                  <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last px-0">
+                  <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last px-0 admin-shipaddress">
                     <fieldset>
                       <h2 className="fs-title">Payment Information</h2>
                       <div className="my-3 form-card">

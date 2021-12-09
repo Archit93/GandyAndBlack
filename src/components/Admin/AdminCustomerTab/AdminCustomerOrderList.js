@@ -61,7 +61,7 @@ const AdminCustomerOrderList = (props) => {
 
     const getRowStyle = params => {
         if (params.node.rowIndex % 2 === 0) {
-            return { background: '#e3adab' };
+            return { background: '#f7f7f7' };
         }
     };
 
@@ -70,12 +70,12 @@ const AdminCustomerOrderList = (props) => {
     }
 
     return (
-        <div id="admincustorder">
+        <div className="admin crm" id="admincustorder">
             <div>
                 <AdminHeaderMenu />
             </div>
             <div className="container-fluid" >
-                <div className="image-overlap-container">
+                <div className="image-overlap-container rounded">
                     <div className="image-container"><img src="./world-map.png" /></div>
                     <div className="pd-20 bg-main rounded">
                         <div className="row form-card">
@@ -94,15 +94,13 @@ const AdminCustomerOrderList = (props) => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="card mt-4">
                     <input className="search-bottom-margin mt-4" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
                     <div
                         id="myGrid"
-                        className="ag-theme-alpine"
-                        style={{
-                            height: "calc(100vh - 335px)",
-                            width: '100%',
-                        }}
+                        className="ag-theme-alpine product-detail-table"
+                        // style={{ height: "calc(100vh - 335px)",width: '100%',}}
+                        style ={{width: '100%'}}
                     >
                         <AgGridReact
                             getRowStyle={getRowStyle}

@@ -12,7 +12,7 @@ const CRMModal = (props) => {
         <div className="modal-content" onClick={e => e.stopPropagation()}>
           <div className="modal-header">
             <h4 className="modal-title">{props.title}</h4>
-            <button className="btn btn-main mx-0 mt-0 mb-0">
+            <button className="btn btn-shadow mx-0 mt-0 mb-0">
               Move to Next Stage
             </button>  
           </div>
@@ -21,7 +21,7 @@ const CRMModal = (props) => {
             <button className="btn btn-main">
               Save
             </button>
-            <button onClick={props.onClose} className="btn floating-modal-btn btn-secondary">
+            <button onClick={props.onClose} className="btn floating-modal-btn">
               Close
             </button>         
           </div>
