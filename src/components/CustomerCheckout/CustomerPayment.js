@@ -50,7 +50,6 @@ const CustomerPayment = (props) => {
   });
 
   const validateSubmit = (e) => {
-    console.log(paymentMethod);
     dispatch({
       type: SET_PAYMENT_METHOD,
       payload: paymentMethod,

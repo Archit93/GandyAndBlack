@@ -21,12 +21,10 @@ export const exportProducts = async ({ dispatch, authToken }) => {
   await axios
     .get(apiUrl, apiRequestHeader)
     .then((apiResponse) => {
-      console.log("apiResponse...", apiResponse);
       const { data, headers } = apiResponse;
       const fileData = new Blob([data], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,",
       });
-      console.log(fileData);
       fileSaver.saveAs(fileData, "Products.xls");
       dispatch({ type: SET_IS_LOADING, payload: false });
     })
