@@ -18,7 +18,7 @@ import { exportProducts } from "../../../serviceCalls/exportProducts";
 
 const AdminProductList = (props) => {
   const { applicationState, dispatch } = props;
-  const { isLoading, config } = applicationState;
+  const { isLoading, config, productList } = applicationState;
   const history = useHistory();
   
   const [gridApi, setGridApi] = React.useState(null);
@@ -70,7 +70,7 @@ const AdminProductList = (props) => {
   ];
 
   const rowData = () => {
-    return productList ? productList || [];
+    return productList ? productList : [];
   };
 
   const defaultColDef = React.useMemo(
