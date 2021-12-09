@@ -272,7 +272,7 @@ const CustomerShippingInformation = (props) => {
           <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
         )}
       </div>
-      <div id="checkout" className={` ${config?.userType === "ADMIN" ? "admin" : ""}`}>
+      <div id="checkout">
         <div className="container-fluid">
           <div className="card px-0 pb-0 mb-3">
             <div className="row">
@@ -283,7 +283,7 @@ const CustomerShippingInformation = (props) => {
                     userType={config?.userType}
                   />
                   <div className="row">
-                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last px-0 admin-shipaddress">
+                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last px-0">
                       <fieldset>
                         <h2 className="fs-title">Shipping Address</h2>
                         <div className="form-card">
@@ -567,14 +567,14 @@ const CustomerShippingInformation = (props) => {
                       </div>
                     </div>
                   )}
-                  <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last admin-mb">
+                  <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last">
                     {emptyCredentialsError ? (
                       <div className="mb-4">{emptyCredentialsError}</div>
                     ) : (
                       <React.Fragment />
                     )}
                     <button
-                      className="previous action-button-previous btn-secondary"
+                      className="previous action-button-previous"
                       type="submit"
                       onClick={() => {
                         config?.userType === "ADMIN"
@@ -585,7 +585,7 @@ const CustomerShippingInformation = (props) => {
                       Back
                     </button>
                     <button
-                      className="next action-button btn-main"
+                      className="next action-button"
                       type="submit"
                       onClick={validateSubmit}
                     >

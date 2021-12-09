@@ -85,19 +85,19 @@ const AdminCustomersList = (props) => {
 
     const getRowStyle = (params) => {
         if (params.node.rowIndex % 2 === 0) {
-            return { background: "#f7f7f7" };
+            return { background: "#e3adab" };
         }
     };
 
     return (
-        <div id="admincustlist" className="admin">
+        <div id="admincustlist">
            <div>
                 <AdminHeaderMenu />
             </div>
 
-            <div className="container-fluid">
-                <div className="card">
-                    <input className="search-bottom-margin mt-4" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
+            <div className="" >
+                <div className="container-fluid">
+                    <input className="search-bottom-margin" type="text" id="filter-text-box" placeholder="Filter..." onChange={(event) => onFilterTextBoxChanged(event)} />
                     <div className="ag-theme-alpine" style={{ height: 'calc(100vh - 210px)', width: '100%' }}>
                         <AgGridReact
                             rowData={rowData()}

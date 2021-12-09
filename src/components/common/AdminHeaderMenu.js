@@ -88,14 +88,14 @@ const AdminHeaderMenu = ({ cartCount }) => {
                 </li>
               </ul>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <button
                 className="nav-link"
                 onClick={() => history.push("/aboutus")}
               >
                 About Us
               </button>
-            </li> */}
+            </li>
             <li className="nav-item">
               <button
                 className="nav-link"
