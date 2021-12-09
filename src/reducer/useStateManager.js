@@ -144,7 +144,11 @@ export const useStateManager = (
     case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:
       return {
         ...state,
-        adminPlaceOrder: action.payload,
+        adminPlaceOrder: action.payload.adminPlaceOrder,
+        subTotalAmount: action.payload.subTotalAmount,
+        totalVatAmount: action.payload.totalVatAmount,
+        totalAmount: action.payload.totalAmount,
+        shippingCost: action.payload.shippingCost,
       };
     case actionTypes.SET_PROFILE_UPDATE_STATUS:
       return {

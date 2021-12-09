@@ -10,6 +10,8 @@ import { RemoveItemColumn } from "./RemoveItemColumn";
 import RemoveItemModal from "./RemoveItemModal";
 import AdminHeaderMenu from "../../common/AdminHeaderMenu";
 
+import { ADMIN_ADD_ITEM_FOR_ORDER } from "../../../constants/actionTypes";
+
 const AdminPlaceOrder = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
@@ -28,7 +30,7 @@ const AdminPlaceOrder = (props) => {
     params.api.sizeColumnsToFit();
   };
 
-  const frameWorkComponentChange = ({ api }) => {};
+  const frameWorkComponentChange = ({ api }) => { };
 
   const columnDefs = () => [
     { field: "product", headerName: "Product" },
@@ -44,7 +46,7 @@ const AdminPlaceOrder = (props) => {
   ];
 
   const rowData = () => {
-    return applicationState?.placeOrderData || [];
+    return placeOrderData || [];
   };
 
   const defaultColDef = React.useMemo(
@@ -79,8 +81,30 @@ const AdminPlaceOrder = (props) => {
   };
 
   const placeOrder = () => {
+    const orderDataInTable = [];
+    let subTotalAmount = 0;
+    let totalVatAmount = 0;
+    let totalAmount = 0;
+    let shippingCost = 0;
+
     gridApi.forEachNode((node) => {
+      console.log(node.data)
+      orderDataInTable.push(node.data);
+      subTotalAmount += (Number(node.data.quantity) * Number(node.data.salepriceperunit));
+      totalVatAmount += node.data.totalvat;
+      totalAmount += node.data.totalcost
     });
+ 
+    dispatch({
+      type: ADMIN_ADD_ITEM_FOR_ORDER,
+      payload: {
+        adminPlaceOrder: orderDataInTable,
+        subTotalAmount: subTotalAmount,
+        totalVatAmount: totalVatAmount,
+        totalAmount: totalAmount,
+        shippingCost: 0
+      }
+    })
     history.push("/customershipping_info");
   };
 
