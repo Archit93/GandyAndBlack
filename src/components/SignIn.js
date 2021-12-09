@@ -1,13 +1,9 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import Alert from "@material-ui/lab/Alert";
 import { isValidEmail, isValidPassword } from "../utils/regexUtils";
-import {
-  SET_IS_LOADING,
-  SET_SIGN_UP_DATA,
-} from "../constants/actionTypes";
+import { SET_IS_LOADING, SET_SIGN_UP_DATA } from "../constants/actionTypes";
 import { signInApiCall } from "../serviceCalls/signInApiCall";
 import { Spinner } from "react-bootstrap";
 
@@ -141,6 +137,7 @@ const SignIn = (props) => {
                       placeholder="Password"
                       onChange={(e) => onPasswordChange(e)}
                       onBlur={(e) => validatePassword(e)}
+                      // onKeyPress={(e) => validatePassword(e)}
                       value={password}
                     />
                     <label htmlFor="floatingPassword">Password</label>

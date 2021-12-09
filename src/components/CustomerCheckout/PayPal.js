@@ -7,6 +7,7 @@ import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
 import { placeOrderApiCall } from "../../serviceCalls/placeOrderApiCall";
 import { SET_IS_LOADING, SET_TOTAL_AMOUNT } from "../../constants/actionTypes";
+import AdminHeaderMenu from "../common/AdminHeaderMenu.js";
 
 export default function PayPal(props) {
   const paypal = useRef();
@@ -19,6 +20,7 @@ export default function PayPal(props) {
     totalVatAmount,
     totalAmount,
     shippingCost,
+    config,
   } = applicationState;
   const [tempCart, setTempCart] = React.useState(cartDetails);
 
@@ -113,7 +115,11 @@ export default function PayPal(props) {
         </div>
       )}
       <div>
-        <HeaderMenu dispatch={dispatch} cartCount={cartDetails.length} />
+        {config?.userType === "ADMIN" ? (
+          <AdminHeaderMenu />
+        ) : (
+          <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
+        )}
       </div>
       <div id="checkout">
         <div className="container-fluid">
