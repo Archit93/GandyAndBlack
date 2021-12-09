@@ -1,7 +1,6 @@
 import * as React from "react";
 import HeaderMenu from "../common/HeaderMenu.js";
 import { useHistory } from "react-router-dom";
-import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import CustomerAmountDetails from "./CustomerAmountDetails";
@@ -13,6 +12,7 @@ import {
   SET_IS_LOADING,
 } from "../../constants/actionTypes";
 import { placeOrderApiCall } from "../../serviceCalls/placeOrderApiCall";
+import AdminHeaderMenu from "../common/AdminHeaderMenu.js";
 
 const CustomerPayment = (props) => {
   const history = useHistory();
@@ -50,13 +50,14 @@ const CustomerPayment = (props) => {
   });
 
   const validateSubmit = (e) => {
+    console.log(paymentMethod);
     dispatch({
       type: SET_PAYMENT_METHOD,
       payload: paymentMethod,
     });
-    if (paymentMethod === "PAYPAL") {
+    if (config?.userType === "USER" && paymentMethod === "PAYPAL") {
       history.push("/paypal");
-    } else if (paymentMethod === "CARD") {
+    } else if (config?.userType === "USER" && paymentMethod === "CARD") {
       history.push("/pay-with-card");
     } else {
       dispatch({ type: SET_IS_LOADING, payload: true });
@@ -79,7 +80,7 @@ const CustomerPayment = (props) => {
         firstname: applicationState?.shippingAddressDetails?.firstName || "",
         lastname: applicationState?.shippingAddressDetails?.lastName || "",
         mobileno: applicationState?.shippingAddressDetails?.phoneNo || "",
-        paymentMethod: "POD",
+        paymentMethod: config?.userType === "USER" ? "POD" : "STORE",
         postalcode: applicationState?.shippingAddressDetails?.postCode || "",
       };
       placeOrderApiCall({
@@ -108,9 +109,11 @@ const CustomerPayment = (props) => {
   };
   return (
     <div>
-      <div>
+      {config?.userType === "ADMIN" ? (
+        <AdminHeaderMenu />
+      ) : (
         <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
-      </div>
+      )}
       <div id="checkout">
         <div className="container-fluid">
           <div className="card px-0 pb-0 mb-3">

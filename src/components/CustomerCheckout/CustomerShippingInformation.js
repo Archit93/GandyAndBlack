@@ -63,17 +63,12 @@ const CustomerShippingInformation = (props) => {
     });
 
   const [billingAddressDetails, setBillingAddressDetails] = React.useState({
-    firstNameBilling:
-      applicationState?.billingAddressDetails?.firstNameBilling ?? "",
-    lastNameBilling:
-      applicationState?.billingAddressDetails?.lastNameBilling ?? "",
-    emailBilling: applicationState?.billingAddressDetails?.emailBilling ?? "",
-    phoneNoBilling:
-      applicationState?.billingAddressDetails?.phoneNoBilling ?? "",
-    billingAddress:
-      applicationState?.billingAddressDetails?.billingAddress ?? "",
-    billingPostCode:
-      applicationState?.billingAddressDetails?.billingPostCode ?? "",
+    firstNameBilling: applicationState?.shippingAddressDetails?.firstName ?? "",
+    lastNameBilling: applicationState?.shippingAddressDetails?.lastName ?? "",
+    emailBilling: applicationState?.shippingAddressDetails?.email ?? "",
+    phoneNoBilling: applicationState?.shippingAddressDetails?.phoneNo ?? "",
+    billingAddress: applicationState?.shippingAddressDetails?.address ?? "",
+    billingPostCode: applicationState?.shippingAddressDetails?.postCode ?? "",
   });
 
   const [billingAddressDetailsError, setBillingAddressDetailsError] =
@@ -248,7 +243,6 @@ const CustomerShippingInformation = (props) => {
           isSameAddress,
         },
       });
-      // updateCustomerDetails(dispatch, shippingAddressDetails, history);
       history.push("/customerpayment_info");
     }
   };
@@ -435,7 +429,7 @@ const CustomerShippingInformation = (props) => {
                               />
                             </span>
                             <span className="float-left mrl-15">
-                              Is Billing address same as Shipping address?
+                              Is billing address same as shipping address?
                             </span>
                           </div>
                         </div>
