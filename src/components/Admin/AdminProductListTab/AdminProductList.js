@@ -4,28 +4,31 @@ import { useHistory } from "react-router-dom";
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-
+import { Spinner } from "react-bootstrap";
 import { UpdateProductColumn } from "./UpdateProductColumn";
 import UpdateProductModal from "./UpdateProductModal";
-
 import { DeleteProductColumn } from "./DeleteProductColumn";
 import DeleteProductModal from "./DeleteProductModal";
-
 import AdminHeaderMenu from "../../common/AdminHeaderMenu";
 import AddProductModal from "./AddProductModal";
 import { StockFlagColumn } from "./StockFlagColumn";
+import FileUpload from "./FileUpload";
+import { SET_IS_LOADING } from "../../../constants/actionTypes";
+import { exportProducts } from "../../../serviceCalls/exportProducts";
 
 const AdminProductList = (props) => {
   const { applicationState, dispatch } = props;
-  console.log(applicationState);
+  const { isLoading, config } = applicationState;
+  const history = useHistory();
+  
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
-  const history = useHistory();
   const [dataForUpdateModal, setDataForUpdateModal] = React.useState({});
   const [dataForDeleteModal, setDataForDeleteModal] = React.useState({});
   const [showUpdateModal, setUpdateProductModal] = React.useState(false);
   const [showDeleteModal, setDeleteProductModal] = React.useState(false);
   const [showAddModal, setAddProductModal] = React.useState(false);
+  const [showFileUploadModal, setFileUploadModal] = React.useState(false);
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -44,7 +47,11 @@ const AdminProductList = (props) => {
   };
 
   const columnDefs = () => [
-    { field: "stockFlag", headerName: "Stock Flag", cellRenderer: "stockFlagComponent" },
+    {
+      field: "stockFlag",
+      headerName: "Stock Flag",
+      cellRenderer: "stockFlagComponent",
+    },
     { field: "brand", headerName: "Brand" },
     { field: "producttype", headerName: "Product type" },
     { field: "productdesc", headerName: "Product description" },
@@ -63,7 +70,7 @@ const AdminProductList = (props) => {
   ];
 
   const rowData = () => {
-    return applicationState ?.productList || [];
+    return productList ? productList || [];
   };
 
   const defaultColDef = React.useMemo(
@@ -89,20 +96,33 @@ const AdminProductList = (props) => {
     setAddProductModal(showModalValue);
   };
 
+  const exportProductList = (e) => {
+    e.preventDefault();
+    dispatch({ type: SET_IS_LOADING, payload: true });
+    exportProducts({
+      dispatch,
+      authToken: config.authToken,
+    });
+  };
   // set background colour on even rows again, this looks bad, should be using CSS classes
-  const getRowStyle = params => {
+  const getRowStyle = (params) => {
     if (params.node.rowIndex % 2 === 0) {
-      return { background: '#e3adab' };
+      return { background: "#e3adab" };
     }
   };
   return (
     <div id="adminproductlist">
+      {isLoading && (
+        <div className="d-flex justify-content-center loader">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
       <div>
         <AdminHeaderMenu />
       </div>
-      <div
-        className="container-fluid"
-      >
+      <div className="container-fluid">
         <input
           className="search-bottom-margin"
           type="text"
@@ -125,16 +145,15 @@ const AdminProductList = (props) => {
               frameWorkComponentChange: frameWorkComponentChange,
               deleteComponentClick: deleteComponentClick,
               showUpdateProductModal: showUpdateProductModal,
-              showDeleteProductModal: showDeleteProductModal
+              showDeleteProductModal: showDeleteProductModal,
             }}
-            rowSelection={'multiple'}
+            rowSelection={"multiple"}
             paginationAutoPageSize={true}
             pagination={true}
             frameworkComponents={{
               stockFlagComponent: StockFlagColumn,
             }}
-          >
-          </AgGridReact>
+          ></AgGridReact>
         </div>
         <div className="text-center mrt-20">
           <button
@@ -153,6 +172,7 @@ const AdminProductList = (props) => {
             name="btn-checkout"
             id="btn-checkout"
             disabled={false}
+            onClick={() => setFileUploadModal(!showFileUploadModal)}
           >
             Import Product (.csv, .xls)
           </button>
@@ -162,17 +182,19 @@ const AdminProductList = (props) => {
             name="btn-checkout"
             id="btn-checkout"
             disabled={false}
+            onClick={(e) => exportProductList(e)}
           >
             Export Products
           </button>
         </div>
-        {applicationState ?.productList && (
+        {/* {showFileUploadModal && <FileUpload />} */}
+        {productList && (
           <>
             <UpdateProductModal
               onClose={() => showUpdateProductModal(false)}
               show={showUpdateModal}
               dataForUpdateModal={dataForUpdateModal}
-              config={applicationState.config}
+              config={config}
               history={history}
               dispatch={dispatch}
             />
@@ -181,7 +203,7 @@ const AdminProductList = (props) => {
               onClose={() => showDeleteProductModal(false)}
               show={showDeleteModal}
               dataForDeleteModal={dataForDeleteModal}
-              config={applicationState.config}
+              config={config}
               history={history}
               dispatch={dispatch}
             >
@@ -192,9 +214,15 @@ const AdminProductList = (props) => {
             <AddProductModal
               onClose={() => showAddProductModal(false)}
               show={showAddModal}
-              config={applicationState.config}
+              config={config}
               history={history}
               dispatch={dispatch}
+            />
+            <FileUpload
+              onClose={() => setFileUploadModal(false)}
+              show={showFileUploadModal}
+              dispatch={dispatch}
+              authToken={config.authToken}
             />
           </>
         )}

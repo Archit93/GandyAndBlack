@@ -30,7 +30,7 @@ export const useStateManager = (
       signUpError: false,
     },
     profileUpdateStatus: "",
-    getCustomerOrderList:{}
+    getCustomerOrderList: {},
   },
   action
 ) => {
@@ -65,7 +65,9 @@ export const useStateManager = (
       return {
         ...state,
         customerDetails: action.payload,
-        orderDetails: action.orderDetails ? action.orderDetails : state.orderDetails,
+        orderDetails: action.orderDetails
+          ? action.orderDetails
+          : state.orderDetails,
         shippingAddressDetails: action.shippingAddressDetails,
         productList: action.productList,
         cartDetails: action.cartDetails,
@@ -103,10 +105,10 @@ export const useStateManager = (
     case actionTypes.SET_CUSTOMER_BILLING_DETAILS:
       return {
         ...state,
-        shippingAddressDetails: action.payload ?.shippingAddressDetails,
+        shippingAddressDetails: action.payload?.shippingAddressDetails,
         billingAddressDetails:
-          action.payload ?.billingAddressDetails || state.billingAddressDetails,
-        isSameAddress: action.payload ?.isSameAddress || state.isSameAddress,
+          action.payload?.billingAddressDetails || state.billingAddressDetails,
+        isSameAddress: action.payload?.isSameAddress || state.isSameAddress,
       };
     case actionTypes.SET_IS_LOADING:
       return {
@@ -153,8 +155,8 @@ export const useStateManager = (
       return {
         ...state,
         getCustomerOrderList: action.payload,
-        isLoading: false
-      }
+        isLoading: false,
+      };
     case actionTypes.SET_ERROR:
     case actionTypes.RESET_ALL_DATA:
     default:
