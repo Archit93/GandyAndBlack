@@ -107,11 +107,11 @@ const AdminProductList = (props) => {
   // set background colour on even rows again, this looks bad, should be using CSS classes
   const getRowStyle = (params) => {
     if (params.node.rowIndex % 2 === 0) {
-      return { background: "#f7f7f7" };
+      return { background: "#e3adab" };
     }
   };
   return (
-    <div id="adminproductlist" className="admin">
+    <div id="adminproductlist">
       {isLoading && (
         <div className="d-flex justify-content-center loader">
           <Spinner animation="border" role="status">
@@ -123,9 +123,8 @@ const AdminProductList = (props) => {
         <AdminHeaderMenu />
       </div>
       <div className="container-fluid">
-        <div className="card">
         <input
-          className="search-bottom-margin mt-4"
+          className="search-bottom-margin"
           type="text"
           id="filter-text-box"
           placeholder="Filter..."
@@ -134,8 +133,7 @@ const AdminProductList = (props) => {
 
         <div
           className="ag-theme-alpine"
-          // style={{ height: "calc(100vh - 309px)", width: "100%" }}
-          style={{height: "520px", width: "100%"}}
+          style={{ height: "calc(100vh - 309px)", width: "100%" }}
         >
           <AgGridReact
             getRowStyle={getRowStyle}
@@ -156,7 +154,6 @@ const AdminProductList = (props) => {
               stockFlagComponent: StockFlagColumn,
             }}
           ></AgGridReact>
-        </div>
         </div>
         <div className="text-center mrt-20">
           <button

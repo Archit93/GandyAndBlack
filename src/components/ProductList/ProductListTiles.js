@@ -54,21 +54,6 @@ const ProductListTiles = (props) => {
                                 SHOP EXTRAS
 	          	        </div>
                     </button>
-                    <button className="col-lg-4 col-md-4 col-sm-6 col-xs-12 tile-btn display-none" onClick={() => onTileClick("Extras")}>
-                        <div className="about-gandy-black-uEBdwN poppins-normal-white-24px">
-                                
-	          	        </div>
-                    </button>
-                    <button className="col-lg-4 col-md-4 col-sm-6 col-xs-12 tile-btn tile-two" onClick={() => onTileClick("Extras")}>
-                        <div className="about-gandy-black-uEBdwN poppins-normal-white-24px">
-                        SHOP TOXINS
-	          	        </div>
-                    </button>
-                    <button className="col-lg-4 col-md-4 col-sm-6 col-xs-12 tile-btn display-none" onClick={() => onTileClick("Extras")}>
-                        <div className="about-gandy-black-uEBdwN poppins-normal-white-24px">
-                                
-	          	        </div>
-                    </button>
                 </div>
             </div>
         </div>

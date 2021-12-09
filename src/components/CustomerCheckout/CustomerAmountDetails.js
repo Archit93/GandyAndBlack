@@ -56,7 +56,9 @@ const CustomerAmountDetails = (props) => {
       <fieldset>
         <h2 className="fs-title">Order Summary</h2>
         <div
-          className="form-card order-bg">
+          className="form-card"
+          style={{ backgroundColor: "#7984a3", color: "#fff" }}
+        >
           <div className="h5">
             <span>Subtotal</span>
             <span style={{ float: "right" }}>{`£${subTotalAmount}`}</span>
@@ -88,7 +90,7 @@ const CustomerAmountDetails = (props) => {
           </div>
           <div className="separator"></div>
           <div className="h5">
-            <span><strong>Total</strong></span>
+            <span>Total</span>
             <span style={{ float: "right" }}>{`£${totalAmount}`}</span>
           </div>
         </div>

@@ -30,7 +30,7 @@ const CRM = (props) => {
   }
   
   return (
-    <div className="admin crm" id="crm">
+    <div className="crm" id="crm">
       <div>
         <AdminHeaderMenu />
       </div>

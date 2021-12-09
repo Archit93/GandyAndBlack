@@ -18,7 +18,7 @@ const PromoCodeModal = (props) => {
             <button className="btn btn-main">
               Save
             </button>
-            <button onClick={props.onClose} className="btn floating-modal-btn">
+            <button onClick={props.onClose} className="btn floating-modal-btn btn-secondary">
               Close
             </button>         
           </div>

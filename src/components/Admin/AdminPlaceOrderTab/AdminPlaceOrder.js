@@ -74,7 +74,7 @@ const AdminPlaceOrder = (props) => {
 
   const getRowStyle = (params) => {
     if (params.node.rowIndex % 2 === 0) {
-      return { background: "#f7f7f7" };
+      return { background: "#e3adab" };
     }
   };
 
@@ -85,7 +85,7 @@ const AdminPlaceOrder = (props) => {
   };
 
   return (
-    <div id="productlist" className="admin">
+    <div id="productlist">
       <div>
         <AdminHeaderMenu />
       </div>
