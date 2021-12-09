@@ -55,6 +55,7 @@ import "./styles/checkout.css";
 import "./styles/g-b-insta-landing-page.css";
 import "./styles/globals.css";
 import "./styles/styleguide.css";
+import "./styles/admin.css";
 import { SET_MOBILE_VIEW } from "./constants/actionTypes";
 
 // Learning
