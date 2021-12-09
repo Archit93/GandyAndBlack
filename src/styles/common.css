@@ -1002,12 +1002,16 @@ input:-webkit-autofill:active {
   background-color: #e3adab;
 }*/
 
+.jlqSaW {
+  background-color: #212839 !important;
+}
 .react-trello-board {
   background: url("dark-wall-empty-room-with-plants-floor-3d-rendering.jpg")
     no-repeat 0 50%;
   background-position: bottom;
   background-size: cover;
   margin-top: 70px;
+  background-color: #212839;
 }
 
 .react-trello-lane {
@@ -1069,12 +1073,13 @@ input:-webkit-autofill:active {
 
 .react-tabs__tab-list {
   border-bottom: 0;
+  margin: 0 0 20px;
 }
 
 .tab-content{
   /* border: 1px solid #dedede; */
   background-color: #fff;
-  border-radius: 0 4px 4px 4px;
+  border-radius: 5px;
   /* padding: 20px 0; */
 }
 
@@ -1118,14 +1123,14 @@ input:-webkit-autofill:active {
   cursor: pointer;
 }
 
-#admincustorder .modal-content {
-  width: 800px;
+#admincustorder .modal-body {
+  background: #fff;
 }
-/* Modal Product detail tab - Table height */
+/* Modal Product detail tab - Table height 
 #admincustorder .product-detail-table{
   height: calc(100vh - 365px);
   width: 100%;
-}
+}*/
 /* Modal content card view for Customer and order details */
 #admincustorder .modal .react-tabs__tab-panel--selected {
   border: 1px solid #dedede;
@@ -1186,9 +1191,9 @@ input:-webkit-autofill:active {
 
 #crm .modal-footer{padding: 0;}
 
-#crm .modal-header{
-  background-color: #fff;
-  color: unset;
+#crm .modal-header {
+  background-color: #172856;
+  color: #fff;
 }
 
 .modal-title {
@@ -1241,11 +1246,11 @@ input:-webkit-autofill:active {
   background: transparent;
 }
 
-.icon-blue {
+i.icon-blue {
   color: #0e0864;
 }
 
-.icon-red {
+i.icon-red {
   color: #dc3545;
 }
 
@@ -1277,7 +1282,7 @@ input:-webkit-autofill:active {
 .tile-btn{
   border: 0;
   padding: 0;
-  height: 250px;
+  height: 180px;
 }
   
 /* Order fail */
@@ -1355,6 +1360,9 @@ input:-webkit-autofill:active {
     line-height: 25px;
   }
 
+  /* Product types */
+  .display-none{display: none;}
+  
   /* Global */
   .btn-main, .btn-secondary {
     width: 100%;
@@ -1393,4 +1401,10 @@ input:-webkit-autofill:active {
 .payment-cards img:nth-child(4){
   width: 45px;
   margin: 0 5px;
+}
+
+/* Customer shipping order summary */
+.order-bg{
+  background-color: #7984a3;
+   color: #fff;
 }
