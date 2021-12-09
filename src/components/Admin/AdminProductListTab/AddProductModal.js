@@ -1,7 +1,9 @@
 import * as React from "react";
 import { CSSTransition } from "react-transition-group";
+import { addProductApiCall } from "../../../serviceCalls/addProductApiCall";
 
 const AddProductModal = (props) => {
+  const { config, dispatch, onClose, history } = props;
   const [newProductDetails, setNewProductDetails] = React.useState({
     productType: "",
     productBrand: "",
@@ -31,13 +33,13 @@ const AddProductModal = (props) => {
   const validateValue = (value, fieldName) => {
     value === ""
       ? setNewProductDetailsError({
-          ...newProductDetailsError,
-          [`${fieldName}Error`]: "Please enter a proper value",
-        })
+        ...newProductDetailsError,
+        [`${fieldName}Error`]: "Please enter a proper value",
+      })
       : setNewProductDetailsError({
-          ...newProductDetailsError,
-          [`${fieldName}Error`]: "",
-        });
+        ...newProductDetailsError,
+        [`${fieldName}Error`]: "",
+      });
   };
 
   const {
@@ -64,6 +66,34 @@ const AddProductModal = (props) => {
     productStockYellowError,
     productStockRedError,
   } = newProductDetailsError;
+
+  const onAdd = () => {
+    const requestBodyForAdd = {
+      brand: productBrand,
+      producttype: productType,
+      productdesc: productDescription,
+      salepriceperunit: productPrice,
+      numberofstock: 181,
+      createDate: "2021/08/09 12:51:23",
+      vat: productVat,
+      threshold: productStockYellow,
+      breakpoint: productStockRed,
+      warehouse: {
+        Liverpool: productWareHouseStock,
+        Glasgow: 8
+      },
+      shortcode: productShortCode ? productShortCode: "N/A",
+      fromwarehouse: ""
+    }
+    addProductApiCall({
+      dispatch: dispatch,
+      authToken: config.authToken,
+      requestBodyForAdd: requestBodyForAdd,
+      history: history,
+      config: config
+    })
+    onClose();
+  }
 
   return (
     <>
@@ -105,8 +135,8 @@ const AddProductModal = (props) => {
               {productTypeError ? (
                 <span className="error">{productTypeError}</span>
               ) : (
-                <React.Fragment />
-              )}
+                  <React.Fragment />
+                )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -131,8 +161,8 @@ const AddProductModal = (props) => {
               {productBrandError ? (
                 <span className="error">{productBrandError}</span>
               ) : (
-                <React.Fragment />
-              )}
+                  <React.Fragment />
+                )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -159,8 +189,8 @@ const AddProductModal = (props) => {
               {productDescriptionError ? (
                 <span className="error">{productDescriptionError}</span>
               ) : (
-                <React.Fragment />
-              )}
+                  <React.Fragment />
+                )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -185,8 +215,8 @@ const AddProductModal = (props) => {
               {productPriceError ? (
                 <span className="error">{productPriceError}</span>
               ) : (
-                <React.Fragment />
-              )}
+                  <React.Fragment />
+                )}
               <div className="form-floating mb-3">
                 <select
                   className="form-select"
@@ -231,8 +261,8 @@ const AddProductModal = (props) => {
               {productWareHouseStockError ? (
                 <span className="error">{productWareHouseStockError}</span>
               ) : (
-                <React.Fragment />
-              )}
+                  <React.Fragment />
+                )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -257,8 +287,8 @@ const AddProductModal = (props) => {
               {productVatError ? (
                 <span className="error">{productVatError}</span>
               ) : (
-                <React.Fragment />
-              )}
+                  <React.Fragment />
+                )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -285,8 +315,8 @@ const AddProductModal = (props) => {
               {productShortCodeError ? (
                 <span className="error">{productShortCodeError}</span>
               ) : (
-                <React.Fragment />
-              )}
+                  <React.Fragment />
+                )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -313,8 +343,8 @@ const AddProductModal = (props) => {
               {productStockYellowError ? (
                 <span className="error">{productStockYellowError}</span>
               ) : (
-                <React.Fragment />
-              )}
+                  <React.Fragment />
+                )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -341,11 +371,11 @@ const AddProductModal = (props) => {
               {productStockRedError ? (
                 <span className="error">{productStockRedError}</span>
               ) : (
-                <React.Fragment />
-              )}
+                  <React.Fragment />
+                )}
             </div>
             <div className="modal-footer text-align-center">
-              <button className="btn btn-main" onClick={() => props.onClose()}>
+              <button className="btn btn-main" onClick={() => onAdd()}>
                 Add
               </button>
               <button

@@ -1,5 +1,7 @@
 import React from "react";
 import { AgGridReact } from "ag-grid-react";
+import { useHistory } from "react-router-dom";
+
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { Spinner } from "react-bootstrap";
@@ -16,11 +18,13 @@ import { exportProducts } from "../../../serviceCalls/exportProducts";
 
 const AdminProductList = (props) => {
   const { applicationState, dispatch } = props;
-  const { isLoading } = applicationState;
+  const { isLoading, config, productList } = applicationState;
+  const history = useHistory();
+  
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
-
   const [dataForUpdateModal, setDataForUpdateModal] = React.useState({});
+  const [dataForDeleteModal, setDataForDeleteModal] = React.useState({});
   const [showUpdateModal, setUpdateProductModal] = React.useState(false);
   const [showDeleteModal, setDeleteProductModal] = React.useState(false);
   const [showAddModal, setAddProductModal] = React.useState(false);
@@ -35,6 +39,11 @@ const AdminProductList = (props) => {
   const frameWorkComponentChange = ({ api, data, column, node, context }) => {
     setDataForUpdateModal(node.data);
     showUpdateProductModal(true);
+  };
+
+  const deleteComponentClick = ({ api, data, column, node, context }) => {
+    setDataForDeleteModal(node.data);
+    setDeleteProductModal(true);
   };
 
   const columnDefs = () => [
@@ -61,7 +70,7 @@ const AdminProductList = (props) => {
   ];
 
   const rowData = () => {
-    return applicationState?.productList || [];
+    return productList ? productList : [];
   };
 
   const defaultColDef = React.useMemo(
@@ -92,7 +101,7 @@ const AdminProductList = (props) => {
     dispatch({ type: SET_IS_LOADING, payload: true });
     exportProducts({
       dispatch,
-      authToken: applicationState?.config?.authToken,
+      authToken: config.authToken,
     });
   };
   // set background colour on even rows again, this looks bad, should be using CSS classes
@@ -134,6 +143,7 @@ const AdminProductList = (props) => {
             onGridReady={onGridReady}
             context={{
               frameWorkComponentChange: frameWorkComponentChange,
+              deleteComponentClick: deleteComponentClick,
               showUpdateProductModal: showUpdateProductModal,
               showDeleteProductModal: showDeleteProductModal,
             }}
@@ -178,17 +188,24 @@ const AdminProductList = (props) => {
           </button>
         </div>
         {/* {showFileUploadModal && <FileUpload />} */}
-        {applicationState?.productList && (
+        {productList && (
           <>
             <UpdateProductModal
               onClose={() => showUpdateProductModal(false)}
               show={showUpdateModal}
               dataForUpdateModal={dataForUpdateModal}
+              config={config}
+              history={history}
+              dispatch={dispatch}
             />
             <DeleteProductModal
               title="Delete Product"
               onClose={() => showDeleteProductModal(false)}
               show={showDeleteModal}
+              dataForDeleteModal={dataForDeleteModal}
+              config={config}
+              history={history}
+              dispatch={dispatch}
             >
               <p>
                 <strong>Are you sure you want to delete this product?</strong>
@@ -197,12 +214,15 @@ const AdminProductList = (props) => {
             <AddProductModal
               onClose={() => showAddProductModal(false)}
               show={showAddModal}
+              config={config}
+              history={history}
+              dispatch={dispatch}
             />
             <FileUpload
               onClose={() => setFileUploadModal(false)}
               show={showFileUploadModal}
               dispatch={dispatch}
-              authToken={applicationState?.config?.authToken}
+              authToken={config.authToken}
             />
           </>
         )}

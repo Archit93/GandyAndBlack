@@ -8,7 +8,7 @@ export const DeleteProductColumn = (params) => {
                 <button
                     type="button"
                     className="btn-icon"
-                    onClick={() => context.showDeleteProductModal(true)}>
+                    onClick={() => context.deleteComponentClick({ api, data, column, node, context })}>
                     <i className="fa fa-trash icon-red"></i>
                 </button>
             </>
