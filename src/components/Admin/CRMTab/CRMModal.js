@@ -12,7 +12,7 @@ const CRMModal = (props) => {
         <div className="modal-content" onClick={e => e.stopPropagation()}>
           <div className="modal-header">
             <h4 className="modal-title">{props.title}</h4>
-            <button className="btn btn-shadow mx-0 mt-0 mb-0">
+            <button className="btn btn-shadow mx-0 mt-0 mb-0" onClick={() => props.onMoveToNextStage(props.orderInfo)}>
               Move to Next Stage
             </button>  
           </div>
