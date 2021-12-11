@@ -46,7 +46,6 @@ const AdminCustomersList = (props) => {
     }
 
     const onUserNameClicked = customerData => {
-        console.log(customerData);
         dispatch({ type: UPDATE_CUSTOMER_DETAILS, payload: customerData });
         history.push("/customer_profile");
     }

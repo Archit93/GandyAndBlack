@@ -20,8 +20,8 @@ export const getProductsApiCall = async ({
 }) => {
   const apiRequestHeader = makeApiRequestHeader(
     "GET",
-    { 
-      "x-auth-token": signInResponse.authToken 
+    {
+      "x-auth-token": signInResponse.authToken
     },
     null
   );
@@ -49,14 +49,14 @@ export const getProductsApiCall = async ({
           .then(
             axios.spread((customerDetails, customerOrders, customerCart) => {
               const shippingAddressDetails = {
-                firstName: customerDetails?.data?.firstname ?? "",
-                lastName: customerDetails?.data?.lastname ?? "",
-                email: customerDetails?.data?.email ?? "",
-                phoneNo: customerDetails?.data?.mobileno ?? "",
-                address: customerDetails?.data?.address?.[0]?.addressbody ?? "",
-                postCode: customerDetails?.data?.address?.[0]?.postcode ?? "",
-                instagramId: customerDetails?.data?.instaname ?? "",
-                tradeOfBusiness: customerDetails?.data?.tradeofbuisness ?? "",
+                firstName: customerDetails ?.data ?.firstname ?? "",
+                lastName: customerDetails ?.data ?.lastname ?? "",
+                email: customerDetails ?.data ?.email ?? "",
+                phoneNo: customerDetails ?.data ?.mobileno ?? "",
+                address: customerDetails ?.data ?.address ?.[0] ?.addressbody ?? "",
+                postCode: customerDetails ?.data ?.address ?.[0] ?.postcode ?? "",
+                instagramId: customerDetails ?.data ?.instaname ?? "",
+                tradeOfBusiness: customerDetails ?.data ?.tradeofbuisness ?? "",
               };
 
               const customerCartApiResponse =
@@ -68,7 +68,7 @@ export const getProductsApiCall = async ({
                 Object.keys(customerCartApiResponse).length > 0 &&
                 customerCartApiResponse.productidcartmap &&
                 Object.keys(customerCartApiResponse.productidcartmap).length >
-                  0 &&
+                0 &&
                 Object.keys(customerCartApiResponse.productidcartmap).map(
                   (key) =>
                     cartDetailsFromService.push({
@@ -110,20 +110,20 @@ export const getProductsApiCall = async ({
                 payload: {
                   shippingCost:
                     customerCartApiResponse &&
-                    Object.keys(customerCartApiResponse).length > 0 &&
-                    customerCartApiResponse.ordershippingcost
+                      Object.keys(customerCartApiResponse).length > 0 &&
+                      customerCartApiResponse.ordershippingcost
                       ? customerCartApiResponse.ordershippingcost
                       : 0,
                   subTotalAmount:
                     customerCartApiResponse &&
-                    Object.keys(customerCartApiResponse).length > 0 &&
-                    customerCartApiResponse.subtotal
+                      Object.keys(customerCartApiResponse).length > 0 &&
+                      customerCartApiResponse.subtotal
                       ? customerCartApiResponse.subtotal
                       : 0,
                   totalVatAmount:
                     customerCartApiResponse &&
-                    Object.keys(customerCartApiResponse).length > 0 &&
-                    customerCartApiResponse.totalvat
+                      Object.keys(customerCartApiResponse).length > 0 &&
+                      customerCartApiResponse.totalvat
                       ? customerCartApiResponse.totalvat
                       : 0,
                   totalAmount: 0,
@@ -162,7 +162,7 @@ export const getProductsApiCall = async ({
             )
           ])
           .then(
-            axios.spread((allUsers, allOrders, taProductRates ) => {
+            axios.spread((allUsers, allOrders, taProductRates) => {
               const allCustomersData = [];
               allUsers &&
                 allUsers.data &&
@@ -171,7 +171,7 @@ export const getProductsApiCall = async ({
                     ...user,
                     username: `${user.firstname ? user.firstname : ""} ${
                       user.lastname ? user.lastname : ""
-                    }`,
+                      }`,
                     postcode:
                       user.address && user.address.length > 0
                         ? user.address[0].postcode
@@ -187,7 +187,9 @@ export const getProductsApiCall = async ({
               });
             })
           );
-        history.push("/admin_product_list");
+        if (moveToNextPage) {
+          history.push("/admin_product_list");
+        }
       }
     })
     .catch(() => {
