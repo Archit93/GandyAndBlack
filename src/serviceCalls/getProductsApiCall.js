@@ -20,7 +20,9 @@ export const getProductsApiCall = async ({
 }) => {
   const apiRequestHeader = makeApiRequestHeader(
     "GET",
-    { "x-auth-token": signInResponse.authToken },
+    { 
+      "x-auth-token": signInResponse.authToken 
+    },
     null
   );
   const apiUrl = `${baseUrl}/product/all`;
@@ -154,9 +156,13 @@ export const getProductsApiCall = async ({
               `${baseUrl}/order/all?ordertype=INSTA_SITE`,
               apiRequestHeader
             ),
+            axios.get(
+              `${baseUrl}/product/TAProductRates/all`,
+              apiRequestHeader
+            )
           ])
           .then(
-            axios.spread((allUsers, allOrders) => {
+            axios.spread((allUsers, allOrders, taProductRates ) => {
               const allCustomersData = [];
               allUsers &&
                 allUsers.data &&
@@ -177,6 +183,7 @@ export const getProductsApiCall = async ({
                 type: SET_KANBAN_DETAILS,
                 payload: allOrders.data,
                 customerList: allCustomersData,
+                taProductRates: taProductRates.data
               });
             })
           );

@@ -31,6 +31,7 @@ export const useStateManager = (
     },
     profileUpdateStatus: "",
     getCustomerOrderList: {},
+    taProductRates: []
   },
   action
 ) => {
@@ -139,6 +140,7 @@ export const useStateManager = (
         ...state,
         customerList: action.customerList,
         crmDetails: action.payload,
+        taProductRates: action.taProductRates,
         isLoading: false
       };
     case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:

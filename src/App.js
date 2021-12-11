@@ -97,7 +97,8 @@ const App = () => {
       signUpError: false,
     },
     profileUpdateStatus: "",
-    getCustomerOrderList: {}
+    getCustomerOrderList: {},
+    taProductRates:[]
   });
   React.useEffect(() => {
     const setResponsiveness = () => {
