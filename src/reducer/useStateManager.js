@@ -133,7 +133,7 @@ export const useStateManager = (
       return {
         ...state,
         customerDetails: action.payload,
-        isLoading: true,
+        isLoading: false,
       };
     case actionTypes.SET_KANBAN_DETAILS:
       return {

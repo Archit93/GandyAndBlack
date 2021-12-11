@@ -5,18 +5,20 @@ import { useHistory } from "react-router-dom";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-import { PromoCodeColumn } from './PromoCodeColumn';
-import PromoCodeModal from './PromoCodeModal';
+// import { PromoCodeColumn } from './PromoCodeColumn';
+// import PromoCodeModal from './PromoCodeModal';
 
+import { CustomerUserNameColumn } from './CustomerUserNameColumn';
+import { CustomerEmailColumn } from './CustomerEmailColumn';
 import AdminHeaderMenu from '../../common/AdminHeaderMenu';
-import { SET_IS_LOADING } from '../../../constants/actionTypes';
-import {getOrderListOfCustomerForAdmin} from '../../../serviceCalls/getOrderListOfCustomerForAdmin';
+import { SET_IS_LOADING, UPDATE_CUSTOMER_DETAILS } from '../../../constants/actionTypes';
+import { getOrderListOfCustomerForAdmin } from '../../../serviceCalls/getOrderListOfCustomerForAdmin';
 
 
 const AdminCustomersList = (props) => {
 
     const { applicationState, dispatch } = props;
-    const {config: {authToken}} = applicationState;
+    const { config: { authToken } } = applicationState;
     const history = useHistory();
 
     const [gridApi, setGridApi] = React.useState(null);
@@ -32,7 +34,7 @@ const AdminCustomersList = (props) => {
     const frameWorkComponentChange = ({ api }) => {
     }
 
-    const onRowClicked = params => {
+    const onEmailClicked = params => {
         dispatch({ type: SET_IS_LOADING, payload: true });
         getOrderListOfCustomerForAdmin({
             dispatch: dispatch,
@@ -40,12 +42,19 @@ const AdminCustomersList = (props) => {
             authToken: authToken,
             email: params.data.email
         })
-        
+
     }
 
+    const onUserNameClicked = customerData => {
+        console.log(customerData);
+        dispatch({ type: UPDATE_CUSTOMER_DETAILS, payload: customerData });
+        history.push("/customer_profile");
+    }
+    
+
     const columnDefs = [
-        { field: 'username', headerName: "Username" },
-        { field: 'email', headerName: "Email" },
+        { field: 'username', headerName: "Username", cellRenderer: "usernamecolumn" },
+        { field: 'email', headerName: "Email", cellRenderer: "emailcolumn" },
         { field: 'instaname', headerName: "Instagram Name" },
         { field: 'mobileno', headerName: "Mobile Number" },
         { field: 'tradeofbuisness', headerName: "User Type" },
@@ -91,7 +100,7 @@ const AdminCustomersList = (props) => {
 
     return (
         <div id="admincustlist" className="admin">
-           <div>
+            <div>
                 <AdminHeaderMenu />
             </div>
 
@@ -105,13 +114,18 @@ const AdminCustomersList = (props) => {
                             columnDefs={columnDefs}
                             defaultColDef={defaultColDef}
                             onGridReady={onGridReady}
+                            frameworkComponents={{
+                                usernamecolumn: CustomerUserNameColumn,
+                                emailcolumn: CustomerEmailColumn,
+                            }}
                             context={{
                                 frameWorkComponentChange: frameWorkComponentChange,
-                                showPromocodeModal: showPromocodeModal
+                                showPromocodeModal: showPromocodeModal,
+                                onEmailClicked: onEmailClicked,
+                                onUserNameClicked: onUserNameClicked
                             }}
                             paginationAutoPageSize={true}
                             pagination={true}
-                            onRowClicked={onRowClicked}
                         >
                         </AgGridReact>
                     </div>
