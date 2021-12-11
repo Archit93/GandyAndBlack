@@ -22,6 +22,10 @@ import ProductListTiles from "../components/ProductList/ProductListTiles";
 import CustomerPaymentFail from "../components/CustomerCheckout/CustomerPaymentFail";
 import RequireAuth from "../components/RequireAuth";
 import AdminCustomerOrderList from "../components/Admin/AdminCustomerTab/AdminCustomerOrderList"
+import CppPage1 from "../components/Admin/CPP/CppPage1";
+import CppPage2 from "../components/Admin/CPP/CppPage2";
+import CppPage3 from "../components/Admin/CPP/CppPage3";
+import CustomerProfile from "../components/Admin/AdminCustomerProfile/CustomerProfile";
 
 export const AppRouter = (props) => {
   return (
@@ -89,6 +93,18 @@ export const AppRouter = (props) => {
         </Route>
         <Route exact={true} path="/orders_by_customer">
           {RequireAuth(AdminCustomerOrderList, { ...props })}
+        </Route>
+        <Route exact={true} path="/cppPage1">
+          <CppPage1 {...props} />
+        </Route>
+        <Route exact={true} path="/cppPage2">
+          <CppPage2 {...props} />
+        </Route>
+        <Route exact={true} path="/cppPage3">
+          <CppPage3 {...props} />
+        </Route>
+        <Route exact={true} path="/customer_profile">
+          {RequireAuth(CustomerProfile, { ...props })}
         </Route>
       </Switch>
     </Router>

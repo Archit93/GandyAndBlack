@@ -162,3 +162,34 @@ color: #dc3545;
         background-color: #cbe712;
         color: #172856;
     }
+
+/* Start CPP */
+    .cpp-image-wrapper{
+        position: relative;
+    }
+    .cpp-image-wrapper img{
+        width: 100%;
+    }
+    .cpp-text-overlap{ 
+        position: absolute;
+        top: 13%;
+        left: 5%;
+        right: 5%;
+    }
+    .cpp-image-title{
+        font-size: 3rem;
+        line-height: 1.2;
+        word-spacing: 9px;
+    }
+    .cpp-image-title p{
+        margin-bottom: 0;
+    }
+    .cpp-image-subtitle{
+        font-size: 1.4rem;
+        line-height: 1.2;
+        word-spacing: 3px;
+    }
+    .admin .form-floating > .form-control {
+        background-color: transparent;
+    }
+/* End CPP */
