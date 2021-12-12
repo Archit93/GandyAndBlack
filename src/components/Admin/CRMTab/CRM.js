@@ -52,9 +52,9 @@ const CRM = (props) => {
 
   const nextStageApiCall = ({ orderid, warehouse = null }) => {
     const statuses = {
-      'stage-1': 'statustwo',
-      'stage-2': 'statusthree',
-      'stage-3': 'statusfour'
+      'status-1': 'statustwo',
+      'status-2': 'statusthree',
+      'status-3': 'statusfour'
     }
     const moveToStatus = statuses[currentStage];
     setOrderInfo("");
@@ -82,7 +82,7 @@ const CRM = (props) => {
 
   const statusModalToDisplay = () => {
     switch (currentStage) {
-      case 'stage-1':
+      case 'status-1':
         return <Status1Modal
           title="Move to Status 2"
           show={stageModal}
@@ -92,7 +92,7 @@ const CRM = (props) => {
           }}
           nextStageApiCall={nextStageApiCall}
           orderid={orderInfo.id} />
-      case 'stage-2':
+      case 'status-2':
         return <Status2Modal
           title="Move to Status 2"
           show={stageModal}

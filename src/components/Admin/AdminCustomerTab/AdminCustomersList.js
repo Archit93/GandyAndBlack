@@ -18,6 +18,7 @@ import { getOrderListOfCustomerForAdmin } from '../../../serviceCalls/getOrderLi
 const AdminCustomersList = (props) => {
 
     const { applicationState, dispatch } = props;
+    console.log(applicationState);
     const { config: { authToken } } = applicationState;
     const history = useHistory();
 
