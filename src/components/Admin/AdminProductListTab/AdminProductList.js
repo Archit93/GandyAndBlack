@@ -226,6 +226,7 @@ const AdminProductList = (props) => {
               show={showFileUploadModal}
               dispatch={dispatch}
               authToken={config.authToken}
+              config={config}
             />
           </>
         )}

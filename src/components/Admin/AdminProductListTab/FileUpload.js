@@ -5,7 +5,7 @@ import * as XLSX from "xlsx";
 import { importProducts } from "../../../serviceCalls/importProducts";
 import { SET_IS_LOADING } from "../../../constants/actionTypes";
 
-const FileUpload = ({ dispatch, onClose, show, authToken }) => {
+const FileUpload = ({ dispatch, onClose, show, authToken, config }) => {
   const [items, setItems] = React.useState([]);
   const [fileToUpload, setFile] = React.useState([]);
   const history = useHistory();
@@ -41,11 +41,13 @@ const FileUpload = ({ dispatch, onClose, show, authToken }) => {
   const uploadFile = (e) => {
     e.preventDefault();
     dispatch({ type: SET_IS_LOADING, payload: true });
+    onClose();
     importProducts({
       dispatch,
       history,
       fileToUpload,
       authToken,
+      config
     });
   };
 

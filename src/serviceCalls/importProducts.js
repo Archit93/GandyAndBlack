@@ -5,6 +5,7 @@ import {
   SET_ERROR,
   SET_IS_LOADING,
 } from "../constants/actionTypes";
+import {getProductsApiCall} from "./getProductsApiCall";
 
 const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8080";
 
@@ -13,6 +14,7 @@ export const importProducts = async ({
   history,
   fileToUpload,
   authToken,
+  config
 }) => {
   const apiRequestHeader = makeApiRequestHeader(
     "POST",
@@ -28,7 +30,7 @@ export const importProducts = async ({
   await axios
     .post(apiUrl, fileToUpload, apiRequestHeader)
     .then((apiResponse) => {
-      dispatch({ type: SET_IS_LOADING, payload: false });
+      getProductsApiCall({dispatch, history, signInResponse: config, email : null, moveToNextPage : false})
       console.log("imported successfully");
     })
     .catch(() => {
