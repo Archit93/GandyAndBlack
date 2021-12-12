@@ -59,22 +59,11 @@ const AdminCustomersList = (props) => {
         { field: 'mobileno', headerName: "Mobile Number" },
         { field: 'tradeofbuisness', headerName: "User Type" },
         { field: 'postcode', headerName: "Postal Code" },
-        //{ field: 'promoCode', headerName: "Promocode", cellRendererFramework: PromoCodeColumn }
     ];
 
     const rowData = () => {
         const customerlistArray = [];
         applicationState.customerList.map((rowdetail) => {
-            // const customerListObject = Object.assign({});
-            // customerListObject.username = rowdetail.username;
-            // customerListObject.email = rowdetail.email;
-            // customerListObject.instaname = rowdetail.instaname;
-            // customerListObject.mobileno = rowdetail.mobileno;
-            // customerListObject.tradeofbuisness = rowdetail.tradeofbuisness;
-            // customerListObject.postcode = rowdetail.postcode;
-            //customerListObject.promoCode = rowdetail.promoCode;
-            //customerlistArray.push(customerListObject);
-
             customerlistArray.push({ ...rowdetail });
         });
         return customerlistArray

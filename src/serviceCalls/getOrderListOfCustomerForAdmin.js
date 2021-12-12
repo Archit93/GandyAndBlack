@@ -20,12 +20,14 @@ export const getOrderListOfCustomerForAdmin = async ({
     .get(apiUrl, apiRequestHeader)
     .then((apiResponse) => {
       const customerorderlistarray = [];
-      apiResponse.data.customerorderlist.forEach((customerOrder) => {
-        customerorderlistarray.push({
-          ...customerOrder,
-          balance: Number(customerOrder.orderamount) - Number(customerOrder.orderamountpaid)
-        })
-      });
+      if(apiResponse.data.customerorderlist && apiResponse.data.customerorderlist.length > 0) {
+        apiResponse.data.customerorderlist.forEach((customerOrder) => {
+          customerorderlistarray.push({
+            ...customerOrder,
+            balance: Number(customerOrder.orderamount) - Number(customerOrder.orderamountpaid)
+          })
+        });
+      }
       const customerOrderListData = {
         ...apiResponse.data,
         customerorderlist: customerorderlistarray

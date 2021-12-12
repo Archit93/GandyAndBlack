@@ -1,7 +1,8 @@
 import * as React from "react";
 import { AgGridReact } from "ag-grid-react";
 import { useHistory } from "react-router-dom";
-import HeaderMenu from "./common/HeaderMenu";
+import HeaderMenu from "../../common/HeaderMenu";
+import {ProductsPurchasedColumnForMyOrders} from './ProductsPurchasedColumnForMyOrders';
 
 const MyOrders = (props) => {
   const history = useHistory();
@@ -27,11 +28,11 @@ const MyOrders = (props) => {
     applicationState?.orderDetails ? applicationState.orderDetails : [];
 
   const columnDefs = () => [
-    { field: "id", headerName: "Order Id" },
+    { field: "orderid", headerName: "Order Id" },
     { field: "orderpaymentmethod", headerName: "Paid with" },
     { field: "orderDate", headerName: "Order placed on" },
-    { field: "productsPurchased", headerName: "Products purchased" },
-    { field: "amount", headerName: "Total Amount" },
+    { field: "productsPurchased", headerName: "Products purchased", cellRenderer: 'productsPurchasedColumn' },
+    { field: "orderamount", headerName: "Total Amount" },
   ];
 
   const defaultColDef = React.useMemo(
@@ -79,6 +80,9 @@ const setAutoHeight = () => {
 
             statusBar={{ items: [{ component: 'agAggregationComponent' }] }}
             domLayout={'autoHeight'}
+            frameworkComponents={{
+              productsPurchasedColumn: ProductsPurchasedColumnForMyOrders,
+            }}
           ></AgGridReact>
         </div>
       </div>
