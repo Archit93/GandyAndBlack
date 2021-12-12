@@ -98,7 +98,24 @@ const App = () => {
     },
     profileUpdateStatus: "",
     getCustomerOrderList: {},
-    taProductRates:[]
+    taProductRates: [],
+    cppFinalDetails: {
+      selectedProduct: [],
+      totalBoxesPurchasedWeekly: 0,
+      totalBoxesPurchasedMonthly: 0,
+      effectiveCost: 0,
+      totalTAProfitShare: 0,
+      trainerName: "",
+      trainingAcademy: "",
+      noOfStudents: "",
+      productsTrainedOn: "",
+      noOfBoxes: "",
+      minimumProfit: "1",
+      overhead: "1",
+      year1: 0,
+      year2: 0,
+      year3: 0,
+    },
   });
   React.useEffect(() => {
     const setResponsiveness = () => {

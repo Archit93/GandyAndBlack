@@ -31,7 +31,24 @@ export const useStateManager = (
     },
     profileUpdateStatus: "",
     getCustomerOrderList: {},
-    taProductRates: []
+    taProductRates: [],
+    cppFinalDetails: {
+      selectedProduct: [],
+      totalBoxesPurchasedWeekly: 0,
+      totalBoxesPurchasedMonthly: 0,
+      effectiveCost: 0,
+      totalTAProfitShare: 0,
+      trainerName: "",
+      trainingAcademy: "",
+      noOfStudents: "",
+      productsTrainedOn: "",
+      noOfBoxes: "",
+      minimumProfit: "1",
+      overhead: "1",
+      year1: 0,
+      year2: 0,
+      year3: 0,
+    },
   },
   action
 ) => {
@@ -141,7 +158,7 @@ export const useStateManager = (
         customerList: action.customerList,
         crmDetails: action.payload,
         taProductRates: action.taProductRates,
-        isLoading: false
+        isLoading: false,
       };
     case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:
       return {
@@ -162,6 +179,11 @@ export const useStateManager = (
         ...state,
         getCustomerOrderList: action.payload,
         isLoading: false,
+      };
+    case actionTypes.SET_CPP_DETAILS:
+      return {
+        ...state,
+        cppFinalDetails: action.cppFinalDetails,
       };
     case actionTypes.SET_ERROR:
     case actionTypes.RESET_ALL_DATA:

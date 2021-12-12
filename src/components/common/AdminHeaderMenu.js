@@ -46,10 +46,7 @@ const AdminHeaderMenu = ({ cartCount }) => {
               </button>
             </li>
             <li className="nav-item">
-              <button
-                className="nav-link"
-                onClick={() => history.push("/crm")}
-              >
+              <button className="nav-link" onClick={() => history.push("/crm")}>
                 CRM
               </button>
             </li>
@@ -65,25 +62,9 @@ const AdminHeaderMenu = ({ cartCount }) => {
                 <li>
                   <button
                     className="dropdown-item"
-                    onClick={() => history.push("/staff")}
+                    onClick={() => history.push("/cppPage1")}
                   >
-                    Staff
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="dropdown-item"
-                    onClick={() => history.push("/supplier")}
-                  >
-                   Supplier
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="dropdown-item"
-                    onClick={() => history.push("/cpp")}
-                  >
-                   CPP
+                    CPP
                   </button>
                 </li>
               </ul>
