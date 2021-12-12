@@ -3,6 +3,7 @@ import { CSSTransition } from "react-transition-group";
 
 const CRMModal = (props) => {
     return (
+      <div className="crm-modal">
         <CSSTransition
         in={props.show}
         unmountOnExit
@@ -28,6 +29,7 @@ const CRMModal = (props) => {
         </div>
       </div>
       </CSSTransition>
+      </div>
     )
 }
 

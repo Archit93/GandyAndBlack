@@ -1021,7 +1021,7 @@ input:-webkit-autofill:active {
 }
 
 /* Start Kanban Modal */
-.crm .modal {
+.crm-modal .modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -1037,7 +1037,7 @@ input:-webkit-autofill:active {
   padding: 0;
 }
 
-.crm .modal-content {
+.crm-modal .modal-content {
   width: 80%;
   background-color: #fff;
   transition: all 0.3s ease-in-out;
@@ -1047,12 +1047,12 @@ input:-webkit-autofill:active {
   border: 0;
 }
 
-.crm .modal-footer button:first-child {
+.crm-modal .modal-footer button:first-child {
   display: none;
 }
 
 /* floating button */
-.crm .floating-modal-btn {
+.crm-modal .floating-modal-btn {
   position: absolute;
   left: -70px;
   top: 0;
