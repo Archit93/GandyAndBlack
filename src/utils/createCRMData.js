@@ -1,10 +1,10 @@
 export const createCRMData = (crmDetails) => {
-  const stageOneArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'stage-1'));
-  const stageTwoArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'stage-2'));
-  const stageThreeArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'stage-3'));
-  const stageFourArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'stage-4'));
-  const stageFiveArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'stage-5'));
-  const stageSixArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'stage-6'));
+  const stageOneArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'status-1'));
+  const stageTwoArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'status-2'));
+  const stageThreeArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'status-3'));
+  const stageFourArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'status-4'));
+  const stageFiveArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'status-5'));
+  const stageSixArray = crmDetails.filter((crmDetail) => (crmDetail.currentstage === 'status-6'));
 
   const stageOneCard = [];
   const stageTwoCard = [];

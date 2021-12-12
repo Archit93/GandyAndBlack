@@ -12,7 +12,7 @@ import CustomerPaymentSuccess from "../components/CustomerCheckout/CustomerPayme
 import MyProfile from "../components/Customer/UserProfile/MyProfile";
 import PayPal from "../components/CustomerCheckout/PayPal";
 import PayWithCard from "../components/CustomerCheckout/PayWithCard";
-import MyOrders from "../components/MyOrders";
+import MyOrders from "../components/Customer/MyOrders/MyOrders";
 import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustomersList";
 import CRM from "../components/Admin/CRMTab/CRM";
 import HomePage from "../components/HomePage";

@@ -88,7 +88,6 @@ const AdminPlaceOrder = (props) => {
     let shippingCost = 0;
 
     gridApi.forEachNode((node) => {
-      console.log(node.data)
       orderDataInTable.push(node.data);
       subTotalAmount += (Number(node.data.quantity) * Number(node.data.salepriceperunit));
       totalVatAmount += node.data.totalvat;

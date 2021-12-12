@@ -31,15 +31,13 @@ const Status1Modal = (props) => {
                             </select>
                             <label htmlFor="productWarehouse">Shipping Warehouse</label>
                         </div>
-                        <button className="btn btn-main" onClick={() => props.nextStageApiCall({ orderid: props.orderid, warehouse: warehouse })}>
-                            Submit
-            </button>
+                        
                     </div>
                     <div className="modal-footer text-align-center">
-                        <button className="btn btn-main">
-                            Save
+                    <button className="btn btn-main" onClick={() => props.nextStageApiCall({ orderid: props.orderid, warehouse: warehouse })}>
+                            Submit
             </button>
-                        <button onClick={props.onClose} className="btn floating-modal-btn">
+                        <button onClick={props.onClose} className="btn btn-secondary">
                             Close
             </button>
                     </div>

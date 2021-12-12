@@ -16,15 +16,13 @@ const Status2Modal = (props) => {
                     </div>
                     <div className="modal-body">
                         <p>Are you sure to move it to next status?</p>
-                        <button className="btn btn-main" onClick={() => props.nextStageApiCall({ orderid: props.orderid, warehouse: null })}>
-                            Submit
-            </button>
+                        
                     </div>
                     <div className="modal-footer text-align-center">
-                        <button className="btn btn-main">
-                            Save
+                    <button className="btn btn-main" onClick={() => props.nextStageApiCall({ orderid: props.orderid, warehouse: null })}>
+                            Submit
             </button>
-                        <button onClick={props.onClose} className="btn floating-modal-btn">
+                        <button onClick={props.onClose} className="btn btn-secondary">
                             Close
             </button>
                     </div>
