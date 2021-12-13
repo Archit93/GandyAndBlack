@@ -297,10 +297,10 @@ const CppPage1 = (props) => {
                       }
                     >
                       <option value="">Please select</option>
-                      {productList?.map((product) => (
+                      {taProductRates?.map((prod) => (
                         <option
-                          value={product.productid}
-                        >{`${product.brand} ${product.producttype} ${product.productdesc}`}</option>
+                          value={prod?.product?.productid}
+                        >{`${prod?.product?.brand} ${prod?.product?.producttype} ${prod?.product?.productdesc}`}</option>
                       ))}
                     </select>
                     <label htmlFor="productsTrainedOn">
