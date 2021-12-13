@@ -1116,6 +1116,10 @@ input:-webkit-autofill:active {
   text-decoration: underline;
   cursor: pointer;
 }
+#admincustlist .ag-center-cols-container .ag-cell:nth-child(2) {
+  text-decoration: underline;
+  cursor: pointer;
+}
 /* End Admin Customer list */
 
 /* Start Orders By Customer */
