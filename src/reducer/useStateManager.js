@@ -29,6 +29,8 @@ export const useStateManager = (
     signUpStatus: {
       signUpError: false,
     },
+    addDeleteStatus: "",
+    alertMessage: "",
     profileUpdateStatus: "",
     getCustomerOrderList: {},
     taProductRates: [],
@@ -184,6 +186,12 @@ export const useStateManager = (
       return {
         ...state,
         cppFinalDetails: action.cppFinalDetails,
+      };
+    case actionTypes.SET_ADD_DELETE_NEW_PRODUCT:
+      return {
+        ...state,
+        addDeleteStatus: action.payload,
+        alertMessage: action.message,
       };
     case actionTypes.SET_ERROR:
     case actionTypes.RESET_ALL_DATA:

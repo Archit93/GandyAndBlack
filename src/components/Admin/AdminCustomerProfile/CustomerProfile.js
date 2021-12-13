@@ -18,7 +18,7 @@ import {
   SET_PROFILE_UPDATE_STATUS,
 } from "../../../constants/actionTypes";
 import { updateCustomerDetailsByAdmin } from "../../../serviceCalls/updateCustomerDetailsByAdmin";
-import AdminHeaderMenu from '../../common/AdminHeaderMenu';
+import AdminHeaderMenu from "../../common/AdminHeaderMenu";
 import Alert from "@material-ui/lab/Alert";
 
 const CustomerProfile = (props) => {
@@ -28,7 +28,9 @@ const CustomerProfile = (props) => {
     applicationState;
   const [profileDetails, setProfileDetails] = React.useState({
     ...customerDetails,
-    tradeofbuisness: customerDetails.tradeofbuisness ? customerDetails.tradeofbuisness :  "Mobile Practitioners",
+    tradeofbuisness: customerDetails.tradeofbuisness
+      ? customerDetails.tradeofbuisness
+      : "Mobile Practitioners",
   });
   const [profileDetailsError, setProfileDetailsError] = React.useState({
     firstNameError: "",
@@ -43,7 +45,6 @@ const CustomerProfile = (props) => {
   const [password, setPassword] = React.useState("");
   const [passwordError, setPasswordError] = React.useState("");
   const [showModal, setShowModal] = React.useState(false);
-
 
   const validateName = (e) => {
     const { id, value } = e?.target;
@@ -80,7 +81,7 @@ const CustomerProfile = (props) => {
   };
 
   const onAddressChange = (e) => {
-    const changeAddressBody  = profileDetails.address;
+    const changeAddressBody = profileDetails.address;
     changeAddressBody[0].addressbody = e.target.value;
     setProfileDetails({ ...profileDetails, address: changeAddressBody });
     setProfileDetailsError({ ...profileDetailsError, addressError: "" });
@@ -96,7 +97,7 @@ const CustomerProfile = (props) => {
   };
 
   const onPostcodeChange = (e) => {
-    const changePostCode  = profileDetails.address;
+    const changePostCode = profileDetails.address;
     changePostCode[0].postcode = e.target.value;
     setProfileDetails({ ...profileDetails, address: changePostCode });
     setProfileDetailsError({ ...profileDetailsError, postCodeError: "" });
@@ -141,7 +142,7 @@ const CustomerProfile = (props) => {
     } else {
       const customerDetails = {
         ...profileDetails,
-        password : password
+        password: password,
       };
       props.dispatch({ type: SET_IS_LOADING, payload: true });
       updateCustomerDetailsByAdmin({
@@ -187,7 +188,7 @@ const CustomerProfile = (props) => {
         payload: profileDetails,
       });
       const customerDetails = {
-       ...profileDetails,
+        ...profileDetails,
       };
       updateCustomerDetailsByAdmin({
         dispatch,
@@ -221,12 +222,12 @@ const CustomerProfile = (props) => {
       )}
       <div id="myprofile">
         <div>
-          <AdminHeaderMenu/>
+          <AdminHeaderMenu dispatch={dispatch} />
         </div>
         <div id="profile">
           <CustomerProfileHeaderSection
             showUpdatePassowrdModal={showUpdatePassowrdModal}
-            shippingAddressDetails={applicationState?.shippingAddressDetails}
+            profileDetails={profileDetails}
           />
           <div className="container-fluid">
             {profileUpdateStatus && (

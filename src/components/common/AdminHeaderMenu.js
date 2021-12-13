@@ -1,8 +1,21 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
+import { RESET_ALL_DATA } from "../../constants/actionTypes";
 
-const AdminHeaderMenu = ({ cartCount }) => {
+const AdminHeaderMenu = ({ cartCount, dispatch }) => {
   const history = useHistory();
+  const logout = (e) => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      window.sessionStorage.clear("cart");
+      dispatch({
+        type: RESET_ALL_DATA,
+      });
+      history.push("/");
+    } else {
+      e.preventDefault();
+    }
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm navbar-fixed">
       <div className="container-fluid">
@@ -77,16 +90,16 @@ const AdminHeaderMenu = ({ cartCount }) => {
                 About Us
               </button>
             </li> */}
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <button
                 className="nav-link"
                 onClick={() => history.push("/admin_profile")}
               >
                 My Profile
               </button>
-            </li>
+            </li> */}
             <li className="nav-item">
-              <button className="nav-link" href="#">
+              <button className="nav-link" onClick={(e) => logout(e)}>
                 <i className="fa fa-sign-out"></i>
               </button>
             </li>

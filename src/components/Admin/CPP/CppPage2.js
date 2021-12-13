@@ -9,7 +9,7 @@ const CppPage2 = (props) => {
   return (
     <div className="admin" id="cpp">
       <div>
-        <AdminHeaderMenu />
+        <AdminHeaderMenu dispatch={dispatch} />
       </div>
       <div>
         <div className="row">

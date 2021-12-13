@@ -116,7 +116,7 @@ export default function PayPal(props) {
       )}
       <div>
         {config?.userType === "ADMIN" ? (
-          <AdminHeaderMenu />
+          <AdminHeaderMenu dispatch={dispatch} />
         ) : (
           <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
         )}

@@ -267,12 +267,15 @@ const CustomerShippingInformation = (props) => {
     <div>
       <div>
         {config?.userType === "ADMIN" ? (
-          <AdminHeaderMenu />
+          <AdminHeaderMenu dispatch={dispatch} />
         ) : (
           <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
         )}
       </div>
-      <div id="checkout" className={` ${config?.userType === "ADMIN" ? "admin" : ""}`}>
+      <div
+        id="checkout"
+        className={` ${config?.userType === "ADMIN" ? "admin" : ""}`}
+      >
         <div className="container-fluid">
           <div className="card px-0 pb-0 mb-3">
             <div className="row">
@@ -569,7 +572,7 @@ const CustomerShippingInformation = (props) => {
                   )}
                   <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-md-first order-last admin-mb">
                     {emptyCredentialsError ? (
-                      <div className="mb-4">{emptyCredentialsError}</div>
+                      <div className="mb-4 error">{emptyCredentialsError}</div>
                     ) : (
                       <React.Fragment />
                     )}

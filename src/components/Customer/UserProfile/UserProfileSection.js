@@ -183,7 +183,7 @@ const UserProfileSection = (props) => {
       </div>
       <div className="text-center mt-4">
         {emptyCredentialsError ? (
-          <div className="mrb-20">{emptyCredentialsError}</div>
+          <div className="mrb-20 error">{emptyCredentialsError}</div>
         ) : (
           <React.Fragment />
         )}

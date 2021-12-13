@@ -157,7 +157,7 @@ const CppPage1 = (props) => {
   return (
     <div className="admin" id="cpp">
       <div>
-        <AdminHeaderMenu />
+        <AdminHeaderMenu dispatch={dispatch} />
       </div>
       <div>
         <div className="row">
@@ -399,7 +399,9 @@ const CppPage1 = (props) => {
                   )}
                   <div className="form mt-4">
                     {emptyCredentialsError ? (
-                      <div className="mrb-20">{emptyCredentialsError}</div>
+                      <div className="mrb-20 error">
+                        {emptyCredentialsError}
+                      </div>
                     ) : (
                       <React.Fragment />
                     )}

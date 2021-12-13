@@ -8,12 +8,15 @@ import { SET_IS_LOADING } from "../../../constants/actionTypes";
 const FileUpload = ({ dispatch, onClose, show, authToken, config }) => {
   const [items, setItems] = React.useState([]);
   const [fileToUpload, setFile] = React.useState([]);
+  const [emptyCredentialsError, setEmptyCredentialsError] = React.useState("");
+
   const history = useHistory();
   const readExcel = (file) => {
     if (file) {
       let formData = new FormData();
       formData.append("file", file);
       setFile(formData);
+      setEmptyCredentialsError("");
       const promise = new Promise((resolve, reject) => {
         const fileReader = new FileReader();
         fileReader.readAsArrayBuffer(file);
@@ -40,15 +43,19 @@ const FileUpload = ({ dispatch, onClose, show, authToken, config }) => {
 
   const uploadFile = (e) => {
     e.preventDefault();
-    dispatch({ type: SET_IS_LOADING, payload: true });
-    onClose();
-    importProducts({
-      dispatch,
-      history,
-      fileToUpload,
-      authToken,
-      config
-    });
+    if (fileToUpload.length !== 0) {
+      dispatch({ type: SET_IS_LOADING, payload: true });
+      onClose();
+      importProducts({
+        dispatch,
+        history,
+        fileToUpload,
+        authToken,
+        config,
+      });
+    } else {
+      setEmptyCredentialsError("Please attach a file.");
+    }
   };
 
   const cancelUpload = () => {
@@ -74,6 +81,11 @@ const FileUpload = ({ dispatch, onClose, show, authToken, config }) => {
             ></input>
           </div>
           <div className="modal-footer text-align-center">
+            {emptyCredentialsError ? (
+              <div className="mrb-20 error">{emptyCredentialsError}</div>
+            ) : (
+              <React.Fragment />
+            )}
             <button className="btn btn-main" onClick={(e) => uploadFile(e)}>
               Upload
             </button>
