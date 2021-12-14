@@ -6,10 +6,32 @@ const CppPage2 = (props) => {
   const { applicationState, dispatch } = props;
   const history = useHistory();
   const { cppFinalDetails } = applicationState;
+  const productName =
+    cppFinalDetails?.selectedProduct[0]?.product?.brand +
+    " " +
+    cppFinalDetails?.selectedProduct[0]?.product?.producttype +
+    " " +
+    cppFinalDetails?.selectedProduct[0]?.product?.productdesc;
+  const [profitShare, setProfitShare] = React.useState(
+    cppFinalDetails?.selectedProduct[0]?.profitSharePercentage
+  );
+  const [taProfitShare, setTaProfitShare] = React.useState(
+    cppFinalDetails.totalTAProfitShare
+  );
+  const calculateTAProfitShare = () => {
+    const totalTAProfitShare = Math.round(
+      Number(
+        cppFinalDetails?.effectiveCost *
+          (profitShare / 100) *
+          cppFinalDetails?.totalBoxesPurchasedMonthly
+      )
+    );
+    setTaProfitShare(totalTAProfitShare);
+  };
   return (
     <div className="admin" id="cpp">
       <div>
-        <AdminHeaderMenu />
+        <AdminHeaderMenu dispatch={dispatch} />
       </div>
       <div>
         <div className="row">
@@ -46,7 +68,9 @@ const CppPage2 = (props) => {
                       className="form-control"
                       id="ProfitShare"
                       placeholder="Profit Share"
-                      value="10"
+                      value={profitShare}
+                      onChange={(e) => setProfitShare(e.target.value)}
+                      onBlur={() => calculateTAProfitShare()}
                     />
                     <label htmlFor="ProfitShare">Profit Share</label>
                   </div>
@@ -57,7 +81,7 @@ const CppPage2 = (props) => {
                       className="form-control"
                       id="floatingBoxesPurchasedWeekly"
                       placeholder="Total boxes purchased weekly"
-                      value={cppFinalDetails.totalBoxesPurchasedWeekly}
+                      defaultValue={cppFinalDetails.totalBoxesPurchasedWeekly}
                     />
                     <label htmlFor="floatingBoxesPurchasedWeekly">
                       Total boxes purchased weekly
@@ -70,11 +94,34 @@ const CppPage2 = (props) => {
                       className="form-control"
                       id="floatingBoxesPurchasedWeekly"
                       placeholder="Total boxes purchased monthly"
-                      value={cppFinalDetails.totalBoxesPurchasedMonthly}
+                      defaultValue={cppFinalDetails.totalBoxesPurchasedMonthly}
                     />
                     <label htmlFor="floatingBoxesPurchasedWeekly">
                       Total boxes purchased monthly
                     </label>
+                  </div>
+
+                  <div className="form-floating pass-wrapper">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="productPurchased"
+                      placeholder="Product Purchased"
+                      defaultValue={productName ?? ""}
+                    />
+                    <label htmlFor="productPurchased">Product Purchased</label>
+                  </div>
+
+                  <div className="form-floating pass-wrapper">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="taProfitShare"
+                      placeholder="TA profit Share"
+                      value={taProfitShare}
+                      disabled
+                    />
+                    <label htmlFor="taProfitShare">TA profit Share</label>
                   </div>
 
                   <div className="form mt-5">

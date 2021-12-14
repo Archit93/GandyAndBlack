@@ -3,7 +3,7 @@ import fileSaver from "file-saver";
 import { makeApiRequestHeader } from "../utils/makeApiRequestHeader";
 import {
   SET_SIGN_UP_DATA,
-  SET_ERROR,
+  SET_ADD_DELETE_NEW_PRODUCT,
   SET_IS_LOADING,
 } from "../constants/actionTypes";
 
@@ -29,7 +29,11 @@ export const exportProducts = async ({ dispatch, authToken }) => {
       dispatch({ type: SET_IS_LOADING, payload: false });
     })
     .catch(() => {
-      console.log("Download failed...");
       dispatch({ type: SET_IS_LOADING, payload: false });
+      dispatch({
+        type: SET_ADD_DELETE_NEW_PRODUCT,
+        payload: "error",
+        message: "There was some error while exporting the product list.",
+      });
     });
 };

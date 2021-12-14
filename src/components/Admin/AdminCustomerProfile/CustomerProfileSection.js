@@ -127,7 +127,11 @@ const CustomerProfileSection = (props) => {
               placeholder="Address"
               onChange={(e) => onAddressChange(e)}
               onBlur={(e) => validateAddress(e)}
-              value={profileDetails.address && profileDetails.address.length > 0 ? profileDetails.address[0].addressbody : ""}
+              value={
+                profileDetails.address && profileDetails.address.length > 0
+                  ? profileDetails.address[0].addressbody
+                  : ""
+              }
             />
             <label htmlFor="floatingInput">Address</label>
           </div>
@@ -148,7 +152,11 @@ const CustomerProfileSection = (props) => {
               placeholder="Postcode"
               onChange={(e) => onPostcodeChange(e)}
               onBlur={(e) => validatePostcode(e)}
-              value={profileDetails.address && profileDetails.address.length > 0 ? profileDetails.address[0].addressbody : ""}
+              value={
+                profileDetails.address && profileDetails.address.length > 0
+                  ? profileDetails.address[0].addressbody
+                  : ""
+              }
             />
             <label htmlFor="floatingInput">Postcode</label>
           </div>
@@ -183,7 +191,7 @@ const CustomerProfileSection = (props) => {
       </div>
       <div className="text-center mt-4">
         {emptyCredentialsError ? (
-          <div className="mrb-20">{emptyCredentialsError}</div>
+          <div className="mrb-20 error">{emptyCredentialsError}</div>
         ) : (
           <React.Fragment />
         )}

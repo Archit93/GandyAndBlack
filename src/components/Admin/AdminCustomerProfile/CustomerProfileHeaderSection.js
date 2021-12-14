@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const CustomerProfileHeaderSection = ({
-  shippingAddressDetails,
+  profileDetails,
   showUpdatePassowrdModal,
 }) => {
   return (
@@ -18,8 +18,7 @@ const CustomerProfileHeaderSection = ({
                   <div>
                     <h5 className="font-size-16 mb-1">Hello, </h5>
                     <p className="text-muted font-size-13 mb-2 pb-2">
-                      {shippingAddressDetails?.firstName}{" "}
-                      {shippingAddressDetails?.lastName}
+                      {profileDetails?.firstname} {profileDetails?.lastname}
                     </p>
                   </div>
                 </div>

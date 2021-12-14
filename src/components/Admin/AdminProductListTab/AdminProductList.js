@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { Spinner } from "react-bootstrap";
+import { Alert } from "@material-ui/lab";
 import { UpdateProductColumn } from "./UpdateProductColumn";
 import UpdateProductModal from "./UpdateProductModal";
 import { DeleteProductColumn } from "./DeleteProductColumn";
@@ -13,14 +14,18 @@ import AdminHeaderMenu from "../../common/AdminHeaderMenu";
 import AddProductModal from "./AddProductModal";
 import { StockFlagColumn } from "./StockFlagColumn";
 import FileUpload from "./FileUpload";
-import { SET_IS_LOADING } from "../../../constants/actionTypes";
+import {
+  SET_IS_LOADING,
+  SET_ADD_DELETE_NEW_PRODUCT,
+} from "../../../constants/actionTypes";
 import { exportProducts } from "../../../serviceCalls/exportProducts";
 
 const AdminProductList = (props) => {
   const { applicationState, dispatch } = props;
-  const { isLoading, config, productList } = applicationState;
+  const { isLoading, config, productList, addDeleteStatus, alertMessage } =
+    applicationState;
   const history = useHistory();
-  
+
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
   const [dataForUpdateModal, setDataForUpdateModal] = React.useState({});
@@ -29,6 +34,14 @@ const AdminProductList = (props) => {
   const [showDeleteModal, setDeleteProductModal] = React.useState(false);
   const [showAddModal, setAddProductModal] = React.useState(false);
   const [showFileUploadModal, setFileUploadModal] = React.useState(false);
+
+  const closeAlert = () => {
+    dispatch({
+      type: SET_ADD_DELETE_NEW_PRODUCT,
+      payload: "",
+      message: "",
+    });
+  };
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -120,43 +133,53 @@ const AdminProductList = (props) => {
         </div>
       )}
       <div>
-        <AdminHeaderMenu />
+        <AdminHeaderMenu dispatch={dispatch} />
       </div>
       <div className="container-fluid">
+        {addDeleteStatus && (
+          <Alert
+            variant="filled"
+            className="mb-2"
+            severity={addDeleteStatus}
+            onClose={() => closeAlert()}
+          >
+            {alertMessage}
+          </Alert>
+        )}
         <div className="card">
-        <input
-          className="search-bottom-margin mt-4"
-          type="text"
-          id="filter-text-box"
-          placeholder="Filter..."
-          onChange={(event) => onFilterTextBoxChanged(event)}
-        />
+          <input
+            className="search-bottom-margin mt-4"
+            type="text"
+            id="filter-text-box"
+            placeholder="Filter..."
+            onChange={(event) => onFilterTextBoxChanged(event)}
+          />
 
-        <div
-          className="ag-theme-alpine"
-          // style={{ height: "calc(100vh - 309px)", width: "100%" }}
-          style={{height: "520px", width: "100%"}}
-        >
-          <AgGridReact
-            getRowStyle={getRowStyle}
-            rowData={rowData()}
-            columnDefs={columnDefs()}
-            defaultColDef={defaultColDef}
-            onGridReady={onGridReady}
-            context={{
-              frameWorkComponentChange: frameWorkComponentChange,
-              deleteComponentClick: deleteComponentClick,
-              showUpdateProductModal: showUpdateProductModal,
-              showDeleteProductModal: showDeleteProductModal,
-            }}
-            rowSelection={"multiple"}
-            paginationAutoPageSize={true}
-            pagination={true}
-            frameworkComponents={{
-              stockFlagComponent: StockFlagColumn,
-            }}
-          ></AgGridReact>
-        </div>
+          <div
+            className="ag-theme-alpine"
+            // style={{ height: "calc(100vh - 309px)", width: "100%" }}
+            style={{ height: "520px", width: "100%" }}
+          >
+            <AgGridReact
+              getRowStyle={getRowStyle}
+              rowData={rowData()}
+              columnDefs={columnDefs()}
+              defaultColDef={defaultColDef}
+              onGridReady={onGridReady}
+              context={{
+                frameWorkComponentChange: frameWorkComponentChange,
+                deleteComponentClick: deleteComponentClick,
+                showUpdateProductModal: showUpdateProductModal,
+                showDeleteProductModal: showDeleteProductModal,
+              }}
+              rowSelection={"multiple"}
+              paginationAutoPageSize={true}
+              pagination={true}
+              frameworkComponents={{
+                stockFlagComponent: StockFlagColumn,
+              }}
+            ></AgGridReact>
+          </div>
         </div>
         <div className="text-center mrt-20">
           <button

@@ -30,7 +30,7 @@ const AdminPlaceOrder = (props) => {
     params.api.sizeColumnsToFit();
   };
 
-  const frameWorkComponentChange = ({ api }) => { };
+  const frameWorkComponentChange = ({ api }) => {};
 
   const columnDefs = () => [
     { field: "product", headerName: "Product" },
@@ -89,11 +89,12 @@ const AdminPlaceOrder = (props) => {
 
     gridApi.forEachNode((node) => {
       orderDataInTable.push(node.data);
-      subTotalAmount += (Number(node.data.quantity) * Number(node.data.salepriceperunit));
+      subTotalAmount +=
+        Number(node.data.quantity) * Number(node.data.salepriceperunit);
       totalVatAmount += node.data.totalvat;
-      totalAmount += node.data.totalcost
+      totalAmount += node.data.totalcost;
     });
- 
+
     dispatch({
       type: ADMIN_ADD_ITEM_FOR_ORDER,
       payload: {
@@ -101,16 +102,16 @@ const AdminPlaceOrder = (props) => {
         subTotalAmount: subTotalAmount,
         totalVatAmount: totalVatAmount,
         totalAmount: totalAmount,
-        shippingCost: 0
-      }
-    })
+        shippingCost: 0,
+      },
+    });
     history.push("/customershipping_info");
   };
 
   return (
     <div id="productlist" className="admin">
       <div>
-        <AdminHeaderMenu />
+        <AdminHeaderMenu dispatch={dispatch} />
       </div>
       <div
         className="container-fluid"
