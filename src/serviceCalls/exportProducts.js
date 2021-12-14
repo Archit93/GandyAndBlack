@@ -3,7 +3,7 @@ import fileSaver from "file-saver";
 import { makeApiRequestHeader } from "../utils/makeApiRequestHeader";
 import {
   SET_SIGN_UP_DATA,
-  SET_ERROR,
+  SET_ADD_DELETE_NEW_PRODUCT,
   SET_IS_LOADING,
 } from "../constants/actionTypes";
 

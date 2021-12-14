@@ -107,7 +107,11 @@ const CppPage1 = (props) => {
         overhead -
         minimumProfit;
       const totalTAProfitShare = Math.round(
-        Number(effectiveCost * 0.1 * totalBoxesPurchasedMonthly)
+        Number(
+          effectiveCost *
+            (selectedProduct[0]?.profitSharePercentage / 100) *
+            totalBoxesPurchasedMonthly
+        )
       );
       let total = 0,
         year1 = 0,
