@@ -58,10 +58,40 @@ const AdminHeaderMenu = ({ cartCount, dispatch }) => {
                 Place Order
               </button>
             </li>
-            <li className="nav-item">
-              <button className="nav-link" onClick={() => history.push("/crm")}>
+            <li className="nav-item dropdown" id="myDropdown">
+              <button
+                className="nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+              >
                 CRM
               </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => history.push("/crm")}
+                  >
+                    Instagram
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => history.push("/crm_shopify")}
+                  >
+                    Wholesale
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => history.push("/crm_pharma")}
+                  >
+                    Pharma
+                  </button>
+                </li>
+              </ul>
             </li>
             <li className="nav-item dropdown" id="myDropdown">
               <button

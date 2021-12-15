@@ -51,6 +51,7 @@ export const useStateManager = (
       year2: 0,
       year3: 0,
     },
+    crmDetails: [],
     shopifycrm: [],
     pharmacrm: []
   },
@@ -68,6 +69,7 @@ export const useStateManager = (
         config: {
           ...state.config,
           authToken: action.payload.authToken,
+          email: action.email,
           userType: action.payload.userType,
           signInError: action.signInError,
         },

@@ -26,6 +26,7 @@ export const signInApiCall = async ({ dispatch, history, email, password }) => {
         type: SET_SIGN_IN_DATA,
         payload: apiResponse.data.body,
         signInError: false,
+        email: email
       });
       getProductsApiCall({
         dispatch,

@@ -10,22 +10,26 @@ import {
 const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8080";
 
 export const exportProducts = async ({ dispatch, authToken }) => {
-  const apiRequestHeader = makeApiRequestHeader(
+  let apiRequestHeader = makeApiRequestHeader(
     "GET",
     { "x-auth-token": authToken },
     null,
     null
   );
   const apiUrl = `${baseUrl}/product/exportproducts`;
+  apiRequestHeader = {
+    ...apiRequestHeader,
+    responseType: 'blob'
+  }
 
   await axios
     .get(apiUrl, apiRequestHeader)
     .then((apiResponse) => {
       const { data, headers } = apiResponse;
       const fileData = new Blob([data], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,",
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64",
       });
-      fileSaver.saveAs(fileData, "Products.xls");
+      fileSaver.saveAs(fileData, "Products.xlsx");
       dispatch({ type: SET_IS_LOADING, payload: false });
     })
     .catch(() => {

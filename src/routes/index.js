@@ -15,6 +15,8 @@ import PayWithCard from "../components/CustomerCheckout/PayWithCard";
 import MyOrders from "../components/Customer/MyOrders/MyOrders";
 import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustomersList";
 import CRM from "../components/Admin/CRMTab/CRM";
+import CRMShopify from "../components/Admin/CRMTabSHOPIFY/CRMShopify";
+import CRMPharma from "../components/Admin/CRMTabPharma/CRMPharma";
 import HomePage from "../components/HomePage";
 import AdminProductList from "../components/Admin/AdminProductListTab/AdminProductList";
 import AdminPlaceOrder from "../components/Admin/AdminPlaceOrderTab/AdminPlaceOrder";
@@ -105,6 +107,12 @@ export const AppRouter = (props) => {
         </Route>
         <Route exact={true} path="/customer_profile">
           {RequireAuth(CustomerProfile, { ...props })}
+        </Route>
+        <Route exact={true} path="/crm_shopify">
+          {RequireAuth(CRMShopify, { ...props })}
+        </Route>
+        <Route exact={true} path="/crm_pharma">
+          {RequireAuth(CRMPharma, { ...props })}
         </Route>
       </Switch>
     </Router>
