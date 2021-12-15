@@ -55,6 +55,8 @@ const CRM = (props) => {
       "status-1": "statustwo",
       "status-2": "statusthree",
       "status-3": "statusfour",
+      "status-4": "statusfive",
+      "status-5": "statussix"
     };
     const moveToStatus = statuses[currentStage];
     setOrderInfo("");
@@ -112,6 +114,32 @@ const CRM = (props) => {
         return (
           <Status2Modal
             title="Move to Status 4"
+            show={stageModal}
+            onClose={() => {
+              setCurrentStage("");
+              showStageModal(false);
+            }}
+            nextStageApiCall={nextStageApiCall}
+            orderid={orderInfo.id}
+          />
+        );
+        case "status-4":
+        return (
+          <Status2Modal
+            title="Move to Status 5"
+            show={stageModal}
+            onClose={() => {
+              setCurrentStage("");
+              showStageModal(false);
+            }}
+            nextStageApiCall={nextStageApiCall}
+            orderid={orderInfo.id}
+          />
+        );
+        case "status-5":
+        return (
+          <Status2Modal
+            title="Move to Status 6"
             show={stageModal}
             onClose={() => {
               setCurrentStage("");

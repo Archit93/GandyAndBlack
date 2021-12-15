@@ -51,6 +51,8 @@ export const useStateManager = (
       year2: 0,
       year3: 0,
     },
+    shopifycrm: [],
+    pharmacrm: []
   },
   action
 ) => {
@@ -160,6 +162,8 @@ export const useStateManager = (
         customerList: action.customerList,
         crmDetails: action.payload,
         taProductRates: action.taProductRates,
+        shopifycrm: action.shopifycrm,
+        pharmacrm: action.pharmacrm,
         isLoading: false,
       };
     case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:

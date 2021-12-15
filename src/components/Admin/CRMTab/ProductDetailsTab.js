@@ -7,8 +7,8 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { ProductQuantityEditor } from './ProductQuantityEditor';
 import { ProductVatEditor } from './ProductVatEditor';
 import { SalesPricePerUnitEditor } from './SalesPricePerUnitEditor';
-import {TotalAmountEditor} from './TotalAmountEditor';
-import {TotalAmountPaidEditor} from './TotalAmountPaidEditor';
+import { TotalAmountEditor } from './TotalAmountEditor';
+import { TotalAmountPaidEditor } from './TotalAmountPaidEditor';
 
 
 const ProductDetailsTab = ({ orderInfo }) => {
@@ -82,6 +82,7 @@ const ProductDetailsTab = ({ orderInfo }) => {
     <div
       className="ag-theme-alpine product-detail-table"
       // style={{ height: "calc(100vh - 315px)", width: "100%" }}
+      style={{ height: "520px", width: "100%" }}
     >
       <AgGridReact
         rowData={rowData()}
@@ -98,6 +99,8 @@ const ProductDetailsTab = ({ orderInfo }) => {
           totalAmountEditor: TotalAmountEditor,
           totalAmountPaidEditor: TotalAmountPaidEditor
         }}
+        paginationAutoPageSize={true}
+        pagination={true}
       ></AgGridReact>
     </div>
   </>)
