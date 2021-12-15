@@ -2,10 +2,10 @@ import axios from "axios";
 import { makeApiRequestHeader } from "../utils/makeApiRequestHeader";
 import {
   SET_SIGN_UP_DATA,
-  SET_ERROR,
   SET_IS_LOADING,
+  SET_ADD_DELETE_NEW_PRODUCT,
 } from "../constants/actionTypes";
-import {getProductsApiCall} from "./getProductsApiCall";
+import { getProductsApiCall } from "./getProductsApiCall";
 
 const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8080";
 
@@ -14,7 +14,7 @@ export const importProducts = async ({
   history,
   fileToUpload,
   authToken,
-  config
+  config,
 }) => {
   const apiRequestHeader = makeApiRequestHeader(
     "POST",
@@ -30,11 +30,25 @@ export const importProducts = async ({
   await axios
     .post(apiUrl, fileToUpload, apiRequestHeader)
     .then((apiResponse) => {
-      getProductsApiCall({dispatch, history, signInResponse: config, email : null, moveToNextPage : false})
-      console.log("imported successfully");
+      dispatch({
+        type: SET_ADD_DELETE_NEW_PRODUCT,
+        payload: "success",
+        message: "File uploaded successfully.",
+      });
+      getProductsApiCall({
+        dispatch,
+        history,
+        signInResponse: config,
+        email: null,
+        moveToNextPage: false,
+      });
     })
     .catch(() => {
       dispatch({ type: SET_IS_LOADING, payload: false });
-      console.log("import failed");
+      dispatch({
+        type: SET_ADD_DELETE_NEW_PRODUCT,
+        payload: "error",
+        message: "There was some error while uploading the file. ",
+      });
     });
 };

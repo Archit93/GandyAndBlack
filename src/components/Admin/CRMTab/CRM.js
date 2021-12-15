@@ -1,71 +1,71 @@
 import * as React from "react";
 import Board from "react-trello";
 
-import 'react-tabs/style/react-tabs.css';
+import "react-tabs/style/react-tabs.css";
 import { Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { createCRMData } from '../../../utils/createCRMData';
+import { createCRMData } from "../../../utils/createCRMData";
 
-import CRMTabList from './CRMTabList';
-import CRMModal from './CRMModal';
-import Status1Modal from '../NextStatusModal/Status1Modal';
-import Status2Modal from '../NextStatusModal/Status2Modal';
+import CRMTabList from "./CRMTabList";
+import CRMModal from "./CRMModal";
+import Status1Modal from "../NextStatusModal/Status1Modal";
+import Status2Modal from "../NextStatusModal/Status2Modal";
 
-import AdminHeaderMenu from '../../common/AdminHeaderMenu';
+import AdminHeaderMenu from "../../common/AdminHeaderMenu";
 
-import { SET_IS_LOADING } from '../../../constants/actionTypes';
-import { moveToNextStatusApiCall } from '../../../serviceCalls/moveToNextStatusApiCall';
+import { SET_IS_LOADING } from "../../../constants/actionTypes";
+import { moveToNextStatusApiCall } from "../../../serviceCalls/moveToNextStatusApiCall";
 
 const CRM = (props) => {
   const { applicationState, dispatch } = props;
   const { isLoading, config, crmDetails } = applicationState;
   const [showModal, setShowModal] = React.useState(false);
-  const [orderInfo, setOrderInfo] = React.useState('');
-  const [stageId, setStageId] = React.useState('');
+  const [orderInfo, setOrderInfo] = React.useState("");
+  const [stageId, setStageId] = React.useState("");
   const [stageModal, setStageModal] = React.useState(false);
   const [currentStage, setCurrentStage] = React.useState("");
   const history = useHistory();
   React.useEffect(() => {
     if (currentStage) {
-      showStageModal(true)
+      showStageModal(true);
     }
   }, [currentStage, crmDetails]);
 
   const showPromocodeModal = (showModalValue) => {
     setShowModal(showModalValue);
-  }
+  };
 
   const showStageModal = (showStageModalValue) => {
-    setStageModal(showStageModalValue)
-  }
+    setStageModal(showStageModalValue);
+  };
 
   const onCardClick = (cardId, metadata, laneId) => {
     setOrderInfo(crmDetails.find((crmElement) => crmElement.id === cardId));
     setStageId(laneId);
     showPromocodeModal(true);
-  }
+  };
 
   const onMoveToNextStage = (data) => {
-    setCurrentStage(data.currentstage)
+    setCurrentStage(data.currentstage);
     showPromocodeModal(false);
-  }
+  };
 
   const nextStageApiCall = ({ orderid, warehouse = null }) => {
     const statuses = {
-      'status-1': 'statustwo',
-      'status-2': 'statusthree',
-      'status-3': 'statusfour'
-    }
+      "status-1": "statustwo",
+      "status-2": "statusthree",
+      "status-3": "statusfour",
+    };
     const moveToStatus = statuses[currentStage];
     setOrderInfo("");
     setCurrentStage("");
     showStageModal(false);
     const requestBody = {
       orderid: orderid,
-      orderstagewarehouse: warehouse
-    }
+      orderstagewarehouse: warehouse,
+    };
     if (!requestBody.orderstagewarehouse) {
-      delete requestBody.orderstagewarehouse
+      delete requestBody.orderstagewarehouse;
     }
     dispatch({ type: SET_IS_LOADING, payload: true });
     moveToNextStatusApiCall({
@@ -76,46 +76,55 @@ const CRM = (props) => {
       moveToStatus: moveToStatus,
       signInResponse: config,
       email: null,
-      moveToNextPage: false
-    })
-  }
+      moveToNextPage: false,
+    });
+  };
 
   const statusModalToDisplay = () => {
     switch (currentStage) {
-      case 'status-1':
-        return <Status1Modal
-          title="Move to Status 2"
-          show={stageModal}
-          onClose={() => {
-            setCurrentStage("");
-            showStageModal(false);
-          }}
-          nextStageApiCall={nextStageApiCall}
-          orderid={orderInfo.id} />
-      case 'status-2':
-        return <Status2Modal
-          title="Move to Status 3"
-          show={stageModal}
-          onClose={() => {
-            setCurrentStage("");
-            showStageModal(false);
-          }}
-          nextStageApiCall={nextStageApiCall}
-          orderid={orderInfo.id} />
-      case 'status-3':
-        return <Status2Modal
-          title="Move to Status 4"
-          show={stageModal}
-          onClose={() => {
-            setCurrentStage("");
-            showStageModal(false);
-          }}
-          nextStageApiCall={nextStageApiCall}
-          orderid={orderInfo.id} />
+      case "status-1":
+        return (
+          <Status1Modal
+            title="Move to Status 2"
+            show={stageModal}
+            onClose={() => {
+              setCurrentStage("");
+              showStageModal(false);
+            }}
+            nextStageApiCall={nextStageApiCall}
+            orderid={orderInfo.id}
+          />
+        );
+      case "status-2":
+        return (
+          <Status2Modal
+            title="Move to Status 3"
+            show={stageModal}
+            onClose={() => {
+              setCurrentStage("");
+              showStageModal(false);
+            }}
+            nextStageApiCall={nextStageApiCall}
+            orderid={orderInfo.id}
+          />
+        );
+      case "status-3":
+        return (
+          <Status2Modal
+            title="Move to Status 4"
+            show={stageModal}
+            onClose={() => {
+              setCurrentStage("");
+              showStageModal(false);
+            }}
+            nextStageApiCall={nextStageApiCall}
+            orderid={orderInfo.id}
+          />
+        );
       default:
-        return <div></div>
+        return <div></div>;
     }
-  }
+  };
 
   return (
     <>
@@ -128,18 +137,19 @@ const CRM = (props) => {
       )}
       <div className="admin crm" id="crm">
         <div>
-          <AdminHeaderMenu />
+          <AdminHeaderMenu dispatch={dispatch} />
         </div>
         <div className="col-lg-12 p-0">
           <div>
-            {applicationState ?.crmDetails && <Board
-              data={createCRMData(applicationState.crmDetails)}
-              style={{ height: 'calc(100vh - 70px)' }}
-              cardDraggable={false}
-              hideCardDeleteIcon
-              onCardClick={onCardClick}
-            >
-            </Board>}
+            {applicationState?.crmDetails && (
+              <Board
+                data={createCRMData(applicationState.crmDetails)}
+                style={{ height: "calc(100vh - 70px)" }}
+                cardDraggable={false}
+                hideCardDeleteIcon
+                onCardClick={onCardClick}
+              ></Board>
+            )}
           </div>
         </div>
         <CRMModal
@@ -147,16 +157,14 @@ const CRM = (props) => {
           onClose={() => showPromocodeModal(false)}
           show={showModal}
           onMoveToNextStage={onMoveToNextStage}
-          orderInfo={orderInfo}>
-          <CRMTabList
-            orderInfo={orderInfo}
-          />
+          orderInfo={orderInfo}
+        >
+          <CRMTabList orderInfo={orderInfo} />
         </CRMModal>
         {statusModalToDisplay()}
       </div>
     </>
   );
-
-}
+};
 
 export default CRM;

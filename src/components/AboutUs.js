@@ -1,11 +1,15 @@
 import * as React from "react";
 import HeaderMenu from "./common/HeaderMenu.js";
+import UnAuthenticatedUser from "./common/UnAuthenticatedUser";
 
 const AboutUs = (props) => {
+
+  const { config } = props;
   return (
     <div id="aboutus">
       <div>
-        <HeaderMenu />
+        {config && Object.keys(config).length > 0 ? <HeaderMenu /> : <UnAuthenticatedUser/>}
+        
       </div>
       <div id="about">
         {/* Welcome Section */}

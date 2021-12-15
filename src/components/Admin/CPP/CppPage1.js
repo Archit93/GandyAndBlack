@@ -107,7 +107,11 @@ const CppPage1 = (props) => {
         overhead -
         minimumProfit;
       const totalTAProfitShare = Math.round(
-        Number(effectiveCost * 0.1 * totalBoxesPurchasedMonthly)
+        Number(
+          effectiveCost *
+            (selectedProduct[0]?.profitSharePercentage / 100) *
+            totalBoxesPurchasedMonthly
+        )
       );
       let total = 0,
         year1 = 0,
@@ -157,7 +161,7 @@ const CppPage1 = (props) => {
   return (
     <div className="admin" id="cpp">
       <div>
-        <AdminHeaderMenu />
+        <AdminHeaderMenu dispatch={dispatch} />
       </div>
       <div>
         <div className="row">
@@ -399,7 +403,9 @@ const CppPage1 = (props) => {
                   )}
                   <div className="form mt-4">
                     {emptyCredentialsError ? (
-                      <div className="mrb-20">{emptyCredentialsError}</div>
+                      <div className="mrb-20 error">
+                        {emptyCredentialsError}
+                      </div>
                     ) : (
                       <React.Fragment />
                     )}

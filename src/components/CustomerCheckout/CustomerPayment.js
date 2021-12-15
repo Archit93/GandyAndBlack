@@ -109,11 +109,14 @@ const CustomerPayment = (props) => {
   return (
     <div>
       {config?.userType === "ADMIN" ? (
-        <AdminHeaderMenu />
+        <AdminHeaderMenu dispatch={dispatch} />
       ) : (
         <HeaderMenu dispatch={dispatch} cartCount={tempCart.length} />
       )}
-      <div id="checkout" className={` ${config?.userType === "ADMIN" ? "admin" : ""}`}>
+      <div
+        id="checkout"
+        className={` ${config?.userType === "ADMIN" ? "admin" : ""}`}
+      >
         <div className="container-fluid">
           <div className="card px-0 pb-0 mb-3">
             <div className="row">

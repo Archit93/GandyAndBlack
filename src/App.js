@@ -96,6 +96,8 @@ const App = () => {
     signUpStatus: {
       signUpError: false,
     },
+    addDeleteStatus: "",
+    alertMessage: "",
     profileUpdateStatus: "",
     getCustomerOrderList: {},
     taProductRates: [],

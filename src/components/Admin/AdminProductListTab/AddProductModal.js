@@ -1,6 +1,7 @@
 import * as React from "react";
 import { CSSTransition } from "react-transition-group";
 import { addProductApiCall } from "../../../serviceCalls/addProductApiCall";
+import { SET_IS_LOADING } from "../../../constants/actionTypes";
 
 const AddProductModal = (props) => {
   const { config, dispatch, onClose, history } = props;
@@ -30,16 +31,18 @@ const AddProductModal = (props) => {
     productStockRedError: "",
   });
 
+  const [emptyCredentialsError, setEmptyCredentialsError] = React.useState("");
+
   const validateValue = (value, fieldName) => {
     value === ""
       ? setNewProductDetailsError({
-        ...newProductDetailsError,
-        [`${fieldName}Error`]: "Please enter a proper value",
-      })
+          ...newProductDetailsError,
+          [`${fieldName}Error`]: "Please enter a proper value",
+        })
       : setNewProductDetailsError({
-        ...newProductDetailsError,
-        [`${fieldName}Error`]: "",
-      });
+          ...newProductDetailsError,
+          [`${fieldName}Error`]: "",
+        });
   };
 
   const {
@@ -67,33 +70,66 @@ const AddProductModal = (props) => {
     productStockRedError,
   } = newProductDetailsError;
 
-  const onAdd = () => {
-    const requestBodyForAdd = {
-      brand: productBrand,
-      producttype: productType,
-      productdesc: productDescription,
-      salepriceperunit: productPrice,
-      numberofstock: 181,
-      createDate: "2021/08/09 12:51:23",
-      vat: productVat,
-      threshold: productStockYellow,
-      breakpoint: productStockRed,
-      warehouse: {
-        Liverpool: productWareHouseStock,
-        Glasgow: 8
-      },
-      shortcode: productShortCode ? productShortCode: "N/A",
-      fromwarehouse: ""
+  const onAdd = (e) => {
+    e.preventDefault();
+    if (
+      productTypeError ||
+      productBrandError ||
+      productDescriptionError ||
+      productPriceError ||
+      productWareHouseStockError ||
+      productVatError ||
+      productShortCodeError ||
+      productStockYellowError ||
+      productStockRedError
+    ) {
+      setEmptyCredentialsError(
+        "Looks like you're missing something! Do you want to give it another try?"
+      );
+    } else if (
+      productType === "" ||
+      productBrand === "" ||
+      productDescription === "" ||
+      productPrice === "" ||
+      productWarehouse === "" ||
+      productWareHouseStock === "" ||
+      productVat === "" ||
+      productShortCode === "" ||
+      productStockYellow === "" ||
+      productStockRed === ""
+    ) {
+      setEmptyCredentialsError(
+        "Looks like you're missing something! Do you want to give it another try?"
+      );
+    } else {
+      dispatch({ type: SET_IS_LOADING, payload: true });
+      const requestBodyForAdd = {
+        brand: productBrand,
+        producttype: productType,
+        productdesc: productDescription,
+        salepriceperunit: productPrice,
+        numberofstock: 181,
+        createDate: "2021/08/09 12:51:23",
+        vat: productVat,
+        threshold: productStockYellow,
+        breakpoint: productStockRed,
+        warehouse: {
+          Liverpool: productWareHouseStock,
+          Glasgow: 8,
+        },
+        shortcode: productShortCode ? productShortCode : "N/A",
+        fromwarehouse: "",
+      };
+      addProductApiCall({
+        dispatch: dispatch,
+        authToken: config.authToken,
+        requestBodyForAdd: requestBodyForAdd,
+        history: history,
+        config: config,
+      });
+      onClose();
     }
-    addProductApiCall({
-      dispatch: dispatch,
-      authToken: config.authToken,
-      requestBodyForAdd: requestBodyForAdd,
-      history: history,
-      config: config
-    })
-    onClose();
-  }
+  };
 
   return (
     <>
@@ -127,6 +163,7 @@ const AddProductModal = (props) => {
                       ...newProductDetails,
                       productType: e.target.value,
                     });
+                    setEmptyCredentialsError("");
                   }}
                   onBlur={(e) => validateValue(e.target.value, "productType")}
                 />
@@ -135,8 +172,8 @@ const AddProductModal = (props) => {
               {productTypeError ? (
                 <span className="error">{productTypeError}</span>
               ) : (
-                  <React.Fragment />
-                )}
+                <React.Fragment />
+              )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -153,6 +190,7 @@ const AddProductModal = (props) => {
                       ...newProductDetails,
                       productBrand: e.target.value,
                     });
+                    setEmptyCredentialsError("");
                   }}
                   onBlur={(e) => validateValue(e.target.value, "productBrand")}
                 />
@@ -161,8 +199,8 @@ const AddProductModal = (props) => {
               {productBrandError ? (
                 <span className="error">{productBrandError}</span>
               ) : (
-                  <React.Fragment />
-                )}
+                <React.Fragment />
+              )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -179,6 +217,7 @@ const AddProductModal = (props) => {
                       ...newProductDetails,
                       productDescription: e.target.value,
                     });
+                    setEmptyCredentialsError("");
                   }}
                   onBlur={(e) =>
                     validateValue(e.target.value, "productDescription")
@@ -189,11 +228,11 @@ const AddProductModal = (props) => {
               {productDescriptionError ? (
                 <span className="error">{productDescriptionError}</span>
               ) : (
-                  <React.Fragment />
-                )}
+                <React.Fragment />
+              )}
               <div className="form-floating mb-3">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="productPrice"
                   placeholder="productPrice"
@@ -207,6 +246,7 @@ const AddProductModal = (props) => {
                       ...newProductDetails,
                       productPrice: e.target.value,
                     });
+                    setEmptyCredentialsError("");
                   }}
                   onBlur={(e) => validateValue(e.target.value, "productPrice")}
                 />
@@ -215,21 +255,23 @@ const AddProductModal = (props) => {
               {productPriceError ? (
                 <span className="error">{productPriceError}</span>
               ) : (
-                  <React.Fragment />
-                )}
+                <React.Fragment />
+              )}
               <div className="form-floating mb-3">
                 <select
                   className="form-select"
                   id="productWarehouse"
                   name="productWarehouse"
                   value={productWarehouse}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setNewProductDetails({
                       ...newProductDetails,
                       productWarehouse: e.target.value,
-                    })
-                  }
+                    });
+                    setEmptyCredentialsError("");
+                  }}
                 >
+                  <option value="">Please select</option>
                   <option value="Liverpool">Liverpool</option>
                   <option value="Glasgow">Glasgow</option>
                 </select>
@@ -237,7 +279,7 @@ const AddProductModal = (props) => {
               </div>
               <div className="form-floating mb-3">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="productWareHouseStock"
                   placeholder="productWareHouseStock"
@@ -251,6 +293,7 @@ const AddProductModal = (props) => {
                       ...newProductDetails,
                       productWareHouseStock: e.target.value,
                     });
+                    setEmptyCredentialsError("");
                   }}
                   onBlur={(e) =>
                     validateValue(e.target.value, "productWareHouseStock")
@@ -261,11 +304,11 @@ const AddProductModal = (props) => {
               {productWareHouseStockError ? (
                 <span className="error">{productWareHouseStockError}</span>
               ) : (
-                  <React.Fragment />
-                )}
+                <React.Fragment />
+              )}
               <div className="form-floating mb-3">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="productVat"
                   placeholder="productVat"
@@ -279,6 +322,7 @@ const AddProductModal = (props) => {
                       ...newProductDetails,
                       productVat: e.target.value,
                     });
+                    setEmptyCredentialsError("");
                   }}
                   onBlur={(e) => validateValue(e.target.value, "productVat")}
                 />
@@ -287,8 +331,8 @@ const AddProductModal = (props) => {
               {productVatError ? (
                 <span className="error">{productVatError}</span>
               ) : (
-                  <React.Fragment />
-                )}
+                <React.Fragment />
+              )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -305,6 +349,7 @@ const AddProductModal = (props) => {
                       ...newProductDetails,
                       productShortCode: e.target.value,
                     });
+                    setEmptyCredentialsError("");
                   }}
                   onBlur={(e) =>
                     validateValue(e.target.value, "productShortCode")
@@ -315,8 +360,8 @@ const AddProductModal = (props) => {
               {productShortCodeError ? (
                 <span className="error">{productShortCodeError}</span>
               ) : (
-                  <React.Fragment />
-                )}
+                <React.Fragment />
+              )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -333,6 +378,7 @@ const AddProductModal = (props) => {
                       ...newProductDetails,
                       productStockYellow: e.target.value,
                     });
+                    setEmptyCredentialsError("");
                   }}
                   onBlur={(e) =>
                     validateValue(e.target.value, "productStockYellow")
@@ -343,8 +389,8 @@ const AddProductModal = (props) => {
               {productStockYellowError ? (
                 <span className="error">{productStockYellowError}</span>
               ) : (
-                  <React.Fragment />
-                )}
+                <React.Fragment />
+              )}
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -361,6 +407,7 @@ const AddProductModal = (props) => {
                       ...newProductDetails,
                       productStockRed: e.target.value,
                     });
+                    setEmptyCredentialsError("");
                   }}
                   onBlur={(e) =>
                     validateValue(e.target.value, "productStockRed")
@@ -371,16 +418,21 @@ const AddProductModal = (props) => {
               {productStockRedError ? (
                 <span className="error">{productStockRedError}</span>
               ) : (
-                  <React.Fragment />
-                )}
+                <React.Fragment />
+              )}
             </div>
             <div className="modal-footer text-align-center">
-              <button className="btn btn-main" onClick={() => onAdd()}>
+              {emptyCredentialsError ? (
+                <div className="mrb-20 error">{emptyCredentialsError}</div>
+              ) : (
+                <React.Fragment />
+              )}
+              <button className="btn btn-main" onClick={(e) => onAdd(e)}>
                 Add
               </button>
               <button
                 className="btn floating-modal-btn btn-secondary"
-                onClick={() => props.onClose()}
+                onClick={() => onClose()}
               >
                 Back
               </button>
