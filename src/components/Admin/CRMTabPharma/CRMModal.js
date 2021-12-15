@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransition } from "react-transition-group";
 
-const AdminOrderDetailsModal = (props) => {
+const CRMModal = (props) => {
     return (
       <div className="crm-modal">
         <CSSTransition
@@ -13,7 +13,7 @@ const AdminOrderDetailsModal = (props) => {
         <div className="modal-content" onClick={e => e.stopPropagation()}>
           <div className="modal-header">
             <h4 className="modal-title">{props.title}</h4>
-            <button className="btn btn-shadow mx-0 mt-0 mb-0">
+            <button className="btn btn-shadow mx-0 mt-0 mb-0" onClick={() => props.onMoveToNextStage(props.orderInfo)}>
               Move to Next Stage
             </button>  
           </div>
@@ -33,4 +33,4 @@ const AdminOrderDetailsModal = (props) => {
     )
 }
 
-export default AdminOrderDetailsModal;
+export default CRMModal;

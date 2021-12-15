@@ -4,7 +4,7 @@ import Board from "react-trello";
 import "react-tabs/style/react-tabs.css";
 import { Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { createCRMData } from "../../../utils/createCRMData";
+import { createCRMShopifyData } from "../../../utils/createCRMShopifyData";
 
 import CRMTabList from "./CRMTabList";
 import CRMModal from "./CRMModal";
@@ -17,9 +17,9 @@ import AdminHeaderMenu from "../../common/AdminHeaderMenu";
 import { SET_IS_LOADING } from "../../../constants/actionTypes";
 import { moveToNextStatusApiCall } from "../../../serviceCalls/moveToNextStatusApiCall";
 
-const CRM = (props) => {
+const CRMShopify = (props) => {
   const { applicationState, dispatch } = props;
-  const { isLoading, config, crmDetails } = applicationState;
+  const { isLoading, config, shopifycrm } = applicationState;
   const [showModal, setShowModal] = React.useState(false);
   const [orderInfo, setOrderInfo] = React.useState("");
   const [stageId, setStageId] = React.useState("");
@@ -30,7 +30,7 @@ const CRM = (props) => {
     if (currentStage) {
       showStageModal(true);
     }
-  }, [currentStage, crmDetails]);
+  }, [currentStage, shopifycrm]);
 
   const showPromocodeModal = (showModalValue) => {
     setShowModal(showModalValue);
@@ -41,7 +41,7 @@ const CRM = (props) => {
   };
 
   const onCardClick = (cardId, metadata, laneId) => {
-    setOrderInfo(crmDetails.find((crmElement) => crmElement.id === cardId));
+    setOrderInfo(shopifycrm.find((crmElement) => crmElement.id === cardId));
     setStageId(laneId);
     showPromocodeModal(true);
   };
@@ -175,9 +175,9 @@ const CRM = (props) => {
         </div>
         <div className="col-lg-12 p-0">
           <div>
-            {applicationState?.crmDetails && (
+            {applicationState?.shopifycrm && (
               <Board
-                data={createCRMData(applicationState.crmDetails)}
+                data={createCRMShopifyData(applicationState.shopifycrm)}
                 style={{ height: "calc(100vh - 70px)" }}
                 cardDraggable={false}
                 hideCardDeleteIcon
@@ -201,4 +201,4 @@ const CRM = (props) => {
   );
 };
 
-export default CRM;
+export default CRMShopify;

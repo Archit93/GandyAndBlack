@@ -107,7 +107,7 @@ const PayWithCard = (props) => {
 
     try {
       const { data: clientSecret } = await axios
-        .post("http://localhost:8080/checkout", {
+        .post("http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8000/checkout", {
           amount: Math.round(totalAmount * 100),
           receipt_email: billingAddressDetails.emailBilling,
         })

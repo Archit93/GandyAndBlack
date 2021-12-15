@@ -68,7 +68,7 @@ export const createCRMData = (crmDetails) => {
         "title": "Order Placed",
         "label": `${stageOneArray.length}/${crmDetails.length}`,
         "style": {
-          "width": "16%",
+          "width": "21%",
           "background-color": "#212839"
         },
         "cards": stageOneCard
@@ -78,7 +78,7 @@ export const createCRMData = (crmDetails) => {
         "title": "Pick And Pack",
         "label": `${stageTwoArray.length}/${crmDetails.length}`,
         "style": {
-          "width": "16%",
+          "width": "21%",
           "background-color": "#212839"
         },
         "cards": stageTwoCard
@@ -89,7 +89,7 @@ export const createCRMData = (crmDetails) => {
         "title": "Out For Delivery",
         "label": `${stageThreeArray.length}/${crmDetails.length}`,
         "style": {
-          "width": "16%",
+          "width": "21%",
           "background-color": "#212839"
         },
         "cards": stageThreeCard
@@ -99,7 +99,7 @@ export const createCRMData = (crmDetails) => {
         "id": "PARCEL_RECEIVED",
         "title": "Parcel Received",
         "style": {
-          "width": "16%",
+          "width": "21%",
           "background-color": "#212839"
         },
         "label": `${stageFourArray.length}/${crmDetails.length}`,
@@ -110,23 +110,23 @@ export const createCRMData = (crmDetails) => {
         "id": "PAYMENT_RECEIVED",
         "title": "Payment Received",
         "style": {
-          "width": "16%",
+          "width": "21%",
           "background-color": "#212839"
         },
         "label": `${stageFiveArray.length}/${crmDetails.length}`,
         "cards": stageFiveCard
       },
 
-      {
-        "id": "ORDER_COMPLETED",
-        "title": "Order Completed",
-        "style": {
-          "width": "16%",
-          "background-color": "#212839"
-        },
-        "label": `${stageSixArray.length}/${crmDetails.length}`,
-        "cards": stageSixCard
-      }
+      // {
+      //   "id": "ORDER_COMPLETED",
+      //   "title": "Order Completed",
+      //   "style": {
+      //     "width": "21%",
+      //     "background-color": "#212839"
+      //   },
+      //   "label": `${stageSixArray.length}/${crmDetails.length}`,
+      //   "cards": stageSixCard
+      // }
     ]
   };
 

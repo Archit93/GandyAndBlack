@@ -153,16 +153,25 @@ export const getProductsApiCall = async ({
               apiRequestHeader
             ),
             axios.get(
+              `${baseUrl}/product/TAProductRates/all`,
+              apiRequestHeader
+            ),
+            axios.get(
               `${baseUrl}/order/all?ordertype=INSTA_SITE`,
               apiRequestHeader
             ),
             axios.get(
-              `${baseUrl}/product/TAProductRates/all`,
+              `${baseUrl}/order/all?ordertype=SHOPIFY`,
+              apiRequestHeader
+            ),
+            axios.get(
+              `${baseUrl}/order/all?ordertype=PHARMA`,
               apiRequestHeader
             )
+            
           ])
           .then(
-            axios.spread((allUsers, allOrders, taProductRates) => {
+            axios.spread((allUsers, taProductRates, allOrders, shopifydata, pharmadata ) => {
               const allCustomersData = [];
               allUsers &&
                 allUsers.data &&
@@ -183,7 +192,9 @@ export const getProductsApiCall = async ({
                 type: SET_KANBAN_DETAILS,
                 payload: allOrders.data,
                 customerList: allCustomersData,
-                taProductRates: taProductRates.data
+                taProductRates: taProductRates.data,
+                shopifycrm: shopifydata.data,
+                pharmacrm: pharmadata.data
               });
             })
           );

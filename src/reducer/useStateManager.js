@@ -51,6 +51,9 @@ export const useStateManager = (
       year2: 0,
       year3: 0,
     },
+    crmDetails: [],
+    shopifycrm: [],
+    pharmacrm: []
   },
   action
 ) => {
@@ -66,6 +69,7 @@ export const useStateManager = (
         config: {
           ...state.config,
           authToken: action.payload.authToken,
+          email: action.email,
           userType: action.payload.userType,
           signInError: action.signInError,
         },
@@ -160,6 +164,8 @@ export const useStateManager = (
         customerList: action.customerList,
         crmDetails: action.payload,
         taProductRates: action.taProductRates,
+        shopifycrm: action.shopifycrm,
+        pharmacrm: action.pharmacrm,
         isLoading: false,
       };
     case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:

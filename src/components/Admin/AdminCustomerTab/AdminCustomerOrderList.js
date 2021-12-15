@@ -120,8 +120,7 @@ const AdminCustomerOrderList = (props) => {
           <div
             id="myGrid"
             className="ag-theme-alpine product-detail-table"
-            // style={{ height: "calc(100vh - 335px)",width: '100%',}}
-            style={{ width: "100%" }}
+            style={{ height: "calc(100vh - 335px)",width: '100%'}}
           >
             <AgGridReact
               getRowStyle={getRowStyle}

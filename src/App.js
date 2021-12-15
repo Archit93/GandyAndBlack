@@ -118,6 +118,9 @@ const App = () => {
       year2: 0,
       year3: 0,
     },
+    crmDetails: [],
+    shopifycrm: [],
+    pharmacrm: []
   });
   React.useEffect(() => {
     const setResponsiveness = () => {
