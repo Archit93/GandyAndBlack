@@ -10,8 +10,10 @@ import { SalesPricePerUnitEditor } from './SalesPricePerUnitEditor';
 import { TotalAmountEditor } from './TotalAmountEditor';
 import { TotalAmountPaidEditor } from './TotalAmountPaidEditor';
 
+import { updateOrderDetailsByAdmin } from '../../../serviceCalls/updateOrderDetailsByAdmin';
+import { SET_IS_LOADING } from "../../../constants/actionTypes"
 
-const ProductDetailsTab = ({ orderInfo, showEmailPopUp }) => {
+const ProductDetailsTab = ({ orderInfo, showEmailPopUp, dispatch, history, config, onClose }) => {
 
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
@@ -24,6 +26,21 @@ const ProductDetailsTab = ({ orderInfo, showEmailPopUp }) => {
 
   const frameWorkComponentChange = ({ api }) => {
 
+    const orderdetailList = [];
+    api.forEachNode((node) => {
+      orderdetailList.push(node.data)
+    });
+    const requestBody = {
+      orderid: orderInfo.id,
+      orderdetailList: orderdetailList
+    }
+    dispatch({ type: SET_IS_LOADING, payload: true });
+    updateOrderDetailsByAdmin({
+      dispatch: dispatch,
+      history: history,
+      config: config,
+      requestBody: requestBody
+    })
   }
 
   const columnDefs = ({ frameWorkComponentChange }) => [
@@ -46,13 +63,13 @@ const ProductDetailsTab = ({ orderInfo, showEmailPopUp }) => {
       field: 'vat',
       headerName: "Product vat",
       cellEditor: "productVatEditor",
-      editable: true
+      editable: false
     },
     {
       field: 'amount',
       headerName: "Total",
       cellEditor: "totalAmountEditor",
-      editable: true
+      editable: false
     },
     {
       field: 'amountpaid',
@@ -104,10 +121,13 @@ const ProductDetailsTab = ({ orderInfo, showEmailPopUp }) => {
       ></AgGridReact>
     </div>
     <div className="text-center mt-3">
-    <button className="btn btn-main" onClick= {() => showEmailPopUp(orderInfo)}>
+      <button className="btn btn-main" onClick={() => showEmailPopUp(orderInfo)}>
         Send Email
       </button>
-      <button className="btn btn-secondary">
+      <button className="btn btn-secondary" onClick={() => {
+        onClose();
+        frameWorkComponentChange({ api: gridApi })
+      }}>
         Save Updates
       </button>
     </div>

@@ -67,18 +67,21 @@ const CRM = (props) => {
         showPromocodeModal(false);
     }
 
-    const sendEmailApiCall = ({email, subject, emailbody}) => {
-      dispatch({ type: SET_IS_LOADING, payload: true });
-      const requestBodyForEmail = {
-        email : email,
-        subject: subject,
-        emailbody: emailbody
-      }
-      sendEmailApiCall({
-        dispatch: dispatch,
-        authToken: config.authToken,
-        requestBodyForEmail: requestBodyForEmail
-      })
+    const doEmailApiCall = ({ email, subject, emailbody }) => {
+
+        const requestBodyForEmail = {
+            email: email,
+            subject: subject,
+            emailbody: emailbody
+        }
+        sendEmailApiCall({
+            dispatch: dispatch,
+            authToken: config.authToken,
+            requestBodyForEmail: requestBodyForEmail
+        })
+        showEmailModal(false);
+        setEmailIdForModal("");
+        dispatch({ type: SET_IS_LOADING, payload: true });
     }
 
     const nextStageApiCall = ({ orderid, warehouse = null, email = null }) => {
@@ -191,7 +194,6 @@ const CRM = (props) => {
     };
 
     const emailModalToDisplay = () => {
-        console.log("In here", emailIdModal)
         return (<>
             <EmailModal title="Send Email"
                 show={emailIdModal}
@@ -199,11 +201,10 @@ const CRM = (props) => {
                     setEmailIdForModal("");
                     showEmailModal(false);
                 }}
-                nextStageApiCall={nextStageApiCall}
+                doEmailApiCall={doEmailApiCall}
                 emailIdForModal={emailIdForModal} />
         </>)
     }
-    console.log(emailIdModal);
     return (
         <>
             {isLoading && (
@@ -238,7 +239,13 @@ const CRM = (props) => {
                     showEmailPopUp={showEmailPopUp}
                     orderInfo={orderInfo}
                 >
-                    <CRMTabList orderInfo={orderInfo} showEmailPopUp={showEmailPopUp} />
+                    <CRMTabList
+                        orderInfo={orderInfo}
+                        showEmailPopUp={showEmailPopUp}
+                        dispatch={dispatch}
+                        history={history}
+                        config={config}
+                        onClose={() => showPromocodeModal(false)} />
                 </CRMModal>
                 {statusModalToDisplay()}
                 {emailModalToDisplay()}

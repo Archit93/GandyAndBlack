@@ -5,7 +5,7 @@ import OrderDetailsTab from './OrderDetailsTab';
 import CustomerDetailsTab from './CustomerDetailsTab';
 import ProductDetailsTab from './ProductDetailsTab';
 
-const CRMTabList = ({ orderInfo,  showEmailPopUp }) => {
+const CRMTabList = ({ orderInfo, showEmailPopUp, dispatch, history, config, onClose }) => {
   return (
     <>
       <Tabs style={{ padding: "20px" }}>
@@ -23,7 +23,13 @@ const CRMTabList = ({ orderInfo,  showEmailPopUp }) => {
           <CustomerDetailsTab orderInfo={orderInfo} showEmailPopUp={showEmailPopUp} />
         </TabPanel>
         <TabPanel className="tab-content">
-          <ProductDetailsTab orderInfo={orderInfo} />
+          <ProductDetailsTab
+            orderInfo={orderInfo}
+            showEmailPopUp={showEmailPopUp}
+            dispatch={dispatch}
+            history={history}
+            config={config}
+            onClose={onClose} />
         </TabPanel>
       </Tabs>
     </>

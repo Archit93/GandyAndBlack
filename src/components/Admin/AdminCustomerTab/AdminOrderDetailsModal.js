@@ -13,9 +13,9 @@ const AdminOrderDetailsModal = (props) => {
         <div className="modal-content" onClick={e => e.stopPropagation()}>
           <div className="modal-header">
             <h4 className="modal-title">{props.title}</h4>
-            <button className="btn btn-shadow mx-0 mt-0 mb-0">
+            {/* <button className="btn btn-shadow mx-0 mt-0 mb-0">
               Move to Next Stage
-            </button>  
+            </button>   */}
           </div>
           <div className="modal-body">{props.children}</div>
           <div className="modal-footer text-align-center">

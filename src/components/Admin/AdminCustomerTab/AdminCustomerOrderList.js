@@ -27,8 +27,8 @@ const AdminCustomerOrderList = (props) => {
       return crmElement.id === params.data.orderid;
     });
 
-    setOrderInfo(crmDetails[0]); // This is temporary as Paresh is fixing backend to map correct orderids
-    // setOrderInfo(crmDetails.find((crmElement) => crmElement.id === params.data.orderid));
+    //setOrderInfo(crmDetails[0]); // This is temporary as Paresh is fixing backend to map correct orderids
+    setOrderInfo(crmDetails.find((crmElement) => crmElement.id === params.data.orderid));
     setShowModal(true);
   };
 

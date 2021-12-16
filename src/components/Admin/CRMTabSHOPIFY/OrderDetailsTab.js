@@ -1,15 +1,16 @@
 import * as React from "react";
 
-const OrderDetailsTab = ({orderInfo}) => {
+const OrderDetailsTab = ({ orderInfo, showEmailPopUp }) => {
 
-    return (<><div className="row form-card p-3">
-        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label><strong>Order Id -</strong></label> {orderInfo.id}
+    return (<>
+        <div className="row form-card p-3">
+            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label><strong>Order Id -</strong></label> {orderInfo.id}
             </div>
-        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <label><strong>Order Date -</strong></label> {orderInfo.orderDate}
+            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label><strong>Order Date -</strong></label> {orderInfo.orderDate}
             </div>
-    </div>
+        </div>
         <div className="row form-card p-3">
             <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label><strong>Order No -</strong></label> {orderInfo.orderNum}
@@ -34,6 +35,14 @@ const OrderDetailsTab = ({orderInfo}) => {
                 <label><strong>Promocode Discount -</strong></label> {orderInfo.promocodeapplied ? 'Yes' : 'No'}
             </div>
         </div>
-        </>)
+        <div className="text-center mt-3">
+            <button className="btn btn-main" onClick= {() => showEmailPopUp(orderInfo)}>
+                Send Email
+      </button>
+            {/* <button className="btn btn-secondary">
+          Close
+      </button> */}
+        </div>
+    </>)
 }
 export default OrderDetailsTab

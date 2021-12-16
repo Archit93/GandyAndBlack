@@ -3,8 +3,8 @@ import { CSSTransition } from "react-transition-group";
 
 const EmailModal = (props) => {
     const [emailId, setEmailId] = React.useState(props.emailIdForModal);
-    const [subject, setSubject] = React.useState("Hello");
-    const [emailBody, setEmailBody] = React.useState("Hello");
+    const [subject, setSubject] = React.useState("");
+    const [emailBody, setEmailBody] = React.useState("");
     return (
         <CSSTransition
             in={props.show}
@@ -23,7 +23,7 @@ const EmailModal = (props) => {
                                 className="form-control"
                                 id="email"
                                 placeholder="email"
-                                value={emailId}
+                                value={props.emailIdForModal}
                                 readOnly
                             />
                             <label htmlFor="floatingInput">Email</label>
@@ -34,18 +34,23 @@ const EmailModal = (props) => {
                                 className="form-control"
                                 id="subject"
                                 placeholder="subject"
-                                // value={props.emailIdForModal}
+                                value={subject}
+                                onChange={(e) => setSubject(e.target.value)}
                             />
                             <label htmlFor="floatingInput">Subject</label>
                         </div>
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Enter your message" 
-                            style={{height: "100px"}} id="floatingTextarea"></textarea>
+                            <textarea class="form-control" 
+                            placeholder="Enter your message" 
+                            style={{height: "100px"}} 
+                            id="floatingTextarea"
+                            value={emailBody}
+                            onChange={(e) => setEmailBody(e.target.value)}></textarea>
                             <label for="floatingTextarea">Message</label>
                         </div>
                     </div>
                     <div className="modal-footer text-align-center">
-                        <button className="btn btn-main" onClick={() => props.onClose()}>
+                        <button className="btn btn-main" onClick={() => props.doEmailApiCall({email : props.emailIdForModal, subject: subject, emailbody: emailBody})}>
                             Send Email
                         </button>
                         <button onClick={props.onClose} className="btn btn-secondary">

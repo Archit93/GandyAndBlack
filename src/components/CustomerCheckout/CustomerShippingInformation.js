@@ -14,7 +14,6 @@ import {
   SET_CUSTOMER_BILLING_DETAILS,
   SET_TOTAL_AMOUNT,
 } from "../../constants/actionTypes";
-import { updateCustomerDetails } from "../../serviceCalls/updateCustomerDetails";
 import ToggleButton from "react-toggle-button";
 import AdminHeaderMenu from "../common/AdminHeaderMenu.js";
 
@@ -333,6 +332,7 @@ const CustomerShippingInformation = (props) => {
                             onChange={(e) => onShippingFieldChange(e)}
                             onBlur={(e) => validateEmail(e)}
                             value={shippingAddressDetails.email}
+                            readOnly
                           />
                           {shippingAddressDetailsError.emailError ? (
                             <span className="error">
