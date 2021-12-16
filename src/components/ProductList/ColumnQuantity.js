@@ -40,7 +40,7 @@ export const ColumnQuantity = (params) => {
   };
 
   const componentToDisplay = () => {
-    return Number(data.numberofstock) <= 0 ? (<span> Out of stock </span>) : (<span className="my-renderer">
+    return Number(data.numberofstock) <= 0 ? (<span className="out_of_stock"> Out of stock </span>) : (<span className="my-renderer quantity__div">
       <>
         <button
           className="btn-quantity"

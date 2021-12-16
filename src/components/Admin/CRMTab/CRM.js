@@ -8,6 +8,7 @@ import { createCRMData } from "../../../utils/createCRMData";
 
 import CRMTabList from "./CRMTabList";
 import CRMModal from "./CRMModal";
+import EmailModal from "../NextStatusModal/EmailModal";
 import Status1Modal from "../NextStatusModal/Status1Modal";
 import Status2Modal from "../NextStatusModal/Status2Modal";
 import Status3Modal from "../NextStatusModal/Status3Modal";
@@ -24,13 +25,17 @@ const CRM = (props) => {
   const [orderInfo, setOrderInfo] = React.useState("");
   const [stageId, setStageId] = React.useState("");
   const [stageModal, setStageModal] = React.useState(false);
+  const [emailIdForModal, setEmailIdForModal] = React.useState("");
+  const [emailIdModal, setEmailIdModal] = React.useState(false);
   const [currentStage, setCurrentStage] = React.useState("");
+
+
   const history = useHistory();
   React.useEffect(() => {
     if (currentStage) {
       showStageModal(true);
     }
-  }, [currentStage, crmDetails]);
+  }, [currentStage, crmDetails, emailIdModal]);
 
   const showPromocodeModal = (showModalValue) => {
     setShowModal(showModalValue);
@@ -39,6 +44,10 @@ const CRM = (props) => {
   const showStageModal = (showStageModalValue) => {
     setStageModal(showStageModalValue);
   };
+
+  const showEmailModal = (showEmailModalValue) => {
+    setEmailIdModal(showEmailModalValue)
+  }
 
   const onCardClick = (cardId, metadata, laneId) => {
     setOrderInfo(crmDetails.find((crmElement) => crmElement.id === cardId));
@@ -50,6 +59,12 @@ const CRM = (props) => {
     setCurrentStage(data.currentstage);
     showPromocodeModal(false);
   };
+
+  const showEmailPopUp = (data) => {
+    showEmailModal(true);
+    setEmailIdForModal(data.customerEmail);
+    showPromocodeModal(false);
+  }
 
   const nextStageApiCall = ({ orderid, warehouse = null, email = null }) => {
     const statuses = {
@@ -71,7 +86,7 @@ const CRM = (props) => {
     if (!requestBody.orderstagewarehouse) {
       delete requestBody.orderstagewarehouse;
     }
-    if(!requestBody.stagecompletedby) {
+    if (!requestBody.stagecompletedby) {
       delete requestBody.stagecompletedby;
     }
     dispatch({ type: SET_IS_LOADING, payload: true });
@@ -128,7 +143,7 @@ const CRM = (props) => {
             orderid={orderInfo.id}
           />
         );
-        case "status-4":
+      case "status-4":
         return (
           <Status2Modal
             title="Move to Status 5"
@@ -141,7 +156,7 @@ const CRM = (props) => {
             orderid={orderInfo.id}
           />
         );
-        case "status-5":
+      case "status-5":
         return (
           <Status3Modal
             title="Move to Status 6"
@@ -160,6 +175,20 @@ const CRM = (props) => {
     }
   };
 
+  const emailModalToDisplay = () => {
+    console.log("In here", emailIdModal)
+    return (<>
+      <EmailModal title="Send Email"
+        show={emailIdModal}
+        onClose={() => {
+          setEmailIdForModal("");
+          showEmailModal(false);
+        }}
+        nextStageApiCall={nextStageApiCall}
+        emailIdForModal={emailIdForModal} />
+    </>)
+  }
+  console.log(emailIdModal);
   return (
     <>
       {isLoading && (
@@ -175,7 +204,7 @@ const CRM = (props) => {
         </div>
         <div className="col-lg-12 p-0">
           <div>
-            {applicationState?.crmDetails && (
+            {applicationState ?.crmDetails && (
               <Board
                 data={createCRMData(applicationState.crmDetails)}
                 style={{ height: "calc(100vh - 70px)" }}
@@ -191,11 +220,13 @@ const CRM = (props) => {
           onClose={() => showPromocodeModal(false)}
           show={showModal}
           onMoveToNextStage={onMoveToNextStage}
+          showEmailPopUp={showEmailPopUp}
           orderInfo={orderInfo}
         >
-          <CRMTabList orderInfo={orderInfo} />
+          <CRMTabList orderInfo={orderInfo}  showEmailPopUp={showEmailPopUp}/>
         </CRMModal>
         {statusModalToDisplay()}
+        {emailModalToDisplay()}
       </div>
     </>
   );

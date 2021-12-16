@@ -5,7 +5,7 @@ import OrderDetailsTab from './OrderDetailsTab';
 import CustomerDetailsTab from './CustomerDetailsTab';
 import ProductDetailsTab from './ProductDetailsTab';
 
-const CRMTabList = ({ orderInfo }) => {
+const CRMTabList = ({ orderInfo,  showEmailPopUp }) => {
   return (
     <>
       <Tabs style={{ padding: "20px" }}>
@@ -16,24 +16,16 @@ const CRMTabList = ({ orderInfo }) => {
         </TabList>
         {/* Order Details */}
         <TabPanel className="tab-content">
-          <OrderDetailsTab orderInfo={orderInfo} />
+          <OrderDetailsTab orderInfo={orderInfo} showEmailPopUp={showEmailPopUp} />
         </TabPanel>
         {/* Customer Details */}
         <TabPanel className="tab-content">
-          <CustomerDetailsTab orderInfo={orderInfo} />
+          <CustomerDetailsTab orderInfo={orderInfo} showEmailPopUp={showEmailPopUp} />
         </TabPanel>
         <TabPanel className="tab-content">
           <ProductDetailsTab orderInfo={orderInfo} />
         </TabPanel>
       </Tabs>
-      <div className="text-center mt-3">
-        <button className="btn btn-main">
-          Save
-      </button>
-        <button className="btn btn-secondary">
-          Close
-      </button>
-      </div>
     </>
   );
 }

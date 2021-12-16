@@ -2,6 +2,7 @@ import React from 'react';
 import { CSSTransition } from "react-transition-group";
 
 const CRMModal = (props) => {
+  console.log(props.orderInfo);
     return (
       <div className="crm-modal">
         <CSSTransition

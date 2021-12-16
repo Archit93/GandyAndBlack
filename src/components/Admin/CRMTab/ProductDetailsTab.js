@@ -11,7 +11,7 @@ import { TotalAmountEditor } from './TotalAmountEditor';
 import { TotalAmountPaidEditor } from './TotalAmountPaidEditor';
 
 
-const ProductDetailsTab = ({ orderInfo }) => {
+const ProductDetailsTab = ({ orderInfo, showEmailPopUp }) => {
 
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
@@ -102,6 +102,14 @@ const ProductDetailsTab = ({ orderInfo }) => {
         paginationAutoPageSize={true}
         pagination={true}
       ></AgGridReact>
+    </div>
+    <div className="text-center mt-3">
+    <button className="btn btn-main" onClick= {() => showEmailPopUp(orderInfo)}>
+        Send Email
+      </button>
+      <button className="btn btn-secondary">
+        Save Updates
+      </button>
     </div>
   </>)
 

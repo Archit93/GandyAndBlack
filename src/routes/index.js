@@ -28,6 +28,7 @@ import CppPage1 from "../components/Admin/CPP/CppPage1";
 import CppPage2 from "../components/Admin/CPP/CppPage2";
 import CppPage3 from "../components/Admin/CPP/CppPage3";
 import CustomerProfile from "../components/Admin/AdminCustomerProfile/CustomerProfile";
+import CPPList from "../components/Admin/CppFutureWork/Cpp";
 
 export const AppRouter = (props) => {
   return (
