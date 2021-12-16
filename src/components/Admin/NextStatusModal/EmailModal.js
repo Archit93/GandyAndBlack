@@ -26,15 +26,29 @@ const EmailModal = (props) => {
                             />
                             <label htmlFor="floatingInput">Email</label>
                         </div>
-                        
+                        <div className="form-floating mb-3">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="subject"
+                                placeholder="subject"
+                                // value={props.emailIdForModal}
+                            />
+                            <label htmlFor="floatingInput">Subject</label>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Enter your message" 
+                            style={{height: "100px"}} id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Message</label>
+                        </div>
                     </div>
                     <div className="modal-footer text-align-center">
                         <button className="btn btn-main" onClick={() => props.onClose()}>
                             Send Email
-            </button>
+                        </button>
                         <button onClick={props.onClose} className="btn btn-secondary">
                             Close
-            </button>
+                        </button>
                     </div>
                 </div>
             </div>
