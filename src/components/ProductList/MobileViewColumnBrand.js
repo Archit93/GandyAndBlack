@@ -39,10 +39,10 @@ export const MobileViewColumnBrand = (params) => {
     }
 
     const componentToDisplay = () => {
-        return Number(data.numberofstock) <= 0 ? (<div> <p> Out of stock </p></div>) : (<div>
+        return Number(data.numberofstock) <= 0 ? (<div> <p className="out_of_stock"> Out of stock </p></div>) : (<div>
             <p> {data.brand}</p>
             <div>
-                <span className="my-renderer">
+                <span className="my-renderer quantity__div">
                     {params.value != null &&
                         <>
                             <button className="btn btn-quantity"

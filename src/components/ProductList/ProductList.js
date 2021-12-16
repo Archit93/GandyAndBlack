@@ -207,7 +207,7 @@ const ProductList = (props) => {
           // className="ag-theme-alpine"
           // style={{ height: "calc(100vh - 335px)", width: "100%" }}
           id="myGrid"
-          className="table-mb ag-theme-alpine"
+          className="table-mb ag-theme-alpine PListsSec"
           style={{
             height: "100%",
             width: "100%",

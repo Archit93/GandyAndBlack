@@ -18,7 +18,7 @@ const MyOrders = (props) => {
     params.api.sizeColumnsToFit();
   };
 
-  const getRowHeight = () => (applicationState.mobileView ? 300 : 40);
+  const getRowHeight = () => (applicationState.mobileView ? 300 : 100);
 
   const frameWorkComponentChange = ({ api }) => {
 
@@ -39,7 +39,6 @@ const MyOrders = (props) => {
     () => ({
       resizable: true,
       sortable: true,
-      minWidth: 256,
     }),
     []
   );
@@ -65,7 +64,7 @@ const setAutoHeight = () => {
           id="myGrid"
           className="ag-theme-alpine"
           style={{
-            height: '100%',
+            height: "calc(100vh - 250px)",
             width: '100%',
           }}
          >
@@ -78,11 +77,12 @@ const setAutoHeight = () => {
             defaultColDef={defaultColDef}
             onGridReady={onGridReady}
 
-            statusBar={{ items: [{ component: 'agAggregationComponent' }] }}
-            domLayout={'autoHeight'}
+            
             frameworkComponents={{
               productsPurchasedColumn: ProductsPurchasedColumnForMyOrders,
             }}
+            paginationAutoPageSize={true}
+              pagination={true}
           ></AgGridReact>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const ProductQuantityEditor = React.forwardRef((props, ref) => {
-    const [value, setValue] = React.useState(parseInt(props.value));
+    const [value, setValue] = React.useState(parseFloat(props.value));
     const refInput = React.useRef(null);
 
     React.useEffect(() => {

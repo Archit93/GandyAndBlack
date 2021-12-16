@@ -2,15 +2,16 @@ import React from 'react';
 
 export const ProductsPurchasedColumnForMyOrders = (params) => {
     const { api, data, column, node, context } = params;
-    const object = { a: 1, b: 2, c: 3 };
-
-    console.log(data.productspurchased);
-    const componentToDisplay = () => {
-        
-    }
+    const myOrdersInformation  = Object.entries(node.data.productspurchased);
+    
     return (
         <div>
-    
+            
+        {
+            myOrdersInformation.map(order => {
+                return <><span>{`${order[0]} X ${order[1]}` }</span><br/></>
+            })
+        }
         </div>
     );
 }

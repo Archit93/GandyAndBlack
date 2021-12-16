@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const CustomerDetailsTab = ({ orderInfo }) => {
+const CustomerDetailsTab = ({ orderInfo, showEmailPopUp }) => {
 
   return (<>
     <div className="row form-card p-3">
@@ -19,6 +19,14 @@ const CustomerDetailsTab = ({ orderInfo }) => {
         <label><strong>Delivery Address -</strong></label> {orderInfo.customerAddress} Postal Code - {orderInfo.postalcode}
       </div>
     </div>
+    <div className="text-center mt-3">
+    <button className="btn btn-main" onClick= {() => showEmailPopUp(orderInfo)}>
+                Send Email
+      </button>
+            {/* <button className="btn btn-secondary">
+          Close
+      </button> */}
+        </div>
   </>)
 }
 export default CustomerDetailsTab
