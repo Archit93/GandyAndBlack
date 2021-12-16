@@ -2,7 +2,9 @@ import React from 'react';
 import { CSSTransition } from "react-transition-group";
 
 const EmailModal = (props) => {
-    
+    const [emailId, setEmailId] = React.useState(props.emailIdForModal);
+    const [subject, setSubject] = React.useState("Hello");
+    const [emailBody, setEmailBody] = React.useState("Hello");
     return (
         <CSSTransition
             in={props.show}
@@ -21,7 +23,7 @@ const EmailModal = (props) => {
                                 className="form-control"
                                 id="email"
                                 placeholder="email"
-                                value={props.emailIdForModal}
+                                value={emailId}
                                 readOnly
                             />
                             <label htmlFor="floatingInput">Email</label>

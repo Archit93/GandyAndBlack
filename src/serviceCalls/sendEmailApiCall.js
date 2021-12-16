@@ -5,23 +5,23 @@ import { getProductsApiCall } from "./getProductsApiCall";
 // TO BE WORKED
 const baseUrl = "http://gnb-lb-1855188215.ap-south-1.elb.amazonaws.com:8080";
 
-export const editProductApiCall = async ({
+export const sendEmailApiCall = async ({
     dispatch,
     authToken,
-    requestBodyForEdit,
-    history,
-    config
+    requestBodyForEmail,
 }) => {
     const apiRequestHeader = makeApiRequestHeader(
         "POST",
         { "x-auth-token": authToken },
         null
     );
-    const apiUrl = `${baseUrl}/product/save`;
+    const apiUrl = `${baseUrl}/notification/email/sendemail`;
     await axios
-        .post(apiUrl, requestBodyForEdit, apiRequestHeader)
+        .post(apiUrl, requestBodyForEmail, apiRequestHeader)
         .then(() => {
-            getProductsApiCall({dispatch, history, signInResponse:config, email: null})
+            dispatch({
+                type: SET_IS_LOADING, isLoading: false
+            })
         })
         .catch(() => {
             dispatch({
