@@ -332,7 +332,7 @@ const CustomerShippingInformation = (props) => {
                             onChange={(e) => onShippingFieldChange(e)}
                             onBlur={(e) => validateEmail(e)}
                             value={shippingAddressDetails.email}
-                            readOnly
+                            readOnly={config?.userType !== "ADMIN"}
                           />
                           {shippingAddressDetailsError.emailError ? (
                             <span className="error">

@@ -120,7 +120,10 @@ const App = () => {
     },
     crmDetails: [],
     shopifycrm: [],
-    pharmacrm: []
+    pharmacrm: [],
+    instaCompletedOrders: [],
+    shopifyCompletedOrders: [],
+    pharmaCompletedOrders: []
   });
   React.useEffect(() => {
     const setResponsiveness = () => {

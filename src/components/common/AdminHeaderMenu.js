@@ -99,6 +99,41 @@ const AdminHeaderMenu = ({ cartCount, dispatch }) => {
                 href="#"
                 data-bs-toggle="dropdown"
               >
+                Completed Orders
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => history.push("/completed_orders_insta")}
+                  >
+                    Instagram
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => history.push("/completed_orders_shopify")}
+                  >
+                    Wholesale
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => history.push("/completed_orders_pharma")}
+                  >
+                    Pharma
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li className="nav-item dropdown" id="myDropdown">
+              <button
+                className="nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+              >
                 Utility
               </button>
               <ul className="dropdown-menu">

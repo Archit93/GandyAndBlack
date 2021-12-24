@@ -19,6 +19,8 @@ import {
   SET_ADD_DELETE_NEW_PRODUCT,
 } from "../../../constants/actionTypes";
 import { exportProducts } from "../../../serviceCalls/exportProducts";
+import { exportCRM } from "../../../serviceCalls/exportCRM";
+
 
 const AdminProductList = (props) => {
   const { applicationState, dispatch } = props;
@@ -117,6 +119,17 @@ const AdminProductList = (props) => {
       authToken: config.authToken,
     });
   };
+  const exportCRMDocument = (e) => {
+    e.preventDefault();
+    dispatch({ type: SET_IS_LOADING, payload: true });
+    exportCRM({
+      dispatch,
+      authToken: config.authToken,
+    });
+  };
+  
+
+
   // set background colour on even rows again, this looks bad, should be using CSS classes
   const getRowStyle = (params) => {
     if (params.node.rowIndex % 2 === 0) {
@@ -211,6 +224,16 @@ const AdminProductList = (props) => {
             onClick={(e) => exportProductList(e)}
           >
             Export Products
+          </button>
+          <button
+            className="btn btn-secondary"
+            type="submit"
+            name="btn-checkout"
+            id="btn-checkout"
+            disabled={false}
+            onClick={(e) => exportCRMDocument(e)}
+          >
+            Export CRM
           </button>
         </div>
         {/* {showFileUploadModal && <FileUpload />} */}

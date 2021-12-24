@@ -44,10 +44,10 @@ export const ColumnQuantity = (params) => {
       <>
         <button
           className="btn-quantity"
-          onClick={(event) => onIncrement(event)}
-          disabled={quantityValue === Number(data.numberofstock)}
+          onClick={(event) => onDecrement(event)}
+          disabled={quantityValue <= 0}
         >
-          +
+          -
         </button>
         <input
           id={`quantity-input-${data.productid}`}
@@ -58,13 +58,12 @@ export const ColumnQuantity = (params) => {
           onBlur={() => onInputBlur()}
           disabled={data.numberofstock === 0}
         />
-
         <button
           className="btn-quantity"
-          onClick={(event) => onDecrement(event)}
-          disabled={quantityValue <= 0}
+          onClick={(event) => onIncrement(event)}
+          disabled={quantityValue === Number(data.numberofstock)}
         >
-          -
+          +
         </button>
       </>
 

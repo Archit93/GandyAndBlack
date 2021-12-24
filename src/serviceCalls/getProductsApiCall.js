@@ -167,11 +167,24 @@ export const getProductsApiCall = async ({
             axios.get(
               `${baseUrl}/order/all?ordertype=PHARMA`,
               apiRequestHeader
+            ),
+            axios.get(
+              `${baseUrl}/order/fetchcompletedorders?ordertype=INSTA_SITE`,
+              apiRequestHeader
+            ),
+            axios.get(
+              `${baseUrl}/order/fetchcompletedorders?ordertype=SHOPIFY`,
+              apiRequestHeader
+            ),
+            axios.get(
+              `${baseUrl}/order/fetchcompletedorders?ordertype=PHARMA`,
+              apiRequestHeader
             )
+            
             
           ])
           .then(
-            axios.spread((allUsers, taProductRates, allOrders, shopifydata, pharmadata ) => {
+            axios.spread((allUsers, taProductRates, allOrders, shopifydata, pharmadata, instaCompletedOrders, shopifyCompletedOrders, pharmaCompletedOrders ) => {
               const allCustomersData = [];
               allUsers &&
                 allUsers.data &&
@@ -194,7 +207,10 @@ export const getProductsApiCall = async ({
                 customerList: allCustomersData,
                 taProductRates: taProductRates.data,
                 shopifycrm: shopifydata.data,
-                pharmacrm: pharmadata.data
+                pharmacrm: pharmadata.data,
+                instaCompletedOrders: instaCompletedOrders.data,
+                shopifyCompletedOrders: shopifyCompletedOrders.data,
+                pharmaCompletedOrders: pharmaCompletedOrders.data
               });
             })
           );

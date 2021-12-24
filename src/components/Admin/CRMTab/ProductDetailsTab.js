@@ -17,6 +17,17 @@ const ProductDetailsTab = ({ orderInfo, showEmailPopUp, dispatch, history, confi
 
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
+  const [productsOrderedArray, setProductsOrderedArray] =  React.useState([]);
+
+  React.useEffect(() => {
+    const productOrderedListArray = [];
+    orderInfo.orderdetailList.map((rowdetail) => {
+      productOrderedListArray.push({
+        ...rowdetail
+      })
+    });
+    setProductsOrderedArray(productOrderedListArray);
+  }, [orderInfo])
 
   const onGridReady = params => {
     setGridApi(params.api);
@@ -25,7 +36,18 @@ const ProductDetailsTab = ({ orderInfo, showEmailPopUp, dispatch, history, confi
   }
 
   const frameWorkComponentChange = ({ api }) => {
+    const productOrderedArray = [];
+    api.forEachNode((node) => {
+      let productOrderedObject = {
+        ...node.data,
+        amount : Number((Number(node.data.quantity) * Number(node.data.price))+(Number(node.data.quantity) * Number(node.data.vat)))
+      };
+      productOrderedArray.push(productOrderedObject);
+    });
+    setProductsOrderedArray(productOrderedArray);
+  }
 
+  const saveUpdates = ({ api }) => {
     const orderdetailList = [];
     api.forEachNode((node) => {
       orderdetailList.push(node.data)
@@ -50,44 +72,45 @@ const ProductDetailsTab = ({ orderInfo, showEmailPopUp, dispatch, history, confi
     {
       field: 'quantity',
       headerName: "Product Quantity",
-      cellEditor: "productQuantityEditor",
-      editable: true
+      cellRenderer: "productQuantityEditor",
+      editable: false
     },
     {
       field: 'price',
       headerName: "Sales Price Unit",
-      cellEditor: "salesPricePerUnitEditor",
-      editable: true
+      cellRenderer: "salesPricePerUnitEditor",
+      editable: false
     },
     {
       field: 'vat',
       headerName: "Product vat",
-      cellEditor: "productVatEditor",
+      cellRenderer: "productVatEditor",
       editable: false
     },
     {
       field: 'amount',
       headerName: "Total",
-      cellEditor: "totalAmountEditor",
+      //cellEditor: "totalAmountEditor",
       editable: false
     },
     {
       field: 'amountpaid',
       headerName: "Amount Paid",
-      cellEditor: "totalAmountPaidEditor",
+      cellRenderer: "totalAmountPaidEditor",
       editable: true
     },
   ];
 
-  const rowData = () => {
-    const productOrderedListArray = [];
-    orderInfo.orderdetailList.map((rowdetail) => {
-      productOrderedListArray.push({
-        ...rowdetail
-      })
-    });
-    return productOrderedListArray
-  };
+  // const rowData = () => {
+    // const productOrderedListArray = [];
+    // orderInfo.orderdetailList.map((rowdetail) => {
+    //   productOrderedListArray.push({
+    //     ...rowdetail
+    //   })
+    // });
+    // setProductsOrderedArray(productOrderedListArray);
+    // return productOrderedListArray
+  // };
 
 
   const defaultColDef = React.useMemo(() => ({
@@ -102,7 +125,7 @@ const ProductDetailsTab = ({ orderInfo, showEmailPopUp, dispatch, history, confi
       style={{ height: "520px", width: "100%" }}
     >
       <AgGridReact
-        rowData={rowData()}
+        rowData={productsOrderedArray}
         columnDefs={columnDefs({
           frameWorkComponentChange: frameWorkComponentChange,
         })}
@@ -126,7 +149,7 @@ const ProductDetailsTab = ({ orderInfo, showEmailPopUp, dispatch, history, confi
       </button>
       <button className="btn btn-secondary" onClick={() => {
         onClose();
-        frameWorkComponentChange({ api: gridApi })
+        saveUpdates({ api: gridApi })
       }}>
         Save Updates
       </button>

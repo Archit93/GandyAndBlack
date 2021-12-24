@@ -4,11 +4,12 @@ import UnAuthenticatedUser from "./common/UnAuthenticatedUser";
 
 const AboutUs = (props) => {
 
-  const { config } = props;
+  const { applicationState, dispatch } = props;
+  const { config, cartDetails } = applicationState;
   return (
     <div id="aboutus">
       <div>
-        {config && Object.keys(config).length > 0 ? <HeaderMenu /> : <UnAuthenticatedUser/>}
+        {config && Object.keys(config).length > 0 && config.authToken && config.authToken.length > 0 ? <HeaderMenu dispatch={dispatch} cartCount={cartDetails ? cartDetails.length : 0} /> : <UnAuthenticatedUser/>}
         
       </div>
       <div id="about">

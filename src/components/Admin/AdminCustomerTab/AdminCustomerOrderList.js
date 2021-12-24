@@ -8,7 +8,7 @@ import CRMTabList from "../CRMTab/CRMTabList";
 const AdminCustomerOrderList = (props) => {
   const history = useHistory();
   const { applicationState, dispatch } = props;
-  const { getCustomerOrderList, crmDetails } = applicationState;
+  const { getCustomerOrderList, crmDetails, config } = applicationState;
 
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
@@ -140,8 +140,15 @@ const AdminCustomerOrderList = (props) => {
         title={`Order Id`}
         onClose={() => setShowModal(false)}
         show={showModal}
+        orderInfo={orderInfo}
       >
-        <CRMTabList orderInfo={orderInfo} />
+        <CRMTabList 
+          orderInfo={orderInfo}
+          dispatch={dispatch}
+          history={history}
+          config={config}
+          onClose={() => setShowModal(false)}
+           />
       </AdminOrderDetailsModal>
     </div>
   );

@@ -15,7 +15,7 @@ import PayWithCard from "../components/CustomerCheckout/PayWithCard";
 import MyOrders from "../components/Customer/MyOrders/MyOrders";
 import AdminCustomersList from "../components/Admin/AdminCustomerTab/AdminCustomersList";
 import CRM from "../components/Admin/CRMTab/CRM";
-import CRMShopify from "../components/Admin/CRMTabSHOPIFY/CRMShopify";
+import CRMShopify from "../components/Admin/CRMTabShopify/CRMShopify";
 import CRMPharma from "../components/Admin/CRMTabPharma/CRMPharma";
 import HomePage from "../components/HomePage";
 import AdminProductList from "../components/Admin/AdminProductListTab/AdminProductList";
@@ -29,6 +29,9 @@ import CppPage2 from "../components/Admin/CPP/CppPage2";
 import CppPage3 from "../components/Admin/CPP/CppPage3";
 import CustomerProfile from "../components/Admin/AdminCustomerProfile/CustomerProfile";
 import CPPList from "../components/Admin/CppFutureWork/Cpp";
+import CompletedOrdersInsta from "../components/Admin/CompletedOrders/CompletedOrdersInsta";
+import CompletedOrdersShopify from "../components/Admin/CompletedOrders/CompletedOrdersShopify"
+import CompletedOrdersPharma from "../components/Admin/CompletedOrders/CompletedOrdersPharma"
 
 export const AppRouter = (props) => {
   return (
@@ -114,6 +117,15 @@ export const AppRouter = (props) => {
         </Route>
         <Route exact={true} path="/crm_pharma">
           {RequireAuth(CRMPharma, { ...props })}
+        </Route>
+        <Route exact={true} path="/completed_orders_insta">
+          {RequireAuth(CompletedOrdersInsta, { ...props })}
+        </Route>
+        <Route exact={true} path="/completed_orders_shopify">
+          {RequireAuth(CompletedOrdersShopify, { ...props })}
+        </Route>
+        <Route exact={true} path="/completed_orders_pharma">
+          {RequireAuth(CompletedOrdersPharma, { ...props })}
         </Route>
       </Switch>
     </Router>

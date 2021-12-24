@@ -53,7 +53,10 @@ export const useStateManager = (
     },
     crmDetails: [],
     shopifycrm: [],
-    pharmacrm: []
+    pharmacrm: [],
+    instaCompletedOrders: [],
+    shopifyCompletedOrders: [],
+    pharmaCompletedOrders: [],
   },
   action
 ) => {
@@ -129,10 +132,10 @@ export const useStateManager = (
     case actionTypes.SET_CUSTOMER_BILLING_DETAILS:
       return {
         ...state,
-        shippingAddressDetails: action.payload?.shippingAddressDetails,
+        shippingAddressDetails: action.payload ?.shippingAddressDetails,
         billingAddressDetails:
-          action.payload?.billingAddressDetails || state.billingAddressDetails,
-        isSameAddress: action.payload?.isSameAddress || state.isSameAddress,
+          action.payload ?.billingAddressDetails || state.billingAddressDetails,
+        isSameAddress: action.payload ?.isSameAddress || state.isSameAddress,
       };
     case actionTypes.SET_IS_LOADING:
       return {
@@ -166,6 +169,9 @@ export const useStateManager = (
         taProductRates: action.taProductRates,
         shopifycrm: action.shopifycrm,
         pharmacrm: action.pharmacrm,
+        instaCompletedOrders: action.instaCompletedOrders,
+        shopifyCompletedOrders: action.shopifyCompletedOrders,
+        pharmaCompletedOrders: action.pharmaCompletedOrders,
         isLoading: false,
       };
     case actionTypes.ADMIN_ADD_ITEM_FOR_ORDER:

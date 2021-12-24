@@ -79,7 +79,7 @@ const CustomerPayment = (props) => {
         firstname: applicationState?.shippingAddressDetails?.firstName || "",
         lastname: applicationState?.shippingAddressDetails?.lastName || "",
         mobileno: applicationState?.shippingAddressDetails?.phoneNo || "",
-        paymentMethod: config?.userType === "USER" ? "POD" : "STORE",
+        paymentMethod: config?.userType === "USER" ? "CASH" : "STORE",
         postalcode: applicationState?.shippingAddressDetails?.postCode || "",
       };
       placeOrderApiCall({
