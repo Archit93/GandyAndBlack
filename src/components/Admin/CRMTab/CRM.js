@@ -223,7 +223,7 @@ const CRM = (props) => {
                         {applicationState ?.crmDetails && (
                             <Board
                                 data={createCRMData(applicationState.crmDetails)}
-                                style={{ height: "calc(100vh - 70px)" }}
+                                style={{ height: "calc(100vh - 80px)" }}
                                 cardDraggable={false}
                                 hideCardDeleteIcon
                                 onCardClick={onCardClick}
