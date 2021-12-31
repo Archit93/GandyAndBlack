@@ -179,7 +179,7 @@ const CustomerPayment = (props) => {
                             className="custom-control-label"
                             htmlFor="payondelivery"
                           >
-                            Pay on Delivery
+                            CASH
                           </label>
                         </div>
                       </div>

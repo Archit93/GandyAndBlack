@@ -34,6 +34,7 @@ export const ProductVatEditor = (params) => {
           onChange={(event) => onInputChange(event)}
           onBlur={() => onInputBlur()}
           style={{width: "100%"}}
+          disabled
         />
       </>
     )

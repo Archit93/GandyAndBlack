@@ -183,6 +183,15 @@ export const useStateManager = (
         totalAmount: action.payload.totalAmount,
         shippingCost: action.payload.shippingCost,
       };
+    case actionTypes.CLEAR_ADD_ITEM_FOR_ORDER:
+      return {
+        ...state,
+        adminPlaceOrder: [],
+        subTotalAmount: 0,
+        totalVatAmount: 0,
+        totalAmount: 0,
+        shippingCost: 0,
+      };
     case actionTypes.SET_PROFILE_UPDATE_STATUS:
       return {
         ...state,
@@ -205,6 +214,16 @@ export const useStateManager = (
         addDeleteStatus: action.payload,
         alertMessage: action.message,
       };
+    case actionTypes.UPDATE_CUSTOMER_NOTIFICATION_STATUS:
+      return {
+        ...state,
+        customerList: action.customerList,
+      }
+    case actionTypes.SET_NOTIFICATION_SPINNER:
+      return {
+        ...state,
+        isSpinnerEnabled: action.isSpinnerEnabled
+      }
     case actionTypes.SET_ERROR:
     case actionTypes.RESET_ALL_DATA:
     default:

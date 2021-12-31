@@ -67,7 +67,7 @@ const PlaceOrderAddItemModal = (props) => {
               </div>
               <div className="form-floating mb-3">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="quantity"
                   placeholder="quantity"

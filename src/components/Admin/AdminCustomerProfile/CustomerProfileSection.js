@@ -154,7 +154,7 @@ const CustomerProfileSection = (props) => {
               onBlur={(e) => validatePostcode(e)}
               value={
                 profileDetails.address && profileDetails.address.length > 0
-                  ? profileDetails.address[0].addressbody
+                  ? profileDetails.address[0].postcode
                   : ""
               }
             />

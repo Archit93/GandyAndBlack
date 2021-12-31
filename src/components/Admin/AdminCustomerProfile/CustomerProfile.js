@@ -81,7 +81,11 @@ const CustomerProfile = (props) => {
   };
 
   const onAddressChange = (e) => {
-    const changeAddressBody = profileDetails.address;
+    let changeAddressBody = profileDetails.address;
+    if(changeAddressBody === null)
+      changeAddressBody = [{
+        addressbody: ""
+      }];
     changeAddressBody[0].addressbody = e.target.value;
     setProfileDetails({ ...profileDetails, address: changeAddressBody });
     setProfileDetailsError({ ...profileDetailsError, addressError: "" });
@@ -97,7 +101,11 @@ const CustomerProfile = (props) => {
   };
 
   const onPostcodeChange = (e) => {
-    const changePostCode = profileDetails.address;
+    let changePostCode = profileDetails.address;
+    if(changePostCode === null)
+      changePostCode = [{
+        postcode: ""
+      }];
     changePostCode[0].postcode = e.target.value;
     setProfileDetails({ ...profileDetails, address: changePostCode });
     setProfileDetailsError({ ...profileDetailsError, postCodeError: "" });
