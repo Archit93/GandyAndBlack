@@ -10,12 +10,16 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 import { CustomerUserNameColumn } from "./CustomerUserNameColumn";
 import { CustomerEmailColumn } from "./CustomerEmailColumn";
+import { CustomerNotificationColumn } from "./CustomerNotificationColumn";
 import AdminHeaderMenu from "../../common/AdminHeaderMenu";
 import {
   SET_IS_LOADING,
   UPDATE_CUSTOMER_DETAILS,
 } from "../../../constants/actionTypes";
 import { getOrderListOfCustomerForAdmin } from "../../../serviceCalls/getOrderListOfCustomerForAdmin";
+import { Spinner } from "react-bootstrap";
+import { updateCustomerNotificationApiCall } from "../../../serviceCalls/updateCustomerNotificationApiCall";
+
 
 const AdminCustomersList = (props) => {
   const { applicationState, dispatch } = props;
@@ -27,6 +31,8 @@ const AdminCustomersList = (props) => {
   const [gridApi, setGridApi] = React.useState(null);
   const [gridColumnApi, setGridColumnApi] = React.useState(null);
   const [showModal, setShowModal] = React.useState(false);
+  const [rerender, setRerender] = React.useState(false);
+  let notificationValue = {};
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -34,7 +40,7 @@ const AdminCustomersList = (props) => {
     params.api.sizeColumnsToFit();
   };
 
-  const frameWorkComponentChange = ({ api }) => {};
+  const frameWorkComponentChange = ({ api }) => { };
 
   const onEmailClicked = (params) => {
     dispatch({ type: SET_IS_LOADING, payload: true });
@@ -62,11 +68,14 @@ const AdminCustomersList = (props) => {
     { field: "mobileno", headerName: "Mobile Number" },
     { field: "tradeofbuisness", headerName: "User Type" },
     { field: "postcode", headerName: "Postal Code" },
+    { field: "notification", headerName: "Notification", cellRenderer: "notificationcolumn" }
   ];
 
   const rowData = () => {
     const customerlistArray = [];
-    applicationState.customerList.map((rowdetail) => {
+    applicationState.customerList && applicationState.customerList.map((rowdetail) => {
+      if (notificationValue.email === rowdetail.email)
+        rowdetail.notification = notificationValue.value
       customerlistArray.push({ ...rowdetail });
     });
     return customerlistArray;
@@ -93,12 +102,27 @@ const AdminCustomersList = (props) => {
     }
   };
 
+  const changeNotification = (value, data, isNotification) => {
+    notificationValue = {
+      email: data.email,
+      value: value
+    }
+    applicationState.customerList.map((rowdetail) => {
+      if (rowdetail.email === notificationValue.email)
+        updateCustomerNotificationApiCall({ dispatch, email: notificationValue.email, isNotificationEnabled: notificationValue.value, authToken: authToken, history })
+    })
+  }
+
   return (
     <div id="admincustlist" className="admin">
       <div>
         <AdminHeaderMenu dispatch={dispatch} />
       </div>
-
+      {applicationState.isSpinnerEnabled && <div className="d-flex justify-content-center loader">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>}
       <div className="container-fluid">
         <div className="card">
           <input
@@ -121,6 +145,7 @@ const AdminCustomersList = (props) => {
               frameworkComponents={{
                 usernamecolumn: CustomerUserNameColumn,
                 emailcolumn: CustomerEmailColumn,
+                notificationcolumn: (params) => CustomerNotificationColumn(params, changeNotification)
               }}
               context={{
                 frameWorkComponentChange: frameWorkComponentChange,

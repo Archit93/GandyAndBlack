@@ -136,8 +136,6 @@ const SignIn = (props) => {
                       id="floatingPassword"
                       placeholder="Password"
                       onChange={(e) => onPasswordChange(e)}
-                      onBlur={(e) => validatePassword(e)}
-                      // onKeyPress={(e) => validatePassword(e)}
                       value={password}
                     />
                     <label htmlFor="floatingPassword">Password</label>

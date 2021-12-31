@@ -342,11 +342,11 @@ const CustomerShippingInformation = (props) => {
                             <React.Fragment />
                           )}
                           <input
-                            type="text"
+                            type="number"
                             name="phoneNo"
                             id="phoneNo"
                             className="form-control"
-                            placeholder="Contact No."
+                            placeholder="Contact No.*"
                             onChange={(e) => onShippingFieldChange(e)}
                             onBlur={(e) => validatePhone(e)}
                             value={shippingAddressDetails.phoneNo}
@@ -396,7 +396,7 @@ const CustomerShippingInformation = (props) => {
                           />
                           {shippingAddressDetailsError.postCodeError ? (
                             <span className="error">
-                              {shippingAddressDetailsError.postCodeError}
+                              {shippingAddressDetailsError.postCodeError}<br/>
                             </span>
                           ) : (
                             <React.Fragment />

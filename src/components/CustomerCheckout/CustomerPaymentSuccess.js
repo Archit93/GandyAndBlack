@@ -2,7 +2,7 @@ import * as React from "react";
 import HeaderMenu from "../common/HeaderMenu.js";
 import CheckoutProgressBar from "./CheckoutProgressBar";
 import { useHistory } from "react-router-dom";
-import { EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
+import { CLEAR_ADD_ITEM_FOR_ORDER, EDIT_PRODUCT_QUANTITY } from "../../constants/actionTypes";
 import { getMyOrdersApiCall } from "../../serviceCalls/getMyOrdersApiCall";
 import { getProductsApiCall } from "../../serviceCalls/getProductsApiCall";
 
@@ -41,7 +41,10 @@ const CustomerPaymentSuccess = (props) => {
   }, [applicationState.config.authToken]);
 
   const onContinueShopping = () => {
-    history.push("/producttypes")
+    dispatch({
+      type: CLEAR_ADD_ITEM_FOR_ORDER
+    })
+    history.push("/place_order")
   }
   return (
     <div>

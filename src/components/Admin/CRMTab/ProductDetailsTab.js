@@ -35,9 +35,12 @@ const ProductDetailsTab = ({ orderInfo, showEmailPopUp, dispatch, history, confi
     params.api.sizeColumnsToFit()
   }
 
-  const frameWorkComponentChange = ({ api }) => {
+  const frameWorkComponentChange = ({ api, changedPrice }) => {
     const productOrderedArray = [];
     api.forEachNode((node) => {
+      if(changedPrice && changedPrice.data.productid === node.data.productid && changedPrice.data.vat > 0){
+        node.data.vat = 0.20 * changedPrice.data.price;
+      }
       let productOrderedObject = {
         ...node.data,
         amount : Number((Number(node.data.quantity) * Number(node.data.price))+(Number(node.data.quantity) * Number(node.data.vat)))

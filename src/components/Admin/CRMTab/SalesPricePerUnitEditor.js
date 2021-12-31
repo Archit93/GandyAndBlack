@@ -20,7 +20,7 @@ export const SalesPricePerUnitEditor = (params) => {
     node.setDataValue(column.colId, Number(priceValue));
   };
   const onInputBlur = () => {
-    context.frameWorkComponentChange({ api });
+    context.frameWorkComponentChange({ api, changedPrice: api.getRowNode(api.getFocusedCell().rowIndex) });
   };
 
   const componentToDisplay = () => {
